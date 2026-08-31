@@ -10,7 +10,7 @@ Status: DERIVED -- All sections closed (zero free parameters).
         Section 4: G32 alignment chain derived; t closed (two routes):
           entanglement t_hop = m_mu/sqrt(3) = 61.0 MeV; Delta = 44.7 MeV [EH1-EH6];
           medium phonon t_cell = E_cell/(2pi) = 19862 MeV [EH7-EH9].
-          Bell violation: CHSH S = -2*sqrt(2) from A_g geometry [ET4-ET5].
+          Bell violation: CHSH S = -2*sqrt(2) from A_g geometry [ET1-ET8].
         All physics derivations are closed (zero free parameters).
         This document supersedes Zenodo version 1 (doi:10.5281/zenodo.22052350)
         which overstated the non-locality derivation.
@@ -67,7 +67,8 @@ CLASSICAL WAVE MODES:
   persist without a source, and they decay to zero at infinite distance.
 
   Pressure wave:  v_p = c = 2.998e8 m/s
-  Shear wave:     v_s = Rs*c = 5.335e7 m/s  (Rs = sqrt(5)/(4*pi) from I_h geometry)
+  Shear wave:     v_s = Rs*c = 5.335e7 m/s  (Rs = sqrt(5)/(4*pi) from I_h geometry
+                  [doc_torsion https://doi.org/10.5281/zenodo.22016573, torsion_doc.py])
 
 TOPOLOGICAL MODES (Hopf winding numbers):
   These are the winding configurations of the medium itself. A winding number
@@ -212,7 +213,8 @@ No additional free parameters.
   (1) JAMMED A_g AT EACH PARTICLE SITE:
       When two compatible particles form the singlet, the local A_g phonon
 at each particle's cell jams into a locked configuration --
-the propagating A_g phonon (124.8 GeV) locks to the SSB state (vev, zero frequency).
+the propagating A_g phonon (124.8 GeV = E_cell) locks to the SSB state (vev, zero frequency).
+[E_cell from doc_jobson_cell https://doi.org/10.5281/zenodo.22032906]
 This is a local mini-SSB event at each particle location.
 The frozen A_g costs nothing to maintain (lower energy than the oscillating
 state): this follows from the Higgs potential in doc_higgs -- the SSB minimum
@@ -572,6 +574,8 @@ REFERENCES
   [doc_hadron_manipulation]    https://doi.org/10.5281/zenodo.22140068
   [doc_series2_muon_lubrication] https://doi.org/10.5281/zenodo.22140481
   [doc_electron]               https://doi.org/10.5281/zenodo.22105622
+  [doc_higgs]                  https://doi.org/10.5281/zenodo.22032555
+  [doc_qm]                     https://doi.org/10.5281/zenodo.22052395
   [Cirelson1980]               B.S. Cirel'son, Lett. Math. Phys. 4 (1980) 93-100
 
 COMPANION SCRIPTS (reproducibility):
