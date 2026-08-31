@@ -517,6 +517,12 @@ SET the window in which stable atoms can exist.
     alpha for E- as for E+. [ED19 PASS]
 
 
+COMPANION SCRIPTS (reproducibility):
+  analysis/demos/electron_doc.py    -- 19/19 PASS  [STANDALONE -- no external deps]
+  Repository: https://doi.org/10.5281/zenodo.22105622
+  Code:        https://github.com/Destraag/torsionverse_public
+
+
 =============================================================================
 END doc_electron.txt
 =============================================================================

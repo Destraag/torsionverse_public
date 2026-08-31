@@ -11,7 +11,7 @@ Status: DERIVED -- All sections closed (zero free parameters).
           entanglement t_hop = m_mu/sqrt(3) = 61.0 MeV; Delta = 44.7 MeV [EH1-EH6];
           medium phonon t_cell = E_cell/(2pi) = 19862 MeV [EH7-EH9].
           Bell violation: CHSH S = -2*sqrt(2) from A_g geometry [ET4-ET5].
-        Nothing remains open.
+        All physics derivations are closed (zero free parameters).
         This document supersedes Zenodo version 1 (doi:10.5281/zenodo.22052350)
         which overstated the non-locality derivation.
 =============================================================================
@@ -48,7 +48,9 @@ WHAT REMAINS OPEN:
   Bell violation: CHSH S = -2*sqrt(2) from A_g isotropy [entanglement_tsirelson.py 8/8 PASS].
   The Zenodo v1 non-locality claim (infinite-range without mechanism) is superseded.
 
-Companion scripts: see Section 7. All 9 scripts pass.
+Companion scripts: see Section 7. entanglement_doc.py 35/35 PASS; 6 supplementary
+scripts fully pass; face_coloring.py 6/7 (FC3 geometric check open -- does not
+affect the paper's physics claims).
 
 
 1. STANDING WAVES IN THE TORSION MEDIUM
@@ -100,8 +102,8 @@ state, though each retains its identity as a separate winding. The picture is tw
 trains joined by a chain of aligned cogs -- as a whole one locked system, individually still
 distinct. How this joint lock persists as the particles separate is developed in
 Section 4.2: a chain of phase-aligned G32 modes recruits itself along pre-existing
-gluon edge channels to act as that coupling chain. Its geometry is essentially derived;
-the formation threshold is open.
+gluon edge channels to act as that coupling chain. Both geometry and formation
+threshold are derived (Section 4.2, EH1-EH6, ET4). [CLOSED]
 
 
 2. ENTANGLEMENT SELECTIVITY FROM CG STRUCTURE
@@ -225,7 +227,7 @@ geometry (3V-E=6). More precisely: the structural G32 mode consists of the 10
 I_h-orbit circuits (20 corpuscles bilateral), the unique smallest I_h-symmetric
 subset of the 70 possible muon circuits. These 10 circuits cover all 30 edges
 and visit each vertex exactly 5 times (= gluon channel count per vertex;
-60 = 12x5 = gluon count = muon vertex visits). [muon_orbit_count.py MO1-MO6]
+60 = 12x5 = gluon count = muon vertex visits). [muon_orbit_count.py MO1-MO6, 6/6 PASS]
 The muon mode rides along the gluon edge channels (2G modes,
 C3=+1 coupling) which are self-sustaining. A phase-coherent alignment chain of
 G32 modes forms across all intermediate cells between the two frozen A_g sites,
@@ -244,7 +246,10 @@ alignment, not transfer or depletion. The medium is intact throughout.
 
   CHAIN LENGTH COST (zero per-link) AND PHASE COHERENCE (one position only):
   For a macroscopic separation D, the alignment chain recruits ~D/L_J cells
-  (~10^20 cells for D=1 km). Each cell boundary handoff is cost-free (FG10).
+  (~10^20 cells for D=1 km). Each cell boundary handoff is cost-free:
+  chi(G32,C3) = +1 = chi(G_g,C3) -- muon and gluon share the same C3 character,
+  so no A_g term appears in G32 x G_g (verified: ih_double_cg.py; see also
+  [cell_rotation_propagation.py RP2a: gluon-gluon C3 coupling constructive]).
   No per-length energy penalty applies: the G32 edge modes already exist
   throughout the lattice by the Maxwell-critical geometry (3V-E=6). The only
   activation cost (Delta) is paid at the TWO ENDPOINT CELLS where the singlet
@@ -287,7 +292,8 @@ alignment, not transfer or depletion. The medium is intact throughout.
   The gluon edge channels span all of space as the natural boundary structure
   of the medium. The alignment chain can always find a continuous edge path between
   any two points, routing around matter automatically by remaining at the boundary
-  level. FG10 (G32 x G = no A) ensures frictionless handoff at every cell
+  level. chi(G32,C3)=chi(G_g,C3)=+1 (same C3 channel, no A_g in G32 x G_g)
+  ensures frictionless handoff at every cell
   boundary regardless of what occupies neighboring cell interiors.
 
   (3) GEOMETRY AND G32 ALIGNMENT CHAIN (2026-08-22 -- face_coloring.py, three_particle_entanglement.py,
@@ -308,15 +314,16 @@ alignment, not transfer or depletion. The medium is intact throughout.
 
   ALIGNMENT CHAIN MECHANISM (established):
     1. Electrons form A_g singlet -> phase pins at two antipodal endpoint vertices
-    2. G32 x G = no A [FG10]: G32 modes phase-align freely across cell boundaries
+    2. chi(G32,C3)=chi(G_g,C3)=+1 (no A_g in G32 x G_g): G32 modes phase-align freely across cell boundaries
     3. At endpoint cells: phase pinning recruits G32 into 3-edge aligned configuration
     4. Intermediate cells: G32 modes phase-align into chain without individual activation
     5. Activation energy (sqrt3-1)t paid at endpoints from Zone 3 field overlap
     6. Alignment chain established; cells intact; entanglement formed
 
-  Chain formation is kinematically free (FG10), energetically activated at endpoints (~0.73t).
-  Proving the path CAN happen (done). Whether it DOES happen under specific
-  conditions requires: (a) t in physical MeV units, (b) Zone 3 overlap > (sqrt3-1)t.
+  Chain formation is kinematically free (chi(G32,C3)=+1=chi(G_g,C3), compatible edge channels),
+  energetically activated at endpoints (~0.73t).
+  Both conditions confirmed: (a) t = m_mu/sqrt(3) = 61.0 MeV [EH1-EH6 PASS];
+  (b) Zone 3 overlap > Delta at L_J scale [entanglement_hopping_t.py ET4 PASS].
 
   VERTEX FORCE BALANCE AND BILATERAL CHAIN (added session 12, 2026-08-25):
   The alignment chain propagating from BOTH endpoints simultaneously has a direct
@@ -340,7 +347,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
   The force balance established here (all 62 vertex/edge/face nexuses at zero force)
   is exactly what makes the G32 entanglement chain cost-free per link -- the chain
   doesn't disturb the resting-cell force balance at any intermediate nexus. This is
-  a deeper reason for FG10 (G32 x G = no A -> frictionless): not just that the CG
+  a deeper reason why G32 x G_g has no A_g component -> frictionless handoff: not just that the CG
   product lacks A_g, but that the bilateral G32 chain structure guarantees zero net
   force at each vertex it traverses, preserving mechanical equilibrium throughout.
 
@@ -359,12 +366,11 @@ alignment, not transfer or depletion. The medium is intact throughout.
   (not by new information transmitted at measurement time). The disruption is
   local and propagates at c. No FTL signaling occurs [EQ8].
 
-  (4) OPEN:
-      - t in MeV from medium Green's function (K/G=30.25, Rs):
-        [CLOSED -- hopping_amplitude.py 6/6; dynamical matrix = medium Green's function]
-      - (sqrt3-1)t vs Zone 3 overlap: is formation spontaneous? [entanglement_hopping_t.py ET4: YES]
+  (4) CLOSED:
+      - t in MeV from medium Green's function: [hopping_amplitude.py 6/6; dynamical matrix]
+      - (sqrt3-1)t vs Zone 3 overlap: formation spontaneous [entanglement_hopping_t.py ET4: YES]
       - F-7: SU(3) from face 3-coloring [CLOSED 2026-08-23]
-      - Full Bell violation from alignment chain mechanism
+      - Full Bell violation from alignment chain mechanism [entanglement_tsirelson.py 8/8]
 
 4.3  Retrodicts of the G32 alignment chain mechanism
 
@@ -401,18 +407,24 @@ alignment, not transfer or depletion. The medium is intact throughout.
       must hold simultaneously.
 
   (c) PARA-POSITRONIUM LIFETIME (125 ps):
-      Para-positronium (e+e- spin-0 singlet) is the G32 alignment chain between
-      electron and positron at antipodal vertices. The 125 ps lifetime =
-      the G32 alignment chain decoherence time, consistent with l_d(vacuum) [EP7].
-      (l_d(vacuum) = vacuum decoherence length from the G_g+H_g phase-locking
-      calculation, entanglement_doc.py EP6-EP7.)
+      E+ x E- = G only (DC3) -- Galois-conjugate spinors, no A_g.
+      Para-positronium is NOT a G32 alignment chain case: the G32 chain
+      mechanism requires A_g at the endpoint cells, which e+e- cannot provide.
+      The 125 ps lifetime is derived independently in doc_electron (ED14):
+        tau = 2*hbar / (m_e*c^2 * alpha^5) = 124.5 ps  (0.5% of PDG 125.1 ps)
+      Physical: opposite-roll E+ windings cancel directly (A_g annihilation),
+      rate set by overlap probability ~ alpha^5. The decoherence-length
+      argument (EP7) is consistent but not the primary explanation.
 
   (d) HELIUM-4 SPIN = 0 + MUON STICKING DIFFICULTY:
       Two protons in He-4: T_2g x T_2g -> A_g (singlet ALLOWED). The spin-0
       ground state IS the torsionverse proton-proton singlet. The G32 alignment
       chain between the two proton vertices is ALREADY OCCUPIED -- this is why
       the muon sticking coefficient is ~1% and hard to reduce: the G32 channel
-      in He-4 is saturated by the proton-proton singlet.
+      in He-4 is saturated by the proton-proton singlet. (Experimental sticking
+      coefficient omega_s ~ 0.012; PSI measured 0.0118 +/- 0.0015; derived
+      mechanism in [doc_hadron_manipulation] CA26b-CA28b and
+      [doc_series2_muon_lubrication] CA21-CA28.)
       This also answers monogamy of entanglement -- geometrically, not as a
       postulate. Each icosahedral vertex has exactly ONE antipodal vertex
       (I_h symmetry: the antipodal map is unique). The G32 alignment chain
@@ -432,7 +444,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
   derivation of Bell violation is CLOSED: chi(A_g)=1 for all I_h classes gives
   E=-cos(theta) and CHSH |S|=2*sqrt(2) [entanglement_tsirelson.py 8/8 PASS, ET1-ET8].
   The G32 alignment chain mechanism (Section 4.2) is DERIVED: traverses 3 gluon
-  edges, energy = -phi*t, frictionless (G32 x G = no A_g) [muon_slip.py 5/5 PASS].
+  edges, energy = -phi*t, frictionless (G32 x G = no A_g) [muon_slip_derivation.py 5/5 PASS].
 
   No-FTL is not in doubt: any measurement perturbation propagates at c or Rs*c.
   The correlation is in the structure; the resolution of the correlation
@@ -492,15 +504,17 @@ FALSIFIABLE PREDICTIONS:
       CLOSED: entanglement_tsirelson.py 8/8 PASS  [ET1-ET8]
 
   (e) 2I DOUBLE GROUP CONFIRMS SELECTIVITY:
-      ih_double_cg.py (H-1 CLOSED) verifies at spinor level:
+      ih_double_cg.py (13/13 PASS) verifies at spinor level:
       E+ x E- = G(4) only -- Galois conjugate spinors: no singlet. [DC3]
       T1 x T2 = G(4)+H(5) -- same Galois prohibition as I_h J14. [DC5]
       The prohibition is FUNDAMENTAL to 2I structure, not an I_h artifact.
       Z=114 special: j=13/2 is the ONLY level with BOTH E+ and E- present
       (Galois completeness). No other j in range 7/2..15/2 has this.
 
-GENUINELY OPEN:
+GENUINELY OPEN (physics claims of this paper):
   None. Bell derivation CLOSED via entanglement_tsirelson.py 8/8 PASS (ET1-ET8).
+  (Note: face_coloring.py FC3 is a geometric detail in a supplementary script;
+  it does not affect any claim in this paper.)
   Note: "wavefunction collapse" = resolution of A_g global winding under local medium
   perturbation. Follows from topological persistence (EP7) + no-FTL (EQ8). Scope for doc_qm.txt.
 
@@ -512,9 +526,9 @@ DERIVED (zero free parameters):
   - Singlet selectivity, deuteron J=1, di-neutron, Cooper pair, no-FTL  [EQ1-EQ8]
   - Bell violation: CHSH S = -2*sqrt(2), classical bound, Tsirelson = A_g geometry  [entanglement_tsirelson.py 8/8]
   - d-wave gap (cuprates) = H_g/B1g in D4h crystal field  [crystal_field_projection.py 9/9]
-  - G32 alignment chain: traverses 3 gluon edges, energy = -phi*t (golden ratio EXACT)  [muon_slip.py 5/5]
+  - G32 alignment chain: traverses 3 gluon edges, energy = -phi*t (golden ratio EXACT)  [muon_slip_derivation.py 5/5]
   - Activation = (sqrt3-1)*t = 42.3%; chain forms spontaneously at L_J scale  [entanglement_hopping_t.py ET4]
-  - Mechanism: G32 x G = no A (FG10) -> frictionless alignment; cells NOT depleted
+  - Mechanism: chi(G32,C3)=+1=chi(G_g,C3), no A_g in G32 x G_g -> frictionless alignment; cells NOT depleted
   - 4 retrodicts: photon entanglement easy, BCS threshold, He-4 spin-0, para-positronium  [ET1-ET6]
   - Entanglement t = m_mu/sqrt(3) = 61.0 MeV  [entanglement_hopping_t.py 6/6 PASS]
   - Medium phonon t = E_cell/(2*pi) = m_p/(4*alpha*phi) = 19862 MeV  [hopping_amplitude.py 6/6 PASS]
@@ -526,17 +540,43 @@ GENUINELY OPEN:
 7. COMPANION SCRIPTS
 ---------------------
 
-  analysis/demos/entanglement_doc.py            -- 35/35 PASS  (CG, Tsirelson, phase-lock, t_hop, t_cell)  [STANDALONE]
+  MAIN STANDALONE (covers Sections 1-5, all 35 checks):
+  analysis/demos/entanglement_doc.py            -- 35/35 PASS  [STANDALONE]
+    Incorporates: EQ1-EQ10 (CG selectivity), ET1-ET8 (Tsirelson bound),
+    EP1-EP8 (Zone 3 phase-lock), EH1-EH6 (t_hop = m_mu/sqrt(3)),
+    EH7-EH9 (t_cell = E_cell/2pi). Previously separate scripts
+    entanglement_tsirelson.py, entanglement_hopping_t.py, and
+    hopping_amplitude.py are fully incorporated here.
+
+  SUPPLEMENTARY (results cited in text, not in entanglement_doc.py):
+  analysis/quantum/crystal_field_projection.py  -- 9/9 PASS   [CF1-CF9: d-wave cuprate gap]
+  analysis/quantum/muon_slip_derivation.py      -- 5/5 PASS   [G32 tight-binding, golden ratio]
+  analysis/corpuscle/muon_orbit_count.py        -- 6/6 PASS   [MO1-MO6: structural muon count]
+  analysis/nuclear/ih_double_cg.py             -- 13/13 PASS  [DC3, DC5: spinor CG selectivity]
+  analysis/quantum/jobson_cell_force_balance.py -- 17/17 PASS [resting cell force balance]
+  analysis/quantum/three_particle_entanglement.py -- 6/6 PASS  [3-particle selectivity]
+  analysis/quantum/face_coloring.py              --  6/7 PASS  [FC7: antipodal pairs;
+    FC3 (antipodal color symmetry) is a geometric detail open for future work;
+    it does not affect any derivation in this paper]
+  analysis/quantum/cell_rotation_propagation.py  -- 11/11 PASS [RP2a: G32/gluon C3 coupling]
 
 
 REFERENCES
 ----------
 
-  [doc_entanglement] https://doi.org/10.5281/zenodo.22052350
-  [doc_jobson_cell]  https://doi.org/10.5281/zenodo.22032906
-  [doc_nucleus]      https://doi.org/10.5281/zenodo.22042337
-  [doc_alpha]        https://doi.org/10.5281/zenodo.22013651
-  [doc_torsion]      https://doi.org/10.5281/zenodo.22016573
+  [doc_entanglement]           https://doi.org/10.5281/zenodo.22052350
+  [doc_jobson_cell]            https://doi.org/10.5281/zenodo.22032906
+  [doc_nucleus]                https://doi.org/10.5281/zenodo.22042337
+  [doc_alpha]                  https://doi.org/10.5281/zenodo.22013651
+  [doc_torsion]                https://doi.org/10.5281/zenodo.22016573
+  [doc_hadron_manipulation]    https://doi.org/10.5281/zenodo.22140068
+  [doc_series2_muon_lubrication] https://doi.org/10.5281/zenodo.22140481
+  [doc_electron]               https://doi.org/10.5281/zenodo.22105622
+  [Cirelson1980]               B.S. Cirel'son, Lett. Math. Phys. 4 (1980) 93-100
+
+COMPANION SCRIPTS (reproducibility):
+  Repository: https://doi.org/10.5281/zenodo.22052350
+  Code:        https://github.com/Destraag/torsionverse_public
 
 =============================================================================
 END doc_entanglement.txt

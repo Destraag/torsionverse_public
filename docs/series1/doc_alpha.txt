@@ -440,11 +440,11 @@ theoretical uncertainty window.
 
 Physical character of the vertex correction: in the corpuscle model the
 winding consists of straight-line paths between vertex impacts, not smooth
-curves. There is no "curvature energy" in the physical model. The vertex
-correction n_exact - 2 = 0.01869 is purely EM-coupling-driven: it is the
-shift in the effective winding number set by the Born balance equation
-(Section 4.5), which balances the vertex stiffness k_n against the external
-EM coupling alpha*phi*k_LW. The Born balance uniquely fixes n_exact; no
+curves. In that interpretation, there is no "curvature energy" -- the vertex
+correction n_exact - 2 = 0.01869 is purely EM-coupling-driven. Other physical
+interpretations (e.g. wave models) would assign different physical meanings to
+k_n and k_LW but arrive at the same Born balance algebra; the mathematics is
+interpretation-independent. The Born balance uniquely fixes n_exact; no
 curvature or bending stiffness concept enters. The Born balance equation
 (Section 4.5) derives this from first principles: k_n*(1+alpha) = alpha*phi*k_LW.
 
@@ -819,6 +819,7 @@ COMPANION SCRIPTS (reproducibility):
   analysis/demos/alpha_doc.py                        -- 47/47 PASS  [STANDALONE -- no external deps]
   analysis/higgs/higgs_cell_jamming_scaling.py       -- cross-connection: 7·k_n_max/(2π) = 1+α+α²φ
   Repository: https://doi.org/10.5281/zenodo.22013651
+  Code:        https://github.com/Destraag/torsionverse_public
 
 
 ACKNOWLEDGMENTS
