@@ -62,7 +62,7 @@ python analysis/demos/synthesis_demo.py
 
 | Paper | Script | DOI |
 |-------|--------|-----|
-| Jobson Cell Lattice Coherence and Rigidity | [cell_coherence_doc.py](analysis/demos/cell_coherence_doc.py) | pending |
+| Jobson Cell Lattice Coherence and Rigidity | [cell_coherence_doc.py](analysis/demos/cell_coherence_doc.py) | [10.5281/zenodo.22151160](https://doi.org/10.5281/zenodo.22151160) |
 
 ---
 
