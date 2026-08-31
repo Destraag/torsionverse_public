@@ -1,0 +1,629 @@
+doc_series2_spinning_pyramid.txt
+============================================================================
+TORSIONVERSE SERIES 2: SPINNING PYRAMID — T_1g CHI COUPLING AND POTENTIAL THRUST
+
+Author: Robert Jobson
+Date:   2026-08-26
+Status: v1.0 -- ready for Zenodo submission
+Predecessor: docs/doc_series2_piezo_escalator.txt (static T_1g coupling, geometry)
+Synthesis:   docs/doc_series2_synthesis.txt (DOI 10.5281/zenodo.22108664)
+Companion scripts:
+  analysis/demos/acoustics_doc.py    -- 27/27 PASS  [AC1-AC15, SP1-SP7c]
+  analysis/demos/gyroscope_doc.py    -- 10/10 PASS  [GY1-GY10, GY8: Omega^2 law]
+=============================================================================
+
+THESIS
+------
+
+A pentagonal pyramid spinning on its C5 axis produces two physically distinct
+effects from the same chi(T_1g, C5) = phi coupling:
+
+  MODE 1 (THRUSTER): the electron escalator (F1) and propeller action (F2)
+  combine to deliver a forward mechanical push felt as conventional thrust.
+
+  MODE 2 (LOW PRESSURE): the T_1g chi coupling sustains a low-pressure column
+  on the spin axis; objects in this zone experience reduced apparent weight
+  as a distributed, body-force-like pull.
+
+An N=5 ring of pyramids placed ahead of a craft combines both: the carousel
+phi^2 enhancement focuses the low-pressure zone uniformly across the craft's
+full forward cross-section, producing micro-G distributed forward force.
+Mode 2 operation recovers electrical power from the escalator simultaneously,
+enabling a self-powered design suited to satellite manuevering and station-keeping.
+
+
+ABSTRACT
+---------
+
+The pentagonal pyramid (chi(T_1g, C5) = phi = 1.618) spinning on its apex-base
+axis produces two mechanically distinct effects. In the thruster mode the
+electron escalator and propeller action deliver a forward push (felt as
+conventional acceleration). In the low-pressure mode the T_1g chi coupling
+creates a sustained low-pressure column on the spin axis; apparent weight of
+Objects on the axis decreases proportional to omega^2. chi(T_1g, C4) = -1
+means a 4-sided pyramid compresses the axis (weight INCREASE); chi(T_1g, C3) = 0
+gives no effect -- these are the discriminating bench tests, under $30.
+An N=5 ring of pyramids placed ahead of a craft combines both effects: phi^2
+carousel enhancement focuses the low-pressure zone across the full forward
+cross-section, producing ~1-2 milli-G distributed forward force at material
+tip-speed limits (illustrative: 1m-dia, 100 kg craft) -- practical for
+satellite attitude control and station-keeping. Mode 2 operation drains
+escalator electrons to an external load, generating electrical power while
+maintaining thrust: a self-powered configuration with no propellant.
+
+
+KEY PREDICTIONS
+----------------
+
+  a) Apparent weight reduction proportional to omega^2  [GY8: Omega^2 law]
+  b) Stops when spinning stops (dynamic eddy, not permanent effect)
+  c) Orientation reversal: apex-up reduces weight below; apex-down shows
+     no weight reduction or slight increase (null control) [SP1]
+  d) Shape discrimination: 5-sided reduces weight; 4-sided increases weight;
+     3-sided has no effect  [SP1: chi sign determines direction]
+  e) N=5 carousel: phi^2 = 2.618x more effect than N=4 at same mass [SP2]
+
+
+SECTION 1: INTRODUCTION
+------------------------
+
+The companion paper (doc_series2_piezo_escalator.txt) established that a
+pentagonal pyramid with face slope arctan(1/phi) = 31.72 deg has T_1g coupling
+chi(T_1g, C5) = phi = 1.618 — the maximum for any N-sided geometry. In the
+static case this directs charge to the apex (the electron escalator). The
+present paper derives what happens when the pyramid spins about its apex-base
+axis.
+
+Spinning preserves the C5 symmetry: the pyramid maps into itself every 72 deg
+of rotation. Centrifugal force acts on the Jobson cell medium, pushing cells
+radially outward from the spin axis. Because the centrifugal boundary condition
+has C5 symmetry (chi = phi), the T_1g coupling is constructive: the pressure
+reduction on the axis is coherent rather than random. The result is a sustained
+low-pressure column along the spin axis for as long as the pyramid spins.
+
+An object placed on this axis experiences reduced T_1g pressure from the
+medium, which manifests as reduced apparent weight. The effect reverses
+immediately when spinning stops (the medium relaxes on its acoustic timescale,
+not the slow tau_relax = 3.2 year quasi-static timescale — the centrifugal
+T_1g chi effect is a dynamic eddy, not a quasi-static cell removal).
+
+This is a bench-scale, falsifiable prediction requiring no exotic equipment.
+
+
+SECTION 2: MECHANISM — CENTRIFUGAL T_1g CHI COUPLING ON THE C5 AXIS
+-------------------------------------------------------------
+
+2.1 WHY C5 ROTATION REDUCES T_1g PRESSURE ON THE AXIS
+
+When the pyramid spins, centrifugal force creates an outward pressure gradient
+in the medium. The direction and coherence of this gradient depend on the
+rotational symmetry: chi(T_1g, C_N) determines whether the T_1g coupling
+of the rotation is positive (reduces T_1g pressure on axis), negative (compresses axis), or
+zero (no T_1g effect).
+
+  chi(T_1g, C5) = +phi > 0:  centrifugal force creates constructive T_1g
+                               pressure reduction on the axis. Object on
+                               axis: reduced T_1g pressure, reduced apparent
+                               weight. [SP1 PASS]
+
+  chi(T_1g, C4) = -1   < 0:  centrifugal force compresses the axis (opposite
+                               sign). Object on axis: increased T_1g pressure,
+                               slight weight INCREASE, not decrease.
+
+  chi(T_1g, C3) = 0:          no T_1g coupling to the rotation. No axis
+                               pressure reduction or compression. Object: normal weight.
+
+The sign flip between 4-sided (compresses) and 5-sided (reduces T_1g pressure) is the
+strongest prediction: it is not that 4-sided works less — it works in the
+opposite direction. This is a clean discriminator between the torsionverse
+mechanism and any conventional fluid dynamic or aerodynamic explanation, which
+would predict the same sign for all geometries at the same RPM.
+
+2.2 SCALING WITH ANGULAR VELOCITY
+
+The centrifugal force is F_centrifugal = m * omega^2 * r. The T_1g pressure
+reduction on the spin axis scales proportionally to this force — at twice the angular
+velocity the effect is four times as large. The apparent weight reduction
+is therefore proportional to omega^2:
+
+  delta_W / W proportional to omega^2   (quadratic RPM curve)
+
+This is the same Omega^2 scaling derived independently for T_2g rotation in
+the gyroscope companion paper [GY8]. The quadratic curve is the discriminating
+measurement: a linear or cubic result would falsify the centrifugal T_1g
+chi mechanism.
+
+2.3 DYNAMIC VS PERMANENT EFFECT
+
+The T_1g chi effect is dynamic: the reduced-pressure column is maintained only
+while spinning. The medium returns to equilibrium when the pyramid stops, on
+the acoustic timescale (~microseconds to milliseconds at lab scale), not the
+slow tau_relax = 3.2 year quasi-static timescale.
+
+This distinguishes the spinning pyramid from a hypothetical permanent pressure-
+reduction device. The energy accounting is conventional: the motor pays for overcoming
+aerodynamic drag and bearing friction. The medium provides the pressure
+differential on the test mass at no additional energy cost beyond maintaining
+the spin, because the medium's elastic restoring force is being continuously
+overcome by centrifugal mechanics.
+
+
+SECTION 3: EXPERIMENTAL PROTOCOL
+----------------------------------
+
+Full protocol: experiments/bench_pyramid_escalator.txt (Tests A-D)
+
+EQUIPMENT:
+  Pentagonal pyramid: face slope 31.72 deg, base ~10 cm, aluminium or brass.
+  Motor: hobby brushless motor, variable speed, mounted above test platform.
+  Scale: precision digital, 0.01 g resolution.
+  Tachometer: optical or hall-effect, for RPM measurement.
+  Total cost: < $30 in materials.
+
+TEST A (baseline): Pyramid stationary above scale with test mass. Record
+  baseline weight. Expected: normal weight (1.000 × baseline).
+
+TEST B (weight vs RPM — primary test): Spin pyramid at 500, 1000, 2000, 3000
+  RPM. Record apparent weight of test mass at each RPM. Plot delta_W/W vs
+  omega^2. Expected: linear plot (weight reduction proportional to omega^2).
+
+TEST C (orientation reversal — null control): Flip pyramid apex-down. Repeat
+  Test B. Expected: no weight reduction, or slight weight increase. This
+  controls for aerodynamic downwash (which acts downward regardless of
+  orientation) and confirms the effect is geometric.
+
+TEST D (shape comparison — discriminating test): Replace with 4-sided pyramid
+  at same face slope 31.72 deg, same base size, same total mass. Repeat Test B.
+  Expected: slight weight INCREASE on axis (chi = -1, compression).
+  Replace with 3-sided: expected no effect (chi = 0).
+
+DISC CONTROL: Spin a flat disc of the same total mass at the same RPM. Expected:
+  negligible weight change. Confirms the effect requires pyramid geometry.
+
+NOTE: face slope precision is less critical for the spinning test than for the
+static escalator. The key parameter is the N-sided symmetry (C5 vs C4 vs C3)
+and the RPM². A rough 5-sided pyramid will show the effect; a precise 31.72 deg
+slope maximises it.
+
+
+SECTION 4: N-PYRAMID CAROUSEL
+-------------------------------
+
+An array of N pyramids with apices pointing outward, equally spaced around a
+ring, creates a carousel. The spacing angle between adjacent pyramids is
+360/N degrees. The T_1g enhancement for this carousel follows the same chi^2
+rule as the N-source acoustic array [AC10]:
+
+  N=5 carousel: spacing = 72 deg, chi^2(T_1g, C5) = phi^2 = 2.618 per pair
+  N=4 carousel: spacing = 90 deg, chi^2(T_1g, C4) = 1     per pair
+  N=3 carousel: spacing = 120 deg, chi^2 = 0 (exact null)
+
+Predicted effect ratio N=5 / N=4 carousel = phi^2 / 1 = phi^2 = 2.618  [SP2]
+
+This is the same phi^2 enhancement derived independently for two acoustic
+sources at 72 deg vs 90 deg [AC10]. The N=5 carousel spinning as a unit
+combines the per-pyramid T_1g chi effect with the inter-pyramid T_1g enhancement,
+giving the maximum possible effect for a given total mass.
+
+The N=5 carousel is the dynamic analogue of the Stonehenge inner horseshoe
+(five trilithon pairs at C5 spacing, stationary T_1g focus at altar stone
+position). In the spinning case, the T_1g focus is sustained dynamically
+along the rotation axis.
+
+
+SECTION 5: RETRODICTIONS
+--------------------------
+
+The following atmospheric and geophysical observations are consistent with
+centrifugal T_1g chi coupling at vortex axes. None were predicted before being
+observed; they are retrodictions. [Source: doc_series2_synthesis.txt Section 1.2]
+
+Ball lightning: a transient low-pressure zone forms at the vortex axis of a
+high-intensity atmospheric vortex, with a compressed boundary shell. The
+low-pressure interior is a low-medium-pressure region; the boundary shell is a
+high-medium-pressure shell. This produces the characteristic ball lightning
+geometry: luminous compressed shell surrounding a dark or dim interior.
+The ball decays when the vortex loses angular velocity and the medium refills
+from the boundary — consistent with the dynamic eddy picture.
+
+Tornado eye: the low pressure at a tornado eye is consistent with centrifugal
+T_2g vortex coupling along the vortex axis. The eye is the low-pressure zone; the
+eyewall is the compressed boundary. In torsionverse terms: the rotating air
+mass has C-infinity symmetry which limits to C5 for the dominant icosahedral
+coupling; the T_2g component creates the low-pressure axis independently of
+any T_1g pyramid-specific geometry.
+
+Jupiter's Great Red Spot: a long-lived atmospheric vortex that has persisted
+for centuries. In the torsionverse picture, the T_2g vortex creates a
+low T_1g pressure zone at its axis that self-reinforces: lower medium
+pressure on axis → reduced drag on the vortex → longer lifetime. The Great
+Red Spot is predicted to have a low T_1g pressure zone at its
+axis. Falsifiable: compare vortex lifetime vs intensity across Jovian storms —
+longer-lived storms should correlate with deeper axis pressure reduction signatures
+in microwave or gravity data.
+
+
+SECTION 6: DISCUSSION
+-----------------------
+
+6.1 RELATION TO COMPANION PAPERS
+
+The spinning pyramid prediction is the dynamic extension of the static electron
+escalator (doc_series2_piezo_escalator.txt). Both are governed by the same
+chi(T_1g, C5) = phi. Static case: face-area cell compression channels charge
+upward. Dynamic case: centrifugal force reduces T_1g pressure on the spin axis,
+reducing apparent weight of objects there. The mechanism is identical; only the driving
+force (static geometry vs centrifugal acceleration) differs.
+
+The Omega^2 scaling law is derived independently in the gyroscope companion
+paper [GY8] for T_2g rotation. The same quadratic RPM dependence appears here
+for T_1g centrifugal chi coupling, from the same origin: centrifugal force is
+proportional to omega^2, so any effect driven by centrifugal force scales
+as omega^2.
+
+6.2 WHAT A POSITIVE RESULT WOULD MEAN
+
+A positive result (weight reduction on axis, proportional to omega^2, reversing
+on apex flip, absent for N=3 and opposite for N=4) would be the first bench-
+scale confirmation that the torsionverse T_1g coupling has macroscopic mechanical
+consequences. It would directly demonstrate both propulsion modes: Mode 1
+(escalator + propeller forward push, felt as conventional thrust) and Mode 2
+(T_1g low-pressure column, distributed pull). The effect is a redistribution
+of medium pressure, not a reaction-free force — Newton's third law is satisfied
+by increased medium pressure elsewhere. The magnitude of both modes scales with
+the medium coupling parameter eta, which the bench test measures directly.
+A null result constrains eta; a positive result opens the path to the N=5 ring
+satellite configuration (SP7c: ~1-2 milli-G, self-powered, no propellant).
+
+6.3 OPEN ITEMS
+
+  - Formal derivation of the magnitude of weight reduction from medium parameters
+    (G_shear, rho, Rs): the proportionality constant in delta_W / W = k * omega^2
+    is not yet derived from torsionverse; it requires parameterising the medium
+    stiffness at lab scale.
+  - Threshold RPM for a measurable effect: depends on the above proportionality
+    constant; the bench test determines this empirically.
+  - Relation to tau_relax: the centrifugal eddy timescale is set by acoustic
+    propagation, not tau_relax. Confirmed: stopping the pyramid restores weight
+    immediately (acoustic timescale), not over years (tau_relax).
+  - Thrust ring configuration [CLOSED SP7c]: N=5 ring of pyramids placed AHEAD
+    of the craft, apexes pointing rearward. Low pressure at craft nose, normal
+    pressure at craft body -- differential drives craft forward into the low-
+    pressure zone. Force = dP * A_front = 1.68 Pa * 0.79 m^2 = ~1.3 N on 1m-dia
+    craft (100 kg) at Al tip-speed limit = 1.35 milli-G. Uniform force over
+    front cross-section; smooth at micro-G levels. chi factor = phi^2 + N*phi
+    = 10.71 (carousel + individual rearward). [SP7c CLOSED]
+    maximised at alpha=90 deg (apex fully forward). Total forward chi factor =
+    N*phi + phi^2 = 10.71 vs phi^2 = 2.618 at alpha=0 (4.09x improvement). No
+    intermediate optimum -- point the apexes as far forward as possible. The arm
+    rotation (Omega_2) then provides coverage uniformity and carousel enhancement.
+  - Inertial shielding crossover [CLOSED SP7b]: continuous coverage requires
+    ~6.3e8 RPM (relativistic, unreachable). The arm pyramid configuration produces
+    mechanical thrust at ALL practical speeds -- passengers feel it as acceleration.
+    Protocol Beta (fluid, T_2g enveloping) is the only practical inertial-shielding
+    (body-force) drive mechanism. These are physically distinct: arm pyramids for
+    measurable lab thrust (test bench), Protocol Beta for inertial-shield flight.
+
+
+SECTION 7: FULL FORCE ANALYSIS AND OPTIMAL OPERATING POINT
+------------------------------------------------------------
+
+Convention: FORWARD = away from apex (apex points backward, base forward).
+
+7.1 COMPLETE FORCE INVENTORY
+
+  F1. Electron escalator pressure (static + spinning)
+      Direction: FORWARD. Apex-side cells more compressed → higher medium
+        pressure on apex side → net push away from apex.
+      Scaling: constant at rest; grows with RPM in Mode 2 (continuous drain).
+      Note: medium acts on pyramid — not a Coulomb self-force.
+
+  F2. Propeller effect (new cells displaced per incremental rotation)
+      Direction: FORWARD. Each face sweeps cells forward, transferring
+        momentum; reaction pushes pyramid forward.
+      Scaling: ~ omega^2 below omega_sat; CAPS at omega_sat = 2.22e10 RPM
+        for 10cm pyramid [SP3 — unreachable at any practical speed].
+
+  F3. Axis T_1g chi reaction force (centrifugal)
+      Direction: BACKWARD. Low pressure on apex axis; high pressure at base
+        side pushes pyramid toward apex.
+      Scaling: ~ omega^2 (centrifugal force is mω²r).
+
+  F4. T_2g shear activation (high-RPM onset)
+      Direction: BACKWARD; self-reinforcing once activated.
+      Scaling: NONLINEAR — near zero below threshold omega_T2g; grows
+        rapidly (faster than omega^2) above it. Creates the vortex that
+        makes it self-sustaining.
+
+  F5. Resonance enhancement of F2
+      Direction: FORWARD. Sharp peak when N_faces × RPM/60 matches a Jobson
+        cell acoustic mode frequency. Amplifies F2 at that specific RPM.
+        Scan for anomalous thrust spikes in the bench test.
+
+  F6. Lorentz force on wire current (Modes 2/3 only)
+      Direction: depends on wire geometry. The spinning pyramid's surface
+        current creates a magnetic moment; current in the wire experiences
+        F = I × L × B. For Mode 3 (center wire along C5 axis), the Lorentz
+        force on the wire is radial, not axial — no net thrust contribution.
+        Mode 2 (external wire) can be routed to maximize forward contribution.
+
+  F7/F8. Aerodynamic drag/lift (in air only — vanish in vacuum).
+
+7.2 THE OPTIMAL RPM
+
+  Below omega_sat, F2 and F3 BOTH scale as omega^2. Their ratio is therefore
+  CONSTANT with RPM — the net direction (forward or backward) is fixed by the
+  ratio of geometric and coupling factors, and cannot be changed by varying RPM.
+
+  The physics that creates an optimal RPM is F4 (T_2g shear), which scales
+  FASTER than omega^2 and has a threshold onset:
+
+  Region 1 — below F4 threshold (omega < omega_T2g):
+  F_net = F2 - F3 = constant × omega^2  (fixed direction)
+    If forward: maximize omega → optimal RPM approaches omega_T2g from below.
+    If backward: no useful operating point in this region.
+
+  Region 2 — above F4 threshold (omega > omega_T2g):
+    F_net = F2 - F3 - F4(omega)  where F4 grows faster than omega^2
+    Net force reverses from Region 1 and grows increasingly backward.
+
+  CONCLUSION: the optimal RPM = just below omega_T2g (the T_2g shear
+  activation threshold). From Series 1 medium parameters (c4b_c_prediction.py):
+    v_s = Rs * c = 5.338e7 m/s  (torsion wave speed)
+    rho_medium = mu_0 = 1.257e-6 H/m  [EM derivation: rho=K/c^2=mu_0, doc_magnetism.txt]
+    G_shear = mu_0 * v_s^2 = 3.581e9 Pa
+    omega_T2g = v_s / R = 5.338e7 / 0.05 = 1.07e9 rad/s = 1.02e10 RPM (10cm pyramid)
+  This is below omega_sat (2.22e10 RPM) but equally unreachable at lab scale.
+  Force scale at omega_T2g: G_shear × R × phi^2 = 4.69e8 N × eta
+  With GY2 eta ~ 1e-27: force ~ 5e-19 N (unmeasurable by any instrument).
+  The bench test therefore directly tests whether eta at lab scale is orders
+  of magnitude larger than GY2 estimates. A null result constrains eta;
+  a positive result is the first measurement of lab-scale medium coupling.
+
+7.3 SIZE SCALING
+
+  For a pyramid scaled by linear factor k (all dimensions × k):
+    F2 (propeller) ~ rho × k^4 × omega^2
+    F3 (chi reaction) ~ rho × k^4 × omega^2
+    omega_sat scales as 1/k (cell relaxation time ~ k/c)
+    omega_T2g threshold scales as 1/k (omega_T2g = v_s/R, v_s fixed, R ~ k)
+  Force MAGNITUDE at optimal RPM: G_shear × (kR) × phi^2 = G_shear × R × phi^2 × k
+  A 10x larger pyramid produces 10x more force at its optimal point (scales as k, not k^2).
+  However: above medium coherence limits (Pauli exclusion disruption threshold),
+  driving too hard degrades medium cohesion and kills the effect. Scale up
+  only after confirming the effect persists at increasing pyramid sizes.
+
+7.4 THREE OPERATING MODES — DIFFERENTIAL FORCE ANALYSIS
+
+  Forces that are IDENTICAL across all three modes (mechanical, not electron-driven):
+    F2 (propeller), F3 (chi reaction), F4 (T_2g shear), F5 (resonance)
+    These depend only on RPM and pyramid geometry, not on the electron circuit.
+
+  Forces that DIFFER by mode:
+
+  Mode 1 — isolated (no wire):
+    F1: grows until Coulomb saturation (Q_sat), then CONSTANT.
+        Once saturated, accumulated charge repels further electrons → F1 stops.
+        Power output: zero.
+    F6: absent.
+    Net F1 at steady state: F1_sat (lowest of the three modes).
+    Use: the simplest configuration. F1 saturates quickly; weight change
+    measurements after saturation reflect F2+F3+F4+F5 cleanly, making it
+    the best mode for isolating the mechanical forces.
+
+  Mode 2 — wire to external load (electrons continuously drained from apex):
+    F1: CONTINUOUS. Electrons drain as fast as the escalator delivers them
+        → no saturation → F1 remains at its peak rate indefinitely.
+        F1_Mode2 > F1_Mode1 (Mode 1 saturates; Mode 2 never does).
+    F6: nonzero (Lorentz force on wire current). Wire routed to maximize
+        the forward component of F6 adds to total forward force.
+    Power output: P = I² × R_load (uses a SEPARATE energy channel from F1 —
+        extracting power does not reduce F1).
+    Net: Mode 2 gives the highest F1 of any mode, plus F6, plus power output.
+        This is the most efficient configuration for both thrust and measurement.
+    Use: constrains eta directly. Measure I vs RPM → P_output = I² × R_load
+        → compare to GY2 predictions. Self-sustaining if P_output ≥ P_motor.
+
+  Mode 3 — wire from apex to base through center (internal solenoid):
+    F1: CONTINUOUS until Pauli exclusion saturation, then DROPS TO ZERO.
+        Electrons cycle apex → wire → base → surface → apex. Higher throughput
+        rate than Mode 2 (no external resistance) → initially larger F1.
+        But once Pauli saturation is reached: current locks, F1 = 0.
+    F6: Lorentz force on center wire is RADIAL (not axial). No net thrust
+        contribution from F6 in Mode 3.
+    Power output: zero (internal circuit only).
+    B field along C5 axis: solenoid; may couple to F4 (T_2g vortex) via
+        chi(T_2g × T_1g) cross-term from CA26c (open item).
+    Net: Mode 3 > Mode 2 during initial ramp (higher electron throughput),
+        then falls to zero when locked. Mode 3 is transient, not steady-state.
+    Use: reaching the maximum instantaneous F1 for a brief period. Not useful
+        for sustained operation. The Pauli-locked state is a weak permanent
+        solenoid, not a thrust device.
+
+  EFFICIENCY SUMMARY:
+    Sustained thrust:  Mode 2 > Mode 3 (decays) > Mode 1 (saturates)
+    Peak instantaneous: Mode 3 (briefly) > Mode 2 > Mode 1
+    Power extraction:  Mode 2 only
+    Saturation useful? No — Mode 1 saturation and Mode 3 Pauli lock BOTH
+        cap F1. Continuous drain (Mode 2) is strictly better for F1.
+
+7.5 PRACTICAL APPLICATION — FELT FORCE VS FREE FALL
+
+  The spinning pyramid creates a net pressure differential in the medium.
+  A person or object in the low-pressure region experiences a FELT force —
+  they are pushed in the direction of the pressure gradient. This is
+  fundamentally different from the fluid bells (Protocol Beta) device:
+
+    Fluid bells (Protocol Beta): generates a T_2g field in the medium that
+      causes local space to follow the device. Occupants are in free fall
+      within the field — no acceleration is felt. Analogous to being in
+      orbit: the field carries you with it.
+
+    Spinning pyramid: creates a medium pressure differential that pushes
+      objects physically. The force is felt as acceleration — like thrust
+      from a conventional rocket. There is no inertial shielding.
+
+  This limits the spinning pyramid's use as a propulsion system for occupants
+  (G-force limits apply). Its natural applications are:
+
+    1. ATTITUDE CONTROL: small pyramids on a spacecraft impart torques with
+       no propellant, like reaction wheels but with medium coupling. The
+       felt force is acceptable for small attitude corrections.
+
+    2. INERTIAL DAMPING: a spinning pyramid array oriented to oppose
+       acceleration vectors could reduce felt G-forces during conventional
+       propulsion, by generating a counter-pressure in the medium.
+
+    3. ANTI-G PLATFORMS: stationary pyramid arrays beneath a platform
+       could reduce the apparent weight of objects above, acting as a
+       passive weight reducer. Useful for heavy manufacturing or medical
+       applications if the effect scales sufficiently.
+
+    4. FORCE MEASUREMENT: the bench test itself (Tests A-D) is already
+       a useful instrument for measuring eta at lab scale, independent
+       of any propulsion application.
+
+  THRUST MECHANISM COMPARISON (both docs):
+    Fluid bell / handheld water bell: structural force (F_wall × η). The bell
+      wall feels the T_2g pressure and transmits it to the craft/operator
+      mechanically. The T_2g pressure field is small (~ bell radius); the
+      craft/operator is NOT inside it. This produces FELT thrust. For the
+      astronaut holding a 5cm water bell, the field extends ~5-10 cm — the
+      astronaut's body is entirely outside it. Felt thrust only.
+    Spinning pyramid (single): same structural force mechanism plus the axis
+      T_1g chi reaction backward force. Also produces FELT force.
+    Full Protocol Beta (large bell array enclosing the craft): craft is INSIDE
+      the T_2g field. The field creates an inertial frame drag — free fall.
+      Requires field large enough to envelop the craft.
+    Multi-pyramid arm configuration (Section 7.6): designed to create a
+      large enough T_2g field to envelop the craft. Converges to Protocol Beta
+      in the limit N → ∞. N=5 is the optimal discrete approximation.
+
+  MEDIUM COHERENCE LIMIT: driving the pyramid above the medium's acoustic
+  coherence threshold would disrupt the T_1g coupling, eliminating the effect.
+  Both the T_2g shear threshold (SP4) and the propeller saturation (SP3) are
+  in the relativistic regime (~10^10 RPM) — unreachable at lab scale. The bench
+  test operates entirely within the well-behaved linear regime.
+
+7.6 MULTI-PYRAMID CONFIGURATIONS FOR CRAFT PROPULSION
+
+  At practical lab RPMs all forces are in the micro-G to milli-N range;
+  structural material failure of the pyramid occurs long before any T_1g
+  effect approaches a concerning magnitude.
+
+  The single-pyramid low-pressure zone is a narrow column along the apex axis.
+  For a craft to "fall into" a low-pressure zone, the zone must cover the craft's
+  full forward cross-section continuously — not just a column at one point.
+  Two configurations address this:
+
+  CASE A: CO-AXIAL COUNTER-ROTATING (single axis, two pyramids)
+  Described above: apices both forward, +Ω and −Ω on the same axis.
+  Chi algebra = Protocol Beta [AG1]: T_1g = 0, T_2g² = 2/phi².
+  Depletion zone: a column ahead of the forward apex, along the shared axis.
+  Craft falls into this column — most suited to narrow-profile craft (cylinders,
+  tubes) aligned with the axis. The craft occupants are in free fall (no felt
+  force). The zone is narrow; the craft cross-section must fit within it.
+
+  CASE B: DUMBBELL RING CONFIGURATION (radial apexes, craft on base side)
+  Setup: Two (or more) pyramids on an arm placed in front of the craft.
+  Each pyramid apex points RADIALLY OUTWARD from the central (forward) axis;
+  the flat base faces inward toward the craft. Each pyramid spins on its own
+  apex-base axis (Ω₁) -- the C5 axis is radial.
+
+  WHICH ROTATION PROVIDES FORWARD THRUST:
+  Ω₁ (individual pyramid spin, radial C5 axis) creates T_1g pressure
+  radially -- wrong direction for forward thrust. Ω₁ enhances the per-pyramid
+  coupling strength but does not directly produce a forward force.
+
+  Ω₂ (arm rotation around the forward axis) IS the forward thrust mechanism.
+  With N=5 pyramids at 72° spacing, the arm has C5 symmetry.
+  chi²(T_1g, C5) = phi² = 2.618 (from SP2 / carousel analysis above):
+  the combined T_1g field focuses ALONG THE FORWARD ROTATION AXIS with
+  phi² enhancement. This is the carousel mechanism applied to the arm --
+  "the T_1g focus is sustained dynamically along the rotation axis."
+  The craft, sitting behind the arm on the forward axis, is in this
+  focused low-pressure zone and falls forward.
+
+  Ω₁ is still useful: it reduces the apparent inertia of each pyramid (the
+  radial chi coupling lightens the arms), reducing the energy cost of Ω₂.
+  But removing Ω₁ entirely would not eliminate forward thrust -- only reduce
+  the per-arm coupling efficiency.
+
+  Depletion coverage: Ω₂ sweeps the arm continuously; at sufficient RPM
+  For continuous coverage of the forward disc, the condition is:
+    (arm RPM × N_pyramids) × tau_cell ≥ 1
+  i.e., the arm completes enough sweeps per medium relaxation time (tau_cell)
+  that the forward region never fully re-fills between sweeps. This is the
+  same saturation condition as SP3, but for the arm sweep rather than the
+  face sweep. For tau_cell = 0.54 ns and N=5, the arm needs ~370 million RPM
+  for continuous coverage — still unreachable, but the condition scales with
+  tau_cell which is unknown at lab scale.
+
+  Counter-rotating arm pairs (Case B extended):
+  Two arm assemblies counter-rotating (Ω₂ and −Ω₂): the arm sweep T_1g
+  cancels across the pair → net T_1g from arm rotation = 0; T_2g² from
+  arm sweep doubles. Each pyramid also counter-rotates on its own axis
+  (+Ω₁ and −Ω₁). This gives FOUR chi contributions:
+    Pyramid spin: T_1g cancels, T_2g² = 2/phi² (same as Case A)
+    Arm sweep:    T_1g cancels, T_2g² = 2/phi² (from counter-rotating arms)
+  Combined T_2g² = 4/phi² = 1.528 (stronger than Case A alone).
+  This configuration creates a Protocol Beta field sweeping the entire
+  forward disc — broader coverage than Case A, still free-fall for occupants.
+
+  THE ENVELOPMENT QUESTION:
+  Even with continuous coverage of the forward disc, the craft's body still
+  passes through varying field strengths as arms sweep past. The solution is
+  that the T_2g field (once established by the counter-rotating pairs) is
+  volumetric — it fills the region ahead of the assembly, not just along
+  arm paths. Individual arms contribute to the field; the field itself is
+  the macroscopic T_2g field that envelops the craft's forward face.
+  Components at the arm radius experience the strongest cycling; components
+  at the craft center experience the average — which is the sustained T_1g
+  reduction level. The craft interior is at the time-averaged field strength.
+
+  Analogy to Protocol Beta: the fluid bell creates a volumetric T_2g field
+  that envelops its interior. The arm configuration is an approximation of
+  this with discrete arms rather than continuous shell geometry. As N → ∞
+  (continuous shell), Case B converges to Protocol Beta. N=5 is the optimal
+  discrete approximation (chi = phi, maximum coupling per arm).
+
+  PRACTICAL NOTE: for an arm-based system to envelop a craft safely, the
+  arm radius must be larger than the craft cross-section, so the craft sits
+  inside the swept disc. The craft is then consistently inside the low-pressure
+  zone during arm sweeps rather than on the edge of it.
+
+
+CONTENT SOURCES
+----------------
+
+  - docs/doc_series2_piezo_escalator.txt: chi table, geometry (prerequisite)
+  - docs/series2/doc_series2_fluid_bells.txt: Protocol Beta [AG1] (dual-pyramid basis)
+  - analysis/demos/acoustics_doc.py: AC1-AC15 (chi), SP1-SP7c (spinning+saturation+T2g+void+scaling+configs+dumbbell+tilt+thrust-ring)
+  - analysis/demos/gyroscope_doc.py: GY8 (Omega^2 scaling law)
+  - experiments/bench_pyramid_escalator.txt: full experimental protocol
+  - docs/doc_series2_synthesis.txt: Section 1.2 (vortex retrodictions)
+
+
+SECTION 8: CONCLUSIONS
+------------------------
+
+A spinning pentagonal pyramid preserves C5 symmetry and creates a centrifugal
+T_1g chi coupling effect on its spin axis. The predicted consequences
+are specific, falsifiable, and testable for under $30:
+
+  1. Apparent weight reduction on axis proportional to omega^2  [GY8]
+  2. Reversal on apex flip (null control)  [SP1]
+  3. 4-sided pyramid produces weight INCREASE; 3-sided produces nothing  [SP1]
+  4. N=5 carousel gives phi^2 = 2.618x more effect than N=4  [SP2]
+
+The critical discriminator is the sign reversal between 5-sided (T_1g pressure
+reduction, chi = +phi) and 4-sided (compression, chi = -1): conventional fluid
+dynamics predicts the same sign for both, the torsionverse predicts opposite signs.
+
+Companion script: analysis/demos/acoustics_doc.py [27/27 PASS, SP1-SP7c].
+Chi algebra is common to doc_series2_piezo_escalator.txt [AC1-AC14].
+
+
+=============================================================================
+END doc_series2_spinning_pyramid.txt
+=============================================================================

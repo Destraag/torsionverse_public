@@ -1,0 +1,371 @@
+doc_redshift.txt
+================================================================
+TORSIONVERSE: COSMOLOGICAL REDSHIFT — CANDIDATE MECHANISMS AND VOID-EDGE PREDICTION
+
+Author: Robert Jobson
+Date:   2026-08-28
+Status: v1.1 -- updated with Candidate D mechanism (RS12-RS15), ready for Zenodo submission
+Companion script: analysis/demos/redshift_doc.py -- 23/23 PASS  [RS1-RS15, RS3a-c]
+Secondary:        analysis/demos/cell_expansion_age.py -- 3/3 PASS  [TV-native age RS3b-d]
+Secondary check:  analysis/demos/redshift_transfer_check.py -- 5/5 PASS  [TC1-TC5]
+================================================================
+(Exploratory framing checks -- these confirm the numbers are computed
+correctly with zero free parameters, NOT that any candidate mechanism
+is proven. This entire doc is open research, not a closed derivation.)
+
+ABSTRACT
+--------
+In the torsionverse framework, a photon is a localized T_1g corpuscle that
+travels at speed c through the Jobson cell medium. The local medium has a
+characteristic frequency f_cell = c / L_J_local, where L_J_local is the
+local Jobson cell spacing. What the observer measures is this local medium
+frequency -- a medium property, not an intrinsic property of the corpuscle.
+Because L_J ∝ n_cells^(-1/3) (cell spacing grows as cells become sparser),
+the local medium frequency at a sparse void edge is lower than in a dense
+filament:
+
+  f_obs / f_emit = (n_void_edge / n_filament)^(1/3)
+  z + 1 = (n_filament / n_void_edge)^(1/3)   [Candidate D, RS12]
+
+The corpuscle speed (c) is unchanged. The scale argument rules out the
+per-cell interaction picture: lambda_visible / L_J_dense ≈ 5×10^10. The
+wave is fifty billion times larger than one cell; the medium is continuous
+from the wave's perspective in both dense filaments and the deepest observed
+voids (lambda / L_J_void ≈ 2×10^10 at 10% cell density). No individual cell
+resonance is physically accessible to any observable photon. The mechanism
+is a collective medium property, not a per-cell interaction.
+
+f_cell = c/L_J_local is the local medium's characteristic frequency -- the
+local propagation parameter set by cell spacing. The precise mechanism
+connecting local cell density to spectroscopic redshift (boundary frequency
+shift, accumulated phase, or medium clock rate) is an open derivation:
+Series 3 target.
+
+In sparse voids, ambient radiation pressure from all directions holds cells
+at their equilibrium positions. This is a mechanical effect on cell location,
+independent of EM wave propagation speed, which is set by eps_eff / mu_eff.
+Radiation pressure is ~25 orders of magnitude weaker than EM stiffness
+(P_CMB / (1/eps_0) ≈ 1e-25) and does not contribute to c.
+
+This mechanism (a) is consistent with c constant everywhere (RS11),
+(b) predicts a Hubble-tension correction of ~7-9% for the KBC void (25%
+local underdensity), (c) predicts T_1g amplitude enhancement at cell density
+boundaries -- consistent with unexplained heat observations at the heliosphere
+boundary (RS13), and (d) identifies the Hubble radius c/H0 as the cell
+propagation horizon beyond which no medium exists and therefore no structured
+matter can survive (RS15).
+
+The framework examines four candidate redshift mechanisms:
+  (A) Standard metric expansion (currently imported from LambdaCDM, not derived)
+  (B) "Local boson emission" (referenced elsewhere, never developed -- stale)
+  (C) Pure cell migration outward -- examined here for the first time; ruled
+      out as a creation mechanism but established as pure migration (RS7a)
+  (D) Sparse void edges → lower local medium frequency → redshift --
+      the primary new result; quantified with zero free parameters (RS12-RS15)
+
+Beyond the cell propagation horizon, matter loses structural coherence (Hopf
+windings require cells as substrate). Communication across the boundary remains
+possible in principle if the sender corrects for the clock-rate shift, but
+physical travel is prohibited by substrate dissolution, not by energy or speed.
+All 20 checks pass [RS1-RS15] as exploratory framing checks; this paper is open
+research, not a closed derivation of the cosmological constant or expansion rate.
+
+SECTION 1: FOUR REDSHIFT MECHANISM CANDIDATES
+------------------------------------------------
+
+(A) STANDARD METRIC EXPANSION [currently used, not derived]
+    H(z) = H0 * sqrt(Omega_m*(1+z)^3 + Omega_Lambda)  [Planck 2018 LambdaCDM]
+    a0(z) = Rs * c * H(z)  [analysis/gravity/a0_redshift.py]
+    a0(z=1) = 2.086e-10 m/s^2 (79% higher than today) -- JWST-testable.
+    STATUS: H0 and the expansion history are IMPORTED from standard
+    cosmology. The torsionverse contributes only the Rs*c normalization
+    that converts H(z) into a MOND-type acceleration scale. The mechanism
+    of expansion itself (why space/the medium expands at all) is NOT
+    addressed by this framework -- it is inherited unmodified from FRW/GR.
+
+(B) "LOCAL BOSON EMISSION" [referenced, never developed -- STALE]
+    doc_torsion.txt (line ~872) states: "An alternative interpretation being
+    investigated (doc_orbit_pressure.txt) treats redshift as locally
+    generated by stellar/planetary boson emission, in which case H would
+    be approximately constant across z and a0 would be constant."
+    CONFIRMED: doc_orbit_pressure.txt contains NO
+    such development. This is a stale forward-reference to work that was
+    never done. It remains a nominally distinct candidate (redshift as a
+    cumulative local emission/absorption process along the photon's path,
+    similar in spirit to historical "tired light" proposals) but has zero
+    quantitative content in the current framework.
+
+(C) CELLS MIGRATING OUTWARD INTO EMPTY MEDIUM VOLUME [new hypothesis]
+    Physical picture: the Jobson cell medium is not a passive coordinate
+    grid that "stretches" -- it is a physical elastic substance. If new
+    volume is continuously becoming available (however that happens),
+    existing cells could either (i) dilute in place (spread thinner, same
+    total cell count, standard FRW matter dilution ~1/a^3), or (ii) new
+    cells could be continuously created to hold density constant, with
+    the medium's rest density rho_Lambda staying fixed by ongoing creation
+    rather than by (i)-style dilution of a fixed-count medium. rho_Lambda
+    (cosmological dark-energy-like density) IS observed to stay
+    approximately constant as the universe expands -- which under naive FRW
+    energy accounting already implies something like case (ii) for the
+    dark-energy component, independent of any torsionverse-specific claim.
+    STATUS: not examined in the literature prior to this paper.
+    See Section 2 for a first quantitative pass.
+
+(D) VOID PROPAGATION -- REDSHIFT FROM SPARSE VOID EDGE CELLS [new hypothesis]
+    Physical picture: the KEY ZONE is the void EDGE: where cell density
+    transitions sharply from galaxy-filament density to void density.
+    Whether void interiors are cell-free (swept empty by net radiation
+    pressure from surrounding filaments) or merely sparse is an open
+    observational question -- cell bridges between stars may persist
+    along filamentary paths. Regardless, the density gradient at the edge
+    is the operative mechanism: a photon traversing this transition
+    propagates through a medium with increasing L_J_local, and the observer
+    in dense medium interprets the longer-scale T_1g disturbance as
+    longer wavelength = lower frequency = REDSHIFT.
+
+    MECHANISM:
+      In dense medium: local medium characteristic period τ_dense = L_J / c
+      In sparse void edge (density n_void_edge): L_J_void = L_J × (n_dense/n_void_edge)^(1/3)
+        τ_void = L_J_void / c = τ_dense × (n_dense/n_void_edge)^(1/3)
+      The sparse-edge medium has a longer characteristic period (slower clock).
+      Photons emitted in (or passing through) the slow-clock region appear
+      redshifted when measured by the observer's faster dense-region clock:
+
+        z + 1 = τ_void / τ_dense = (n_dense / n_void_edge)^(1/3)
+
+      RS11 COMPATIBILITY: c is unchanged.
+      The redshift arises from the local clock rate (medium characteristic period),
+      not from a change in propagation speed. RS11 applies to speed; this
+      mechanism applies to the ratio of local to observer clock rates.
+
+    QUANTITATIVE ESTIMATE (RS12 -- see below):
+      For void edge with n_void_edge / n_dense = 0.75 (25% underdensity):
+        z_per_crossing = (1/0.75)^(1/3) - 1 = 1.333^(1/3) - 1 ≈ 0.101
+      For a path through multiple void crossings (f_void = 30% of path):
+        z_total ≈ f_void × 0.101 × d / L_void ≈ Hubble-like scaling
+      KBC void (25% local underdensity): H0_local / H0_CMB ≈ (0.75)^(1/3) ≈ 0.91
+        → ~9% Hubble tension in correct direction.
+
+    OPEN ITEMS:
+    - Formal derivation of z = (n_dense/n_void)^(1/3) - 1 from torsionverse
+      medium geometry (local clock = medium characteristic period = L_J_local / c)
+    - Quantitative fit: does void cell density from SDSS/DES void catalogs
+      reproduce z ∝ d (Hubble law) when convolved with line-of-sight structure?
+    - RS12 check: compute z_total vs d from observed void distributions and
+      compare to measured Hubble law. This is scriptable.
+
+    INTERNAL CONSISTENCY CHECK (RS11 -- still holds):
+    From RS9: B_eff/rho = c^2 everywhere. c is constant. The redshift arises
+    from clock-rate differences (medium characteristic period), not speed changes.
+    D2 (c_void ≠ c_cells) remains ruled out. [RS11 PASS]
+
+    CONSEQUENCE: HARD PHYSICAL BOUNDARY FOR MATTER AND TRAVEL
+    The cell propagation horizon (c/H0 ≈ 14.5 Gly, RS15) is not merely an
+    information horizon — it is a hard physical substrate boundary.
+
+    Matter in torsionverse = Hopf windings in Jobson cells (Series 1, derived).
+    Photons = localized T_1g wave packets propagating through the Jobson cell medium (derived).
+    Both require cells to exist. Beyond the cell horizon: no cells → no medium
+    → no Hopf windings → matter cannot maintain structural coherence.
+
+    An electron approaching the cell boundary would find progressively fewer
+    cells to sustain its (1,2) winding. At the boundary, the winding unravels:
+    the energy stored in the winding is no longer a stable topological
+    configuration — there is nothing to wind around. The electron ceases to
+    exist as an electron. Its constituent energy dissipates into... nothing that
+    any medium-based physics can describe.
+
+    This is fundamentally different from a Schwarzschild event horizon:
+      - GR event horizon: matter can cross (in principle); only communication
+        is cut. The boundary is a coordinate singularity.
+      - Cell propagation horizon: matter CANNOT maintain structure beyond the
+        boundary. The boundary is a physical substrate limit.
+
+    Safe travel implication: no craft can travel beyond the cell horizon and
+    remain as structured matter. The cells that constitute the craft — and the
+    Hopf windings (atoms, molecules) within it — would lose their substrate.
+    This is not a velocity or energy limit; it is a structural impossibility.
+    The universe has a hard boundary not because of curvature but because the
+    medium that makes matter possible simply ends there.
+
+    FERMI PARADOX COROLLARY:
+    Every civilization in the observable universe faces the same hard physical
+    boundary for matter travel. No craft — regardless of technology — can
+    cross the cell propagation horizon and remain as structured matter.
+    If other cell islands exist beyond our Hubble radius, their matter cannot
+    physically reach ours.
+
+    However, COMMUNICATION across cell density gradients is not absolutely
+    forbidden. A civilization that understands the Candidate D clock-rate
+    mechanism (z + 1 = (n_dense/n_void)^(1/3)) could pre-compensate their
+    signal: by adjusting the transmission frequency upward by the void clock
+    factor, the signal arrives at the observer's end at the correct local
+    frequency. Cross-island communication would require:
+      (1) Knowledge of the cell density structure between sender and receiver
+      (2) A signal channel that survives propagation through sparse cell regions
+          (T_2g gravitational waves propagate through sparser medium than T_1g)
+      (3) Patience: round-trip communication time = 2 × distance / c
+
+    The silence from beyond our cell island may reflect the bootstrap problem
+    (two sides must agree on the correction factor before either can send a
+    correctable signal), not a fundamental prohibition on communication.
+    Within our shared cell region, standard Fermi constraints still apply
+    locally (distance, time, RS13 void signal attenuation).
+
+
+
+SECTION 2: CELL-GENERATION-RATE CROSS-CHECK (Section 2, RS1-RS8)
+--------------------------------------------------------------------
+Companion: analysis/demos/redshift_doc.py
+
+This section uses H0 (observed, Planck 2018) to derive the required creation rate.
+Note: the OLD RS3 used rho_Lambda (dark energy density -- external import) for n_cells;
+this was contaminated. The TV-native calculation (RS3a-c) uses n_cells = 1/L_J^3.
+
+If cell density is held constant by continuous creation (candidate C, case ii):
+
+  Fractional volume growth rate: dV/V/dt = 3*H0 = 6.553e-18 /s  [RS2]
+  (This is a pure dimensional identity for ANY density-preserving creation
+  hypothesis -- the same result appears in Bondi-Gold-Hoyle steady-state
+  cosmology for continuous hydrogen creation. It carries no new physics
+  by itself; the "3" comes from V ~ r^3.)
+
+  TV-NATIVE creation rate (RS3a-c, no rho_Lambda):
+    n_cells = 1/L_J^3 = 1.02e+51 cells/m^3  (from geometry alone)
+    R_geo_TV = gamma_flux x L_J^2 x n_cells = 1.0e+16 cells/(m^3 s)  [RS3a]
+    H_TV = R_geo_TV x L_J^3 / 3 = 3.3e-36 /s  (TV-native expansion rate)
+    TV-native timescale >> 13.8 Gyr by many orders of magnitude  [RS3b]
+    Time to reach 120 AU from 1 AU at H_TV consistent with heliosphere  [RS3c]
+    NOTE: exact age depends on local vs cosmological flux and on whether
+    cloning or migration dominates. The safe conclusion: if cloning drives
+    expansion, our cell island is significantly older than the mainstream
+    estimate. The specific number is not claimed without more supporting data.
+
+  LEGACY RS3 (rho_Lambda-contaminated, for reference):
+    n_cells = rho_Lambda*c^2/E_cell = 2.626e-02 cells/m^3  [CONTAMINATED]
+    Creation rate = n_cells * 3H0 = 1.721e-19 cells/(m^3 s)  [legacy RS3]
+
+  Comparison to tau_relax (medium mechanical relaxation timescale,
+  wave_dispersion.py lower bound 1e8 s):
+    1/(3H0) = 1.526e17 s = 4.8 Gyr
+    tau_relax = 1e8 s = 3.2 yr
+    Ratio: 1.53e9 -- these differ by 9.2 orders of magnitude.  [RS4]
+    If cell creation (were it real) were mechanically tied to the medium's
+    own relaxation process, these timescales would be expected to be
+    comparable. They are not, by 9 orders of magnitude. This is a MILD
+    argument against "continuous creation at the medium's natural rate" --
+    but tau_relax describes quasi-static flow response to a SUSTAINED
+    external field (Section 6, doc_cell_depletion.txt), which has no
+    established connection to a hypothetical cosmological creation process.
+    This comparison is exploratory, not a proof either way.
+
+  Thermal pair-production at CURRENT CMB temperature (2.725 K) was tested
+  as a candidate "cell generation" mechanism and RULED OUT: the Boltzmann
+  suppression exp(-2*m_e*c^2/kT_CMB) has exponent 4.35e9 -- the rate is
+  zero for all practical purposes today. [RS5] Whatever "cell generation"
+  might mean cosmologically, it is NOT ordinary thermal pair production at
+  the present CMB temperature.
+
+WHAT WOULD ACTUALLY CLOSE THIS  [RS7, the concrete next steps]:
+  (a) A physical hypothesis for HOW cell creation (if real) couples to the
+      expansion rate. Section 2's rate is a CONSEQUENCE of assuming constant
+      rho_Lambda; it is not a derivation of any creation mechanism. Nothing
+      in the framework currently explains WHY new cells would appear, only
+      what rate would be required IF they do.
+  (b) A distinguishing observational test between candidate A (metric
+      expansion) and candidate C (cell migration): does candidate C predict
+      any deviation from the standard luminosity-distance/redshift relation,
+      BAO scale, or CMB acoustic peaks? Not yet worked out.
+  (c) Formalizing "cells moving outward" as an actual solution of the
+      medium's own wave equation, and checking consistency with v_p=c
+      (GW170817) and v_s=Rs*c (flyby anomaly) -- both already fixed by
+      other, unrelated measurements. Not yet attempted.
+
+PRIORITY: HIGH. This is the most significant open gap identified in this
+review -- the framework makes a specific falsifiable JWST prediction
+(a0(z=1)=2.086e-10 m/s^2) built entirely on an UNEXAMINED assumption about
+what "the universe expands" physically means for an elastic medium made of
+discrete cells. Closing (a)-(c) above should be the next major push.
+
+
+SECTION 5: OPEN ITEMS
+------------------------
+GENUINELY OPEN:
+  - Observational test distinguishing candidate A (metric expansion) from
+    candidate C (cell migration) -- luminosity distance, BAO, CMB acoustic
+    peaks (RS7b). Requires comparison with DESI/JWST datasets.
+  - Candidate D formal derivation: z = (n_dense/n_void)^(1/3) - 1 from
+    torsionverse lattice geometry (local clock = medium characteristic period = L_J_local / c).
+    Quantitative fit to observed void catalogs (SDSS/DES) needed to confirm
+    whether the mechanism reproduces z ∝ d (Hubble law). [RS12 scripted
+    for 25% underdensity estimate; full survey fit is the next step]
+  - Formalizing the "all times exist as standing frequencies" hypothesis as
+    an actual wave-equation solution and testing it against v_p, v_s (Section 4).
+  - The stale doc_torsion.txt forward-reference to a "local-boson emission"
+    redshift alternative requires a future erratum to doc_torsion.txt.
+
+ESSENTIALLY CLOSED:
+  [x] L_J is a single-valued medium property, not a per-wave tunable
+      parameter -- geometric argument against naive frequency-retuning
+      to a different medium at the same location [Section 3, RS8]
+  [x] Thermal pair production at current CMB temperature is not a viable
+      "cell generation" mechanism -- ruled out by Boltzmann suppression [RS5]
+  [x] Stellar photons CANNOT replenish a depleted zone. To create one new
+      Jobson cell requires E >= E_cell = 124.8 GeV. Solar/stellar photons
+      are a few eV -- 13 orders of magnitude too weak. [RS9a]
+  [x] Sustained intense EM fields CAUSE cell depletion, not replenishment.
+      AGN at galactic center actively depletes cells. [RS9b]
+  [x] RS7a (WHY cells are created/migrate): CLOSED AS PURE MIGRATION.
+      CELL CLONING CONDITION derived: a photon at m_crit = 9.933 GeV hitting
+      a cell face at normal incidence satisfies both the Bragg condition and
+      the winding nucleation condition simultaneously (exact algebraic identity:
+      hbar_c/(2*L_J) = m_p/(8*alpha*phi) = m_crit). This is mathematically
+      elegant but DOES NOT explain the cosmological cell density.
+
+      RATE CHECK: cosmic gamma-ray flux at 10 GeV (Fermi-LAT IGRB ~0.1 m^-2 s^-1)
+      gives a geometric encounter rate R_geo = 1.8e-37 cells/(m^3 s). Required
+      rate = 1.72e-19 cells/(m^3 s). Shortfall = 22 orders of magnitude.
+      Clone probability P > 10^17 required -- physically impossible.
+
+      CONCLUSION: GRBs/supernovae CANNOT create cells at the required rate.
+      Candidate C = PURE MIGRATION (no new creation). All cells were created
+      in the hot early universe at T > E_cell/k_B ~ 10^15 K (t < 10^-8 s).
+      Since then: no new cells, density slowly decreasing as volume expands.
+      Dark energy density IS dropping over cosmic time. Consistent with DESI
+      2024 w0-wa parametrisation showing possible w ≠ -1 (dynamical dark energy).
+      The cell creation rate RS3 (1.72e-19 cells/(m^3 s)) is NOT what's
+      happening -- that was the required rate IF density is constant. It is not.
+  [x] RS7c: Wave-equation consistency of candidate C (pure migration):
+      v_s = sqrt(G_shear/rho) = sqrt(rho*(Rs*c)^2/rho) = Rs*c exactly.
+      The rho cancels; v_s is independent of cell density. As cells migrate
+      and density slowly decreases, the wave speeds v_p=c and v_s=Rs*c
+      remain exactly constant. Candidate C is wave-equation consistent. [RS9 PASS]
+  [x] Confirmed the doc_torsion.txt "local boson emission" cross-reference
+      is stale (never developed in doc_orbit_pressure.txt)
+  [x] Candidate D mechanism revised (session 15-16):
+      Original D1 (empty voids → transparent) and D2 (c changes → ruled out)
+      were both incomplete. Voids are SPARSE, not empty. The revised mechanism
+      (sparse void edge → local clock redshift, z=(n_dense/n_void)^(1/3)-1)
+      and heliosphere / cell-island boundary predictions (RS12-RS15) are in
+      the script. Formal derivation from lattice geometry still open (RS12).
+
+
+COMPANION SCRIPT
+----------------
+  analysis/demos/redshift_doc.py  -- 23/23 PASS  [RS1-RS15, RS3a-c]
+  analysis/demos/cell_expansion_age.py  -- 3/3 PASS  [RS3b-d TV-native age]
+  (Exploratory framing checks: confirms numbers are computed correctly with
+  zero free parameters. Does not itself prove any redshift mechanism.)
+
+EXTERNAL INPUTS:
+  H0 = 67.4 km/s/Mpc, Omega_m=0.315, Omega_Lambda=0.685  [Planck 2018]
+  T_CMB = 2.7255 K  [standard measurement]
+  gamma_flux at ~10 GeV = 0.1 /m^2/s  [Fermi-LAT IGRB]
+  NOTE: rho_Lambda (dark energy density) was used in legacy RS3 -- contaminated.
+        TV-native RS3a-c uses n_cells = 1/L_J^3 instead.
+
+TORSIONVERSE-DERIVED:
+  E_cell = 124.8 GeV, L_J = alpha*phi*r_p, tau_relax > 1e8 s [wave_dispersion.py]
+  Rs = sqrt(5)/(4*pi)  [medium saturation constant]
+
+NOTE ON PLACEMENT: See doc_series2_synthesis.txt companion papers list.

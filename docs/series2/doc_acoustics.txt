@@ -1,0 +1,245 @@
+doc_acoustics.txt
+=============================================================================
+TORSIONVERSE: ACOUSTICS AND GEOMETRIC MEDIUM DEFORMATION
+
+Author: Robert Jobson
+Date:   2026-08-26
+Status: v1.0 -- ready for Zenodo submission
+        Theory paper: retrodictions of Chladni, levitation, ringing rocks,
+        stone circles; predictions of phi^2 coupling and N-ring dependence.
+        No personal measurements; all claims are mechanistic derivations or
+        predictions from the I_h character table and torsionverse framework.
+Companion script: analysis/demos/acoustics_doc.py  (27/27 PASS, AC1-AC15, SP1-SP7c)
+Continuation: docs/doc_series2_piezo_escalator.txt (piezo + electron escalator companion paper)
+Branches from: doc_orbit_pressure (pressure-following mechanism),
+               doc_electron (E+ vertex mode, pressure-following),
+               doc_jobson_cell (I_h geometry, Maxwell criticality)
+=============================================================================
+
+ABSTRACT
+--------
+
+Matter follows pressure gradients in the torsion medium. This single
+mechanism -- the same one that produces gravity and electromagnetism -- also
+explains acoustic phenomena at human scales. Chladni patterns, acoustic
+levitation, and natural geometric resonance in rocks and structures are all
+manifestations of the same T_1g pressure-following law. These are not
+analogies: they ARE the torsion medium mechanism operating at different scales.
+
+Certain geometric configurations in nature -- crystal structures, enclosed
+cavities, ring arrangements, and apex shapes -- focus T_1g pressure and create
+low-pressure zones. Objects in those zones experience reduced effective gravity.
+This may explain anomalous lightness in ringing rocks, acoustic phenomena at
+megalithic stone circles, and levitation effects in natural vortices.
+
+
+1. CHLADNI PATTERNS: DIRECT EVIDENCE OF PRESSURE-FOLLOWING
+------------------------------------------------------------
+
+When a plate is driven at resonance, it forms standing waves. Sand or rice
+grains sprinkled on the plate migrate to the nodal lines (pressure nodes of
+the standing wave) and form the famous Chladni figures.
+
+TORSIONVERSE MECHANISM: Sand grains drift to pressure nodes by dwell-time
+asymmetry -- the same mechanism that produces gravity. Near a pressure node,
+the wave spends more time (longer dwell time) per unit displacement; grains
+accumulate where dwell time is maximum. This is not radiation pressure
+(which pushes grains to pressure antinodes); it is the torsionverse
+pressure-following mechanism, which moves matter to pressure MINIMA.
+
+Note: Standard acoustic radiation pressure theory predicts grains move to
+pressure antinodes for objects larger than the wavelength/2, and to nodes
+for smaller objects. The torsionverse provides the underlying mechanism
+for the "smaller object" case (dwell-time asymmetry) and connects it to
+gravity and EM through the same pressure-following law.
+
+A_g ORTHOGONAL ENHANCEMENT:
+Two acoustic sources crossed at 72 degrees (C5 icosahedral angle) produce
+more A_g mode excitation at the crossing by factor phi^2 = 2.618 vs 90 degrees.
+Prediction: Chladni patterns driven by two sources at 72 degrees should show
+more defined and symmetric patterns than at 90 degrees, with phi^2 more
+visible grain concentration at the crossing point.
+Experiment: two small speakers, adjustable angle bracket, sand on a flat
+plate, vary crossing angle from 0 to 180 degrees in 12-degree steps.
+Cost: < $20.  [See experiments/bench_test_orthogonal_waves.txt for hardware]
+
+
+2. ACOUSTIC LEVITATION
+-----------------------
+
+Acoustic levitation uses standing waves to hold small objects in mid-air at
+pressure nodes. Standard explanation: radiation pressure balances gravity.
+
+TORSIONVERSE MECHANISM: Objects drift to pressure minima by dwell-time
+asymmetry. In a vertical standing wave, the pressure nodes are fixed points
+where the wave is stationary. Objects accumulate there because their local
+dwell-time gradient is zero (stable equilibrium) -- the same reason a
+planetary orbit is stable.
+
+TORSIONVERSE PREDICTION:
+(a) The levitation force scales with T_1g coupling efficiency of the medium
+    at the crossing angle. A 72-deg crossing geometry should levitate objects
+    with phi^2 = 2.618x less required acoustic power than a 90-deg geometry.
+(b) Objects aligned with icosahedral cell axes (as set by local proton
+    chirality) will levitate with lower required field than randomly oriented
+    objects.
+
+OPEN: Compute the Bjoerknes radiation force from torsionverse parameters
+(G_shear, rho, Rs) and compare to measured values.
+
+
+3. NATURAL GEOMETRIES THAT CREATE LOW-PRESSURE ZONES
+------------------------------------------------------
+
+The coupling strength at the focus of any geometry is given by chi(T_1g)
+evaluated at the dominant rotation angle (I_h character table, Cotton 1990):
+  chi(T_1g, 72 deg,  C5) =  phi = 1.618  [maximum in I_h]
+  chi(T_1g, 120 deg, C3) =  0             [exact null]
+  chi(T_1g, 180 deg, C2) = -1             [destructive]
+  N-ring (adjacent spacing): chi = 1 + 2*cos(360/N)
+    N=3 -> 0  |  N=5 -> phi  |  N=10 -> phi^2  |  N->inf -> 3 (full circle)
+  N=4 RING (adjacent 90 deg): chi = +1 (positive).
+  4-sided PYRAMID (opposite faces 180 deg): chi = -1.
+  Same count, different dominant angle, different sign.
+
+Any geometric arrangement that focuses T_1g (pressure) mode waves to a region
+creates a pressure minimum there. Coupling efficiency at the focus depends on
+the symmetry of the arrangement via chi(T_1g) at the relevant rotation angle.
+Objects in the low-pressure zone experience reduced effective gravity. The
+engineered pyramid is one instance; natural equivalents exist across many scales.
+
+3.1 CRYSTAL RESONANCE IN ROCKS -- THE RINGING STONES MECHANISM
+
+Some rocks produce a clear musical tone when struck ("ringing rocks," "singing
+stones"): Ringing Rocks Park (Pennsylvania), bluestones at Stonehenge, various
+megalithic sites globally. Standard geology notes these tend to be high-silica
+rocks with olivine or pyroxene inclusions.
+
+TORSIONVERSE MECHANISM:
+  - The rock's size and crystal domain structure set its resonance frequencies
+  - Olivine/pyroxene inclusions have approximate icosahedral packing in their
+    atomic coordination shells → T_1g mode couples at those frequencies
+  - Seismic background noise (Schumann resonances 7-45 Hz, microseisms 0.1-0.3 Hz)
+    continuously drives the rock at its natural resonance
+  - At resonance: internal standing wave creates a T_1g pressure pattern
+  - Pressure minimum inside → the rock is lighter than a non-resonant rock
+    of the same material and size
+
+PREDICTIONS:
+  (a) Ringing rocks are measurably lighter per unit volume than non-ringing
+      rocks of the same parent material and size. Weight deficit ~ Q factor
+      of the resonance.
+  (b) A ringing rock driven at its resonance by an external acoustic source
+      shows measurable apparent weight reduction on a precision scale.
+      Effect is fully reversible when driving stops (dynamic eddy, not a
+      T_2g vortex; relaxes on acoustic timescale, not tau_relax = 10^8 s).
+  (c) Megalithic builders may have selected ringing stones partly because they
+      were lighter to transport (Stonehenge bluestones chosen from Preseli Hills,
+      Wales -- these ring when struck; the 250 km transport then makes more sense).
+
+3.2 APEX GEOMETRIES IN NATURE
+
+Any tapered shape focuses arriving T_1g waves to its tip, creating a pressure
+minimum at the apex. Crystal symmetry of the material determines coupling
+efficiency:
+
+  - Quartz crystal terminations: hexagonal prism + rhombohedral cap (C3 symmetry).
+    C3 not in I_h → chi(T_1g,C3) = 0. Zero crystal coupling; geometric focus only.
+  - Calcite stalagmites / stalactites: trigonal (C3) symmetry. Same: zero crystal
+    coupling, geometric apex effect only.
+  - Olivine (orthorhombic, C2v): some C2 coupling: chi(T_1g,C2) = -1.
+    Slight destructive coupling. Olivine-bearing tapers are marginally worse
+    than amorphous.
+  - Pyrite (FeS2): despite pseudo-icosahedral reputation, crystal symmetry is
+    O_h (cubic), not I_h. C4/C2 crossing → chi(T_1g,C2) = -1. Suboptimal.
+
+NOTE: No common natural crystal achieves C5 coupling in a single-crystal
+pyramid. C5 coupling requires I_h geometry -- the Jobson cell itself. Natural
+materials approximate C5 only in disordered or quasicrystalline forms
+(Icosahedrite, Al-Mn quasicrystal).
+
+3.3 ENCLOSED CAVITIES: GEODES AND STONE CHAMBERS
+
+A closed or near-closed cavity creates internal standing waves at its resonant
+frequencies. At those frequencies, the center of a spherical or dome-shaped
+cavity becomes a T_1g pressure minimum -- the acoustic analogue of a Fabry-Perot
+resonator.
+
+  - Geodes (hollow mineral nodules): roughly spherical quartz or calcite shell.
+    At resonance, the interior center is a pressure minimum. A geode at acoustic
+    resonance is lighter than the same geode off-resonance.
+
+  - Corbelled stone chambers (Newgrange, Irish passage tombs, Mycenaean tholos
+    tombs): domed interior has a well-defined acoustic resonance. Seismic driving
+    creates a chronic low-pressure zone at the focal center. This may be the
+    functional basis for the dome geometry.
+    Computed for Newgrange (R~3 m chamber): f = v/2R = 57 Hz (spherical approx);
+    actual corbelled geometry has R_eff ~ 1.56 m giving f ~ 110 Hz (consistent
+    with published archaeoacoustics; Watson & Keating 1999).
+    Helmholtz mode of the 19 m passage + chamber: f = 1.18 Hz (deep infrasound).
+
+  - Helmholtz resonator caves: large cave interior with narrow entrance neck.
+    At f = (v/2pi)*sqrt(A/(L*V)), interior pressure is a minimum relative to
+    outside. Objects inside experience slightly reduced effective gravity at
+    that frequency.
+
+3.4 RING GEOMETRIES: STONE CIRCLES AS STATIC CAROUSELS
+
+A ring of N upright stones with vertical long axes acts as the static version
+of the spinning N-pyramid carousel. Driving is seismic and acoustic background
+rather than centrifugal. N-dependence is identical:
+
+  N=3 (triangle of 3 stones): chi(T_1g,C3) = 0 -- null at center
+  N=4 (square of 4 stones):   chi(T_1g,C2) = -1 -- destructive at center
+  N=5 (pentagon of 5 stones): chi(T_1g,C5) = phi -- maximum at center
+
+  STONEHENGE (horseshoe of 5 trilithons): approximate C5 symmetry, opening
+  toward midsummer sunrise. The altar stone sits at the focal point -- where
+  the T_1g pressure minimum would be for a C5 ring. If intentional, this is
+  the optimal ring configuration from I_h character theory.
+
+PREDICTION: Stone circles with N=5 (or N=10, 15) show stronger documented
+acoustic and anomalous phenomena at their centers than N=3 or N=4 circles.
+
+3.5 VORTEX GEOMETRIES
+
+A rotational fluid vortex has a low-pressure axis. In the torsionverse, a
+sustained vortex is a T_2g (shear/magnetic) mode excitation -- distinct from
+the T_1g geometric focus of the geometries above.
+
+  - Tornado eye: very low atmospheric pressure, low wind at center. Reports of
+    objects rising inside tornado eyes may include a T_2g component. T_2g vortex
+    tau_relax >= 10^8 s in matter-free voids -- the eye can sustain reduced
+    effective gravity along its axis beyond what aerodynamics explains.
+  - Whirlpool center: same mechanism at smaller scale.
+
+NOTE: T_2g (vortex) and T_1g (geometric focus) are complementary but distinct.
+Pyramids, rings, and cavities operate by T_1g focusing. Vortices operate by
+T_2g shear depletion. Both create low-pressure on axis; different geometries
+produce them.
+
+
+4. OPEN ITEMS
+--------------
+
+  - Ringing rock density anomaly: weigh ringing vs non-ringing rocks of same
+    type and size; test whether lighter correlates with higher Q factor
+  - Ringing rock driving test: drive a ringing rock at its resonance with a
+    speaker; measure apparent weight reduction on a precision scale
+  - Stone circle survey: tabulate N values globally; test whether documented
+    center phenomena correlate with N > 5 (more stones = more coupling)
+  - Cave Helmholtz: identify natural caves with well-defined neck-cavity
+    geometry; measure interior pressure at Helmholtz frequency
+  - Geode driven resonance: seal small geode, drive at resonance, measure
+    apparent weight change on precision scale
+  - Quasicrystal anomalous coupling: check published measurements on Al-Mn
+    and other icosahedral quasicrystals for anomalous EM or acoustic resonances
+  - Kozyrev mirror connection: if the focal geometry of a curved mirror creates
+    a T_1g pressure minimum equivalent to a ring focal point, the mechanisms unify
+  - Bjoerknes radiation force: compute from torsionverse parameters (G_shear,
+    rho, Rs) and compare to published levitation force measurements
+
+
+=============================================================================
+END doc_acoustics.txt
+=============================================================================

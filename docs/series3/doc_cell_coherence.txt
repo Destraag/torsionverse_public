@@ -1,0 +1,366 @@
+doc_cell_coherence.txt
+=============================================================================
+TORSIONVERSE SERIES 3: JOBSON CELL COHERENCE —
+DYNAMIC RIGIDITY, LOSSLESS PROPAGATION, AND THE HIGGS AS UV CUTOFF
+
+Author: Robert Jobson
+Date:   2026-08-29
+Status: v1.0 -- DOI 10.5281/zenodo.22151160
+Predecessor: docs/series1/doc_jobson_cell.txt (DOI 10.5281/zenodo.22032906)
+Companion scripts: analysis/demos/cell_coherence_doc.py       [CC1-CC10, 10/10 PASS]
+                  analysis/quantum/cell_cycle_corpuscle.py  [CC_G1-CC_SYNC_2, 12/12 PASS]
+                  analysis/quantum/cell_cycle_stability.py  [STAB_G1-STAB_T3, 7/7 PASS]
+                  analysis/quantum/corpuscle_force_balance.py  [CF1-CF6, 7/7 PASS]
+                  analysis/quantum/gluon_phase_sync.py          [GPS1-GPS6, 6/6 PASS]
+                  analysis/quantum/gluon_bode_stability.py      [BS1-BS5, 5/5 PASS]
+                  analysis/quantum/maxwell_nexus_connection.py  [MN1-MN7, 7/7 PASS]
+                  analysis/quantum/tau_natural_path.py           [TNP1-TNP3, 3/3 PASS]
+=============================================================================
+
+ABSTRACT
+--------
+The Jobson cell (I_h icosahedron, Series 1) is treated as a rigid unit in
+all Series 1 and Series 2 derivations. This paper provides the quantitative
+justification: (1) the bilateral tau (I52) synchronizes all 20 face-center gluon
+maxima in 5.39 × L_J/c = 1.79×10^-25 s — shorter than ANY physical interaction
+timescale at sub-E_cell energies; (2) the Maxwell-critical lattice (3V-E=6) has zero-energy soft
+modes and cannot absorb wave energy as heat; (3) both results break down at
+exactly E_cell = 124.8 GeV — the Nyquist condition where the photon wavelength
+equals L_J. At this frequency, the wave couples to the cell's A_g (Higgs)
+mode rather than propagating through it. The Higgs mass IS the UV cutoff of
+the torsion medium, derived from wave mechanics rather than spontaneous
+symmetry breaking alone. Three consequences follow: lossless EM propagation
+below E_cell, dynamic rigidity for all nuclear and atomic processes, and a
+clean boundary above which cell-scale physics is directly accessible.
+Exceptions (Pauli-locked states, Zone-1-excited configurations) are noted as
+open items.
+
+
+SECTION 1: THE COHERENCE QUESTION
+-----------------------------------
+
+Series 1 treats each Jobson cell as a rigid unit — a solid icosahedral object
+that rotates, translates, and locks with neighbours via the co-rotation chain
+(cell_rotation_propagation.py RP1-RP4). This is the "geared ball" picture.
+
+The cell's structural modes are built from three classes of corpuscle. The
+gluons (2G_g) are STANDING oscillations anchored at each of the 30 edges —
+three per triangular face, together constituting that face [GH0c, FG3-FG8]. 
+The muon (G32) is a TRAVELING wave through the edge network, 
+using the gluon-defined face boundaries as
+waveguides. The tau (I52) makes a Hamiltonian circuit of all 20 face-center nexuses
+(at inradius = 0.756 × L_J on the outer surface). Between nexuses the tau
+travels as a straight-line CHORD through the cell interior — not a surface-
+following path. At mid-hop the chord dips to r = 0.706 × L_J, which is
+0.103 × L_J inside the edge midpoint (r_mid = 0.809 × L_J); the path
+passes beneath the edge, so no surface-clearing is required. Each hop length
+is phi/3 × L_J ≈ 0.54 × L_J [GH3]. At each face-center nexus all three
+gluons of that face reach their standing-wave amplitude maximum simultaneously
+[GH0b] — the tau arrives from the interior, scatters off this inward-facing
+gluon maximum, and deflects by 72° (C5, same as the muon at vertices)
+[GH2, GH5]. The 138.19° dihedral (JC5) is the fold of the cell surface at
+the edge each chord crosses — geometry of the shell, not the tau's angle.
+"Outer surface only" refers to the NEXUSES (all 20 at inradius); the path
+segments pass through the interior. No inward-spiraling tau path exists
+[CE1-CE5 — a separate topology where tau winds toward r=0, forbidden].
+When an external force is applied — say, a proton's Zone 3 co-rotation
+locking a cell face — all these internal modes must receive and transmit
+the perturbation coherently. If they don't, the cell "flexes" rather than
+rotates as a unit, and the rigid-body treatment breaks down.
+
+The question is not whether the cell is in static equilibrium (proved by the
+zero-force checks at all 62 nexuses, jobson_cell_force_balance_vectors.py G3D1-G3D8).
+The question is whether the cell responds DYNAMICALLY as a rigid unit when
+external forces are applied at any sub-E_cell energy.
+
+This paper proves it does, and identifies E_cell as the exact energy where
+the rigid-body picture ends.
+
+
+SECTION 2: DYNAMIC RIGIDITY — THE TIMESCALE ARGUMENT [CC1-CC3]
+----------------------------------------------------------------
+
+The cell's internal coherence is maintained by the bilateral tau (I52) — TWO corpuscle
+photons traversing the complete Hamiltonian circuit of all 20 face-center nexuses in
+opposite directions [GH5]. At each nexus all three gluons of that face reach their
+standing-wave amplitude maximum simultaneously [GH0b], so each tau hop visits one
+face's full gluon state. Each photon makes 10 hops before meeting its partner at the
+antipodal nexus (hop 10); together they have visited all 20 face-center gluon maxima.
+Hop length = phi/3 × L_J [GH3]. The full-cell gluon synchronization time is:
+
+  t_tau_sync = 10 × (phi/3 × L_J)/c = 5.39 × L_J/c = 1.79×10^-25 s   [CC1]
+
+Compare to physical interaction timescales:
+
+  Strong force at r_p:   t_strong = r_p / c = 2.80×10^-24 s  = 15.7× t_tau_sync
+  EM at nuclear scale:   t_EM     = r_p/(c*alpha) = 3.84×10^-22 s  = 2,150× t_tau_sync
+  Atomic scale:          t_atom   ~ 10^-17 s               = 10^8× t_tau_sync
+
+For EVERY physical interaction below E_cell, the bilateral tau has visited all
+20 face-center gluon maxima before the external force can change meaningfully.
+The cell therefore responds as a coherent unit for all sub-E_cell interactions.
+
+The co-rotation chain (RP1-RP4) confirms zero attenuation: each handoff is
+exactly 72° (C5 geometry), and the muon's pole-to-pole zigzag [muon_symmetry.py MS1-MS7]
+delivers the signal to all 12 vertices equally (35 circuits/vertex over the 70
+distinct circuits). No corpuscle is left behind.
+
+The tau-lever synchronization is Bode-stable: a gluon phase offset δ at a nexus
+generates a restoring force ∝ (1−cos δ) [GPS1-GPS4], giving second-order (δ²)
+stability. The per-circuit loop gain is G_total = 3.75×10⁻⁴ — a 2,670× damping
+factor per tau traversal [BS1-BS4]. Any phase error is suppressed within a
+single circuit. [GPS1-GPS6, BS1-BS5]
+
+CONCLUSION: The "geared ball" treatment is JUSTIFIED for all physical processes
+below E_cell. The rigid-body approximation is not an assumption — it follows
+from the bilateral tau synchronizing all face gluons in 1.79×10^-25 s, which is
+15.7× shorter than the strong force timescale. [CC2]
+
+
+SECTION 2a: CORPUSCLE CYCLE TIMING AND PERTURBATION RECOVERY [CC_G1-CC_T4, STAB_G1-STAB_T3]
+----------------------------------------------------------------------------------------------
+
+The three corpuscle types have distinct cycle periods, verified without wave
+mathematics by cell_cycle_corpuscle.py and cell_cycle_stability.py:
+
+  Gluon (2 counter-propagating corpuscles per edge, 60 total):
+    Period = 2 edge-crossings — corpuscle bounces between two antipodal
+    vertices; the two corpuscles per edge are always at opposite vertices
+    (standing-wave pattern). [CC_G1, CC_G2, CC_G3]
+
+  Muon (G32, 20 bilateral corpuscles = 10 orbit-A circuits):
+    Period = 6 edge-crossings — one full pole-to-pole zigzag circuit.
+    The backward corpuscle is always 3 steps behind the forward (bilateral
+    = half-circuit offset). [CC_M1, CC_M2, CC_M3]
+
+  Tau (I52, 2 bilateral corpuscles):
+    Period = 20 × (phi/3) × (L_J/c) — Hamiltonian circuit of all 20
+    face-center nexuses. Bilateral corpuscles meet at step 10 (antipodal
+    face center). [CC_T1, CC_T2, CC_T4]
+
+Gluon and muon periods are commensurable (muon = 3 × gluon). The tau period
+is INCOMMENSURABLE with both — phi is irrational, so the tau never returns to
+the same relative gluon phase, providing aperiodic sampling of all 20 gluon
+states. [CC_SYNC_1, CC_SYNC_2]
+
+2a.1 Tau perturbation recovery (gluon-guided backtracking)
+
+If the tau is deflected to a wrong face-center nexus (1-face perturbation
+at cycle 5), it does NOT remain permanently out of phase. The gluon
+amplitude maxima at each nexus [GH0b] guide the recovery:
+
+  - From the wrong face, the tau continues its natural 72° deflections.
+    GEOMETRIC RESULT [TNP1-TNP3]: both non-incoming neighbors are always
+    at exactly 72° (dodecahedron vertex symmetry, TNP1).  A blind consistent
+    direction would orbit a 5-face pentagon (dodecahedral ring, TNP2) --
+    so the gluon amplitude at each nexus actively selects between the two
+    equal-angle options.  With correct gluon selection, a full 20-face
+    Hamiltonian circuit always exists from any wrong-face start (TNP3).
+  - All 20 face centers are recovered in 18 extra steps (STAB_T1).
+  - Recovery is efficient: 18 steps for 19 remaining faces (STAB_T2).
+  - After recovery, normal Hamiltonian cycling resumes from cycle 6 onward
+    with no residual error (STAB_T3).
+
+The muon is robust by construction: any cyclic phase shift leaves the 6-vertex
+circuit unchanged (STAB_M1, STAB_M2). The gluon period = 2 is preserved under
+any phase swap (STAB_G1, STAB_G2).
+
+CONCLUSION: All three corpuscle types return to full structural coverage after
+a single-nexus perturbation. The tau continues its natural 72° deflections
+from wherever it lands — no active rerouting required. The icosahedral geometry
+guarantees full face-center coverage within 18 steps of the perturbation.
+
+
+SECTION 3: LOSSLESS PROPAGATION — THE MAXWELL CRITERION [CC4-CC6]
+------------------------------------------------------------------
+
+For a force to permanently alter the cell's internal configuration, it would
+need to scatter energy INTO the cell lattice. This is forbidden by the Maxwell
+criticality of the Jobson cell (3V-E = 6, SY1):
+
+3.1 Zero-energy soft modes
+
+The icosahedral dynamical matrix has exactly 6 zero eigenvalues (SY11):
+the T_1g and T_2g soft modes. Zero eigenvalue means zero frequency = zero
+energy cost to propagate. T_1g and T_2g waves store NO energy in the lattice
+bonds and experience no resistance. A force applied in a soft-mode direction
+passes THROUGH the cell without depositing energy. [CC4]
+
+3.2 No scattering channel at long wavelength
+
+Maxwell criticality (3V-E = 6) places the lattice at the exact rigidity
+transition. At this point, the soft modes (T_1g, T_2g) are DECOUPLED from the
+hard-bond modes at long wavelength (k→0). There is no scattering channel from
+the propagating soft modes into the constrained hard bonds. [CC5]
+The gluon confinement underlying this decoupling is an algebraic identity:
+chi(2G_g, C5) = −1 (phase flip at every vertex) and chi(2G_g, C3) = +1
+(constructive at face centers) follow directly from n=5 edges/vertex and
+Maxwell criticality alone — no dynamical assumption required. Gluons are
+edge-confined; T_1g and T_2g are not; this is why the soft modes decouple.
+[MN1-MN7]
+
+3.3 Thermal energy cannot excite cells
+
+The cell energy scale is T_cell = E_cell / k_B = 1.45×10^15 K. The hottest
+known matter (QGP, ~2×10^12 K) is 0.0014 × T_cell. No physical environment
+in the observable universe can thermally excite a Jobson cell. The cells stay
+in their ground state; no absorption channel is thermally accessible. [CC6]
+
+CONCLUSION: Below E_cell, T_1g and T_2g waves propagate without absorption.
+Heat IS the disordered T_1g wave field. The medium is a cold, lossless substrate.
+This is NOT a separate postulate — it follows from the geometry of the I_h cell.
+
+(Scope condition: Pauli-locked states and Zone-1-excited configurations alter
+the effective dynamical matrix. Dynamic rigidity and lossless propagation within
+those states are Series 3 open items. See Section 6.)
+
+
+SECTION 4: THE NYQUIST CONDITION — WHERE RIGIDITY ENDS [CC7-CC9]
+-----------------------------------------------------------------
+
+The rigid-body and lossless-propagation proofs are valid for ALL sub-E_cell
+interactions. What happens AT E_cell?
+
+The Nyquist condition (SY6, torsionverse_doc.py) states:
+
+  E_Nyquist = hbar × (2π c / L_J) = 124.8 GeV = E_cell   [CC7]
+
+This is the energy at which one full EM oscillation has a spatial period
+exactly equal to L_J. At this energy, the wave can NO LONGER average over
+multiple cells — it resolves the discrete lattice.
+
+The TEMPORAL version of the same condition (SY20b):
+
+  T_Nyquist = 2π hbar / E_cell = L_J / c = 3.31×10^-26 s   [CC8]
+
+The photon period AT E_cell equals the single-corpuscle cell-edge transit time (L_J/c).
+The cell can no longer respond before the next oscillation cycle — the coherence
+condition breaks down.
+
+Both the spatial (wavelength = L_J) and temporal (period = transit time)
+Nyquist conditions give identical energies, confirming that E_cell is the
+single UV cutoff of the torsionverse medium. [CC9]
+
+THE THREE ENERGY REGIMES:
+
+  E << E_cell:  Medium is continuous. T_1g/T_2g propagate as smooth waves.
+                Cell is dynamically rigid. No absorption. EM and gravity
+                described by T_1g and T_2g long-wavelength modes.
+
+  E = E_cell:   Nyquist boundary. Wave resolves individual cells.
+                Couples to A_g (isotropic bulk mode = Higgs). Energy goes
+                INTO the cell structure, not through it. SSB / jamming.
+
+  E > E_cell:   Wave sees cell discreteness. Can create new cells (cloning
+                requires m_crit = 9.933 GeV; full cell creation requires
+                E_cell). Above E_cell: medium becomes opaque to that wave.
+
+
+SECTION 5: HIGGS AS UV CUTOFF — THE A_g CONNECTION [CC10]
+----------------------------------------------------------
+
+The A_g irreducible representation is the totally symmetric (isotropic) mode
+of I_h. From jobson_cell_doc.py J13:
+
+  T_1g × T_1g → A_g appears exactly once (unique scalar combination)
+
+A_g is the Higgs field of the torsionverse (J7, J20, J21). Its mass is the
+energy at which the I_h lattice reaches jamming (Maxwell criticality = SSB):
+E_cell = 124.8 GeV. This is established in Series 1.
+
+This paper adds the wave mechanics perspective: A_g is also the mode excited
+AT the Nyquist boundary. When a wave with E = E_cell hits a cell, it cannot
+continue as a T_1g propagating wave — it couples to the unique scalar A_g mode.
+The energy goes into the isotropic bulk compression, which is jamming/SSB.
+
+The Higgs mass is therefore the UV cutoff FROM TWO INDEPENDENT PERSPECTIVES:
+  (1) Algebraic: A_g = jamming mode, mass = E_cell (J7, J20, Series 1)
+  (2) Wave-mechanical: A_g = excitation at Nyquist boundary (this paper)
+
+These are the same condition stated in two different languages. The Higgs
+mass is not fine-tuned — it is the frequency at which the elastic icosahedral
+medium transitions from a continuous propagating-wave substrate to a discrete
+cell-interacting regime. [CC10]
+
+NOTE ON THE HIERARCHY PROBLEM:
+In standard QFT, the Higgs mass at ~125 GeV is unnaturally small compared to
+the Planck scale (~10^19 GeV) — the hierarchy problem. In the torsionverse,
+there is no hierarchy problem because the Higgs mass is DERIVED: it is L_J/c
+in natural units, set by the icosahedral cell geometry (alpha, phi, r_p). The
+"problem" does not arise because the Higgs is not a fundamental scalar with
+arbitrary mass — it is the A_g mode of the I_h cell lattice.
+
+
+SECTION 6: EXCEPTIONS — SCOPE OF THE RIGIDITY PROOF
+-----------------------------------------------------
+
+The dynamic rigidity (Section 2) and lossless propagation (Section 3) proofs
+apply to the GROUND-STATE medium. Two configurations are outside this scope:
+
+6.1 Pauli-locked state (Mode 3 of spinning pyramid, doc_series2_spinning_pyramid.txt)
+    When cells are all in the same Hopf winding state, the effective dynamical
+    matrix changes. The zero-eigenvalue argument (Section 3.1) may not hold —
+    the locked cells have a different soft-mode structure. Whether a Pauli-locked
+    region remains lossless and rigid is an open question. [Series 3 target]
+
+6.2 Zone-1-excited configuration (strange quark G_u fluctuation, CA28b)
+    A transient strange quark (G_u, m_strange ≈ m_p/2) entering Zone 1 locally
+    modifies the cell's chi coupling. The soft-mode decoupling may temporarily
+    fail in that region, enabling local energy absorption. This may be relevant
+    to the proton's stability — the cell configuration around Zone 1 may
+    self-adjust to remain non-absorbing in the ground state while allowing
+    a transient absorbing path for excited states. [Series 3 target]
+
+6.3 E+ vertex continuation rule
+    The (1,2) Hopf winding of the electron is topologically unique (J20, V7-V8).
+    The tau (I52) and muon (G32) bounce patterns are explicitly proven stable
+    (CG9, CG17: 72° deflection at all steps). For the E+ mode, no script
+    currently proves which of the 5 outgoing edges at each vertex the winding
+    selects. The I_h symmetry implies uniqueness; the explicit geometric proof
+    is a Series 3 target.
+
+
+SECTION 7: CONCLUSIONS
+------------------------
+
+Three results establish the physical basis for treating Jobson cells as
+rigid, lossless units in all sub-E_cell physics:
+
+  1. DYNAMIC RIGIDITY [CC1-CC3]: bilateral tau sync time (5.39 × L_J/c = 1.79×10^-25 s)
+     is shorter than the strong force timescale by 15.7× and EM by 2,150×.
+     All face gluons synchronized; cell responds as a rigid unit.
+
+  2. LOSSLESS PROPAGATION [CC4-CC6]: Maxwell criticality (3V-E=6) decouples
+     soft modes from hard bonds. T_cell = 1.45×10^15 K is unreachable at any
+     physical temperature. No absorption channel exists. Heat is disordered
+     T_1g wave energy, not thermal excitation of the medium.
+
+  3. HIGGS AS UV CUTOFF [CC7-CC10]: E_cell is the Nyquist boundary where both
+     the spatial (λ = L_J) and temporal (T = L_J/c) conditions are satisfied.
+     At this energy, the wave couples to A_g (Higgs) rather than propagating.
+     The Higgs mass is derived, not fine-tuned; the hierarchy problem dissolves.
+
+  4. CORPUSCLE CYCLE STABILITY [CC_G1-CC_T4, STAB_G1-STAB_T3]: all three
+     corpuscle types recover from a single-nexus perturbation without residual
+     error. Tau-lever Bode loop gain G_total = 3.75×10⁻⁴ (2,670× damping per
+     circuit) confirms the synchronization in result 1 is actively stabilized,
+     not a passive timescale bound. [GPS1-GPS6, BS1-BS5]
+
+Companion scripts: analysis/demos/cell_coherence_doc.py       [CC1-CC10, 10/10 PASS]
+                  analysis/quantum/cell_cycle_corpuscle.py  [CC_G1-CC_SYNC_2, 12/12 PASS]
+                  analysis/quantum/cell_cycle_stability.py  [STAB_G1-STAB_T3, 7/7 PASS]
+                  analysis/quantum/corpuscle_force_balance.py  [CF1-CF6, 7/7 PASS]
+                  analysis/quantum/gluon_phase_sync.py          [GPS1-GPS6, 6/6 PASS]
+                  analysis/quantum/gluon_bode_stability.py      [BS1-BS5, 5/5 PASS]
+                  analysis/quantum/maxwell_nexus_connection.py  [MN1-MN7, 7/7 PASS]
+                  analysis/quantum/tau_natural_path.py           [TNP1-TNP3, 3/3 PASS]
+Cross-references: doc_jobson_cell.txt (J3, J7, J13, J20, J21, SY6, SY11)
+                  torsionverse_doc.py (SY19a-c, SY20a-b)
+                  cell_rotation_propagation.py (RP3-RP4)
+
+EXTERNAL INPUTS: none. All results derived from E_cell, L_J, alpha, phi, r_p.
+
+
+=============================================================================
+END doc_cell_coherence.txt
+=============================================================================

@@ -1,0 +1,511 @@
+doc_chemistry.txt
+=============================================================================
+TORSIONVERSE: CHEMICAL BONDS AND MOLECULAR MANIPULATION
+
+Author: Robert Jobson
+Date:   2026-08-26
+Status: v1.0 -- ready for Zenodo submission
+Companion script:  analysis/demos/chemistry_doc.py  --  44/44 PASS  [BD1-BD15, JD1-JD12, CC1-CC12]
+=============================================================================
+
+ABSTRACT
+--------
+
+This paper derives four mechanisms for torsionverse-enhanced bond disruption and
+water splitting. (1) IRMPD: baseline sequential T_1g excitation, 11.2 photons
+per O-H bond. (2a) A_g orthogonal excitation at 90 deg: T_1g x T_1g = A_g + T_1g
++ H_g [exact, I_h CG] gives single-step direct excitation of the O-H symmetric
+stretch. (2b) C5 enhancement at 72 deg: chi(T_1g, C5) = phi gives phi^2 = 2.618x
+more A_g per unit intensity than 90 deg, reducing the effective photon count from
+11.2 to 4.3 per bond [CC8]; possibly also includes I_h medium coupling (open).
+(3) Pulsed oversize toroidal B-field: creates T_2g vortex in the medium, depleting
+the Zone 2 pressure well and reducing the effective bond dissociation energy.
+(4) Photonic ring resonator / annular EM focus: circulating T_1g TE_01 mode
+achieves milliwatt CW bond excitation [BD8-BD9] or pulsed annular focus with
+IRMPD window confirmed at R=1.5 um [BD12-BD13].
+Section 5b derives the torsionverse mechanism for covalent bonding: the photon
+in a closed (1,2) trajectory has a 2-cell displacement budget (from linking number
+n = p*q = 2, CC12), explaining the 2-center preference, Pauli exclusion, and
+electron degeneracy pressure from a single first principle.
+The 72 deg / phi^2 prediction is falsifiable: two OPO lasers at 2.70 um;
+measure bond-breaking yield at 72 deg vs 90 deg; expected ratio = phi^2.
+
+NOTE ON PRIOR ART: General crossed-beam IR photodissociation is published
+(IRMPD, 2D-IR spectroscopy). The 72 deg / phi^2 prediction from I_h group
+theory is new. No existing framework predicts the specific enhancement ratio
+or the group-theoretic origin of the optimal angle.
+
+Magnetic pre-alignment (see Section 1b) enhances efficiency of Mechanisms 2a and
+2b by orienting water's dipole moment (1.85 Debye) before the excitation pulse: all molecules
+present the O-H bond at the same angle, enabling coherent (not statistical)
+excitation. The magnetic pulse must be shorter than the O-H coherence time
+(sub-picosecond) to avoid decoherence while achieving bond-pressure alteration.
+
+Cross-references:
+  doc_nucleus.txt         -- Zone 1/2/3 structure, proton and atomic shells
+  doc_electron.txt        -- Electron orbital forces, Bohr radius, Z_crit
+
+
+1. BOND PHYSICS FROM TORSION MEDIUM GEOMETRY
+----------------------------------------------
+
+1.1  The O-H bond as a torsion pressure well
+
+  Bond energy:      E_OH = 5.15 eV  [NIST]
+  Bond length:      r_OH = 0.958 Angstrom = 9.58e-11 m
+  O-H stretch:      nu = 3700 cm^-1  -->  h*nu = 0.4587 eV,  lambda = 2.70 um
+  Zone 2 pressure at bond scale:  P = E_OH / V_bond = 224 GPa  [BD1 PASS]
+
+  The O-H bond is a Zone 2 pressure well at molecular scale. The same Zone 2
+  physics that holds quarks inside a proton (at r ~ lambda_p = 0.21 fm) holds
+  the O-H electrons between the oxygen and hydrogen nuclei (at r ~ 0.958 A).
+  The scale difference is 4.5 orders of magnitude; the mechanism is identical.
+
+1.2  Bond vibrational modes and I_h symmetry
+
+  The O-H stretch frequency (111 THz) is the A_g mode of the O-H
+  bond at molecular scale. A_g is the totally symmetric I_h irreducible
+  representation -- an isotropic radial oscillation of the bond's Zone 2
+  pressure well (all directions simultaneously, no preferred axis). In
+  standard spectroscopy this is the symmetric stretch (nu_1); in the
+  torsionverse it IS the A_g mode of the local I_h pressure geometry.
+
+  TORSIONVERSE MECHANISM FOR nu_1:
+    (1) T_1g pressure at the bond locus drops isotropically (A_g reduction)
+        -- the Zone 2 pressure well shallows uniformly in all directions.
+    (2) The electron (E+ vertex mode) follows the pressure minimum outward
+        by dwell-time asymmetry -- it drifts away from the bond centre.
+    (3) T_1g pressure restores -- the well deepens again.
+    (4) Electron rebounds to equilibrium.
+    Repeat at 111 THz. This is nu_1: periodic isotropic pressure oscillation
+    of the bond well, with the electron tracking the pressure gradient.
+
+  WHY A_g EXCITATION BREAKS THE BOND:
+    At sufficient amplitude, the pressure well drops enough that the electron
+    drifts too far to rebound -- it escapes the Zone 2 pressure minimum and
+    the bond dissociates. No collision or photon energy threshold required;
+    the bond breaks when the isotropic pressure reduction exceeds the well depth.
+
+  CONNECTION TO CROSSED-BEAM MECHANISM (Section 3):
+    Two T_1g beams crossing at 90 deg create a local T_1g pressure reduction
+    at the crossing point. This IS an A_g perturbation (isotropic, no preferred
+    direction) -- it couples directly into the nu_1 oscillation without requiring
+    the sequential ladder that IRMPD uses.
+
+  A_g at cell scale is the Higgs/cell isotropic mode (E_cell = 124.8 GeV);
+  A_g at bond scale is the O-H symmetric stretch (0.46 eV). Same irrep,
+  of an icosahedral elastic structure, differing only in the scale of the
+  enclosing geometry.
+
+  H-O-H bend:        nu_2 = 1595 cm^-1  -->  T_1g symmetry (directed compression)
+  O-H stretch (symm): nu_1 = 3657 cm^-1  -->  A_g symmetry (isotropic)
+  O-H stretch (asymm): nu_3 = 3756 cm^-1 -->  T_1g symmetry (directed)
+
+  Key: IRMPD targets the A_g mode (nu_1) because it builds amplitude without
+  directionality. The asymmetric stretch (nu_3, T_1g) is less efficient for
+  accumulating bond-breaking energy because its T_1g symmetry redirects
+  energy along a specific axis rather than concentrating it in the bond.
+
+1b. MAGNETIC PRE-ALIGNMENT (NEW INGREDIENT)
+
+  Water molecules have a permanent electric dipole moment: mu = 1.85 Debye.
+  In an external magnetic or electric field, the molecular dipole aligns with
+  the field. When aligned, every O-H bond in the sample presents at the same
+  angle to the excitation beam -- coherent excitation becomes possible instead
+  of the statistical averaging that reduces efficiency in unaligned samples.
+
+  PULSE REQUIREMENTS:
+    Alignment field: applied BEFORE the excitation pulse
+    Duration: must be longer than the rotational relaxation time of water
+      (tau_rot ~ 8 ps at 300 K) to achieve alignment, but the EXCITATION
+      pulse must arrive BEFORE thermal disruption restores random orientation.
+    Excitation pulse: sub-picosecond (shorter than O-H coherence time ~100 fs)
+      to achieve coherent A_g excitation without decoherence from thermal noise.
+    Sequence: align (ns field pulse) -> excite (fs laser pulse) -> measure
+
+  IN TORSIONVERSE TERMS: the external field creates a preferred orientation
+  for the medium's local cell structure around each molecule. When the
+  excitation beams arrive, every A_g mode is in phase (all bonds at the
+  same angle to the beam crossing point). The phi^2 enhancement from the
+  72-degree geometry is MULTIPLIED by the coherence enhancement from alignment
+  (factor ~N_aligned/N_total → approaches 1.0 for strong alignment fields).
+
+  PRACTICAL GEOMETRY:
+    Field: ~1-10 T magnetic field or ~10^6 V/m electric field (strong, pulsed)
+    Laser: two OPO beams at 2.70 um (111 THz), crossed at 72 deg
+    Target: water film or droplet at the field/beam crossing point
+    Observable: bond-breaking yield vs angle (72 vs 90 vs 0 vs 180 deg)
+
+
+2. MECHANISM 1: IRMPD SEQUENTIAL LADDER (EXISTING, SCRIPTED)
+--------------------------------------------------------------
+
+  IR multiphoton dissociation: photons at 2.70 um resonance excite the O-H
+  bond sequentially. Each absorbed photon climbs one rung of the vibrational
+  ladder. N photons needed:
+
+    N = E_bond / h*nu = 5.15 eV / 0.4587 eV = 11.2 photons  [BD5 PASS]
+
+  This is the TRUE multi-photon regime (N >> 1). Each photon must be absorbed
+  before the next arrives; coherence is not required. The mechanism is:
+    1. Photon absorbed by O-H stretch mode (A_g, 3700 cm^-1)
+    2. Bond amplitude increases
+    3. Repeat N=11 times
+    4. Bond breaks at the dissociation threshold
+
+  SOURCE REQUIREMENTS:
+    Single-photon DUV path: lambda < 240 nm; E > 5.15 eV per photon  [BD4 PASS]
+    IRMPD at 2.70 um: requires 11.2 photons, < 5 ps pulse for coherence  [BD5]
+    Brute-force field: I > 10^14 W/cm^2 -- exceeds ionization threshold  [BD2 PASS]
+    Anti-Helmholtz static B: gradient force negligible  (F/F_bond ~ 4e-17)  [BD6]
+    Diamagnetic force: F_dia ~ 1e-3 pN  <<  F_bond = 8.6 nN  [BD7 PASS]
+
+  PRACTICAL APPROACH: CO2 laser (10.6 um) is NOT resonant with O-H stretch.
+  Recommended: OPO source at 2.70 um, focused to I ~ 1e10 W/cm^2.
+  Ring cavity enhancement (Q ~ 1e5) reduces required source power by 10^5x.
+  [BD8-BD15 PASS in bond_disruption_em.py]
+
+  MEDIUM SHEAR RESONANCE: the cell shear mode at 19.76 THz = Rs * f_photon
+  (Rs = sqrt(5)/(4*pi)) provides a secondary coupling channel directly to
+  cell displacement. Combined O-H + shear drive:
+    f_OH    = 111 THz (bond climbing)
+    f_shear = 19.76 THz (cell displacement)
+  Both can be driven simultaneously with a two-colour field.  [JD12 PASS]
+
+
+3. MECHANISM 2a: A_g ORTHOGONAL-BEAM EXCITATION AT 90 DEG (NEW)
+----------------------------------------------------------------
+
+  PRINCIPLE (bond resonance): Two T_1g (EM) beams crossing at 90 degrees produce,
+  via the I_h CG decomposition: T_1g x T_1g = A_g + T_1g + H_g [exact].
+  The A_g component IS the O-H symmetric stretch (nu_1, 3700 cm^-1) --
+  the totally symmetric isotropic oscillation of the bond's Zone 2 pressure well.
+  Direct single-step excitation of the A_g mode -- not a sequential ladder.
+
+  ADVANTAGE OVER IRMPD:
+    IRMPD: 11.2 steps, sequential, requires sustained resonance over picoseconds.
+    A_g direct: one step, potentially much lower photon count per bond break.
+
+  BEAM CONFIGURATION:
+    Two beams crossing at 90 deg at the target bond. Photon energy: 0.4587 eV
+    (2.70 um wavelength, same as IRMPD). A_g is produced by the geometry alone --
+    no special angle precision beyond 90 deg required.
+
+  ELECTRON STRIPPING AS SIDE EFFECT:
+    If A_g amplitude drives Jobson cells to Maxwell jamming (3V-E=6) at the
+    bond location, Zone 3 co-rotation stops → electron stripped without photon
+    energy threshold. [See doc_electron.txt Section 2.1]
+
+
+3a. MECHANISM 2b: 72-DEG C5 ENHANCEMENT -- I_h MEDIUM COUPLING (NEW PREDICTION)
+----------------------------------------------------------------------------------
+
+  DISTINCT FROM MECHANISM 2a: at 72 deg (C5), a second effect may operate beyond
+  simply producing more A_g. Two interpretations, both open:
+
+  INTERPRETATION A (quantitative A_g enhancement only):
+    chi(T_1g, C5) = phi → A_g yield ∝ phi^2 = 2.618x vs 90 deg.
+    The I_h medium has a natural C5 mode; 72 deg excites it resonantly,
+    producing phi^2 more A_g per unit intensity. Same mechanism as 2a, stronger.
+    Prediction: bond-breaking yield at 72 deg / 90 deg = phi^2 = 2.618.
+    Falsifiable: two OPO lasers at 2.70 um; rotate crossing from 90 to 72 deg.
+
+  INTERPRETATION B (medium-level weakening added):
+    At 72 deg, the crossing also perturbs the I_h medium at its C5 resonance.
+    This is a MEDIUM COUPLING effect (analogous to Mechanism 3) triggered by EM
+    geometry rather than a magnetic field. The bond sits in a medium that is
+    simultaneously excited at C5; the medium pressure well supporting the bond
+    is perturbed. This would reduce the effective bond dissociation energy ON TOP
+    of the A_g excitation -- a dual effect at 72 deg not present at 90 deg.
+    OPEN: determine whether the phi^2 factor comes from A_g amplitude alone
+    (Interpretation A) or includes a medium-weakening component (Interpretation B).
+
+  NOTE: chi(T_1g, theta) increases monotonically as theta decreases (smaller
+    crossing angle = more A_g by formula). But C6 (60 deg), C8 (45 deg) etc. are
+    NOT elements of I_h -- no medium resonance guarantees the enhancement there.
+    72 deg (C5) is the smallest I_h-resonant angle with positive chi. [CC1-CC4]
+
+
+3b. MECHANISM 3: PULSED OVERSIZE TOROIDAL MAGNETIC FIELD -- MEDIUM DEPLETION
+------------------------------------------------------------------------------
+
+  This mechanism does NOT work by coupling to the bond directly (diamagnetic
+  gradient force is negligible: F_dia/F_bond ~ 1e-17 [BD7]). It works by
+  depleting the torsion medium at the toroid axis.
+
+  PHYSICAL SETUP:
+    An oversize toroidal electromagnet -- large enough for water to flow through
+    the center hole -- is pulsed rapidly. The pulsed B-field (T_2g mode in the
+    torsionverse) creates a sustained T_2g vortex in the torsion medium along
+    the toroid axis. This depletes medium cells from the axis, lowering the local
+    T_1g (EM/pressure) density in the region where the water flows.
+
+  MECHANISM: MEDIUM DEPLETION, NOT BOND FORCE
+    The torsionverse bond model: O-H bonds are Zone 2 pressure wells sustained
+    by the surrounding medium's T_1g pressure field. The Zone 3 co-rotation of
+    oxygen and hydrogen sets the dwell-time minimum that defines the bond.
+    In a medium-depleted region (fewer cells → lower T_1g pressure):
+      - Zone 3 orbital pressure gradient weakens
+      - The effective bond dissociation energy decreases
+      - Bonds that are thermally stable in full medium may dissociate spontaneously
+        or break at significantly lower IRMPD fluence
+
+    This is the same principle as the spinning pyramid reducing apparent weight:
+    centrifugal T_1g depletion on the spin axis lowers effective gravity for
+    objects there. Here, T_2g vortex depletion at the toroid axis lowers
+    effective bond stability for molecules there.
+
+  COMPARISON TO MECHANISM 2 (orthogonal beams):
+    Both mechanisms reduce the effective bond stability by modifying the medium.
+    - Mechanism 2: T_1g orthogonal beams create an A_g excitation that directly
+      drives the bond's Zone 2 pressure well into A_g oscillation from ABOVE (added energy into the bond)
+    - Mechanism 3: T_2g toroidal vortex removes medium pressure support from
+      BELOW (reduces the pressure well that the bond sits in)
+    The two are complementary and can be combined: weaken the bond via toroid,
+    then break it with IRMPD or A_g beams at a fraction of the normal fluence.
+
+  ADVANTAGE:
+    The toroid is azimuthally symmetric; no critical crossing angle.
+    Water flows continuously through the axis (scalable throughput).
+    The depletion effect persists for the medium relaxation timescale after
+    the pulse ends (not tau_relax = 1e8 s; this is elastic medium response,
+    which relaxes on acoustic timescales when the driver stops).
+
+  OPEN: quantify the depletion depth (fractional T_1g pressure reduction)
+    as a function of toroid pulse parameters (dB/dt, peak B, pulse width).
+    This requires the T_2g/medium coupling coefficient (not yet derived).
+    Compare to jobson_depletion.py (JD1-JD12) for the vortex depletion framework.
+
+
+3c. MECHANISM 4: PHOTONIC RING RESONATOR / TOROIDAL EM FOCUS (NEW)
+--------------------------------------------------------------------
+
+  Distinct from Mechanism 3 (macroscopic magnetic, medium depletion) and
+  Mechanism 2 (two separate beams crossing). Mechanism 4 uses a single
+  circulating EM field in a toroidal geometry at MOLECULAR scale, adding
+  energy directly to the bond -- not depleting the medium.
+
+  IMPLEMENTATION A -- Photonic ring resonator (BD8):
+    A micron-scale ring cavity at 2.7 μm (chalcogenide glass, achievable Q~1e5)
+    stores circulating EM energy at the O-H stretch resonance.
+    Required input intensity: I_IRMPD / Q ~ 1e4 W/cm^2 (milliwatt CW laser).
+    Intracavity field continuously addresses the O-H bond at resonance.
+
+  IMPLEMENTATION B -- T_1g vortex TE_01 mode (BD9):
+    The TE_01 circulating mode of a ring resonator carries orbital angular
+    momentum ell=1, which corresponds to T_1g symmetry in I_h.
+    chi(T_1g, C5) = phi → phi^2 coupling to the A_g (nu_1) symmetric stretch.
+    Combined with the Q=1e5 cavity: required input < 1e4 / phi^2 ~ 4e3 W/cm^2.
+    A 1 mW laser focused to 1 μm^2 = 1e8 W/cm^2 → comfortably feasible.
+
+  IMPLEMENTATION C -- Above-cutoff annular laser focus (BD10-BD15):
+    An annular beam (axicon + SLM) with inner radius R > R_cutoff = 1.04 μm.
+    Above cutoff, EM fields from all azimuthal positions converge inward and
+    sum constructively at the central axis.
+    I_center ≈ 0.5 × I_wall × phi^2; at I_wall = 1e10 W/cm^2: I_center
+    = 1.3e10 W/cm^2, inside the IRMPD window without ionization [BD12-BD13].
+    Practical aperture: 1.04 μm < R_inner < ~10 μm [BD15].
+    Water flows along center axis (microfluidic integration).
+
+  KEY DISTINCTION from Mechanism 2:
+    Mechanism 2: two separate beams cross → A_g at intersection (point geometry)
+    Mechanism 4: single circulating mode wraps around axis → continuous T_1g
+    along the axis (line geometry, better suited for flowing water)
+
+  Companion script: bond_disruption_em.py BD8-BD15 (all verified)
+
+
+4. WATER SPLITTING: MECHANISM COMPARISON
+------------------------------------------
+
+  REACTION:  2 H2O  -->  2 H2 + O2   (delta_G = 237 kJ/mol = 2.46 eV/molecule)
+  Two O-H bonds per molecule must be broken: total ~10.3 eV per molecule.
+
+  MECHANISM 1 (IRMPD):
+    N = 11.2 photons per O-H bond x 2 bonds = 22.4 photons per molecule.
+    Energy per molecule = 22.4 × 0.4587 eV = 10.3 eV  [consistent].
+    All energy goes to bond excitation; product gases carry kinetic energy.
+
+  MECHANISM 2a (A_g direct, 90 deg orthogonal beams):
+    Geometry produces A_g directly. One step vs 11.2 for IRMPD.
+    No special angle precision required; 90 deg is the base configuration.
+    OPEN: compute A_g coupling efficiency at the O-H bond geometry.
+
+  MECHANISM 2b (C5 enhancement, 72 deg):
+    phi^2 = 2.618x more A_g per unit intensity than 90 deg.
+    Effective photon count: N = 11.2 / phi^2 = 4.3 per bond [CC8].
+    Interp. A: more A_g amplitude (same mechanism, stronger).
+    Interp. B: I_h medium coupling adds a medium-weakening component.
+    OPEN: determine which interpretation is correct.
+    Falsifiable: measure bond-breaking yield at 72 deg vs 90 deg; expect phi^2.
+
+  MECHANISM 3 (toroidal B-field -- medium depletion):
+    T_2g vortex reduces medium pressure at toroid axis.
+    Effective bond dissociation energy decreases in the depleted zone.
+    Best used in combination: weaken bonds via toroid, then break with IRMPD
+    or A_g beams at reduced fluence. Azimuthally symmetric; continuous flow.
+    OPEN: quantify depletion depth from pulse parameters (T_2g coupling TBD).
+
+  MECHANISM 4 (photonic ring / toroidal EM focus):
+    Ring resonator (BD8): input ~ 1e4 W/cm^2 (milliwatt CW, Q=1e5). [PASS BD8]
+    TE_01 + T_1g phi^2: input < 4e3 W/cm^2. [PASS BD9]
+    Above-cutoff annular focus (BD10-BD15): I_wall = 1e10 W/cm^2 →
+      I_center = 1.3e10 W/cm^2 in IRMPD window; aperture 1-10 μm.
+    Best for continuous flow; line geometry vs point geometry of Mechanism 2.
+
+  DOWNSTREAM (all mechanisms):
+    Products H2 and O2 must be separated (H2 rises, O2 denser).
+    Electrolyzer cells provide existing engineering path for separation.
+    Torsionverse mechanisms would reduce the ENERGY INPUT, not the downstream.
+
+
+5. OTHER BOND TARGETS
+----------------------
+
+  C-H bond:   E = 4.28 eV, nu = 3000 cm^-1 (3.33 um)  [hydrocarbons]
+  N-H bond:   E = 3.88 eV, nu = 3300 cm^-1 (3.03 um)  [amines, proteins]
+  C-C bond:   E = 3.61 eV, nu = 1000 cm^-1 (10.0 um)  [organic chemistry]
+  Si-O bond:  E = 4.60 eV, nu = 1000 cm^-1 (10.0 um)  [silica, glass]
+
+  The A_g orthogonal-beam mechanism applies to any bond whose vibrational A_g
+  mode is accessible. The key requirement: the T_1g beam photon energy must
+  match the bond's A_g stretch frequency. For C-H bonds: 3.33 um OPO source.
+
+  SELECTIVITY ADVANTAGE: unlike IRMPD, which requires a well-resolved spectrum,
+  the A_g direct mechanism selects for the symmetric Zone 2 oscillation (A_g
+  symmetry). In a complex molecule, only the bonds whose A_g mode frequency
+  matches the beam photon energy will be excited -- inherent selectivity.
+
+
+5b. THE COVALENT BOND: WHY ELECTRON SHARING IS STABLE
+-------------------------------------------------------
+
+  Standard quantum mechanics resolves covalent bonding via wavefunction overlap
+  and exchange integrals, but provides no mechanical picture. The torsionverse
+  gives a direct mechanical explanation from a single fundamental object.
+
+  THE FUNDAMENTAL OBJECT: THE PHOTON
+    In the torsionverse there is one fundamental moving object: the photon.
+    What we call the "electron" is a photon in a stable closed trajectory
+    through the Jobson cell lattice. The (1,2) topology is NOT an intrinsic
+    property of the photon -- it is a property of the TRAJECTORY through the
+    icosahedral cell geometry. The photon bounces in straight lines between
+    cells; the icosahedral lattice forces specific stable closed trajectories;
+    the (1,2) trajectory is one such stable loop.
+
+  THE 2-CELL BUDGET (from trajectory geometry):
+    Linking number n = p*q = 2 counts simultaneous transverse crossings. [CC12a]
+    Dynamic picture: the electron ricochets off a DIFFERENT cell at each bounce
+    with an elastic rebound -- the cell displaces and recovers under global medium
+    pressure. The electron travels to the next cell while the previous cell is still
+    displaced. If each cell is displaced for 2 bounce intervals (tau_recover ~ T/6,
+    where T/12 is the inter-bounce interval), then at any moment ~2 cells are
+    simultaneously still displaced from recent impacts. Both the topological count
+    (n=2 crossings) and the dynamic picture (2 cells displaced) give the same
+    budget: 2 cells.
+    Over a complete cycle: 12 distinct cells visited, 6 sequential 2-cell pairs.
+    [CC12b, CC12c]. With vertex stiffness correction: n_exact = 2.018697.
+    For all bond discussions: the budget is 2 cells.
+
+  ENERGY BUDGET (2-cell budget):
+    The photon's trajectory uses its 2-cell budget:
+      ~1 cell: the trajectory presses into the nucleus Zone 3 cell geometry
+               (the nuclear charge well is a specific region of the cell lattice)
+      ~1 cell: the trajectory's orbital motion + Pauli repulsion capacity
+    PAULI EXCLUSION: a second photon on the same trajectory would double the
+    cell pressure → their trajectories repel each other unless the second photon
+    circles the same path in the anti-parallel orientation (same cells visited,
+    winding axis reversed). Anti-parallel: the two T_1g circulations cancel via
+    A_g decoupling (chi(T_1g_up × T_1g_down, C_2) = +1 = A_g) → coexist.
+    Parallel: circulations reinforce → repulsion → excluded.
+    NOTE: opposite winding chirality = POSITRON (same cells, reversed order =
+    anti-particle). Pauli pairs are NOT positrons -- they have anti-parallel
+    axes, not reversed chirality.
+
+  COVALENT BOND (two-center):
+    When a second nucleus is close enough, the photon's closed trajectory can
+    include cells from BOTH nuclear lattice regions -- alternating between
+    nucleus A's Zone 3 cells and nucleus B's Zone 3 cells. The trajectory
+    splits its 2-cell budget: ~1 cell in A's region, ~1 cell in B's region.
+    Zero budget remains for orbital motion or Pauli repulsion. The trajectory
+    is LOCKED to the path that spans both nuclei. This is the bond.
+
+  WHY EXACTLY 2 CENTERS (not 3):
+    The 2-cell budget supports exactly 2 nuclear cell regions. A trajectory
+    spanning 3 nuclei would need n > 2 -- no stable (p,q) winding achieves this
+    with p*q = 2. The 2-center preference is a direct consequence of the
+    same topology that fixes alpha (n*alpha^2 - Q*alpha + Rs = 0).
+
+  RESOLUTION OF THE "OVERLY POSITIVE" PROBLEM:
+    There is no charge redistribution. The photon's trajectory spans two nuclear
+    cell regions; both nuclei are attracted toward the region where their cell
+    geometries overlap (the trajectory's Zone 3 path through both). The Coulomb
+    repulsion between bare nuclei at H-H bond distance is ~19.5 eV [CC11], but
+    the Zone 3 overlap attraction is larger; net bond energy 4.52 eV is the residual.
+
+  PAULI EXCLUSION AND CELL DEPLETION:
+    Pauli exclusion works because the photon trajectory requires spare cell budget
+    to repel a co-entering photon. In a depleted medium (fewer Jobson cells),
+    the spare budget falls → exclusion fails → trajectories can overlap.
+    This is electron degeneracy pressure: at high stellar density, cell depletion
+    removes the spare budget → Pauli repulsion fails → collapse.
+    [OPEN: derive threshold cell density from n_exact and Zone 3 geometry]
+
+  BOND GEOMETRY:
+    Preferred trajectory directions in the icosahedral cell lattice →
+    sp3 tetrahedral bond geometry. H-O-H at 104.5 deg: the two locked photon
+    trajectories (O-H bonds) weakly repel via residual spare budget from the
+    boundary of their cell regions, compressing 5 deg below tetrahedral.
+
+  Script checks: CC10-CC12 in analysis/molecular/chemistry_coupling.py
+
+  NOTE ON TWO PICTURES OF THE 2-CELL BUDGET:
+    TOPOLOGICAL (exact): the (1,2) trajectory simultaneously crosses any transverse
+    disk at 2 points. Count is exactly 2 everywhere on the path.
+    SEQUENTIAL-DISPLACEMENT (dynamic): if cell recovery time tau_recover = T/6,
+    then 12 × tau_recover/T = 2 cells displaced at any moment.
+    Both give 2; whether tau_recover = T/6 is a medium property (open).
+
+  WAVE-PARTICLE NOTE:
+    There is only ONE fundamental object: the photon. Both the "electron" and the
+    "free photon" are the same object in different trajectory states (closed loop
+    vs open path). The apparent "wave" for both is the same: the photon's path
+    through the Jobson cell lattice creates periodic displacement patterns via
+    elastic rebounds. No separate wave exists; the pattern IS the trajectory.
+
+
+6. GENUINELY OPEN ITEMS
+--------------------------
+
+  [CLOSED CC1-CC4] A_g crossing angle: 72 deg (C5, I_h resonant) gives phi^2=2.618
+    vs 90 deg. Non-I_h angles (60, 45 deg) give higher chi^2 by formula but lack
+    I_h medium resonance -- phi^2 is physically guaranteed only at 72 deg.
+  [CLOSED CC5-CC7] T_2g chi table: chi(T_2g, C5) = 1-phi; maximum |chi(T_2g)|
+    is at C5^2 (144 deg) = phi, not C2. For water C2v, best is C2 axis, |chi|=1.
+  [BD7 noted] Diamagnetic gradient force (macroscopic B on molecule) ~ 1e-17 of
+    bond force -- negligible. Mechanism 3 operates via medium depletion, not
+    gradient force; BD7 measures a different (irrelevant) coupling path.
+  - Depletion depth of Mechanism 3: derive T_2g/medium coupling vs pulse parameters
+    (peak B, dB/dt, pulse width); compare to JD1-JD12 (jobson_depletion.py)
+  - Threshold intensity comparison: IRMPD vs A_g direct vs toroid-primed IRMPD
+  - Optimal combination: what toroid depletion depth reduces IRMPD fluence by phi^2?
+  - Electron stripping threshold: at what A_g amplitude does Maxwell jamming
+    occur, causing cell-locking ionization?
+  - Plasma efficiency: in a water plasma, do any mechanisms scale differently
+    than in liquid/vapor water?
+
+
+7. PROPOSED EXPERIMENT
+----------------------
+
+  See experiments/bench_test_orthogonal_waves.txt for full protocol.
+  Three setups: (A) piezo + photoelastic acrylic block -- direct mode
+  identification via polarized light; (B) ultrasound in water bath --
+  cavitation threshold comparison; (C) microwave patch antennas -- EM T_1g
+  analog. Key discriminator: 72 deg crossing (C5 icosahedral angle) vs
+  90 deg. Torsionverse predicts phi^2 = 2.618x more A_g at 72 deg.
+
+
+=============================================================================
+END doc_chemistry.txt
+=============================================================================

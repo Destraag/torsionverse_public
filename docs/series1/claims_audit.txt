@@ -1,0 +1,541 @@
+CLAIMS AUDIT — SERIES 1 (LOCKED / DOI-PUBLISHED PAPERS)
+=============================================================================
+Date: 2026-08-24
+Method: Each companion script (analysis/demos/<name>_doc.py) executed fresh
+  via "python -X utf8 analysis/demos/<name>_doc.py" from the project root.
+  Doc text (docs/series1/doc_*.txt) compared against script output for
+  numerical accuracy and logical consistency. This is a RE-VERIFICATION
+  pass following the docs/ reorganization into series1/series2 (2026-08-24):
+  the reorg only moved files (git renames, zero content diffs); this audit
+  independently re-confirms the prior 2026-08-23 audit findings by actually
+  re-running every script and re-reading the fixed sections, rather than
+  trusting the prior summary. Scope: series1 only. doc_hadron_manipulation,
+  doc_cell_depletion, doc_gyroscope are series 2 (docs/ root) and are
+  audited separately.
+=============================================================================
+
+LEGEND
+------
+  VERIFIED    : Claim is confirmed by the companion script output.
+  OPEN        : Claim or step is explicitly marked open/incomplete in the doc.
+  ISSUE       : Claim is overstated, inconsistent with script, or contradicts
+                another doc or its own status header.
+  NOTE        : Informational context; not an error.
+
+=============================================================================
+FRESH SCRIPT RUN RESULTS (2026-08-24)
+=============================================================================
+
+  Script                          Result      vs. prior audit (2026-08-23)
+  ------------------------------  ----------  -----------------------------
+  alpha_doc.py                    37/37 PASS  unchanged
+  torsion_doc.py                  17/17 PASS  unchanged
+  higgs_doc.py                    12/12 PASS  unchanged
+  jobson_cell_doc.py              43/43 PASS  unchanged
+  leptons_doc.py                  18/18 PASS  unchanged
+  magnetism_doc.py                13/13 PASS  unchanged
+  nucleus_doc.py                  31/31 PASS  unchanged
+  orbit_doc.py                    16/16 PASS  unchanged
+  particle_generation_doc.py      14/14 PASS  unchanged
+  qm_doc.py                       21/21 PASS  unchanged
+  entanglement_doc.py             35/35 PASS  unchanged
+  torsionverse_doc.py (LAST)      18/18 PASS  unchanged
+  ------------------------------  ----------  -----------------------------
+  TOTAL                          275/275 PASS  NO REGRESSIONS
+
+=============================================================================
+SPOT RE-VERIFICATION OF PRIOR FIXES (read directly from current file text)
+=============================================================================
+
+[CONFIRMED STILL FIXED] EN-8  (docs/series1/doc_entanglement.txt, Section 4.4)
+  Current text (line ~390): "The G32 alignment chain mechanism (Section 4.2)
+  is DERIVED: traverses 3 gluon edges, energy = -phi*t, frictionless
+  (G32 x G = no A_g) [muon_slip.py 5/5 PASS]."
+  No stale "not yet done" language remains. Consistent with DERIVED section.
+
+[CONFIRMED STILL FIXED] H-8  (docs/series1/doc_higgs.txt, Claim 12 body)
+  Current text (line 422): "m_mu = 105.655 MeV (PDG 105.658, gap -0.003%)
+  [leptons_doc.py LM6]." Matches doc_leptons.txt/leptons_doc.py exactly.
+  The old erroneous 105.47 MeV value is gone.
+
+[CONFIRMED STILL FIXED] TV-9  (docs/series1/doc_torsionverse.txt)
+  GENUINELY OPEN section now lists exactly one item: the Boltzmann constant
+  k_B numerical value (unit-convention gap, not a medium-physics gap).
+  No stray "(conjecture)" language found; weak interaction mechanism section
+  is fully split into DERIVED (bypass ratio, CG selectivity, G_F suppression)
+  and F-15 CLOSED (weak_decay_ibd.py 9/9, weak_quark_flip.py 9/9).
+
+=============================================================================
+DOC: doc_alpha.txt
+Script: analysis/demos/alpha_doc.py   Result: 37/37 PASS
+=============================================================================
+
+[VERIFIED] A-1
+  alpha = 7.297352585571501e-3 from (1,2) Hopf quadratic (n=2, n_exact=2.01869).
+  Error vs CODATA-2018: +0.00000022% (2-term Born).
+
+[VERIFIED] A-2
+  Complete O(alpha^2) formula closes residual to +0.000000000171%.
+  Physical origin: (3/4) = dim(T_1g)/(dim(T_1g)+dim(A_g)) from I_h CG.
+
+[VERIFIED] A-3
+  phi = (1+sqrt(5))/2 from (1,2) winding norm; phi^2-phi-1 = 0 exactly.
+
+[VERIFIED] A-4
+  Rs = sqrt(5)/(4*pi) = 0.17794063585... from winding norm / Vol(S^2).
+
+[VERIFIED] A-5
+  Q = 4*pi^2/phi from CS_{(1,2)} = p*q*Vol(S^3), verified numerically.
+
+[VERIFIED] A-6
+  (1,2) is the first Fibonacci convergent to 1/phi^2; unique for p,q<=3.
+
+[VERIFIED] A-7
+  Exactly two A_g modes under I_h for l<=6: l=0 and l=6.
+
+[VERIFIED] A-8
+  f1=phi (icosahedral load identity) and f2=ln(5) are exact.
+
+[VERIFIED] A-9
+  L3(phi,ln5) = 1.6137588453, matches f_geom to -0.0007 sigma.
+
+[VERIFIED] A-10
+  Maxwell criterion: 3V-E = 3*12-30 = 6; icosahedron is exactly critical.
+
+[VERIFIED] A-11
+  CS_{(p,q)}/CS_{(1,1)} = p*q for (1,2),(1,3),(2,3),(2,5),(3,5).
+
+[VERIFIED] A-12
+  chi(E_1/2,C_5) = chi(T_1g,C_5) = phi = 2*cos(pi/5).
+
+[VERIFIED] A-13
+  Born balance k_n*(1+alpha) = alpha*phi*k_LW; residual < 0.05%.
+
+[NOTE] A-14
+  The 0.171e-9% residual (complete O(alpha^2) formula) is a fixed-point
+  self-consistency check, not an independent physical prediction distinct
+  from the CODATA input. Correctly framed in the doc.
+
+[NOTE] A-15
+  The single physical assumption (electron topology = (1,2) Hopf winding)
+  is disclosed in Section 1; downstream steps are algebraic necessity.
+
+=============================================================================
+DOC: doc_entanglement.txt
+Script: analysis/demos/entanglement_doc.py   Result: 35/35 PASS
+=============================================================================
+
+[VERIFIED] EN-1
+  CG selectivity: T_1g x T_1g -> A_g (nn ALLOWED), T_1g x T_2g -> G_g+H_g
+  (np FORBIDDEN), T_1u x T_1u -> A_g (ee ALLOWED).
+
+[VERIFIED] EN-2
+  Tsirelson bound |S| = 2*sqrt(2) from chi(A_g)=1 for all I_h classes.
+
+[VERIFIED] EN-3
+  No-signaling: v_shear = Rs*c = 5.335e7 m/s < c.
+
+[VERIFIED] EN-4
+  r_lock(300K) = 340 fm (sub-nm range, chemical bond scale).
+
+[VERIFIED] EN-5
+  t_hop = m_mu/sqrt(3) = 61.002 MeV (G32 loop ground state).
+
+[VERIFIED] EN-6
+  Delta = (sqrt3-1)*t_hop = 44.66 MeV = 42.3% of m_mu.
+
+[VERIFIED] EN-7
+  t_cell = E_cell/(2*pi) = m_p/(4*alpha*phi) = 19862 MeV (medium phonon).
+
+[RESOLVED, RE-CONFIRMED] EN-8
+  Section 4.4 correctly states the G32 chain mechanism is DERIVED
+  (see Spot Re-verification above). No stale text remains.
+
+[NOTE] EN-9
+  Abstract correctly supersedes Zenodo v1 (removes overstated infinite-range
+  non-locality claim).
+
+=============================================================================
+DOC: doc_higgs.txt
+Script: analysis/demos/higgs_doc.py   Result: 12/12 PASS
+=============================================================================
+
+[VERIFIED] H-1
+  m_H = E_cell*(1+alpha/pi) = 125.0888 GeV. Gap: -1.01 sigma (PDG 2022),
+  -0.001% (PDG combined).
+
+[VERIFIED] H-2
+  lambda = (1-nu)/4 = 0.12908727. Gap: 0.84 sigma from SM value.
+
+[VERIFIED] H-3
+  v = m_H/sqrt(2*lambda) = 246.185 GeV. Gap: -0.014% from EW.
+
+[VERIFIED] H-4
+  Gamma_H = alpha^2*m_H/phi = 4.1168 MeV. Gap: 0.28 sigma from PDG.
+
+[VERIFIED] H-5
+  sin^2(theta_W)* = 0.2229045647 vs PDG 0.22290000. Residual: 4.56e-6.
+
+[VERIFIED] H-6
+  m_tau/m_mu ratio R = (phi^6-1)*(1-alpha) = 16.82062358.
+  Measured: 16.81702933. Residual: +0.0214%.
+
+[VERIFIED] H-7
+  7*k_n_max/(2*pi) = 1+alpha+alpha^2*phi to 0.00009%.
+
+[RESOLVED, RE-CONFIRMED] H-8
+  m_mu = 105.655 MeV (-0.003%), consistent with doc_leptons.txt/leptons_doc.py
+  LM6. Old erroneous 105.47 MeV value confirmed absent from current text.
+
+[VERIFIED] H-9
+  "DOES NOT CLAIM" section correctly discloses non-zero m_W (1.6 sigma) and
+  m_Z (-8.6 MeV) residuals; Jobson-Higgs conjecture not claimed as proven.
+
+[NOTE] H-10
+  m_Z gap (-5.4 MeV) attributed to m_W residual only; internally consistent.
+
+=============================================================================
+DOC: doc_jobson_cell.txt
+Script: analysis/demos/jobson_cell_doc.py   Result: 43/43 PASS
+=============================================================================
+
+[VERIFIED] JC-1
+  N_J_p = 1/(4*alpha*phi) = 21.173226. CODATA: 21.169090. Gap: +0.0195%.
+  r_p = 4*hbar_c/m_p = 0.8412356 fm.
+
+[VERIFIED] JC-2
+  L_J = alpha*phi*r_p = 0.009935 fm. E_cell = 124.823 GeV.
+
+[VERIFIED] JC-3
+  nu = (8*pi^2-5)/(16*pi^2-5) = 0.48365091. K/G = 30.2494 (exact algebraic).
+
+[VERIFIED] JC-4
+  sin^2(theta_W)* = 0.22290456 from I_h EM sector + 2-loop correction.
+
+[VERIFIED] JC-5
+  Muon pentagonal circuits: 12 circuits, 5 edges each, 4 independent (dim G32=4).
+
+[VERIFIED] JC-6
+  Cell geometry: 20 faces, dihedral = arccos(-sqrt(5)/3) = 138.19 deg.
+
+[VERIFIED] JC-7
+  k_n/k_eff = alpha*phi*(1-3/4*a^2)/(1+x+x^2) = 0.01158141 (0.000031% residual).
+
+=============================================================================
+DOC: doc_leptons.txt
+Script: analysis/demos/leptons_doc.py   Result: 18/18 PASS
+=============================================================================
+
+[VERIFIED] L-1
+  m_e = alpha^2*phi^2*m_p/(4*chi) = 0.510999 MeV. Gap: +0.000065% PDG.
+
+[VERIFIED] L-2
+  m_mu = 105.655 MeV from G32 circuit. Gap: -0.002922% PDG.
+
+[VERIFIED] L-3
+  Koide K = 2/3 to machine precision with derived m_e and m_mu.
+
+[VERIFIED] L-4
+  m_tau from Koide = 1776.922 MeV. Gap: +0.0035% PDG.
+
+[VERIFIED] L-5
+  phi^3/sqrt(5) = 1+2/sqrt(5) (exact). m_tau(LO) = 1777.49 MeV (+0.035%).
+
+[VERIFIED] L-6
+  (phi^6-1)*(1-alpha) = m_tau/m_mu to 0.025%.
+
+[OPEN] L-7
+  Exact Hopf fiber flux integral for tau correction not yet computed.
+  Correctly labeled OPEN.
+
+[OPEN] L-8
+  Exact muon Born balance for 72-degree icosahedral path (algebraic form)
+  not yet closed. Correctly labeled OPEN.
+
+=============================================================================
+DOC: doc_magnetism.txt
+Script: analysis/demos/magnetism_doc.py   Result: 13/13 PASS
+=============================================================================
+
+[VERIFIED] MG-1
+  rho_medium = mu_0 (exact by SI); K = 1/eps_0; c = sqrt(K/rho) to 2.72e-10.
+
+[VERIFIED] MG-2
+  Ferromagnetism from I_h irreps: A_g in T_1g x T_1g and G_g x G_g;
+  NOT in T_1g x H_g.
+
+[VERIFIED] MG-3
+  6/6 transition metals correctly classified (ferro/para/dia) from irrep dim.
+
+[VERIFIED] MG-4
+  Maxwell equations derived from medium: Faraday, Ampere, c=sqrt(K/rho),
+  photon = T_1g massless pressure wave, E=mc^2.
+
+[OPEN] MG-5
+  Curie temperature exchange energy at d-electron scale not yet derived.
+  Correctly labeled OPEN.
+
+[NOTE] MG-6
+  Absolute moduli (G, K in Pa) conditional on rho=rho_Lambda; ratios and
+  speeds are model-independent. Correctly labeled "[conditional]".
+
+=============================================================================
+DOC: doc_nucleus.txt
+Script: analysis/demos/nucleus_doc.py   Result: 31/31 PASS
+=============================================================================
+
+[VERIFIED] N-1
+  g_p = 2.7991 mu_N (+0.23% PDG 2.7928) from Zone geometry + I_h irreps.
+
+[VERIFIED] N-2
+  Magic numbers 2,8,20,28,50,82,126 from I_h + spin-orbit model.
+
+[VERIFIED] N-3
+  Z_crit = 1/alpha = 137.036 (electron Compton = 1s orbital at Z_crit).
+
+[VERIFIED] N-4
+  Island Z=114 from 82+2*4^2 = 82+32, below Z_crit.
+
+[VERIFIED] N-5
+  <r^2>_n = -(4/3)*(2-Rs^2)*lambda_p^2 = -0.11608 fm^2 (0.018% vs PDG).
+
+[VERIFIED] N-6
+  g_n (bound) = -1.9268 mu_N (+0.72% PDG).
+
+[NOTE] N-7
+  g_n (free, spherical proxy) = -1.5666 mu_N, 18.1% gap; explained as proxy
+  limitation, correctly disclosed (not a hidden failure).
+
+[OPEN] N-8/N-9
+  Formal derivation of nuclear binding onset from shear yield balance, and
+  quantitative Zone 2/EM separation: both correctly labeled OPEN.
+
+=============================================================================
+DOC: doc_orbit_pressure.txt
+Script: analysis/demos/orbit_doc.py   Result: 16/16 PASS
+=============================================================================
+
+[VERIFIED] O-1
+  G = (m_p/E_cell)^18 * hbar*c/m_p^2 = 6.65616e-11 (-0.272% CODATA).
+  Exponent 18 = 3*(3V-E).
+
+[VERIFIED] O-2
+  a_0 = Rs*c*H0: bracketed 1.165e-10 (Planck H0) to 1.200e-10 (local H0);
+  measured 1.200e-10.
+
+[VERIFIED] O-3
+  Milky Way M_Newt/M_baryon = 5.90 (observed 5-6:1).
+
+[VERIFIED] O-4
+  Bohr radius from derived m_e: gap 0.000065% vs CODATA.
+
+[VERIFIED] O-5
+  Earth orbit speed from pressure gradient: +0.030% vs measured.
+
+[NOTE] O-6
+  Shapiro delay grazing-formula upper bound +12% vs Cassini; geometric
+  correction (closest approach vs 1.6 R_sun) correctly disclosed.
+
+[NOTE] O-7
+  G derivation's ±4.1% prediction uncertainty (from r_p) explicitly stated;
+  not circular (r_p is the one measured input).
+
+[OPEN] O-8/O-9
+  Wide-binary check and Mercury precession quantitative rate: both
+  correctly labeled OPEN.
+
+=============================================================================
+DOC: doc_particle_generation.txt
+Script: analysis/demos/particle_generation_doc.py   Result: 14/14 PASS
+=============================================================================
+
+[VERIFIED] PG-1
+  Winding angle theta(m) = arcsin(8*alpha*phi*m/m_p) is mass-independent.
+
+[VERIFIED] PG-2
+  phi^3/sqrt(5) = 1+2/sqrt(5) exact. m_tau = 1777.49 MeV (+0.035%).
+
+[VERIFIED] PG-3
+  T_2g x E+ = I52 (chi at C_5: -1/phi*phi = -1 exactly).
+
+[VERIFIED] PG-4
+  G_F = Rs*P-wave/E_cell^2 = 1.16740e-5 GeV^-2 (+0.0876% vs CODATA).
+
+[VERIFIED] PG-5
+  N_nu = 3 exact from I_h geometry (LEP: 2.984 +/- 0.0082, 1.95 sigma).
+
+[VERIFIED] PG-6/PG-7 (F-15, added since prior audit)
+  IBD threshold from SY9+LM1 within 0.5%; CG crossing T_1g x E- = I52 =
+  T_2g x E+ exact; antipodal Galois flip chi(T_1u,C5^2)=chi(T_2u,C5)=-1/phi
+  exact. F-15 fully closed.
+
+[NOTE] PG-8
+  Header "GENUINELY OPEN: 0 items" refers to core derivable numerical
+  claims; mechanism-level sub-steps (lambda_8 decay path detail) remain
+  open in body text. Distinction could be clearer but is not an error.
+
+=============================================================================
+DOC: doc_qm.txt
+Script: analysis/demos/qm_doc.py   Result: 21/21 PASS
+=============================================================================
+
+[VERIFIED] QM-1
+  Schrodinger from Klein-Gordon NR limit; KG from Hopf winding mass gap.
+  NR error: 2.50e-7 at v/c=0.001.
+
+[VERIFIED] QM-2
+  Born rule P=|psi|^2 from medium wave energy density.
+
+[VERIFIED] QM-3
+  Dirac: H_D^2 = c^2 p^2 + m^2 c^4 = KG; NR -> Pauli (g=2).
+
+[VERIFIED] QM-4
+  Path integral composition holds (rel. error 0.011); H ground state
+  E_1 = -13.606 eV.
+
+[VERIFIED] QM-5
+  Minimum slit widths: electron 772 fm, proton r_grind = 0.4206 fm.
+
+[OPEN] QM-6
+  Delayed-choice/which-path derivations are physical arguments, not
+  algebraic proofs; correctly framed as untested predictions.
+
+=============================================================================
+DOC: doc_torsion.txt
+Script: analysis/demos/torsion_doc.py   Result: 17/17 PASS
+=============================================================================
+
+[VERIFIED] T-1
+  Rs = sqrt(5)/(4*pi) = 0.177940636. Four-scale cluster mean deviates 0.29%,
+  spread 1.1%.
+
+[VERIFIED] T-2
+  MOND a_0 = Rs*c*H0 bracketed by local/Planck H0; measured 1.200e-10.
+
+[VERIFIED] T-3
+  mu(x) interpolation: mu(x_t)=1/sqrt(2) at x=1/sqrt(K/G); two-channel
+  MOND derived.
+
+[VERIFIED] T-4
+  m_H, lambda, Gamma_H, sin^2(theta_W) match doc_higgs values exactly.
+
+[NOTE] T-5
+  Absolute moduli G, K labeled "[conditional]" on rho=rho_Lambda; ratios
+  and speeds model-independent.
+
+[NOTE] T-6
+  "0.51 sigma from 153 SPARC galaxies" (RAR fit) comes from a separate
+  script, not torsion_doc.py; consistent with but not directly tested by
+  the companion script.
+
+=============================================================================
+DOC: doc_torsionverse.txt  (master synthesis / index for series 1)
+Script: analysis/demos/torsionverse_doc.py   Result: 18/18 PASS
+=============================================================================
+
+[VERIFIED] TV-1
+  Maxwell criterion 3V-E=6; gravity exponent n=3*(3V-E)=18.
+
+[VERIFIED] TV-2
+  G = (m_p/E_cell)^18 * hbar*c/m_p^2 = 6.65616e-11 (-0.272% CODATA).
+
+[VERIFIED] TV-3
+  GPS net correction +38.52 us/day (measured 38.4, +0.3%).
+
+[VERIFIED] TV-4
+  m_pi+/- = 139.535 MeV (-0.026% PDG).
+
+[VERIFIED] TV-5
+  m_n - m_p = 1.29549 MeV (+0.164% PDG).
+
+[VERIFIED] TV-6
+  Dynamical matrix: 6 zero eigenvalues (3 T_1u + 3 T_1g); n=18=3*6.
+
+[VERIFIED] TV-7
+  T_1g and T_2g are Galois conjugates (C_5/C_5^2 character swap).
+
+[VERIFIED] TV-8
+  g_n bound = -1.9268 mu_N (+0.72% PDG); proton Zone 3 shifts free -> bound.
+
+[RESOLVED, RE-CONFIRMED] TV-9
+  Weak interaction mechanism fully split into DERIVED (bypass ratio, CG
+  selectivity, G_F suppression) and F-15 CLOSED (weak_decay_ibd.py 9/9,
+  weak_quark_flip.py 9/9). GENUINELY OPEN now lists only k_B (unit
+  convention, not medium physics). See Spot Re-verification above.
+
+[NOTE] TV-10
+  Algebraic proof of exponent n=18 (Molien series) remains a distinct open
+  item from the verified physical/dynamical-matrix argument.
+
+[NOTE] TV-11
+  lambda=(1-nu)/4=0.129 identified with Higgs quartic; gap to
+  alpha_s(m_Z)=0.118 attributed to QCD running (plausible, not scripted
+  in torsionverse_doc.py).
+
+=============================================================================
+CROSS-DOC CONSISTENCY
+=============================================================================
+
+[VERIFIED] CD-1  m_mu CONSISTENT (was ISSUE in 2026-08-23 audit; now RESOLVED)
+  doc_higgs.txt and doc_leptons.txt both give m_mu = 105.655 MeV (-0.003%).
+  Re-confirmed by direct read of current doc_higgs.txt line 422.
+
+[VERIFIED] CD-2  sin^2(theta_W) CONSISTENT ACROSS DOCS
+  doc_higgs, doc_jobson_cell, doc_torsion all give 0.22290456.
+
+[VERIFIED] CD-3  E_cell CONSISTENT ACROSS DOCS
+  doc_jobson_cell: 124.823 GeV (m_p route). doc_torsion/doc_torsionverse:
+  124.799 GeV (r_p route). Difference 0.019% = r_p measurement uncertainty.
+
+[VERIFIED] CD-4  alpha CHAIN CONSISTENT
+  alpha = 7.2973525693e-3 (CODATA-2018) used identically throughout.
+
+[VERIFIED] CD-5  phi, Rs CONSISTENT ACROSS ALL DOCS
+  phi = 1.618033988749895, Rs = 0.177940635854294 throughout.
+
+[NOTE] CD-6  doc_torsion RAR claim (0.51 sigma, 153 SPARC galaxies) is from
+  a separate script (not torsion_doc.py); consistent but not directly
+  verified within the companion script itself.
+
+=============================================================================
+SUMMARY
+=============================================================================
+
+  Script                       Checks    Status    Issues Found
+  ---------------------------  --------  --------  --------------------------
+  alpha_doc.py                 37/37     ALL PASS  A-14 note only
+  torsion_doc.py                17/17    ALL PASS  T-6 note only
+  higgs_doc.py                  12/12    ALL PASS  H-8 RESOLVED (re-confirmed)
+  jobson_cell_doc.py            43/43    ALL PASS  (none)
+  leptons_doc.py                 18/18   ALL PASS  L-7,L-8 OPEN (labeled)
+  magnetism_doc.py               13/13   ALL PASS  MG-5 OPEN (labeled)
+  nucleus_doc.py                 31/31   ALL PASS  N-7 note only
+  orbit_doc.py                   16/16   ALL PASS  O-6 note only
+  particle_generation_doc.py     14/14   ALL PASS  PG-8 note only
+  qm_doc.py                      21/21   ALL PASS  QM-6 OPEN (labeled)
+  entanglement_doc.py            35/35   ALL PASS  EN-8 RESOLVED (re-confirmed)
+  torsionverse_doc.py (LAST)      18/18  ALL PASS  TV-9 RESOLVED (re-confirmed)
+  ---------------------------  --------  --------  --------------------------
+  TOTAL                        275/275   ALL PASS  0 open issues requiring action
+
+  Cross-doc: CD-1 (m_mu) RESOLVED and re-confirmed; CD-2 through CD-5 consistent.
+
+=============================================================================
+ISSUES REQUIRING ACTION — 0 OPEN
+=============================================================================
+
+  No new issues found in this 2026-08-24 re-verification pass. All three
+  issues from the 2026-08-23 audit (EN-8, H-8, TV-9) were independently
+  re-checked against current file text and confirmed still correctly fixed.
+  All 12 series1 companion scripts re-run from scratch: 275/275 PASS,
+  zero regressions from the docs/ series1/series2 reorganization.
+
+  Remaining OPEN items (all correctly labeled as such in their docs, not
+  hidden or overstated): L-7, L-8 (tau/muon exact Born balance), MG-5
+  (Curie temperature), N-8/N-9 (nuclear binding onset, Zone2/EM split),
+  O-8/O-9 (wide-binary check, Mercury precession rate), QM-6
+  (delayed-choice as physical argument), k_B (TV, unit-convention gap).
+
+=============================================================================
+END OF CLAIMS AUDIT — 2026-08-24 (series 1 re-verification)
+=============================================================================

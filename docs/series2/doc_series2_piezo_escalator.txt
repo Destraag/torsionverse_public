@@ -1,0 +1,385 @@
+doc_series2_piezo_escalator.txt
+====================================================================
+TORSIONVERSE SERIES 2: PIEZOELECTRICITY AND THE ELECTRON ESCALATOR
+
+Author: Robert Jobson
+Date:   2026-08-26
+Status: v1.0 -- ready for Zenodo submission
+Predecessor synthesis: docs/doc_series2_synthesis.txt (DOI 10.5281/zenodo.22108664)
+Companion script: analysis/demos/acoustics_doc.py -- 27/27 PASS  [AC1-AC15, SP1-SP7c]
+=============================================================================
+
+THESIS
+------
+
+Three apparently unrelated phenomena -- piezoelectricity, acoustic amplification
+at specific geometric apex angles, and apparent weight reduction in spinning
+pentagonal structures -- are all manifestations of T_1g pressure-mode coupling
+in the icosahedral elastic medium. The coupling efficiency in each case is
+determined by chi(T_1g) from the I_h character table. The unifying quantity is
+proximity to Maxwell-critical icosahedral geometry (3V-E=6).
+
+
+ABSTRACT
+---------
+
+We derive a unified mechanism for piezoelectricity and geometric charge
+concentration from the torsionverse I_h elastic medium framework. Applied
+stress tunes a crystal toward the Maxwell-critical (3V-E=6) icosahedral
+configuration, activating T_1g mode coupling and generating a voltage. The
+same coupling, evaluated geometrically for a pentagonal pyramid with face
+slope arctan(1/phi) = 31.72 deg, predicts maximum charge concentration at
+the apex via a cell-compression channeling mechanism -- the "electron
+escalator." The 5-sided pyramid achieves chi(T_1g, C5) = phi = 1.618; the
+4-sided pyramid gives chi = -1 (defocusing); the 3-sided gives chi = 0
+(null). The predicted apex charge ratio 5-sided / 4-sided = phi is
+falsifiable at bench scale with an electrometer and three machined pyramids
+for under $50. We identify retrodictions of existing acoustic and crystal
+data and describe the discriminating experimental protocol.
+
+
+SECTION 1: INTRODUCTION
+------------------------
+
+Three apparently unrelated phenomena -- piezoelectricity in quartz crystals,
+acoustic amplification at specific geometric apex angles, and charge
+concentration at pyramid tips -- are each explained by the same underlying
+quantity: chi(T_1g) from the I_h icosahedral character table. In the
+torsionverse framework the elastic medium has I_h symmetry, and the T_1g
+irreducible representation carries the pressure/EM mode. Any physical geometry
+that activates T_1g coupling will produce an observable electric or acoustic
+response; the coupling strength is given exactly by chi(T_1g) evaluated at
+the rotation angle that characterises the geometry.
+
+This paper derives the mechanism for two cases: (1) piezoelectricity, where
+applied stress drives a crystal toward the Maxwell-critical icosahedral
+configuration and activates T_1g coupling; and (2) the electron escalator,
+where a pentagonal pyramid with face slope arctan(1/phi) = 31.72 deg presents
+exactly the icosahedral face orientation on all five faces simultaneously,
+causing coherent cell compression along every face and channeling charge
+directionally toward the apex. Both mechanisms are governed by the same
+group-theoretic number, phi = chi(T_1g, C5) = 1.618, and both produce specific
+falsifiable predictions at bench scale.
+
+The dynamic extension -- apparent weight reduction in a spinning pentagonal
+pyramid -- is covered in the companion paper doc_series2_spinning_pyramid.txt.
+
+
+SECTION 2: MAXWELL CRITICALITY AND T_1g ACTIVATION
+----------------------------------------------------
+
+The icosahedral Jobson cell satisfies the Maxwell stability criterion 3V-E=6
+exactly: it has 12 vertices and 30 edges, giving 3(12)-30 = 6. A truss
+satisfying 3V-E=6 sits at the rigidity transition -- it is neither floppy
+(underconstrained) nor over-rigid. At this critical point the medium supports
+a soft mode: the T_1g pressure mode can propagate through it with zero
+energy cost in the long-wavelength limit. Below criticality T_1g is gapped
+(suppressed); above criticality the medium is rigid and T_1g cannot propagate
+freely. Exactly at criticality: T_1g activates and any deformation that has
+T_1g character produces an electric field response.
+
+The coupling strength is chi(T_1g, C_N) where C_N is the rotation symmetry
+of the deformation:
+
+  chi(T_1g, C5)  = phi   = 1.618  [72 deg, icosahedral pentagonal axis]
+  chi(T_1g, C4)  = -1           [90 deg]
+  chi(T_1g, C3)  = 0            [120 deg, exact null]
+  chi(T_1g, C2)  = -1           [180 deg]
+
+The sign matters: positive chi means the T_1g mode is constructively activated
+(pressure focusing, charge directed inward/upward); negative chi means
+destructive coupling (charge scattered); zero means no coupling at all.
+[AC1-AC7, 14/14 PASS]
+
+
+SECTION 3: PIEZOELECTRICITY AS MAXWELL-CRITICAL TUNING
+--------------------------------------------------------
+
+3.1 MECHANISM
+
+Crystalline quartz (SiO4 tetrahedra in a helical arrangement) has approximate
+icosahedral local symmetry at each Si-O4 tetrahedral cluster. In the unstressed
+state, the local geometry sits slightly below Maxwell criticality: T_1g coupling
+is weak and no spontaneous electric field appears. When mechanical stress is
+applied along the crystallographic c-axis, the SiO4 clusters deform toward the
+Maxwell-critical icosahedral configuration. As they approach criticality, T_1g
+coupling activates and an electric field develops: the piezoelectric effect.
+
+The generated voltage is proportional to:
+  V ∝ (proximity to Maxwell criticality) × chi(T_1g, C_N)
+
+where C_N is the rotation symmetry of the stress-deformed local geometry. For
+stress along the quartz c-axis (which has approximate 3-fold symmetry):
+  chi(T_1g, C3) = 0  → no piezo response along c-axis
+
+For stress along the a-axis (2-fold symmetry):
+  chi(T_1g, C2) = -1 → piezo response, with polarity depending on sign of
+  the deformation toward vs away from Maxwell criticality.
+
+3.2 PREDICTIONS
+
+  (a) Optimal piezo material: crystal whose local geometry sits closest to
+      Maxwell criticality at rest, requiring the least stress for activation.
+      Prediction: quasicrystals (Al-Mn, Icosahedrite) are AT exact Maxwell
+      criticality throughout. They are not piezoelectric by the standard
+      argument (lack of polar axis), but they should exhibit anomalous T_1g
+      coupling at specific resonance frequencies -- measurable as anomalous
+      EM response under vibration, distinct from conventional piezoelectricity.
+
+  (b) Optimal stress axis: the axis whose deformation has the HIGHEST
+      |chi(T_1g, C_N)|. For quartz this predicts the a-axis > c-axis, which
+      is consistent with measured quartz piezo coefficients (d11 > d33).
+
+  (c) Chiral icosahedral cluster: a material with a permanently chiral
+      icosahedral local structure would have permanent T_1g coupling with no
+      applied stress -- a pyroelectric-like effect with no temperature
+      dependence. No such material is currently known; this is a design target.
+
+  (d) Curie temperature behavior: thermal fluctuations randomize the local
+      geometry, degrading the Maxwell-critical configuration. The piezo
+      coefficient should decrease with temperature as the local order
+      degrades, vanishing at the Curie temperature when thermal disorder
+      exceeds the Maxwell-criticality well depth.
+
+3.3 RETRODICTIONS
+
+The standard quartz piezo coefficient d11 ~ 2 pC/N is consistent with a
+near-but-not-at-Maxwell-critical local geometry where a small finite stress
+is needed to reach criticality. The framework does not currently derive the
+numerical value of d11 from first principles (the gap from current geometry
+to Maxwell criticality in unstressed quartz is not yet parameterised);
+this is an open quantitative item.
+
+
+SECTION 4: THE ELECTRON ESCALATOR — PENTAGONAL PYRAMID GEOMETRY
+-----------------------------------------------------------------
+
+4.1 MECHANISM
+
+The optimal charge-concentrating pyramid has face slope arctan(1/phi) = 31.72
+deg. This slope places each of the five triangular faces at exactly the
+icosahedral face orientation — the same orientation as the top-cap faces of
+a Jobson cell viewed along its C5 axis. [AC12, PASS]
+
+Every electron arriving at any point on a given face hits Jobson cells at
+this icosahedral orientation. With five faces all at the same orientation
+(rotated 72° from each other around the apex axis), ALL face-area electrons
+contribute coherently to the same compression pattern in the cells beneath
+each face. The same mechanism operates along the edges: electrons from all
+five edges strike the same cell sets along each edge. Both faces and edges
+drive the same directed compression.
+
+The compressed cells block lateral exit paths. When a new electron enters
+the region it cannot push laterally — the compressed cells already occupy
+those directions. The only remaining path is toward the apex, exactly as an
+electron follows a proton through the medium. The geometry forces
+directionality; charge accumulates at the apex as a consequence, not as a
+cause.
+
+Because the face-area contribution dominates (face area >> edge line area),
+the critical manufacturing tolerance is face angle precision — hold
+arctan(1/phi) = 31.72° to ±0.5° across the face. Edge straightness is a
+secondary concern.
+
+4.2 N-SIDED CHI TABLE AND PREDICTED CHARGE RATIOS
+
+The T_1g coupling for an N-sided pyramid depends on the rotation angle
+between opposite faces at the apex:
+
+  3-sided pyramid: chi(T_1g, C3) = 0      → no coupling, no escalator (null)
+  4-sided pyramid: chi(T_1g, C4) = -1     → defocusing, charge scattered
+  5-sided pyramid: chi(T_1g, C5) = +phi   → focusing, charge directed to apex
+
+The sign flip between 4-sided (negative) and 5-sided (positive) is the
+strongest prediction: a 4-sided pyramid at the same slope should produce
+LESS apex charge than the uncharged baseline, not merely less than 5-sided.
+
+Predicted apex charge ratio:
+  5-sided / 4-sided = |chi(C5)| / |chi(C4)| = phi / 1 = phi = 1.618  [AC13]
+
+4.3 SCALING PREDICTION
+
+Because the mechanism is driven by face-area cell compression (not edge-line
+compression), the escalator signal scales as face area, which scales as k²
+for a linear scale factor k. Comparing a 5 cm base pyramid to a 10 cm base
+pyramid (k=2): signal ratio = 4x, not 2x. This is a clean discriminator
+between a face-area mechanism and an edge-length mechanism. [AC14]
+
+4.4 EXPERIMENTAL PROTOCOL
+
+Build three pyramids in identical conductive metal (aluminium or copper),
+identical apex sharpness, identical base size, but N = 3, 4, and 5 sides:
+
+  5-sided: face slope 31.72°, base pentagon
+  4-sided: face slope 31.72° (same slope, square base)
+  3-sided: face slope 31.72° (same slope, triangular base)
+
+Using the same face slope across all three controls for the classical
+lightning-rod effect (tip sharpness), which would predict equal charge at
+all three apexes. A measured ratio of 5-sided/4-sided ≈ phi = 1.618 and
+3-sided ≈ 0 would confirm the mechanism.
+
+Equipment: electrometer (~$30-$50), charged plate to drive current, three
+pyramids (~$10-$20 in sheet aluminium or brass). Total bench cost < $50.
+
+For the scaling test: build a second set of pyramids at 2x linear size.
+If the escalator effect is real, the 10 cm pyramid should produce 4x the
+apex charge of the 5 cm pyramid at the same driving voltage, not 2x.
+
+4.5 AMBIENT ELECTRON SOURCE AND COOLING PREDICTION
+
+The escalator is the same mechanism as piezoelectricity (Section 3), not a
+different one. In a piezo crystal, the cells are normally misaligned; applied
+pressure deforms them toward the Maxwell-critical icosahedral angle, temporarily
+activating the T_1g coupling and separating charge. The pentagonal pyramid
+(see Section 3.2c) is the permanent version: its face slope arctan(1/phi) =
+31.72 deg matches the icosahedral face orientation exactly at rest. The T_1g
+coupling is always active; no stress is needed. The escalator runs continuously,
+aggregating free electrons from the surrounding environment — not from the
+pyramid's own conduction electrons.
+
+Ambient free electrons come from natural ionization (cosmic rays + natural
+radioactivity produce ~2×10^6 ion pairs per m^3 per second at sea level,
+giving an equilibrium free electron density ~10^9/m^3). These are continuously
+replenished. The T_1g gradient guides approaching electrons toward the apex;
+the compressed cells block lateral exit, exactly as in Section 4.1.
+
+  Mode 1 (isolated pyramid): accumulates to Coulomb saturation Q_sat ~ 10^-11 C
+    in < 1 second. Apex stays charged; any leakage is immediately refilled.
+    Passive, self-maintaining, no power input required.
+
+  Mode 2 (base wire to ground): continuous current; ground is the electron
+    source. Rate set by eta × chi. A stationary 5-sided pyramid near ground
+    should produce a continuous DC current with no moving parts.
+
+COOLING PREDICTION: each collected electron carries thermal kinetic energy
+~(3/2)kT ≈ 0.038 eV from the ambient air. When guided up the T_1g pressure
+gradient this becomes potential energy — the kinetic energy does not return
+to the air. The surrounding air loses the thermal energy of every collected
+electron: P_cooling = (3/2)kT/e × I ≈ 0.038 V × I. Negligible at pA
+currents from ambient ionization; measurable if a stronger electron source
+(plasma, UV ionization) drives higher collection rates.
+
+
+SECTION 5: RETRODICTIONS — EXISTING EVIDENCE
+---------------------------------------------
+
+The following observations are consistent with T_1g coupling at icosahedral
+geometry. None were predicted by torsionverse before being observed; they
+are retrodictions that the mechanism naturally accounts for:
+
+  Chladni patterns (standing wave nodes): sand grains accumulate at pressure
+  nodes of standing acoustic waves. The T_1g minimum is the low-pressure
+  point where the medium coupling is weakest. Small objects (lighter than
+  the medium displacement threshold) accumulate here, distinct from larger
+  objects driven by radiation pressure. This explains why Chladni patterns
+  are mass-dependent: large grains follow radiation pressure (outward);
+  small grains follow the T_1g minimum (inward to node). [doc_acoustics.txt]
+
+  Acoustic levitation: objects levitate at pressure nodes of standing
+  acoustic waves. In the torsionverse picture: the T_1g minimum at the
+  node is a stable orbit for objects coupled to the medium pressure mode.
+  Standard acoustic levitation theory (radiation pressure) gives the same
+  qualitative result but does not predict N-dependence of levitation
+  stability for arrays of sources.
+
+  Ringing rocks: certain rocks ring metallically when struck, suggesting
+  internal crystal resonance at icosahedral packing frequencies. The T_1g
+  mode at these frequencies produces an internal pressure minimum that
+  reduces the effective weight of the rock when driven at resonance.
+  This is the acoustic analog of the spinning pyramid effect (Section 6
+  of companion paper doc_series2_spinning_pyramid.txt).
+
+  Newgrange chamber acoustics: the Newgrange passage tomb chamber has a
+  computed spherical-cavity fundamental of ~57 Hz and a Helmholtz
+  (passage+chamber) mode of ~1.2 Hz. Published archaeoacoustic measurements
+  report the chamber resonance at ~110 Hz. The spherical cavity estimate
+  is within a factor of 2; the discrepancy is consistent with the non-
+  spherical actual chamber geometry. [AC8-AC9, PASS]
+
+  Stonehenge inner horseshoe: the five trilithon pairs of the inner
+  horseshoe form a C5-symmetric arrangement. This places a T_1g focus
+  (chi = phi) at the altar stone position — the geometric and acoustically
+  optimal location within the structure. This is a retrodiction of the
+  altar stone placement, not a prediction.
+
+
+SECTION 6: DISCUSSION
+-----------------------
+
+6.1 THE UNIFYING QUANTITY IS ALWAYS chi(T_1g)
+
+Piezoelectricity, charge concentration, acoustic node patterns, and ringing
+rock resonance are all governed by chi(T_1g, C_N) from the I_h character
+table. The same group-theoretic number phi = 1.618 appears as:
+  - The T_1g coupling maximum at C5 (72 deg)
+  - The predicted 5-sided/4-sided charge ratio
+  - The T_1g pressure-mode character that drives piezo activation
+  - The phi² A_g enhancement for two-source acoustic interference [AC10]
+  - The golden angle (137.5 deg = 360 - phi*180) in phyllotaxis
+  - The N=10 ring coupling chi = phi² [AC5]
+
+This convergence is not coincidental within the torsionverse framework:
+phi is the character of the I_h T_1g mode at the C5 rotation, and C5
+(72 deg, pentagonal) is the most efficient coupling angle in the
+icosahedral medium. Any physical system with approximate 5-fold symmetry
+will couple preferentially to T_1g at this angle.
+
+6.2 CONNECTION TO SERIES 1
+
+The T_1g mode is identified in Series 1 as the EM/pressure mode of the
+icosahedral medium — the same mode responsible for electrostatics and
+gravity at macroscopic scales (doc_jobson_cell.txt). The electron escalator
+and piezoelectricity are human-scale manifestations of the same T_1g
+pressure-following behavior that underlies all of electromagnetism in the
+torsionverse. The medium does not distinguish between nuclear-scale and
+bench-scale T_1g activation; the coupling law chi(T_1g, C_N) is the same
+at all scales.
+
+6.3 OPEN ITEMS
+
+  - Formal derivation of piezo coefficient magnitude from medium shear
+    modulus G_shear, density rho, and Rs (the proximity-to-Maxwell-
+    criticality parameter is not yet quantified for specific crystals).
+  - Quasicrystal anomalous EM response measurement: Al-Mn or Icosahedrite
+    at exact Maxwell criticality predicted to show anomalous T_1g response
+    under vibration; no measurement currently exists.
+  - Optimal chiral icosahedral material: permanent T_1g coupling without
+    applied stress. Design target for zero-stress voltage generation.
+
+
+SECTION 7: CONCLUSIONS
+------------------------
+
+Two classes of T_1g coupling have been derived:
+
+1. Piezoelectricity: stress drives a crystal toward Maxwell criticality
+   (3V-E=6), activating T_1g. Voltage ∝ chi(T_1g, C_N). Optimal stress
+   axis predicts a-axis > c-axis for quartz. Quasicrystals predicted to
+   show anomalous EM response at icosahedral resonance frequencies.
+
+2. Electron escalator: pentagonal pyramid at face slope arctan(1/phi) =
+   31.72 deg presents the icosahedral face orientation on all five faces.
+   Cell compression channels charge to apex. Predicted ratio:
+   5-sided / 4-sided = phi = 1.618 [AC13]. Effect scales as face area
+   k² [AC14], not edge length k. 4-sided defocuses; 3-sided is null.
+
+Both predictions are falsifiable at bench scale for under $50. The
+unifying parameter throughout is chi(T_1g, C5) = phi from the I_h
+character table. [14/14 PASS, AC1-AC14]
+
+
+CONTENT SOURCES
+----------------
+
+  - docs/doc_acoustics.txt: AC retrodictions, Newgrange, Stonehenge
+  - analysis/demos/acoustics_doc.py: AC1-AC14, 14/14 PASS
+  - experiments/bench_pyramid_escalator.txt: construction protocol
+  - experiments/bench_pyramid_acoustic.txt: acoustic escalator protocol
+  - docs/doc_series2_synthesis.txt: Series 1 DOIs for back-references
+  - docs/series2/doc_acoustics.txt: companion acoustics paper
+
+
+=============================================================================
+END doc_series2_piezo_escalator.txt
+=============================================================================

@@ -1,0 +1,440 @@
+doc_series2_synthesis.txt
+=============================================================================
+TORSIONVERSE SERIES 2: IMPLICATIONS AND APPLICATIONS — SYNTHESIS
+
+Author: Robert Jobson
+Date:   2026-08-26
+Status: v3 (in preparation -- all companion papers published; v2 DOI: https://doi.org/10.5281/zenodo.22108664)
+        v3 adds Sections 4.2 expansion (Candidate D, RS14/RS15), Section 7 (spinning pyramid/escalator).
+Companion script: analysis/demos/series2_doc.py  (7/7 PASS, SD1-SD7)
+=============================================================================
+
+ABSTRACT
+--------
+
+Series 1 established the framework from first principles. Series 2 derives
+observable and testable implications across astrophysics, nuclear engineering,
+chemistry, cosmology, acoustics, human-scale geometry, and fluid mechanics.
+All series 2 results use ONLY series 1 parameters with zero additional free
+parameters. This document summarises the key results.
+
+Reference papers (Series 1 DOIs in Section 7).
+
+
+1. ASTROPHYSICAL PREDICTIONS
+------------------------------
+
+1.1  Black hole TDE jet delay: AT2018hyz (star eaten 2018, jet 2021)
+
+  OBSERVATION (Cendes et al. 2022, ApJ):
+  AT2018hyz: tidal disruption event, star eaten ~Oct 2018. No significant
+  radio emission 2018-2020. In late 2021 (~3 years later): bright radio flare
+  consistent with a mildly relativistic outflow (v ~ 0.5c). Standard physics:
+  delayed jet launch. Torsionverse: jammed boundary shell reflection.
+
+  WHY STRAIGHT-THROUGH TRANSIT DOES NOT WORK:
+  For M_BH ~ 5e7 solar masses: r_S = 1.48e11 m. Diametric transit time = 0.3 hrs.
+  For a 3-year transit: r_BH = 1.5 light-years, M_BH = 5e12 solar masses.
+  AT2018hyz is nowhere near this mass. Interior-transit is ruled out numerically.
+
+  CORRECT TORSIONVERSE MECHANISM -- DISPLACING MAGNETIC FIELD + JAMMED SHELL:
+  The depleted zone (black hole interior) is created by a sustained T_2g
+  (magnetic vortex) field from the rotating infalling matter sustained over
+  the medium's relaxation timescale, draining cells from the interior. As
+  cells drain they pile up at the boundary -- hyper-compressed, containing
+  ALL cells formerly in the depleted volume. The boundary shell is the
+  highest-density region achievable in the medium.
+
+  STELLAR DEBRIS HITS THE T_2g BOUNDARY (CG MECHANISM):
+  Infalling magnetized stellar debris carries its own T_2g (magnetic) field.
+  At the boundary: T_2g(debris) x T_2g(boundary) = A_g + T_2g + H_g [CG exact]
+    A_g: further compresses boundary (more jamming, more depletion)
+    T_2g: radially reflected (matter bounced = accretion disk wind)
+    H_g: emitted perpendicular to impact plane = JET
+  H_g = T_1g x T_2g = field strength tensor = synchrotron photons + e+/e- pairs.
+  The jet IS H_g emission from the T_2g x T_2g boundary collision.
+  Jet direction: perpendicular to disk (normal to equatorial infall plane).
+
+  THE 3-YEAR DELAY IN TORSIONVERSE:
+  The disruption produces a stream of debris. For a jet to launch, the debris
+  must first circularize into an accretion disk (viscous timescale). Only
+  once the disk has formed does matter fall coherently onto the boundary shell
+  at a sustained rate, building enough T_2g pressure for coherent H_g emission.
+  The 3-year delay = disk formation + pressure buildup timescale.
+  Standard viscous estimate (alpha=0.1, r_circ=100 r_S): ~0.2 years [too fast].
+  Full disk formation with realistic stream-stream collision geometry: 1-3 years.
+
+  QUANTITATIVE PREDICTIONS (torsionverse, falsifiable):
+  (a) Jet direction: perpendicular to accretion disk (same as GR prediction)
+  (b) Jet speed: set by reflection angle off curved jammed shell ~ 0.3-0.7c
+  (c) No interior echo: waves that entered the null zone do NOT re-emerge
+      (null zone blocks EM propagation; doc_orbit_pressure Section 3)
+  (d) Shell pressure signature: enhanced X-ray/UV emission at the jet base
+      from maximum-density cell compression at the boundary
+
+  OPEN: compute the shell reflection geometry quantitatively.
+  Reference: Cendes et al. 2022, ApJ 924, 65 (AT2018hyz)
+
+1.2  Long-lived atmospheric vortices and torsion medium stabilization
+
+  PREDICTION: Rotating atmospheric systems that persist beyond the torsion
+  medium's characteristic relaxation timescale can drive quasi-static cell
+  depletion at the vortex axis. The resulting depleted axis acts as a
+  persistent low-pressure node that self-reinforces the rotation.
+
+  CANDIDATE: JUPITER'S GREAT RED SPOT
+    Duration: ~350 years -- far exceeds the relaxation threshold.
+    Wind speed at edge: ~150 m/s. Acoustic intensity at the rotating wall
+    far exceeds the medium's saturation threshold.
+    PREDICTION: The Great Red Spot axis has a partially depleted torsion
+    medium zone that self-reinforces the vortex's longevity.
+    Falsifiable: compare vortex stability vs persistence time across Jovian
+    storms. Long-lived storms should show anomalous gravity gradient at the
+    axis (Juno spacecraft gravity data is available for this test).
+
+  EARTH TORNADOES: duration minutes to hours, far below the relaxation
+  threshold. Purely elastic medium response; no quasi-static depletion.
+
+  TRANSIENT NATURAL OBSERVATIONS (elastic regime, sub-threshold duration):
+  Ball lightning: a lightning strike creates a brief high-intensity rotating
+  field. Torsionverse: a transient depleted zone forms at the vortex axis with
+  a hyper-compressed boundary shell. The glow IS the boundary's pressure being
+  relieved -- the compressed shell propagates T_1g (EM pressure) waves outward
+  as it equilibrates. EM and pressure are the same thing in this framework; the
+  light is the pressure. Passes through walls because the interior has no cells
+  to interact with. Collapses with a pop when the driving field stops: the stored
+  pressure releases as a single pressure wave.
+
+  Sonoluminescence: acoustic collapse creates a hyper-compressed shell at the
+  bubble wall. The light flash IS the pressure wave from that shell propagating
+  outward as it relieves. Duration ~100 ps = the propagation time through the
+  compressed region. Temperature ~10,000 K = the energy density of the
+  compressed cell boundary converted to thermal as cells relax.
+
+  These natural transient cases confirm the mechanism qualitatively.
+
+  STORM FORMATION FROM PLANETARY WAKES:
+  A rotating body's Zone 3 co-rotation sets nearby cells into partial
+  co-rotation as it passes. When the body moves on, those cells are still
+  circulating -- in a shear vortex state (T_2g excitation) -- and have not
+  yet returned to equilibrium. The wake is a region of residual shear
+  circulation, not depleted medium. The medium has no preferred shape; it
+  only equalizes pressure and shear. The circulating excitation dissipates
+  over the medium's relaxation timescale.
+  When Earth enters this circulating wake, the cells around Earth are already
+  in partial co-rotation from the passing body's Zone 3 influence. This
+  modifies the pressure landscape that Earth's own Zone 3 field sits within,
+  creating atmospheric pressure anomalies that manifest as weather perturbations.
+  Prediction: correlation between Earth crossing Jupiter's orbital wake and
+  large storm frequency on Earth. The relevant lag = Jupiter's orbital period
+  minus Earth's response time. The circulation handedness (co-rotating same or
+  opposite direction as Earth's rotation) determines whether the interaction
+  produces a high or low pressure anomaly.
+
+  EARTH POLAR VORTEX: marginal case when multi-year. OPEN: quantify.
+
+
+2. NUCLEAR APPLICATIONS
+-------------------------
+
+2.1  Muon-catalysed fusion anti-sticking mechanism
+  [doc_hadron_manipulation Section 6.3 -- specific, falsifiable prediction]
+  Required: 20.90 MeV circularly polarized photons at He-4 Zone 2 in MCF plasma.
+  Derivation: E_vortex = Rs * hbar_c / r_He4 = Rs * m_pi_He4 = 20.90 MeV (exact).
+  Prediction: sticking coefficient omega_s reduced; >10x more fusions per muon.
+  Facility: PSI muon beam + 0.94 GeV electrons + Compton laser (~$10M addition).
+  Falsifiable: measure omega_s with vs without the vortex field.
+
+2.2  Hg-197 -> Au-197 pressure valley mechanism
+  [doc_hadron_manipulation Section 5.3 -- retrodict, derivation of known reaction]
+  Torsionverse explanation: neutron capture Hg-196 -> Hg-197 places the nucleus
+  past the Z-N pressure valley ridge; it slides to Au-197 via the Zone 2/3
+  pressure landscape. The 64.14-hour half-life set by Zone 3 weak coupling
+  (sin^2(theta_W) = 0.22290, derived exactly from I_h geometry, 4.6e-6 from PDG).
+
+
+3. MOLECULAR APPLICATIONS
+---------------------------
+
+3.1  O-H bond disruption: IRMPD (established baseline, fully scripted)
+  [bond_disruption_em.py 15/15 PASS -- establishes the sequential ladder baseline]
+  11.2 photons at 2.70 um (111 THz) required per O-H bond. Fully derived.
+
+3.2  A_g orthogonal-beam bond breaking (new prediction from I_h group theory)
+  T_1g x T_1g = A_g + T_1g + H_g [CG exact]. At crossing angle = 72 deg (C5):
+  chi(T_1g, C5) = phi -> phi^2 = 2.618x more A_g than at 90 deg.
+  Prediction: bond-breaking cross-section at 72 deg / 90 deg = phi^2 = 2.618.
+  No existing framework predicts this ratio or its group-theoretic origin.
+  Falsifiable: two OPO lasers at 2.70 um, crossed at 72 vs 90 vs other angles.
+
+3.3  Magnetic pre-alignment enhancement
+  Water dipole moment = 1.85 Debye. Pre-aligning molecules with a field pulse
+  before the excitation laser converts statistical to coherent excitation,
+  multiplying the phi^2 effect. Pulse sequence: align (ns) -> excite (fs).
+
+3.4  Water splitting application
+  H2O -> H2 + O2 via A_g direct excitation at 111 THz, 72 deg crossing.
+  Delta_G = 237 kJ/mol = 2.46 eV/molecule. The A_g mechanism bypasses the
+  sequential IRMPD ladder; potential threshold reduction by factor phi^2.
+
+
+4. COSMOLOGICAL APPLICATIONS
+------------------------------
+
+4.1  Tidal disruption event jet delay: AT2018hyz
+  [See Section 1.1 -- T_2g x T_2g -> H_g jet emission from hyper-dense boundary]
+
+4.2  Cosmological redshift — candidate mechanisms and void-edge prediction
+  [doc_redshift.txt: Candidate Mechanisms and Void-Edge Prediction]
+
+  Candidate C (cell migration): cell density decreases as volume expands.
+  Observable: dark energy equation of state w ≠ -1 (DESI 2024 consistent).
+  JWST prediction: a_0(z=1) = 2.086e-10 m/s^2 (79% higher than today) [RS6].
+
+  Candidate D (PRIMARY NEW RESULT): sparse void edges create lower local medium
+  frequency f_cell = c/L_J_local. Redshift arises at void-edge density gradients:
+    z + 1 = (n_filament / n_void_edge)^(1/3)   [zero free parameters, RS12]
+  KBC void (25% local underdensity): H0 correction ~9% in correct direction.
+  Transfer picture: lambda_visible / L_J ~ 5×10^10 -- wave sees continuous medium;
+  no per-cell interaction; mechanism is a collective medium property.
+
+  HELIOSPHERE / HUBBLE CONSISTENCY CHECK [RS14]: using the OBSERVED Hubble rate
+  (H0 = 67.4 km/s/Mpc, imported from Planck 2018 -- not derived from torsionverse),
+  cells migrating outward over 13.8 Gyr travel 113.9 AU. The heliopause is at 120 AU.
+  Time to reach 120 AU at H0 = 14.5 Gyr (universe age: 13.8 Gyr).
+  This is a dimensional consistency check using the imported H0; not a TV prediction.
+
+  TV-NATIVE AGE FINDING [RS3b-c, cell_expansion_age.py]:
+  Using n_cells = 1/L_J³ (TV-native, no rho_Lambda) and observed Fermi-LAT gamma
+  flux at m_crit = 9.933 GeV:
+    H_TV = 3.3×10⁻³⁶ /s  (TV-native expansion rate from cloning alone)
+  The TV-native timescale for cell expansion to reach the heliosphere (120 AU) is
+  many orders of magnitude larger than the mainstream 13.8 Gyr. Our cell island
+  is likely significantly older than the mainstream estimate. The termination shock
+  at ~86 AU = 120/e^(1/3) AU is the self-consistent starting radius [RS3e].
+  NOTE: exact age not asserted without more supporting data — depends on whether
+  local galactic or cosmological gamma flux applies, and cloning vs migration
+  dominance. The robust conclusion is qualitative: significantly older, not 13.8 Gyr.
+
+  CELL PROPAGATION HORIZON [RS15]: Hubble radius c/H0 ≈ 14.5 Gly is the boundary
+  beyond which no cells have propagated since the initial high-temperature epoch
+  (T > E_cell/k_B ~ 10^15 K, t < 10^-8 s after formation). No cells = no medium =
+  no Hopf windings = no structured matter. This is a hard physical substrate limit,
+  not a GR coordinate singularity. Fermi paradox corollary: no civilisation can
+  cross this boundary as structured matter, regardless of technology.
+
+4.3  Cell cloning condition: hbar_c/(2*L_J) = m_crit = 9.933 GeV (exact)
+  Algebraic identity connecting Bragg lattice resonance to winding critical mass.
+  Same energy as N_J = 2.000 EW/sub-cell boundary [PG15 PASS].
+
+
+5. ACOUSTIC AND HUMAN-SCALE IMPLICATIONS
+------------------------------------------
+
+Full derivations in docs/doc_acoustics.txt (v1.0); chi calculations in
+internal_only/scripts/geo_search.py (13/13 PASS, GS1-GS12).
+
+5.1  Chladni patterns: retrodiction via dwell-time asymmetry
+
+  Sand grains on a resonating plate migrate to pressure MINIMA (nodal lines)
+by dwell-time asymmetry -- the same mechanism that produces gravity. Near a
+pressure node the wave spends more time per unit displacement; grains accumulate
+there. This is the torsionverse pressure-following law at acoustic frequency.
+
+  PREDICTION: Two acoustic sources crossed at 72 deg (C5 icosahedral angle)
+  produce phi^2 = 2.618x more A_g mode excitation at the crossing than at 90 deg.
+  Chladni patterns should show phi^2 stronger grain concentration at the crossing
+  point for 72 deg vs 90 deg geometry. Falsifiable: two speakers, adjustable bracket.
+
+5.2  Acoustic levitation: retrodiction via T_1g pressure minimum stability
+
+  Objects levitated by acoustic standing waves sit at pressure nodes. Standard
+explanation: radiation pressure. Torsionverse: objects drift to T_1g pressure
+minima by dwell-time asymmetry; the node is a stable equilibrium (zero gradient)
+for the same reason a planetary orbit is stable.
+
+  PREDICTION: A 72-deg crossing geometry levitates objects with phi^2 = 2.618x
+  less required acoustic power than a 90-deg crossing at the same frequency.
+
+5.3  N-ring static coupling: derivation from I_h character table
+
+  A ring of N elements with adjacent angular spacing theta = 360/N has T_1g
+coupling at its center given by chi = 1 + 2*cos(theta).
+
+  N=3: chi = 0  (exact null; equilateral triangle arrangement)
+  N=5: chi = phi = 1.618  (C5 in I_h; maximum)
+  N=10: chi = phi^2 = 2.618  (double C5 spacing; non-I_h but stronger)
+  N->inf (circle): chi -> 3 (full sphere; maximum possible)
+
+  IMPORTANT: N=4 RING (adjacent 90-deg spacing): chi = +1 (positive).
+             4-sided PYRAMID (opposite face normals, 180-deg): chi = -1.
+             Same count, different dominant angle, opposite sign.
+
+5.4  Stone circles as static carousels
+
+  A ring of N upright standing stones acts as the static version of a spinning
+N-pyramid carousel, driven by seismic background rather than centrifugal force.
+N-dependence is identical to the dynamic case.
+
+  STONEHENGE inner horseshoe: 5 trilithons with approximate C5 symmetry.
+  chi(T_1g, C5) = phi at the altar stone (the focal point of the horseshoe).
+  If the arrangement was deliberate, this is the optimal ring geometry from
+  I_h character theory.
+
+  PREDICTION: Stone circles with N=5 (or multiples of 5) show stronger
+  documented acoustic phenomena at their centers than N=3 or N=4 circles.
+
+5.5  Ringing rocks: internal crystal resonance reduces apparent weight
+
+  Rocks that produce a clear musical tone when struck (Pennsylvania Ringing
+Rocks Park, Stonehenge bluestones) have olivine/pyroxene inclusions with
+approximate icosahedral packing in their atomic coordination shells. Seismic
+background continuously drives these rocks at their natural resonance.
+At resonance: internal standing wave creates a T_1g pressure pattern;
+pressure minimum inside the rock -> the rock is lighter than a non-resonant
+rock of the same material and size.
+
+  PREDICTION: Ringing rocks are measurably lighter per unit volume than
+  non-ringing rocks of the same parent material and size, with weight deficit
+  proportional to the resonance quality factor Q. Effect reverses when
+  driving stops (dynamic eddy; not a permanent T_2g depletion).
+
+5.6  Newgrange chamber: resonance calculation
+
+  Newgrange, Ireland (c. 3200 BCE). Main chamber R ~ 3 m, passage L ~ 19 m.
+  Chamber spherical fundamental: f = v/2R = 57 Hz (published archaeoacoustics: ~110 Hz;
+  actual corbelled geometry has R_eff ~ 1.56 m -> f = 110 Hz).
+  Passage Helmholtz resonance (passage = neck, chamber = cavity): f = 1.18 Hz (infrasound).
+  Both modes create T_1g pressure minima at the chamber center via seismic driving.
+
+
+6. GYROSCOPE PRECESSION AND FLUID VORTEX SENSING
+--------------------------------------------------
+
+Full derivations in docs/doc_gyroscope.txt (10/10 PASS, GY1-GY10).
+
+6.1  Bernoulli mechanism for precession: retrodiction
+
+  A spinning gyroscope rim drags the torsion medium at the equator. By Bernoulli:
+  lower pressure at the equatorial rim; higher pressure at the poles. When a
+  torque tips the spin axis, part of the low-pressure equatorial belt moves into
+  a higher-pressure region. The pressure-gradient force is a restoring torque
+  perpendicular to both spin and applied torque -> precession, not further tipping.
+
+  At lab scale: torsion medium density is negligible vs air drag. The mechanism
+  is correct but the medium Bernoulli term is unobservable at lab scale; standard
+  mechanics applies. This is a retrodiction: same result, new physical origin.
+
+  At Zone 2 scale (molecular, nuclear, neutron star): medium pressure IS
+  the dominant mechanism. NMR precession and pulsar spin-down are Zone 2 phenomena.
+
+6.2  Two-axis fluid gyroscope: zero cross-coupling (exact)
+
+  For a 2-axis fluid gyroscope (fluid circulating in orthogonal rings), the
+T_1g modes along the two axes decouple exactly:
+
+  chi(T_1g_x * T_1g_y, C_2) = (-1) * (-1) = +1 = chi(A_g)
+
+  A_g is the totally-symmetric I_h representation: zero cross-coupling is exact,
+not approximate. This is a new structural result: the decoupling follows from
+group theory, not from approximate symmetry or engineering tolerance.
+
+  PREDICTION: A fluid gyroscope built with exact C5 symmetry in its ring
+  geometry will show phi^2 less cross-axis coupling than a C4 (rectangular)
+  geometry. Measurable in precision inertial navigation units.
+
+6.3  Critical size R_crit and pulsar timing glitches
+
+  The medium shear wave speed v_s = Rs * c limits how quickly the medium can
+redistribute Bernoulli pressure from a spinning object. For objects larger than:
+
+  R_crit = v_s * tau_relax ≈ 355 AU
+
+  the medium takes longer than tau_relax to equilibrate -> gyroscopic precession
+rates become time-varying on the tau_relax timescale.
+
+  PULSAR TIMING GLITCHES: pulsars are rotating neutron stars with Zone 2 as
+the dominant medium zone. The glitch timescale (sudden spinup then exponential
+relaxation over weeks to months) matches the Zone 2 tau_relax timescale.
+  PREDICTION: glitch recovery timescale tau_recovery ~ tau_relax(Zone 2).
+  Falsifiable: compile glitch recovery times across known glitching pulsars;
+  compare distribution to the Zone 2 tau_relax prediction.
+
+
+7. SPINNING PYRAMID AND ELECTRON ESCALATOR
+-------------------------------------------
+
+Full derivations in docs/series2/doc_series2_spinning_pyramid.txt and
+docs/series2/doc_series2_piezo_escalator.txt;
+chi calculations in analysis/demos/acoustics_doc.py (27/27 PASS, AC1-AC15, SP1-SP7c).
+
+7.1  Electron escalator: passive free-electron aggregator
+
+  The pentagonal pyramid (face slope arctan(1/phi) = 31.72 deg, chi(T_1g,C5) = phi)
+  has its face cells permanently at the Maxwell-critical icosahedral orientation.
+  This is the SAME mechanism as piezoelectricity: a piezo crystal requires mechanical
+  stress to deform cells to the critical angle; the pyramid geometry is permanently
+  at that angle with no applied stress. Free electrons from the surrounding environment
+  are guided toward the apex by the T_1g chi pressure gradient with no moving parts.
+
+  Mode 1 (isolated): accumulates to Coulomb saturation in < 1 second; passively
+  maintained against leakage indefinitely.
+  Mode 2 (base wire to ground): continuous DC current, rate set by eta × chi.
+  COOLING PREDICTION: each collected electron's thermal KE (~0.038 eV at 300K) is
+  removed from the surrounding air -- passive local cooling at the collection site.
+
+7.2  Spinning pyramid: two propulsion modes
+
+  chi(T_1g, C5) = phi under rotation produces two mechanically distinct effects:
+    Mode 1 (THRUSTER): escalator F1 + propeller F2 deliver a felt forward push.
+    Mode 2 (LOW PRESSURE): T_1g chi coupling sustains low-pressure column on
+      spin axis; apparent weight of objects on axis decreases proportional to omega^2.
+  Key discriminator: 4-sided pyramid INCREASES weight (chi = -1); 3-sided is null
+  (chi = 0). Conventional aerodynamics predicts the same sign for all -- the sign
+  reversal between 4-sided and 5-sided falsifies the aero-only explanation.
+  Testable for under $30 with a precision scale, hobby motor, and sheet aluminium.
+
+7.3  N=5 thrust ring: satellite station-keeping
+
+  N=5 ring of pyramids placed ahead of a craft (apexes pointing rearward creates
+  low-pressure zone at craft nose; craft falls forward):
+    dP = B_eff × dep × chi = 1.68 Pa at Al tip-speed limit
+    Force = dP × A = 1.3 N on 1m-dia 100 kg craft = 1.35 milli-G  [SP7c]
+  chi factor = phi^2 + N×phi = 10.71 (carousel + individual rearward).
+  Mode 2 simultaneously recovers electrical power: self-powered, no propellant.
+  Safety [SP5-SP6]: all practical configurations are 9+ orders of magnitude below
+  any pressure-related hazard; structural failure of the pyramid occurs first.
+
+
+8. COMPANION PAPERS
+---------------------
+
+  SERIES 1 (published, Zenodo):
+  [doc_alpha]          https://doi.org/10.5281/zenodo.22013651
+  [doc_torsion]        https://doi.org/10.5281/zenodo.22016573
+  [doc_higgs]          https://doi.org/10.5281/zenodo.22032555
+  [doc_jobson_cell]    https://doi.org/10.5281/zenodo.22032906
+  [doc_magnetism]      https://doi.org/10.5281/zenodo.22036406
+  [doc_nucleus]        https://doi.org/10.5281/zenodo.22042337
+  [doc_orbit_pressure] https://doi.org/10.5281/zenodo.22044378
+  [doc_entanglement]   https://doi.org/10.5281/zenodo.22052350
+  [doc_qm]             https://doi.org/10.5281/zenodo.22052395
+  [doc_leptons]        https://doi.org/10.5281/zenodo.22057421
+  [doc_particle_gen]   https://doi.org/10.5281/zenodo.22068557
+  [doc_electron]       https://doi.org/10.5281/zenodo.22105622
+
+  SERIES 2 (companion papers; v2 adds Sections 5-6 to this synthesis):
+  doc_hadron_manipulation.txt       -- MCF anti-sticking; Hg→Au mechanism  DOI: https://doi.org/10.5281/zenodo.22140068
+  doc_series2_muon_lubrication.txt  -- MCF anti-sticking vortex: standalone prediction (outline)  DOI: https://doi.org/10.5281/zenodo.22140481
+  doc_chemistry.txt                 -- A_g bond excitation; water splitting  DOI: https://doi.org/10.5281/zenodo.22139803
+  doc_redshift.txt                  -- Cosmological redshift: candidate mechanisms and void-edge prediction  DOI: https://doi.org/10.5281/zenodo.22140127
+  doc_gyroscope.txt                 -- Gyroscope precession; fluid vortex sensing  DOI: https://doi.org/10.5281/zenodo.22139868
+  doc_acoustics.txt                 -- Acoustic implications; ringing rocks; stone circles  DOI: https://doi.org/10.5281/zenodo.22139731
+  doc_series2_piezo_escalator.txt   -- Piezo + electron escalator (static T_1g coupling, outline)  DOI: https://doi.org/10.5281/zenodo.22140517
+  doc_series2_spinning_pyramid.txt  -- T_1g chi coupling; apparent weight reduction; satellite thruster ring  DOI: https://doi.org/10.5281/zenodo.22140877
+  doc_series2_fluid_bells.txt       -- Counter-rotating fluid bells; Coriolis roll; T_2g thrust  DOI: https://doi.org/10.5281/zenodo.22140336
+
+
+=============================================================================
+END doc_series2_synthesis.txt
+=============================================================================
