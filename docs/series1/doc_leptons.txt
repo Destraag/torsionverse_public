@@ -645,6 +645,10 @@ This research was developed with the assistance of AI language models
 (GitHub Copilot / Claude, Anthropic). The conceptual framework, physical
 interpretation, and all claims are the sole work of the author.
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_leptons.txt
 =============================================================================

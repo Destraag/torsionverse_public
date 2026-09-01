@@ -2,16 +2,15 @@
 THE ORBITAL ELECTRON IN THE TORSION MEDIUM
 
 Author: Robert Jobson
-Date:   2026-08-25
-Status: DRAFT (session 13) — branches from doc_leptons, doc_orbit_pressure,
-        doc_nucleus, doc_jobson_cell
+Date:   2026-09-01
+Status: PREPRINT
 =============================================================================
 
 ABSTRACT
 --------
 
 The electron (E+ spinor irrep of the 2I double group, vertex mode of the
-Jobson cell lattice) experiences four geometrically distinct forces when
+torsion medium) experiences four geometrically distinct forces when
 in orbit around a proton. This paper identifies each force, its physical
 mechanism, its torsionverse derivation status, and its contribution to
 orbital structure. The key result: the electron's roll direction (the
@@ -20,20 +19,42 @@ but determines the sign of its electromagnetic coupling to the proton. A
 positron (E- spinor irrep of 2I, identical vertex geometry to E+ but opposite roll) is repelled from the proton for
 the same geometric reason that two protons repel. The four orbital forces
 together produce atomic shell quantization from I_h icosahedral geometry
-with zero free parameters.
-
-Mass derivation is NOT in scope here -- see doc_leptons (LM1-LM2), doc_alpha
-(Born balance), doc_jobson_cell (J26). This paper covers orbital mechanics only.
-
-Companion script: analysis/demos/electron_doc.py  (19/19 PASS, ED1-ED19)
-Companion doc: docs/series1/doc_orbit_pressure.txt (scale-invariant derivation
-of all orbital mechanics from torsion medium pressure gradients; PO1-PO8 PASS)
+with zero free parameters. Additionally: at each vertex contact the (1,2)
+Hopf winding splits force exactly 2:1 forward-to-sideways (Section 2.3);
+positronium annihilation rules out classical-amplitude wave models and
+requires discrete winding energy, consistent with both QFT and the
+torsionverse corpuscle picture (Section 5.3.1).
 
 
-1. THE ELECTRON AS E+ VERTEX MODE
+1. INTRODUCTION
+----------------
+
+This paper covers orbital mechanics only. Mass derivation is not in scope
+here -- see [doc_leptons] (LM1-LM2), [doc_alpha] (Born balance), [doc_jobson_cell] (J26).
+
+The electron (E+ spinor irrep, vertex mode of the torsion medium) is one
+of the three fundamental lepton modes of the torsionverse framework. This paper
+derives its four-force orbital structure around the proton, the physical origin
+of charge sign from winding chirality, and the Z > 137 Coulomb stability limit
+from corpuscle circuit geometry.
+
+Section 2 identifies the electron as the E+ vertex mode, establishes its
+cell-interaction regime, and derives the winding force decomposition (2:1
+forward-to-sideways ratio from (1,2) geometry). Section 3 derives the four geometrically distinct
+forces on the orbital electron (pressure, light linger, roll, wall). Section 4
+shows that roll direction determines charge sign, derived from cell-meshing
+mechanics. Section 5 compares the electron and positron. Section 6 derives
+Z_crit = 1/alpha from corpuscle circuit geometry. Section 7 summarises the
+force table and the roll-charge relationship. Section 8 lists open items.
+
+Companion scripts: analysis/demos/electron_doc.py (19/19 PASS, ED1-ED19)
+[STANDALONE -- no external deps]; see the companion scripts section below.
+
+
+2. THE ELECTRON AS E+ VERTEX MODE
 -----------------------------------
 
-1.1  Irrep assignment
+2.1  Irrep assignment
 
 The icosahedral double group 2I has four spinor irreps (half-integer spin):
   E+ (dim=2), E- (dim=2), G32 (dim=4), I52 (dim=6)
@@ -41,9 +62,9 @@ The icosahedral double group 2I has four spinor irreps (half-integer spin):
 The electron is assigned to E+ on three grounds:
   (1) Spin-1/2: dim=2 spinor, consistent with measured g-factor [doc_alpha]
   (2) Vertex mode: E+ winding scatters at the 12 icosahedral vertices.
-      chi(E+, C5) = +phi (constructive at 5-fold vertex nexuses).
+      chi(E+, C5) = +phi  (phi = (1+sqrt(5))/2 = 1.618; constructive at 5-fold vertex nexuses).
       chi(E+, C3) = -1   (color singlet: vertex where 5 colored faces meet).
-  (3) CG selection: the V-A weak decay T_1g x E- → {G32, I52} excludes E+
+  (3) CG selection: the V-A weak decay T_1g x E- = I52 (exact, WI2) excludes E+
       from pion decay products -- the electron is not produced in pi → mu + nu,
       only in the second-generation V-A chain. [doc_leptons Section 1.2]
 
@@ -51,32 +72,51 @@ E- is the positron. Both E+ and E- have the same real C5 character
 (chi(E±,C5) = +phi), because phi is real and is its own complex conjugate.
 The distinction between E+ and E- is roll direction relative to the proton's
 Zone 2 chirality reference: E+ meshes (electron), E- grinds (positron).
-Same vertex geometry, reversed chirality. See Section 4.
+Same vertex geometry, reversed chirality. See Section 5.
 
-1.2  Cell interaction regime
+2.2  Cell interaction regime
 
-  N_J_e = hbar*c / (m_e * L_J) = 38,870  [deep bulk]
+  N_J_e = hbar*c / (m_e * c^2 * L_J) = 38,870  [deep bulk]
 
 The electron is deep in the bulk regime (N_J >> 1). It interacts with the
 Jobson cell lattice through vertex contacts (the icosahedral vertex nexuses),
-NOT through excluded-volume displacement. There is no Zone 1 or Zone 2 for
+not through excluded-volume displacement. There is no Zone 1 or Zone 2 for
 the electron -- its displacement is topological (winding number 2 of the
 (1,2) Hopf torus), not geometric (no nuclear hard core on the attraction side).
 
 This is why the electron-proton system has no hard-core repulsion: cells MESH
 at the electron-proton interface (complementary chirality), whereas two protons
-GRIND (same chirality, Zone 2 contact at r = 2*lambda_p = 0.421 fm).
+GRIND (same chirality, Zone 2 contact at r = 2*lambda_p = 0.421 fm;
+  lambda_p = r_p/4 = 0.21 fm is the Zone 1/2 boundary radius).
 [doc_nucleus Section 6; doc_orbit_pressure Section 1.2]
 
+2.3  Winding force decomposition
 
-2. FORCES ON THE ORBITAL ELECTRON
------------------------------------------
+The (1,2) Hopf torus path makes angle theta = arctan(p/q) = arctan(1/2) with
+the forward direction at each of the 12 vertex contacts per winding:
+  cos(theta) = q/||v|| = 2/sqrt(5)  (forward fraction -- maintains c-propagation)
+  sin(theta) = p/||v|| = 1/sqrt(5)  (sideways fraction -- displaces cells)
+  cot(theta) = q/p = 2/1 = 2        (EXACT integer ratio from winding numbers)
+
+At every vertex contact the interaction force splits exactly 2:1, forward to
+sideways. The sideways component is what displaces cells and builds the 1/r^2
+Coulomb pressure field described in Section 3.1. The corpuscle travels at c
+along the winding path itself; the forward (cos*c) and sideways (sin*c)
+components are projections of that path speed onto the two directions, with
+geometric sum = c. This 2:1 ratio is universal for all (1,2)
+corpuscles regardless of lepton generation -- the absolute energy scale differs
+(m_e, m_mu, m_tau) but the 2:1 force split is fixed by the winding geometry.
+[corpuscle_energy_decomp.py CE1-CE2 PASS]
+
+
+3. THE FOUR ORBITAL FORCES
+---------------------------
 
 The electron in orbit around a proton is subject to four geometrically distinct
 mechanisms. These are not separate fundamental forces -- all four emerge from the
 same torsion medium physics. The labels name where each effect is dominant.
 
-2.1  PRESSURE (primary driving force)
+3.1  PRESSURE (primary driving force)
 
   MECHANISM — PROTON GRADIENT:
     The proton's (1,2) Hopf winding in Zone 2 freezes Jobson cells into a
@@ -84,12 +124,12 @@ same torsion medium physics. The labels name where each effect is dominant.
     creates a pressure gradient: Zone 3 cells are sparser (lower pressure)
     than the background. Any winding mode accumulates longer dwell times
     heading into the lower-pressure region and shorter dwell times heading
-    out. The net drift is inward. This IS gravity and electromagnetism --
+    out. The net drift is inward. This is gravity and electromagnetism --
     not two forces but one mechanism: dwell-time asymmetry in a pressure
     gradient. [doc_orbit_pressure Sections 1.1-1.2]
     The coupling strength differs because the source geometry differs:
     EM couples via surface winding (exponent 1), gravity couples via
-    volumetric exclusion (exponent 18 Maxwell dimensions). The ratio
+    volumetric exclusion (18-dimensional Maxwell geometry; [doc_jobson_cell]). The ratio
     alpha_em/alpha_grav = 1.24e36 is derived, not assumed.
     [doc_orbit_pressure Section 1.2; orbit_doc.py OD6, OD11-OD14 PASS]
 
@@ -102,9 +142,9 @@ same torsion medium physics. The labels name where each effect is dominant.
         passed through are displaced and sparse.
       - HIGHER pressure ahead and to the sides: unperturbed cells the
         electron is about to hit, and cells pushed laterally.
-    The fractional displacement per contact IS alpha -- the fine structure
+    The fractional displacement per contact is alpha -- the fine structure
     constant quantifies how hard each collision displaces a cell
-    (k_n/k_eff from the Born balance, doc_alpha J17/J24).
+    (k_n/k_eff from the Born balance, [doc_alpha] J17/J24).
 
     The orbital path curves inward because the proton's Zone 3 gradient
     makes the inward arc additionally sparse: cells are already thinned
@@ -113,12 +153,12 @@ same torsion medium physics. The labels name where each effect is dominant.
     the inward-bending path of least resistance through unperturbed medium.
 
   RESULT (Bohr radius):
-    a_0 = hbar*c / (m_e * c^2 * alpha_em) = 5.292e-11 m  [EXACT, zero free parameters]
+    a_0 = hbar*c / (m_e * c^2 * alpha_em) = 5.292e-11 m  (exact, zero free parameters)
     [doc_orbit_pressure Section 1.3; PO2 PASS]
 
-  DOMINANT over all other forces at atomic scales. Sets the orbital radius.
+  Dominant over all other forces at atomic scales. Sets the orbital radius.
 
-2.2  LIGHT LINGER (same pressure, wave-level readout)
+3.2  LIGHT LINGER (same pressure, wave-level readout)
 
   MECHANISM:
     The low-pressure wake trailing behind the electron is sparser than
@@ -139,7 +179,7 @@ same torsion medium physics. The labels name where each effect is dominant.
   the static description (pressure gradient) and the dynamic description
   (wave linger asymmetry) are two views of the same physical situation.
 
-2.3  ROLL (chirality coupling, orbital angular momentum)
+3.3  ROLL (chirality coupling, orbital angular momentum)
 
   MECHANISM:
     The Zone 2 Jobson cells are jammed (Maxwell-critical) and frozen in the
@@ -162,7 +202,7 @@ same torsion medium physics. The labels name where each effect is dominant.
       l=1: T_1g (3)  p orbitals
       l=2: H_g (5)   d orbitals
       l=3: T_2g+G_g  f orbitals
-    Degeneracy 2l+1 is EXACT for l=0..5 from I_h character theory [doc_nucleus AS1].
+    Degeneracy 2l+1 is exact for l=0..5 from I_h character theory [atomic_shells.py AS1].
     Shell maxima 2n² follow directly. Noble gas closings Z=2,10,18,36,54,86. [AS7]
 
     At larger orbital radii (higher n), the Zone 3 co-rotation field weakens
@@ -170,20 +210,19 @@ same torsion medium physics. The labels name where each effect is dominant.
       E_Z3(r) = alpha * hbar*c * r_p^2 / r^3
     At r = r_p (Zone 3 onset): E_Z3 = alpha*hbar*c/r_p = 1.71 MeV.
     At r = a_0 (Bohr radius):  E_Z3 = 6.87 neV  (well below spin-orbit scale).
-    [entanglement_doc.py EP1-EP2; electron_doc.py ED17-ED18 PASS]
-    Higher shells have weaker roll coupling -- hence weaker spin-orbit effects
-    for outer electrons. The 1/r^3 falloff is steeper than the pressure
-    gradient (1/r^2), so roll becomes negligible at large n faster than
-    the Coulomb well itself does.
+    [doc_entanglement; entanglement_doc.py EP1-EP2; electron_doc.py ED17-ED18 PASS]
+    The 1/r^3 falloff is steeper than the pressure gradient (1/r^2), so roll
+    becomes negligible at large n faster than the Coulomb well itself does,
+    producing weaker spin-orbit effects for outer electrons.
 
-2.4  WALL (inner boundary and shell counting)
+3.4  WALL (inner boundary and shell counting)
 
   INNER WALL (hard, established for all elements):
     The nuclear Zone 1/2 boundary at r ~ lambda_p = r_p/4 = 0.21 fm.
     Zone 2 cells are jammed (Maxwell-critical) and impenetrable to the
     electron's vertex-mode winding. This is a genuine physical boundary,
     not a potential — the jammed cells physically cannot be entered.
-    [doc_nucleus Section 6, ESSENTIALLY CLOSED]
+    [doc_nucleus Section 6]
 
   SHELL COUNTING (from I_h irrep structure, not walls):
     The number of electron states per shell is determined by the I_h
@@ -204,14 +243,14 @@ same torsion medium physics. The labels name where each effect is dominant.
     not required to derive 2n² shell maxima.
 
 
-3. ROLL DIRECTION = CHARGE SIGN
+4. ROLL DIRECTION = CHARGE SIGN
 ----------------------------------
 
-3.1  The physical mechanism
+4.1  The physical mechanism
 
 The proton's (1,2) Hopf winding freezes Zone 2 cells into a specific
 chirality. "Positive charge" is the label for this chirality direction:
-the proton's inward winding. Two protons have the SAME chirality.
+the proton's inward winding. Two protons have the same chirality.
 
 When two same-chirality sources approach, the cells between them are
 dragged in OPPOSING directions. The cells grind. Grinding = high pressure
@@ -226,47 +265,48 @@ between them. Both sources follow the low-pressure zone. This is attraction.
   OPPOSITE chirality: MESHING → low pressure (Bernoulli) → ATTRACTION
   [doc_orbit_pressure Section 1.2; doc_nucleus Section 6]
 
-3.2  The electron is the proton's chirality complement
+4.2  The electron is the proton's chirality complement
 
 The electron has E+ winding with opposite roll to the proton's (1,2) Hopf
-chirality. This opposite roll IS what we call "negative charge". It is not
+chirality. This opposite roll is what we call "negative charge". It is not
 a label assigned independently -- it follows directly from the cell-meshing
 mechanism. The electron's roll direction is the unique E+ winding orientation
 that produces attraction to the proton's Zone 2/3 cell chirality.
 
-The electron does not CHOOSE to have negative charge. The 2I double group has
+The electron does not choose to have negative charge. The 2I double group has
 two E-type spinors: E+ and E-. The one that meshes with the proton is E+ (the
 electron). E- is the positron. Both exist as equally valid 2I irreps. The
 physical distinction is which one meshes with the proton's winding and which
 one grinds. The proton selects the labelling by fixing the chirality reference.
 
-3.3  Measured consequence: Coulomb energy at grinding contact
+4.3  Measured consequence: Coulomb energy at grinding contact
 
   r_grind = 2*lambda_p = 0.421 fm  [Zone 2 boundaries touch; same chirality]
   Coulomb energy at r_grind: alpha_em * hbar*c / r_grind = 3.42 MeV
   Observed nuclear hard core: 0.4-0.6 fm. Prediction: 0.421 fm. [MATCH]
-  [doc_nucleus Section 6, ESSENTIALLY CLOSED]
+  [doc_nucleus Section 6]
 
 For the proton-electron (meshing) pair: no hard core exists. Attraction
 is smooth all the way to Zone 1 (where the proton's impenetrable structure
 finally prevents further approach). This asymmetry is why stable atoms exist.
 
 
-4. POSITRON COMPARISON
+5. POSITRON COMPARISON
 ------------------------
 
-4.1  Identity
+5.1  Identity
 
-The positron is E- (or equivalently: E+ with opposite roll). It is the 2I
+The positron is E- (the complex conjugate irrep of E+ in 2I; physically,
+roll direction reversed relative to proton Zone 2/3 chirality). It is the 2I
 spinor conjugate of the electron. Same mass (CPT symmetry, automatic in the
-torsionverse from bilateral winding symmetry), same E+ vertex geometry, same
+torsionverse from bilateral winding symmetry), same vertex geometry as E+, same
 C5 character (+phi), same Born balance. E+ and E- have identical chi(C5) = phi
 because phi is real (self-conjugate); the Born coupling is through chi(C5) only,
 so n_exact and alpha are the same for both irreps. [ED19 PASS]
 The sole physical difference: roll direction is reversed relative to the
 proton's Zone 2/3 chirality.
 
-4.2  Positron near a proton
+5.2  Positron near a proton
 
   Roll: SAME as proton chirality (positron roll = proton roll direction).
   Effect: GRINDING → high pressure between them → REPULSION.
@@ -275,16 +315,16 @@ The positron is repelled from the proton by the same cell-grinding mechanism
 that repels two protons. This is "like charges repel" -- now derived from
 geometric chirality, not assumed. The positron does not orbit the proton.
 
-Coulomb repulsion energy at r = 2*lambda_p = 0.421 fm (the proton Zone 2
-outer boundary, evaluated as the Coulomb potential at that separation):
+Coulomb repulsion energy at r = 2*lambda_p = 0.421 fm (the Zone 1/2
+boundary radius, evaluated as the Coulomb potential at that separation):
   alpha_em * hbar*c / (2*lambda_p) = 3.42 MeV
-Note: this is NOT a Zone 2 contact calculation for the positron (the positron
+  Note: this is not a Zone 2 contact calculation for the positron (the positron
 has no Zone 2). It is the Coulomb potential energy evaluated at the distance
 where the proton's own Zone 2 boundary sits. At shorter range the repulsion
 continues to grow (~1/r) but without a hard Zone 2 wall, making the positron-
 proton repulsion softer than proton-proton at very short range.
 
-4.3  Positron near an electron (positronium)
+5.3  Positron near an electron (positronium)
 
   Roll: OPPOSITE to electron → MESHING → ATTRACTION.
   
@@ -299,20 +339,52 @@ Neither the electron nor the positron has a Zone 1 or Zone 2. There is no
 inner nuclear wall. When the e+e- pair falls to minimum separation (r → 0
 in the classical picture), their forward and backward E+ windings cancel
 directly: forward winding + backward winding = zero net winding → A_g
-(totally symmetric isotropic emission) = two back-to-back photons. Clean,
-complete, no Zone 1 wall to negotiate.
+(totally symmetric). This clean cancellation — with no Zone 1 wall to
+limit the approach — raises the question of what carries the released
+energy. Sections 5.3.1 and 5.3.2 address this.
+
+5.3.1  ANNIHILATION AS CORPUSCLE EVIDENCE
+  Positronium annihilation constrains the nature of the electron.
+  In a purely classical wave model -- where E+ and E- are continuous
+  amplitude patterns in the medium -- destructive interference is lossless:
+  the medium returns to rest and no energy is released. The observed
+  2 × 511 keV gamma emission (PDG: m_e*c^2 per photon) requires that the
+  electron carries discrete energy that must be released when the configuration
+  cancels. This rules out the classical-amplitude model. Both QFT (discrete
+  quantum field excitation, by the quantization axiom) and the torsionverse
+  corpuscle (discrete topological winding, by Hopf winding number quantization)
+  satisfy the requirement. The torsionverse adds the mechanism: discreteness
+  follows from winding number quantization, not from a postulate. When the E+
+  and E- windings cancel to A_g, the topological path energy (m_e*c^2 per
+  corpuscle) is released as T_1g pressure waves (photon corpuscles).
+  The A_g symmetry of the cancellation state forces no preferred emission
+  axis (momentum conservation from the A_g coupling),
+  consistent with observation.
+
+5.3.2  ANNIHILATION ENERGY BOOKKEEPING [CE5-CE6 PASS]
+  In the CM frame the E+ and E- momenta are equal and opposite in all
+  components. Their vector sum is zero. The total rest-mass energy of both
+  corpuscles (2 * m_e*c^2 = 1022 keV) is released as two 511 keV photon
+  corpuscles. Energy conservation requires each photon corpuscle to carry
+  m_e*c^2 = 511 keV [PDG2022]; the observation of two 511 keV photon
+  corpuscles confirms that the full winding energy is released, not retained. The direction of emission (back-to-back for the ideal
+  para-Ps L=0 case) follows from A_g symmetry above; the post-collision
+  status in non-ideal cases (orbital angular momentum, off-axis approach)
+  is an open item -- see open_items.txt: CORPUSCLE-ENERGY-DECOMPOSITION.
+  [corpuscle_energy_decomp.py CE5-CE6 PASS; see also CE1-CE2 for winding geometry]
 
 Positronium lifetime:
   tau = 2*hbar / (m_e*c^2 * alpha^5) = 124.5 ps  (para-Ps, singlet)
   PDG: 125.1 ps.  Error: 0.5%  [ED14 PASS, leading-order formula]
   Physical: rate at which opposite-roll E+ windings overlap and cancel.
-  Full geometric derivation from E+ winding cancellation not yet done.
+  Full geometric derivation from E+ winding cancellation overlap integral
+  not yet done; the leading-order formula match is closed.
 
 
-5. THE Z > 137 COULOMB LIMIT
+6. THE Z > 137 COULOMB LIMIT
 -------------------------------
 
-5.1  Mechanism
+6.1  Mechanism
 
 The 1s Bohr radius is a_1s = a_0 / Z. As Z increases:
   Z = 1:   a_0      = 52,918 fm = 5.292 Angstrom  (hydrogen)
@@ -337,7 +409,7 @@ the straight-line paths between successive vertex contacts would have to shorten
 below the electron's own Compton-scale interaction length. The circuit fails
 geometrically; the orbit has no solution.
 
-  TORSIONVERSE MECHANISM (new): The orbital path (12-vertex winding circuit)
+  TORSIONVERSE MECHANISM: The orbital path (12-vertex winding circuit)
   fails geometrically -- the winding can no longer close. The corpuscle has
   no valid path and impacts Zone 2 from outside. Zone 2 cells are locked in
   the proton's chirality; the impact is a kinetic energy transfer through
@@ -350,7 +422,11 @@ geometrically; the orbit has no solution.
   incoming E+ winding exits as E- (opposite roll). A positron is an E-
   with Compton-scale Zone 2 interaction range (it grinds with Zone 2); this
   freed E- has no orbital structure at that scale and therefore interacts
-  only weakly -- that is what makes it an electron neutrino, not a positron.
+  only weakly -- it propagates without orbital structure, which is the
+  defining property of a neutrino mode. The formal irrep assignment of the
+  electron neutrino is in [doc_leptons]; the key point here is that the
+  same E- winding that is a positron at Compton-scale orbital energies
+  becomes neutrino-like when stripped of that structure.
   The CG algebra requires exactly this:
     T_2g x E+ -> I52 -> T_1g + E-  [WI1 reversed, exact]
   The electron never enters Zone 1 or Zone 2. The whole event is kinetic.
@@ -362,31 +438,31 @@ geometrically; the orbit has no solution.
   STANDARD QED (same threshold, implicit mechanism): The Dirac equation
   predicts the same Z_crit = 1/alpha -- the 1s bound state energy dives
   below -m_e*c^2 at this point (atomic collapse / supercritical Coulomb
-  vacuum; Pomeranchuk/Gershtein/Zeldovich 1970s; confirmed in graphene
-  2012). The end-state matches ordinary nuclear electron capture; the
+  vacuum; [Pomeranchuk1945]; [Gershtein1969]; confirmed in graphene
+  [Shytov2007]). The end-state matches ordinary nuclear electron capture; the
   entry condition differs (geometric circuit failure vs energy threshold).
   The torsionverse supplies the mechanism QED leaves implicit.
 
-NOTE: the Jobson cell scale L_J = 9.93e-3 fm is NOT the relevant UV
+NOTE: the Jobson cell scale L_J = 9.93e-3 fm is not the relevant UV
 cutoff here. L_J is 40,000x smaller than lambda_e. The atomic system's
 UV limit is set by the electron's Compton wavelength, not the cell size.
 Z_crit = 1/alpha = 137.036 is the cell-geometry limit because alpha is
 the ratio of the electron's Born coupling to the orbital wave condition:
   a_0 = lambda_e / alpha  =>  Z_crit = a_0 / lambda_e = 1/alpha.
-[doc_nucleus Section 6.3; electron_doc.py ED7-ED9, ESSENTIALLY CLOSED]
+[doc_nucleus Section 6.3; electron_doc.py ED7-ED9]
 
-5.2  Nucleus of the electron paper
+6.2  Alpha as the cell-to-orbital scale ratio
 
 This limit exposes the deepest connection: the fine structure constant alpha
-is not only the electron's Born coupling strength -- it is the ratio
-(L_J / a_0) * (some geometry factor), i.e., the ratio of cell scale to
-orbital scale. The atomic system lives at scales L_J << r << a_0, i.e., in
-the window 1 << N_J_orbital << N_J_e = 38870. At Z = 137, the orbital
-collapses to the cell scale, erasing this window. Alpha's numerical value
-SET the window in which stable atoms can exist.
+is not only the electron's Born coupling strength -- it encodes the ratio
+of Compton scale to orbital scale (lambda_e / a_0), exact from the identity
+a_0 * alpha = lambda_e derived in Section 6.1. The atomic system lives at scales L_J << r << a_0, i.e., in
+the window 1 << N_J_e = 38870 << N_J_orbital (N_J_orbital = a_0/L_J ≈ 5×10⁶). At Z = 137, the orbital
+collapses to the Compton scale (lambda_e), erasing this window. Alpha's numerical value
+sets the window in which stable atoms can exist.
 
 
-6. SUMMARY: THE FOUR FORCES AND THE ROLL QUESTION
+7. SUMMARY: THE FOUR FORCES AND THE ROLL QUESTION
 ---------------------------------------------------
 
   FORCE COMPARISON (hydrogen Z=1, ground state E₁ = -13.6 eV as reference):
@@ -399,16 +475,16 @@ SET the window in which stable atoms can exist.
 
   Light linger Wave asymmetry in the same      Selects WHICH radius       ~100%
                pressure gradient               is stable: the Bohr        orbital
-               (wave closure condition)        radius IS a linger-set     position
+               (wave closure condition)        radius is a linger-set     position
                                                resonance, not a
                                                classical force balance.
                                                Lamb shift (QED) = 0.00003%
                                                correction beyond this
                                                first-order closure.
 
-  Roll         Zone 2→Zone 3 cog coupling      Sets orbital SHAPE         ~0.005%
+  Roll         Zone 2→Zone 3 cog coupling      Sets orbital SHAPE         ~0.0003%
                via gluon-antinode contact      (l, m_l): fine structure   energy
-                                               splitting per shell          (alpha^2)
+                                               splitting per shell          (alpha^4/E_1)
 
   Wall         Zone 1/2 hard boundary +        Inner: prevents r→0        0% energy
                I_h irrep counting (AS1-AS7)    Counting: 2n² per shell    counting
@@ -422,12 +498,12 @@ SET the window in which stable atoms can exist.
   Both are 100% contributors to different aspects of the same orbital.
 
   ROLL = CHARGE SIGN:
-    Electron (E+, meshing with proton) = negative charge: DERIVED [Section 3]
-    Positron (E-, grinding with proton) = positive charge: DERIVED [Section 4]
+    Electron (E+, meshing with proton) = negative charge: DERIVED [Section 4]
+    Positron (E-, grinding with proton) = positive charge: DERIVED [Section 5]
 
   POSITRON vs ELECTRON DIFFERENCES:
     Mass:    Identical (CPT, from bilateral winding symmetry) [CLOSED]
-    Charge:  Opposite (roll direction relative to proton) [CLOSED, Section 3-4]
+    Charge:  Opposite (roll direction relative to proton) [CLOSED, Section 4-5]
     Orbit:   Positron does NOT orbit proton (grinds); electron does (meshes)
     Annihil: Positron + electron → A_g (photons, clean, no Zone 1 wall) [CLOSED]
              Antiproton + proton → Zone 1 gluons released as pions (messy) [doc_nucleus]
@@ -441,30 +517,35 @@ SET the window in which stable atoms can exist.
     and which is "positron" by the proton's chirality fixing the reference.
     CP violation (slight asymmetry in matter vs antimatter abundance) may
     trace to a slight imbalance in the initial population of E+ vs E- roll
-    states in the cosmological medium. [SPECULATIVE, not yet derived]
+    states in the cosmological medium. (speculative, not yet derived)
 
 
-7. GENUINELY OPEN ITEMS
+8. OPEN ITEMS AND RECENT CLOSURES
 ------------------------
 
-  ZONE 3 CO-ROTATION RADIAL FALLOFF [CLOSED -- ED17-ED18]:
-    Derived as E_Z3(r) = alpha*hbar*c*r_p^2/r^3 (Lense-Thirring, 1/r^3).
-    Onset at r_p matches Coulomb coupling (EP1). Exponent 3 confirmed by
-    E(r)/E(2r) = 8 (EP2, ED18). Steeper than pressure gradient (1/r^2),
-    so spin-orbit effects vanish faster than the Coulomb well at large n.
-    [entanglement_doc.py EP1-EP2; electron_doc.py ED17-ED18]
+  INNER-SHELL SCREENING: [PARTIAL — IS1-IS9 PASS, orbital penetration open]
+    The electron creates a Coulomb pressure field V(r) = alpha*hbar_c/r from
+    displacing cells in its wake (fractional displacement alpha per contact,
+    Section 3.1). Gauss's law applied to this 1/r^2 field gives the shell
+    theorem exactly:
+      sigma_inner  = 1.00  (inner electron fully screens; IS1-IS2 PASS)
+      sigma_outer  = 0.00  (outer electron gives no screening; IS1-IS2 PASS)
+      sigma_same_1s= 5/16  (same-shell 1s: from 1s radial density, not uniform
+                            sphere — corpuscle path IS the density; IS4 PASS)
+      sigma_classic= 1/2   (uniform sphere upper bound; IS3 PASS)
+    The 5/16 result bounds Slater's empirical 0.30-0.35 correctly (IS6 PASS).
+    He ground state energy with sigma=5/16: -77.49 eV vs measured -79.01 eV,
+    1.92% error (IS5 PASS; expected — leading-order variational estimate).
+    Script: analysis/atomic/inner_shell_screening.py  [9/9 PASS]
 
-  INNER-SHELL SCREENING [MEDIUM]:
-    What is needed: derive the effective pressure cancellation fraction that
-    one E+ winding (at orbital radius r_1) exerts on a second E+ winding at
-    radius r_2. The Slater coefficients (0.35 same-shell, 0.85 for n-1 shell,
-    1.00 for lower shells) are empirical fits to the cancellation ratio at each
-    orbital separation. To derive them from torsionverse: model the pressure
-    gradient of one electron winding as seen by another at a different orbital
-    radius, then find the Z_eff that minimizes total torsion-medium energy.
-    This is a two-E+-winding pressure calculation, not yet attempted.
+    STILL OPEN: orbital penetration — the sigma=0.85 Slater coefficient for
+    n-1 shell electrons. This accounts for the fraction of time the 2s corpuscle
+    spends inside the 1s boundary (the 2s wavefunction has a node at 2a_0/Z
+    but nonzero density below a_0/Z). Fraction ~ 15%, giving sigma ~ 0.85.
+    Deriving this from torsionverse requires the 2s-vs-1s winding-path overlap
+    integral. See open_items.txt: ELECTRON-INNER-SHELL.
 
-  CP VIOLATION [REFRAMED — LOCAL CHIRALITY, NOT UNIVERSAL]:
+  CP VIOLATION:  (speculative; mechanism identified but not yet derived)
     The torsionverse medium is built from light: the (1,2) Hopf winding is a
     light-mode lock. When Zone 2 first froze in our local region, it locked
     into one of two equally valid chiralities. Which chirality it chose was
@@ -483,24 +564,21 @@ SET the window in which stable atoms can exist.
     local freeze. The torsionverse "predicts" only that η is nonzero and
     region-dependent; its exact value is initial-condition noise.
 
-    What remains: can we derive a DISTRIBUTION of expected η across regions from
-    the statistics of local freeze events? Connect to doc_redshift_time.txt
-    (cell-generation rate, cosmological cell condensation mechanism). [SPECULATIVE]
-
-    CHIRALITY CASCADE (partially understood):
+    CHIRALITY CASCADE:
     The local proton chirality is not chosen at the atomic scale -- it inherits
     from a cascade of medium currents: cosmic web filament → galactic center
     (depleted zone, pressure-gradient driver of galactic rotation) → solar nebula
     spin → Zone 2 freeze. The galactic center acts as a chirality AMPLIFIER:
     once a rotation sense is established at galaxy scale it propagates coherently
-    downward via the near-incompressible medium (K/G = 30.25) to the Zone 2 freeze
+    downward via the near-incompressible medium (K/G = 30.25; bulk-to-shear
+    modulus ratio of the torsion medium, derived in [doc_jobson_cell]) to the Zone 2 freeze
     of individual protons. The chain terminates at the cosmic web scale, where the
     original filament angular momentum was set by quantum fluctuations in the
     initial medium condensation -- random in sign, region by region. No universal
     primary driver exists; the chirality of our matter is inherited from our
     cosmic web filament's accident of formation.
 
-  CLOSED THIS SESSION (ED15-ED19):
+  Closed items (ED15-ED19):
   - Spin-orbit coupling: ΔE(2p) = alpha^4*m_e*c^2/32 = 45.3 μeV, measured
     45.35 μeV, 0.15% [ED15 PASS]
   - g-factor / Zone 3 effect on electron: the proton Zone 3 co-rotation couples
@@ -513,14 +591,70 @@ SET the window in which stable atoms can exist.
     E_Z3(r_p) = alpha*hbar_c/r_p = 1.71 MeV (onset); E(r)/E(2r) = 8 (exact).
     [ED17-ED18 PASS; entanglement_doc.py EP1-EP2]
   - Positron Born balance: chi(E-,C5) = chi(E+,C5) = phi (phi is real,
-    self-conjugate); Born coupling through chi(C5) gives same n_exact -> same
+    self-conjugate); Born coupling through chi(C5) gives same n_exact (the Born-
+    balance integer from [doc_alpha] J17/J24) -> same
     alpha for E- as for E+. [ED19 PASS]
 
 
 COMPANION SCRIPTS (reproducibility):
   analysis/demos/electron_doc.py    -- 19/19 PASS  [STANDALONE -- no external deps]
+  analysis/demos/orbit_doc.py       -- [OD6, OD11-OD14; see doc_orbit_pressure]
+  analysis/gravity/pressure_isobar_orbit.py -- [PO2; Section 3.1, Bohr radius]
+  analysis/quantum/cell_rotation_propagation.py  -- [RP1-RP4; Section 3.3]
+  analysis/demos/entanglement_doc.py -- [EP1-EP2; Sections 3.3, 8]
+  analysis/nuclear/atomic_shells.py  -- [AS1-AS7; Section 3.4]
+  analysis/quantum/weak_quark_flip.py -- [Section 6.1]
+  analysis/quantum/weak_interaction_cg.py -- [WI2; Section 2.1], [WI1; Section 6.1]
+  analysis/atomic/inner_shell_screening.py -- [IS1-IS9; Section 8, inner-shell screening]
+  analysis/atomic/corpuscle_energy_decomp.py -- [CE1-CE2; Section 2.3], [CE5-CE6; Section 5.3]
   Repository: https://doi.org/10.5281/zenodo.22105622
   Code:        https://github.com/Destraag/torsionverse_public
+
+
+REFERENCES
+-----------
+
+[doc_alpha] Jobson, R. (2026). A Geometric Derivation of the Fine Structure
+     Constant from the (1,2) Hopf Fibration.
+     DOI: https://doi.org/10.5281/zenodo.22013651
+
+[doc_leptons] Jobson, R. (2026). Leptons and Koide: Three Icosahedral Modes
+     of the Jobson Cell Lattice.
+     DOI: https://doi.org/10.5281/zenodo.22057421
+
+[doc_jobson_cell] Jobson, R. (2026). The Jobson Cell: Icosahedral Structure,
+     Maxwell Criticality, and Particle Modes of the Torsion Medium.
+     DOI: https://doi.org/10.5281/zenodo.22032906
+
+[doc_nucleus] Jobson, R. (2026). The Proton as Spinning Icosahedral Engine.
+     DOI: https://doi.org/10.5281/zenodo.22042337
+
+[doc_orbit_pressure] Jobson, R. (2026). Orbit as Torsion Medium Pressure:
+     Scale Invariance from Hadronic to Planetary.
+     DOI: https://doi.org/10.5281/zenodo.22044378
+
+[doc_entanglement] Jobson, R. (2026). Entanglement Selectivity from
+     Icosahedral CG Structure: Derived Results and Mechanism.
+     DOI: https://doi.org/10.5281/zenodo.22052350
+     (See also entanglement_doc.py EP1-EP2, cited in Section 3.3)
+
+[PDG2022] Particle Data Group, R.L. Workman et al. (2022).
+     Review of Particle Physics.
+     Prog. Theor. Exp. Phys. 2022, 083C01.
+     https://pdg.lbl.gov/
+
+[Pomeranchuk1945] Pomeranchuk, I.Ya. and Smorodinsky, Ya.A. (1945).
+     On energy levels in systems with Z > 137.
+     J. Phys. USSR 9, 97.
+
+[Gershtein1969] Gershtein, S.S. and Zeldovich, Ya.B. (1969).
+     Positron production and vacuum polarization in the field of heavy nuclei.
+     JETP 30, 358 (transl. Zh. Eksp. Teor. Fiz. 57, 654).
+
+[Shytov2007] Shytov, A.V., Katsnelson, M.I. and Levitov, L.S. (2007).
+     Atomic collapse and quasi-Rydberg states in graphene.
+     Phys. Rev. Lett. 99, 246802.
+
 
 
 =============================================================================

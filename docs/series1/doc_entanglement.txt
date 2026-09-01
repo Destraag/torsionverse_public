@@ -35,27 +35,20 @@ the activation threshold determines whether it actually occurs.
 These are the same CG tables that predict the deuteron spin-1 ground state
 (T_1g x T_2g has no A_g), di-neutron near-binding (T_1g x T_1g has A_g), and
 Cooper pairs (T_1u x T_1u has A_g). All are zero-free-parameter retrodicts.
-The Tsirelson bound 2*sqrt(2) follows from chi(A_g)=1 for all group elements.
+The Tsirelson bound |S| = 2*sqrt(2) follows from chi(A_g)=1 for all group elements.
+This paper additionally obtains the exact quantum-mechanical Bell/CHSH maximum
+from a finite discrete symmetry group's character table -- not from the standard
+Hilbert-space operator-norm argument (Cirel'son [1]). No prior derivation of this
+bound comes from a lattice symmetry group acting on a physical medium. Furthermore,
+standard QM postulates that any two particles CAN be entangled but gives no
+mechanistic criterion for WHY certain pairs become entangled while others cannot.
+This paper provides the first such criterion: entanglement requires A_g in the CG
+product of the two particles' I_h irreps, plus Zone 3 field overlap exceeding a
+geometric threshold. Entanglement selectivity is for the first time derivable from
+a symmetry table rather than postulated. All derivable claims are closed (zero free
+parameters); the Zenodo v1 non-locality claim is superseded.
 
-NEW GROUND: the exact quantum-mechanical maximum of Bell/CHSH correlations
-(Tsirelson's bound) is obtained here from a finite discrete symmetry group's
-character table, not from the standard Hilbert-space operator-norm argument
-(Cirel'son, 1980). No prior derivation of this bound comes from a lattice
-symmetry group acting on a physical medium.
-Beyond the bound: standard QM postulates that any two particles CAN be
-entangled but provides no mechanical explanation for WHY certain pairs
-become entangled while others cannot. This paper gives the first mechanistic
-criterion: entanglement requires A_g in the CG product of the two particles'
-I_h irreps, plus Zone 3 field overlap exceeding a geometric threshold.
-Entanglement selectivity -- which pairs CAN form a singlet and which cannot
--- is for the first time derivable from a symmetry table rather than postulated.
-
-WHAT REMAINS OPEN:
-  Nothing. All derivable claims are closed (zero free parameters).
-  Bell violation: CHSH S = -2*sqrt(2) from A_g isotropy [entanglement_tsirelson.py 8/8 PASS].
-  The Zenodo v1 non-locality claim (infinite-range without mechanism) is superseded.
-
-Companion scripts: see Section 7. entanglement_doc.py 35/35 PASS; 6 supplementary
+Companion scripts: see Section 7. entanglement_doc.py 35/35 PASS; 7 supplementary
 scripts fully pass; face_coloring.py 6/7 (FC3 geometric check open -- does not
 affect the paper's physics claims).
 
@@ -305,8 +298,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
   ensures frictionless handoff at every cell
   boundary regardless of what occupies neighboring cell interiors.
 
-  (3) GEOMETRY AND G32 ALIGNMENT CHAIN (2026-08-22 -- face_coloring.py, three_particle_entanglement.py,
-      muon_slip_derivation.py):
+  (3) GEOMETRY AND G32 ALIGNMENT CHAIN:
 
   - Each vertex: (2,2,1) face-color pattern. 6 entanglement axes. G32 thread = 3 edges.
   - CG: A_g x T_1u = T_1u. Thread locked to axis by topology. Bilateral singlet.
@@ -334,7 +326,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
   Both conditions confirmed: (a) t = m_mu/sqrt(3) = 61.0 MeV [EH1-EH6 PASS];
   (b) Zone 3 overlap > Delta at L_J scale [entanglement_hopping_t.py ET4 PASS].
 
-  VERTEX FORCE BALANCE AND BILATERAL CHAIN (added session 12, 2026-08-25):
+  VERTEX FORCE BALANCE AND BILATERAL CHAIN:
   The alignment chain propagating from BOTH endpoints simultaneously has a direct
   mechanical consequence for every intermediate vertex nexus it passes through:
 
@@ -378,7 +370,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
   (4) CLOSED:
       - t in MeV from medium Green's function: [hopping_amplitude.py 6/6; dynamical matrix]
       - (sqrt3-1)t vs Zone 3 overlap: formation spontaneous [entanglement_hopping_t.py ET4: YES]
-      - F-7: SU(3) from face 3-coloring [CLOSED 2026-08-23]
+      - SU(3) from face 3-coloring [CLOSED; face_coloring.py F-7]
       - Full Bell violation from alignment chain mechanism [entanglement_tsirelson.py 8/8]
 
 4.3  Retrodicts of the G32 alignment chain mechanism
@@ -487,7 +479,7 @@ FALSIFIABLE PREDICTIONS:
       Natural experimental testbed: K3C60 and Cs3C60 (buckminsterfullerene-based
       superconductors) have I_h molecular symmetry that maps directly onto the
       Jobson cell structure. Their gap function symmetry is a direct test.
-      HIGH-Tc CUPRATES (DERIVED, 2026-08-23): Cuprate superconductors (YBCO,
+      HIGH-Tc CUPRATES: Cuprate superconductors (YBCO,
       BSCCO) are d-wave (B1g of D4h), not s-wave. This is now explained:
       H_g (dim=5, from T_1u x T_1u) contains l=2 d-orbitals. Under D4h
       crystal field (CuO2 square-planar coordination), H_g decomposes as

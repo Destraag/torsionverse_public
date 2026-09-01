@@ -1782,6 +1782,10 @@ REFERENCES
                     Rigidity, Lossless Propagation, and the Higgs as UV Cutoff."
                     DOI: https://doi.org/10.5281/zenodo.22151160
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_jobson_cell.txt
 =============================================================================

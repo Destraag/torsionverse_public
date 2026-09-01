@@ -360,6 +360,10 @@ REFERENCES
   [doc_alpha]         https://doi.org/10.5281/zenodo.22013651
   [doc_nucleus]       https://doi.org/10.5281/zenodo.22042337
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_qm.txt
 =============================================================================

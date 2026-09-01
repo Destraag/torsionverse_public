@@ -951,6 +951,10 @@ REFERENCES
      Constant from the (1,2) Hopf Fibration.
      https://doi.org/10.5281/zenodo.22013651
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_torsion.txt
 =============================================================================

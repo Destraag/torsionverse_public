@@ -519,6 +519,10 @@ REFERENCES
 
   [GW170817]    Abbott et al. (2017). Phys. Rev. Lett. 119, 161101.
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_higgs.txt
 =============================================================================

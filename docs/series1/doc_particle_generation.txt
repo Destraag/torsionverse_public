@@ -582,6 +582,10 @@ takes full responsibility for the derivation, the verification suite, and
 all results presented here. Use of AI assistance in this work is consistent
 with current practice in computational and theoretical physics research.
 
+
+Repository: https://doi.org/10.5281/zenodo.22105622
+Code:        https://github.com/Destraag/torsionverse_public
+
 =============================================================================
 END doc_particle_generation.txt
 =============================================================================
