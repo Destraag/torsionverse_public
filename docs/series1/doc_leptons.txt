@@ -11,6 +11,13 @@ Status: PUBLISHED  DOI: https://doi.org/10.5281/zenodo.22057421
 ABSTRACT
 --------
 
+The Standard Model contains exactly three lepton generations with no explanation
+for why there are three, nor for their mass ratios. Upon discovering the muon in
+1936, Rabi asked "who ordered that?" -- and the question has never been answered.
+The tau was discovered in 1975, and the pattern remains unexplained: the SM accepts
+the three generations as input, it does not derive them.
+This paper derives all three from geometry alone.
+
 All three lepton generations are derived from the three geometric element types
 of the icosahedron (V=12 vertices, E=30 edges, F=20 faces) to sub-0.01% precision
 with zero free parameters.

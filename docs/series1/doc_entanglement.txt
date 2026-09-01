@@ -42,6 +42,13 @@ NEW GROUND: the exact quantum-mechanical maximum of Bell/CHSH correlations
 character table, not from the standard Hilbert-space operator-norm argument
 (Cirel'son, 1980). No prior derivation of this bound comes from a lattice
 symmetry group acting on a physical medium.
+Beyond the bound: standard QM postulates that any two particles CAN be
+entangled but provides no mechanical explanation for WHY certain pairs
+become entangled while others cannot. This paper gives the first mechanistic
+criterion: entanglement requires A_g in the CG product of the two particles'
+I_h irreps, plus Zone 3 field overlap exceeding a geometric threshold.
+Entanglement selectivity -- which pairs CAN form a singlet and which cannot
+-- is for the first time derivable from a symmetry table rather than postulated.
 
 WHAT REMAINS OPEN:
   Nothing. All derivable claims are closed (zero free parameters).

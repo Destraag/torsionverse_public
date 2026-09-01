@@ -10,6 +10,16 @@ Date:   2026-08-19
 ABSTRACT
 --------
 
+The fine structure constant alpha = 1/137.036 has had no theoretical derivation
+for nearly a century. Feynman called it "one of the greatest damn mysteries of
+physics" [7]. Eddington's numerical approach [16] and all subsequent efforts have
+been rejected by the physics community as either circular or numerological.
+This paper presents the first derivation from a single topological input that
+explicitly avoids both objections: zero free parameters and no measured
+electromagnetic constants as inputs (V22). Twelve independent
+electromagnetic-constant-free predictions confirm the winding choice
+(Section 7.5).
+
 We present a first-principles derivation of the fine structure constant alpha
 from the topology of a (1,2)-wound torus in the Hopf fibration of S^3.
 The derivation requires no free parameters and uses only the winding vector
@@ -31,7 +41,7 @@ correction factor in V21 is proven from dim(T_1g)/(dim(T_1g)+dim(A_g)) = 3/4,
 a derived I_h CG identity. The vertex correction has low discriminating power
 for the specific Born L3 formula: any L3 in approximately [-1.3, 4.5] gives
 |error| < 0.001% (V25 in alpha_doc.py); the primary evidence is the n=2
-result. V22 (v8) demonstrates explicitly that iterating the self-consistent
+result. V22 demonstrates explicitly that iterating the self-consistent
 system from the n=2 seed with zero measured inputs converges to the CODATA
 fixed point, confirming the derivation is not circular.
 All open steps are now closed. A companion Python script, alpha_doc.py,
@@ -47,14 +57,14 @@ geometry of the electron.
 
 The fine structure constant alpha = e^2/(4*pi*epsilon_0*hbar*c) ~ 1/137.036 is
 among the most precisely measured quantities in physics. Its numerical value is
-known to 12 significant figures (CODATA-2018: 7.2973525693e-3). Yet its
+known to 12 significant figures (CODATA-2018: 7.2973525693e-3 [1]). Yet its
 theoretical origin remains unexplained. Feynman described it as "one of the
-greatest damn mysteries of physics," and no derivation from first principles has
+greatest damn mysteries of physics" [7], and no derivation from first principles has
 been accepted by the physics community.
 
-Several numerical approaches have been published. Wyler (1969) and Gilson (1997)
+Several numerical approaches have been published. Wyler (1969) [2] and Gilson (1997) [14]
 proposed group-theoretic formulas that match alpha to a few decimal places but
-require ad hoc choices of symmetry groups. More recently, Conway and Sloane noted
+require ad hoc choices of symmetry groups. More recently, Conway and Sloane (1999) [15] noted
 connections between alpha and lattice sphere-packing densities. None of these
 approaches provides a closed derivation that begins from a single, motivated
 physical object and ends at alpha through a sequence of unambiguous steps.
@@ -62,7 +72,7 @@ physical object and ends at alpha through a sequence of unambiguous steps.
 This paper presents such a derivation. The starting point is the claim that the
 electron's topology is a (1,2)-wound torus in the Hopf fibration S^3 -> S^2 --
 specifically, the figure-eight knotted wave loop described in the accompanying
-framework document [FRAMEWORK_FULL]. The physical motivation for (1,2)
+framework document [doc_torsionverse]. The physical motivation for (1,2)
 specifically: among all (p,q) torus windings with p =/= q, (1,2) is the
 simplest non-trivial case that breaks longitudinal/meridional symmetry while
 remaining topologically stable. (1,1) has full symmetry and no net winding
@@ -82,9 +92,12 @@ is alpha.
 The derivation has the following structure. Section 2 establishes the (1,2) Hopf
 setup and derives phi. Section 3 derives the three quadratic coefficients {n, Rs, Q}.
 Section 4 derives the vertex stiffness correction. Section 5 assembles the
-quadratic and produces alpha. Section 6 gives the honest status assessment. A
-Python script (analysis/demos/alpha_doc.py) reproduces the full derivation
-and all 47 verification checks in a single run;
+quadratic and produces alpha. Section 6 gives the honest status assessment. Section 7 discusses
+physical interpretation (7.1), connections to prior approaches (7.2), the medium-unit-cell
+interpretation of the Jobson cell (7.3), falsifiability (7.4), and independence of the
+winding assumption (7.5). Section 8 presents the conclusion.
+A Python script (analysis/demos/alpha_doc.py) reproduces the full derivation
+and all 47 verification checks in a single run.
 
 
 2. THE (1,2) HOPF FIBRATION AND THE GOLDEN RATIO
@@ -92,11 +105,11 @@ and all 47 verification checks in a single run;
 
 2.1  The Hopf fibration and torus knots
 
-The Hopf fibration pi: S^3 -> S^2 fibers the 3-sphere over the 2-sphere with
+The Hopf fibration pi: S^3 -> S^2 [8] fibers the 3-sphere over the 2-sphere with
 fiber S^1. Every point on S^2 lifts to a circle (Hopf fiber) in S^3, and any
 two distinct fibers are linked with linking number one.
 
-A (p,q) torus knot on the Hopf fiber torus is the curve that winds p times around
+A (p,q) torus knot [9] on the Hopf fiber torus is the curve that winds p times around
 the longitudinal axis and q times around the meridional axis. The simplest
 non-trivial case with p =/= q is (p,q) = (1,2), the trefoil precursor -- the
 curve that completes one full longitude per two meridional winds.
@@ -123,7 +136,7 @@ The icosahedral group I_h (order 120) is the symmetry group of the electron's
 proposed geometric structure. The defining property of I_h that distinguishes it
 from all other finite rotation groups is that it is the only group whose
 principal rotation angles are submultiples of pi related to sqrt(5). In
-particular, the (1,2) winding is the FIRST non-trivial Fibonacci convergent to
+particular, the (1,2) winding is the first non-trivial Fibonacci convergent to
 1/phi^2 -- the unique mode among all (p,q) with p,q integer that locks the
 continuous golden winding onto a discrete topological object.
 
@@ -172,7 +185,7 @@ the residual from -0.000560% to 0.000000000171% (V21, complete formula, floating
 The medium saturation ratio Rs is the ratio of the transverse wave speed to c
 in the associated torsion medium. (The torsion medium is the physical vacuum
 medium whose mechanical properties are derived in the companion paper
-[DOC TORSION, https://doi.org/10.5281/zenodo.22016573]; in this paper only the numerical value Rs = sqrt(5)/(4*pi) is
+[doc_torsion]; in this paper only the numerical value Rs = sqrt(5)/(4*pi) is
 used, and that value is confirmed empirically at four independent scales
 regardless of its interpretation.) Geometrically it is derived from the winding
 norm:
@@ -183,26 +196,25 @@ The factor 4*pi is the surface area of the unit 2-sphere: 4*pi = Vol(S^2). This
 makes Rs the ratio of the winding norm to the area of the base space of the
 Hopf fibration.
 
-CROSS-REFERENCE (added on review, session 12, 2026-08-24): a second, later
+Cross-reference: a second, later
 interpretation of Rs^2 = 5/(16*pi^2) has since been identified in the Jobson
 cell mechanical picture: Rs^2 is the squared T_2g shear-mode amplitude at the
-icosahedral cell's Maxwell-critical point (3V-E=6) [doc_jobson_cell.txt
-Section 7, face_gluon_geometry.py 14/14 PASS]. This is downstream of Rs
+icosahedral cell's Maxwell-critical point (3V-E=6) [doc_jobson_cell]. This is downstream of Rs
 already being fixed by the Hopf-winding derivation above -- it is not an
 independent re-derivation of the numerical value -- but it gives Rs a second,
 purely mechanical meaning (an elastic-cell amplitude at isostatic criticality)
 in addition to the topological one (winding norm / Vol(S^2)) derived here.
 That two unrelated derivation routes (Hopf-fibration topology here; I_h cell
-mechanics in the later paper) converge on identifying the SAME quantity is
-worth noting as it postdates this paper's original writing (2026-08-19).
+mechanics in the later paper) converge on identifying the same quantity is
+worth noting as it postdates this paper's original submission.
 
 Observational confirmation (zero free parameters): Rs appears at four
 independent experimental scales -- nuclear binding (sigma_piN ratio), hadronic
 QCD string tension, galactic MOND critical acceleration (153 galaxies, 0.51
-sigma), and spacecraft flyby anomaly K-formula (Anderson et al. 2008). The
+sigma), and spacecraft flyby anomaly K-formula (Anderson et al. 2008 [11]). The
 four-scale cluster mean deviates from Rs by 0.29% with 1.1% spread. The
 hadronic deviation (+1.81%) is accounted for by Jobson cell discretization (see
-accompanying paper Doc Torsion [https://doi.org/10.5281/zenodo.22016573]). Note: the torsion medium interpretation
+accompanying paper [doc_torsion]). Note: the torsion medium interpretation
 of Rs is developed in the companion paper; for the present derivation only the
 numerical value Rs = sqrt(5)/(4*pi) is required, and this value is confirmed
 empirically at four independent scales regardless of its physical interpretation.
@@ -231,7 +243,7 @@ Step (b): Integrating over S^3:
 
 For (p,q) = (1,2): CS_{(1,2)} = 1*2 * 2*pi^2 = 4*pi^2 = 39.478417604...
 
-This is the Chern-Weil theorem for the Hopf fibration: the Chern-Simons
+This is the Chern-Weil theorem for the Hopf fibration [3,4]: the Chern-Simons
 invariant of the (p,q) connection scales as p*q times the volume of S^3.
 
 Step (c): The effective coupling Q includes icosahedral inflation. The (1,2)
@@ -251,7 +263,7 @@ medium's self-similarity under scaling by phi means the (1,2) discrete winding
 inherits phi as its coupling normalization factor. The result Q = p*q*Vol(S^3)/phi
 is verified in V4b and confirmed as the unique value giving alpha ~ 1/137.
 
-Verification: Q/Vol(S^3) = 2/phi = 1.2360679... (the silver ratio inverse).
+Verification: Q/Vol(S^3) = 2/phi = 1.2360679... (equal to sqrt(5)-1).
 See V4a, V4b, V5, V6 in alpha_doc.py.
 
 
@@ -321,7 +333,7 @@ The load contribution from each class sums to:
 This is the icosahedral identity PHI = sqrt(5)/PHI + 1/PHI^3 expressed
 geometrically. The full derivation is verified in V11a of alpha_doc.py.
 
-Deeper origin of f_1 = PHI (discovered 2026-08-20, from Higgs investigation):
+Deeper origin of f_1 = PHI:
 The same phi also equals the C_5 character of the electron's spin-1/2
 representation under the binary icosahedral group 2I:
     chi(E_1/2, C_5) = sin(3*pi/5) / sin(pi/5) = 2*cos(pi/5) = phi  [exact]
@@ -329,7 +341,7 @@ The three-step algebraic proof: cos(pi/5) = phi/2 (icosahedral identity),
 so 2*cos(pi/5) = phi. Under 2I (double cover of I required for spin-1/2),
 the standard character formula gives chi(E_1/2, C_5) = phi algebraically.
 This means f_1 = PHI is not merely a geometric coincidence -- it is the
-C_5 character of the ELECTRON'S SPIN REPRESENTATION in the icosahedral
+C_5 character of the electron's spin representation in the icosahedral
 medium. The vertex coupling strength equals the representation-theoretic
 weight of the electron under the icosahedral C_5 symmetry. This does not
 change the derivation but provides a unified representation-theoretic origin
@@ -364,9 +376,9 @@ See V25 in alpha_doc.py for the full sensitivity range verification.
 
 4.3  Born weighting at the jamming critical point
 
-The electron's icosahedral torus sits at the jamming critical point -- the
+The electron's icosahedral torus sits at the jamming critical point [6] -- the
 phase transition between underconstrained and overconstrained packing. At a
-second-order phase transition, Fermi's Golden Rule gives transition rates
+second-order phase transition [5], Fermi's Golden Rule gives transition rates
 proportional to |matrix element|^2. For two activation channels with coupling
 strengths f_1 and f_2, the Born-weighted probabilities are:
 
@@ -402,9 +414,9 @@ where k_LW is the bulk long-wavelength stiffness (subscript LW = long-wavelength
 the Jobson cell response at scales >> L_J, far from vertex contact points) and
 k_n is the near-vertex increment.
 
-NOTE ON THE "LW" LABEL (added on review, session 12, 2026-08-24): in the
+NOTE ON THE "LW" LABEL: in the
 exploratory scripts (analysis/alpha/gap1_*.py, ~40 scripts) "LW" originally
-stood for Lobkovsky-Witten, a classical thin-shell CONE-BENDING stiffness
+stood for Lobkovsky-Witten, a classical thin-shell cone-bending stiffness
 formula, tested there as one candidate mechanical origin for the vertex
 stiffness. That exploration tried several elastic/bending models (cone
 bending, discrete 5-spring, Regge angular-deficit, Boussinesq medium
@@ -412,10 +424,10 @@ contact, Helfrich membrane bending) and found none reproduced the needed
 value cleanly from bending mechanics alone (Helfrich was ruled out outright
 for having the wrong sign; the others were off by factors of 10^4-10^6, or
 in the cone-bending case, off by a single O(1) geometric prefactor that was
-never pinned down). That entire line of investigation is SUPERSEDED, not
+never pinned down). That entire line of investigation is superseded, not
 completed: the closed derivation below (Section 4.5) is a Born/QFT
 self-consistency relation, not a bending calculation, and k_LW's absolute
-value CANCELS OUT of the final ratio k_n/k_eff = alpha*phi/(1+alpha*phi^2)
+value cancels out of the final ratio k_n/k_eff = alpha*phi/(1+alpha*phi^2)
 -- only alpha and phi survive. The "LW" subscript should now be read as
 long-wavelength (a length-SCALE label), not Lobkovsky-Witten (a bending-
 MECHANISM label); no elastic bending model is used or needed anywhere in
@@ -427,7 +439,7 @@ The ratio k_n / (k_LW + k_n) = L3(PHI, log5) / n_exact defines the correction.
 From the CODATA value of alpha, n_exact = 2.01869... The vertex correction
 n_exact - 2 = 0.01869 is not a free parameter -- it is the unique value that
 makes the quadratic root match the physical alpha. Its derivation from the Jobson
-cell geometry is CLOSED (Section 4.5): the Born balance equation
+cell geometry is closed (Section 4.5): the Born balance equation
 k_n*(1+alpha) = alpha*phi*k_LW gives k_n/k_eff = alpha*phi/(1+alpha*phi^2)
 and closes alpha to 0.00000022% (alpha_doc.py, V17b).
 
@@ -455,20 +467,18 @@ The residual of L3 against the f_geom value implied by CODATA:
 
 The residual is consistent with zero at the measurement precision of the
 vertex stiffness parameter (delta_f = +/- 0.01193). The L3 formula is
-therefore confirmed to within measurement precision. [OPEN-A (jamming criticality) is CLOSED
-by the Maxwell criterion -- see Section 6, alpha_doc.py V18.
-OPEN-B (Chern-Weil general scaling) is CLOSED by direct exterior calculus -- see
-Section 6, alpha_doc.py V20.]
+therefore confirmed to within measurement precision. Both original open steps
+(jamming criticality and Chern-Weil scaling) are now closed; see Section 6.
 
-Cross-connection (2026-08-20): the vertex stiffness geometry also gives
+Cross-connection: the vertex stiffness geometry also gives
   7 * k_n_max / (2*pi) = 1 + alpha + alpha^2*phi  (to 0.0001%)
 where k_n_max = 3125/3456 (exact algebraic from this section's geometry),
 7 = dim(A_g+T_1g+T_2g) from I_h group theory, and the RHS is the vertex
 stiffness expansion of this paper at orders 0, 1, and 2. This closes the
-Jobson cell binding energy in doc_higgs [Claim 8] without requiring the
+Jobson cell binding energy in [doc_higgs] (Claim 8) without requiring the
 medium density. See analysis/higgs/higgs_cell_jamming_scaling.py.
 
-4.5  Vertex stiffness ratio from I_h geometry (2026-08-20)
+4.5  Vertex stiffness ratio from I_h geometry
 
 The ratio k_n/k_eff previously required empirical input (k_n/k_eff = 0.01158
 from CODATA alpha). It can now be derived from a single balance equation:
@@ -517,9 +527,9 @@ The Born-integral derivation of k_n/k_LW = alpha*phi/(1+alpha) follows from V16:
   vertex factor alpha times tree-level stiffness k_n, with no 1/pi because
   this is a coordinate-space contact correction (verified in V24).
   Part C: k_n = k_n_bare - k_n_self  =>  k_n*(1+alpha) = alpha*phi*k_LW
-  The balance equation is derived. The Born integral derivation is COMPLETE.
-  (alpha_doc.py, V16-V17) the balance equation has alpha on the RHS, and
-n_exact depends on alpha. This is NOT circular -- it is a self-consistent
+  The balance equation is derived. The Born integral derivation is complete.
+  Note (alpha_doc.py, V16-V17): the balance equation has alpha on the RHS, and
+  n_exact depends on alpha. This is NOT circular -- it is a self-consistent
 coupled system. Iterating from n=2: alpha_0 from quadratic at n=2 → k_n/k_eff_0
 → n_exact_0 → alpha_1 converges to CODATA in one step. CODATA alpha is used
 only as an external check, not as an input; the system has a unique fixed point.
@@ -615,7 +625,7 @@ This paper makes the following claims at the following confidence levels:
   - alpha error at integer n=2 is -0.000560% (-0.001 sigma at vertex precision)
   - n=2 is the unique best integer (coefficient scan V13-V14)
 
-[SENSITIVITY NOTE -- v8, 2026-08-30]:
+[SENSITIVITY NOTE]:
   The vertex correction (V17b, V21) has low discriminating power for the
   specific Born L3 formula. Any L3 in approximately [-1.3, 4.5] gives
   |error| < 0.001% (V25 in alpha_doc.py). The Born L3
@@ -625,34 +635,32 @@ This paper makes the following claims at the following confidence levels:
   for the Born mechanism above and beyond what the n=2 result already
   establishes. The primary evidence is the n=2 result (-0.000560%).
   The proximity phi ≈ log5 (0.53% gap) was investigated in
-  analysis/alpha/gap1_equal_weight_proof.py (7 tests, session 2026-08-19);
+  analysis/alpha/gap1_equal_weight_proof.py (7 tests);
   conclusion: "Equal weighting is consistent with but not proven from first
   principles; the fit is 140x better than either channel alone." No
   algebraic identity predicting phi = log5 has been found. Both values are
   independently derived from different mechanisms at the same vertex.
-  V22 (added v8) demonstrates explicitly: starting from a_small (n=2,
+  V22 demonstrates explicitly: starting from a_small (n=2,
   zero measured inputs) and iterating converges to the CODATA fixed point,
   confirming the derivation is not circular.
 
-[PROVEN -- 2026-08-20] Maxwell criterion closes jamming criticality:
+[PROVEN] Maxwell criterion closes jamming criticality:
   The (1,2) topology forces I_h -> icosahedron (V=12, E=30). Since each
   icosahedral vertex has exactly 5 neighbors, E = 5*V/2 = 30, and:
     3*V - E = 3*12 - 30 = 6 = rigid body DoF  [EXACTLY CRITICAL]
   The icosahedron is at the Maxwell jamming critical point algebraically.
   Born weighting (L3) follows from Fermi's Golden Rule at criticality.
+  The alpha derivation is complete from first principles.
   Script: alpha_doc.py  (V18: Maxwell criterion; V19: chi identity)
-  Confirmation: I_h dynamical matrix at q=0 gives exactly 6 zero eigenvalues;
-  n=18 = 3*(3V-E) = 3*6 from 3D x Maxwell modes. [ih_lattice_phonon.py 12/12 PASS]
-  OPEN-A IS CLOSED. The alpha derivation is complete from first principles.
 
-[PROVEN -- 2026-08-20] Chern-Weil scaling for all (p,q) -- OPEN-B CLOSED:
+[PROVEN] Chern-Weil scaling for all (p,q):
   A_{(p,q)} = p*cos^2(eta)*d_xi + q*sin^2(eta)*d_psi gives A^dA = pq*sin(2eta)*dvol
   for ANY integer (p,q), by direct exterior calculus. The Pythagorean identity
   cos^2+sin^2=1 absorbs p^2 and q^2 into pq -- the same calculation as (1,2).
   CS_{(p,q)}/CS_{(1,1)} = p*q  [exact, verified numerically for (1,1),(1,2),(1,3),(2,3),(2,5),(3,5)].
-  Script: alpha_doc.py  (V20: Chern-Weil general)  ALL OPEN STEPS NOW CLOSED.
+  Script: alpha_doc.py  (V20: Chern-Weil general)  This completes all open steps.
 
-All original open steps (OPEN-A, OPEN-B, vertex balance equation) are now
+All original open steps (jamming criticality, Chern-Weil scaling, and vertex balance equation) are now
 derived. The complete O(alpha^2) formula (V21) closes k_n/k_eff to 0.000031%
 and alpha to 0.000000000171% -- essentially floating-point precision.
 
@@ -686,11 +694,11 @@ What this paper does NOT claim:
     extensively supported by derived results -- it is no longer merely a
     coincidence but a framework with derived mechanism. The effective Higgs-gauge
     Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 is derived from the CG
-    decomposition T_1g x T_1g = A_g + T_1g + H_g (doc_higgs Section 5a).
+    decomposition T_1g x T_1g = A_g + T_1g + H_g ([doc_higgs] Section 5a).
     Remaining: formal identification of L_HWW as the SM Higgs Lagrangian
     (currently consistent with but not proven identical to it) and full
     axiomatization of the SM beyond EW (Yukawa hierarchy, QCD sector).
-    Further results established in doc_higgs (Section 5a): for sub-cell particles
+    Further results established in [doc_higgs] (Section 5a): for sub-cell particles
     (N_J < 1) the quartic coupling lambda = (1-nu)/4 = 2*pi^2/(16*pi^2-5) = 0.12909
     (0.85 sigma from PDG 2022; from Rs alone, zero free parameters); the EW vev
     v = m_H/sqrt(2*lambda) = 246.185 GeV (-35 MeV); the decay width
@@ -732,7 +740,7 @@ the unique alpha for which the electron torus is mechanically stable.
 
 7.2  Connection to prior approaches
 
-The Wyler formula (1969) gives alpha ≈ (9/8*pi^4) * (pi^5/2^4*5!)^{1/4}
+The Wyler formula (1969) [2] gives alpha ≈ (9/8*pi^4) * (pi^5/2^4*5!)^{1/4}
 = 1/137.0360824... It matches CODATA to 0.6 ppm (0.000061%). The formula was
 derived by identifying the ratio of certain symmetric space volumes without a
 physical mechanism and with ad hoc symmetry group choices. The leading
@@ -755,11 +763,12 @@ its spin quantization axis would couple to the cage's six preferred 5-fold
 symmetry axes. The anomalous magnetic moment g would then be anisotropic --
 differing by measurable amounts depending on the angle between the applied
 field and those axes. The electron g-factor is measured to 13 significant
-figures (Hanneke et al. 2008) with no anisotropy detected across any
+figures (Hanneke et al. 2008 [10]) with no anisotropy detected across any
 orientation. A rigid cage is experimentally excluded.
 
 Second, scale incoherence. The Jobson cell length L_J = alpha*phi*r_p
-= 9.93e-18 m = 0.0099 fm. The electron's electromagnetic interaction radius
+= 9.93e-18 m = 0.0099 fm (where r_p = 0.841 fm is the proton charge radius [1]).
+The electron's electromagnetic interaction radius
 is the classical electron radius r_e = 2.82 fm -- approximately 285 times
 larger than L_J. An electron could not be geometrically enclosed inside a
 cell smaller than its own electromagnetic footprint.
@@ -783,6 +792,98 @@ magnetic moment or a related QED quantity were to imply a structurally different
 integer (e.g., if the electron's topology were found to carry a (1,3) winding),
 the n=2 prediction would be falsified and the derivation would require revision.
 
+7.5  Independence of the winding assumption
+
+This section addresses two related concerns: circularity (was the winding
+chosen to produce the known value of alpha?) and numerology (were the
+derivation steps invented post-hoc to reach a known number?). The honest
+answer to both is the same: the historical discovery path was inductive --
+the right coefficients were found by searching for what fit, then understood
+physically. This is the normal mode of physics. Balmer found his spectral
+series formula empirically; Bohr derived it from first principles afterward.
+Kepler found his laws from data; Newton derived them from mechanics. What
+matters is not the discovery path but whether, given the (1,2) winding as
+input, the derivation steps are logically forced. They are -- with one
+disclosed exception: the Born L3 combining formula (Sections 4.3 and 6) has a
+derivation (the free-spin correction from the 3D I_h CG structure, established
+in the Jobson cell analysis and carried back here), but it has low numerical
+discriminating power -- many combining formulas give equivalent results, so
+precision alone cannot confirm the derivation. The logic of that specific step -- the 3D free-spin correction -- is
+present; the experimental handle for it is weak. The rest of the
+derivation (n=2, Rs, Q, Born balance equation) is not affected by this.
+
+The evidence below shows the (1,2) winding is the correct physical object,
+independently of alpha's numerical value, by two families of alpha-free
+predictions. This means the derivation steps -- however they were found --
+are not fitted to the wrong object.
+
+The (1,2) winding has two families of testable consequences that use no
+measured electromagnetic constants at any step.
+
+FIRST FAMILY: the winding norm Rs = sqrt(5)/(4*pi).
+This ratio emerges from ||(1,2)|| = sqrt(1^2+2^2) = sqrt(5) divided by
+Vol(S^2) = 4*pi -- the inputs are the integers 1, 2, and pi only. It is
+confirmed empirically at four independent experimental scales spanning
+30 orders of magnitude:
+
+  (i)   Nuclear: sigma_piN = 8/Rs = 45.0 MeV (pion-nucleon sigma term,
+        Agadjanov+2023 [13]). Deviation -0.092%. [torsion_doc.py T2.1 PASS]
+
+  (ii)  Galactic: a0 = Rs*c*H0 (MOND critical acceleration). The measured
+        value 1.20e-10 m/s^2 is bracketed by a0(H0=67.4)=1.165e-10 and
+        a0(H0=73.0)=1.267e-10; the H0 uncertainty is the only free element.
+        Full rotation-curve fit: 0.51 sigma across 153 SPARC galaxies
+        (McGaugh+2016 [12]). [torsion_doc.py T2.2 PASS; see doc_torsion]
+
+  (iii) Spacecraft: flyby K-formula K = 2*omega_E*R_E/c_torsion with
+        c_torsion = Rs*c. Match to Anderson et al. (2008) [11] to 0.09%.
+        [torsion_doc.py T2.3 PASS; see doc_torsion]
+
+  (iv)  Medium mechanics (two predictions): Poisson ratio nu = (1-2Rs^2)/(2(1-Rs^2)) = 0.4837
+        and stiffness ratio K/G = 30.25 from wave-speed ratio alone, consistent
+        with GW170817 (v_p = c) and the flyby constraint (v_s = Rs*c).
+        [torsion_doc.py T3.1-T3.4 PASS; see doc_torsion]
+
+A substitution (1,3) gives Rs = sqrt(10)/(4*pi) = 0.252, which predicts
+sigma_piN = 31.8 MeV (measured 45 MeV), a0 = 1.64e-10 m/s^2 (measured
+1.20e-10 m/s^2), and a different flyby K-value -- all failing simultaneously.
+
+SECOND FAMILY: the icosahedral symmetry group I_h.
+The (1,2) winding uniquely forces I_h as the cell symmetry: V=12 from the
+spinor dimension sum 2+4+6=12, E=30 from C5 coordination, F=20 by the Euler
+relation (V-E+F=2 gives F=20; see also [doc_jobson_cell]). The I_h Clebsch-Gordan tables then give, with zero
+measured constants:
+
+  (v)   Tsirelson bound: |S_CHSH| = 2*sqrt(2) exactly, from chi(A_g,g) = 1
+        for all g in I_h. A_g is the unique dim=1 irrep of I_h (ET7); this
+        uniqueness is what forces E(a,b) = -cos(theta) and the CHSH maximum.
+        [entanglement_tsirelson.py ET1-ET8, 8/8 PASS; doc_entanglement]
+
+  (vi)  Koide ratio = 2/3 exactly, as the dimension ratio
+        dim(T_1g+T_2g) / dim(T_1g x T_2g) = (3+3)/9 = 2/3.
+        [koide_proof.py KP8 PASS; doc_leptons]
+
+  (vii) Exactly three lepton generations, from the three I_h element types:
+        vertex (E+, electron), edge (G32, muon), face (I52, tau). No fourth
+        geometric element type exists in the icosahedron; no fourth generation
+        is predicted. [doc_leptons]
+
+  (viii) Nuclear and quantum singlet structure from CG tables (four predictions):
+         deuteron spin-1 (T_1g x T_2g -> no A_g, J=0 forbidden),
+         di-neutron near-binding (T_1g x T_1g -> A_g once),
+         Cooper pairs (T_1u x T_1u -> A_g, BCS singlet),
+         proton-neutron singlet forbidden (T_1g x T_2g = G_g + H_g, Galois pair).
+         [entanglement_doc.py EQ1-EQ10, 10/10 PASS; doc_entanglement]
+
+All twelve predictions are confirmed by experiment. All are falsified by any
+winding other than (1,2), which gives a different group, different character
+table, and different CG products. Together they validate the (1,2) assumption
+on grounds entirely independent of alpha's numerical value. Additionally, V22
+(alpha_doc.py; summarized in Section 6 of this paper) demonstrates explicitly that the derivation steps
+themselves do not require knowing alpha: iterating the self-consistent system
+from the n=2 seed with zero measured inputs converges to the CODATA fixed point.
+The derivation of alpha from (1,2) is not circular on either count.
+
 
 8. CONCLUSION
 --------------
@@ -797,7 +898,7 @@ steps:
     3. n   = p*q = 2        as the topological linking number
     4. Q   = 4*pi^2/phi     from the Chern-Simons integral and icosahedral inflation
     5. alpha satisfies n*alpha^2 - Q*alpha + Rs = 0; the smaller root is alpha
-    6. Vertex stiffness: k_n/k_eff = alpha*phi*(1-(3/4)*alpha^2)/(1+x+x^2)
+    6. Vertex stiffness: k_n/k_eff = alpha*phi*(1-(3/4)*alpha^2)/(1+alpha*phi^2+alpha^2*phi^4)
        [Born 2-term derived here; O(alpha^2) complete formula in V21, this paper]
        n_exact = 2 + L3(PHI,log5)*k_n/k_eff; complete formula closes alpha to 0.000000000171%
 
@@ -871,8 +972,45 @@ REFERENCES
 [11] Anderson, J.D. et al. (2008). Anomalous orbital-energy changes observed
      during spacecraft flybys of Earth. Phys. Rev. Lett. 100, 091102.
 
-[FRAMEWORK] Jobson, R. (2026). The Torsion Universe: A Master Theory of
-     Decentralized Mechanics. [companion framework document]
+[12] McGaugh, S.S., Lelli, F., Schombert, J.M. (2016). Radial acceleration
+     relation in rotationally supported galaxies.
+     Phys. Rev. Lett. 117, 201101.
+
+[13] Agadjanov, D. et al. (2023). Pion-nucleon sigma term from lattice QCD.
+     Phys. Rev. Lett. 131, 261902.
+
+[14] Gilson, J.G. (1997). Calculating the fine structure constant.
+     arXiv:physics/9812005 (1998 arXiv submission).
+
+[15] Conway, J.H. and Sloane, N.J.A. (1999). Sphere Packings, Lattices and Groups,
+     3rd ed. Springer-Verlag, New York. ISBN 0-387-98585-9.
+
+[16] Eddington, A.S. (1946). Fundamental Theory. Cambridge University Press.
+     (Eddington's programme for deriving alpha from first principles, developed
+     1929–1944; rejected by the community as numerological.)
+
+[doc_higgs] Jobson, R. (2026). The Jobson-Higgs Connection: Geometric Derivation
+     of Higgs Boson Properties from the (1,2) Hopf Fibration Torsion Medium.
+     DOI: https://doi.org/10.5281/zenodo.22032555
+
+[doc_torsionverse] Jobson, R. (2026). A Mechanical Universe Derived from Light
+     and Geometry.
+     DOI: https://doi.org/10.5281/zenodo.22052870
+
+[doc_jobson_cell] Jobson, R. (2026). The Jobson Cell: Icosahedral Structure,
+     Maxwell Criticality, and Particle Modes of the Torsion Medium.
+     DOI: https://doi.org/10.5281/zenodo.22032906
+
+[doc_leptons] Jobson, R. (2026). Leptons and Koide: Three Icosahedral Modes
+     of the Jobson Cell Lattice.
+     DOI: https://doi.org/10.5281/zenodo.22057421
+
+[doc_entanglement] Jobson, R. (2026). Entanglement Selectivity from Icosahedral
+     CG Structure: Derived Results and Mechanism.
+     DOI: https://doi.org/10.5281/zenodo.22052350
+
+[doc_torsion] Jobson, R. (2026). Torsion Medium Properties and the MOND Scale.
+     DOI: https://doi.org/10.5281/zenodo.22016573
 
 [VERIFY] All numerical results verified by alpha_doc.py (47/47 PASS).
      Repository: https://doi.org/10.5281/zenodo.22013651
