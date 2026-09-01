@@ -4,8 +4,8 @@ THE JOBSON-HIGGS CONNECTION: GEOMETRIC DERIVATION OF HIGGS BOSON PROPERTIES
 FROM THE (1,2) HOPF FIBRATION TORSION MEDIUM
 
 Author: Robert Jobson
-Date:   2026-08-20
-Status: READY FOR SUBMISSION
+Date:   2026-09-01
+Status: PREPRINT
 =============================================================================
 
 ABSTRACT
@@ -18,27 +18,29 @@ require no Standard Model free parameters and use only the medium saturation
 ratio Rs = sqrt(5)/(4*pi), the fine structure constant alpha, and the proton
 charge radius r_p as inputs. These three constants are themselves derivable from
 the (1,2) winding geometry (see companion paper
-[DOC ALPHA, https://doi.org/10.5281/zenodo.22013651]). The four primary Higgs properties are:
+[doc_alpha]). The four primary Higgs properties are:
 
   m_H = E_cell * (1 + alpha/pi) = 125.089 GeV
-        (-0.001% vs PDG combined 125.09 GeV; -1.01 sigma vs PDG 2022 125.20 GeV)
+        (-0.001% vs PDG combined 125.09 GeV; -0.95 sigma vs PDG 2022 125.25 +/- 0.17 GeV)
 
   lambda = (1-nu)/4 = 2*pi^2/(16*pi^2-5) = 0.12909
-           (0.84 sigma from SM value 0.12928; within PDG measurement precision)
+           (0.83 sigma from SM value 0.12938; within PDG 2022 measurement precision)
 
   v = m_H / sqrt(2*lambda) = 246.185 GeV
       (-35 MeV = -0.014% from Fermi constant measurement v_EW = 246.220 GeV)
 
   Gamma_H = alpha^2 * m_H / phi = alpha * Rs * m_H / (4*pi^2) = 4.117 MeV
             (0.28 sigma from PDG 4.07 +/- 0.17 MeV)
-            [4.117 uses derived m_H = 125.089 GeV; 4.120 if evaluated at PDG 125.20 GeV]
+            [4.117 uses derived m_H = 125.089 GeV; 4.120 if evaluated at PDG 125.25 GeV]
 
 All four results follow from the single physical input (p,q) = (1,2) and the
-two directly measured wave speeds v_p = c and v_s = Rs*c of the torsion medium.
+two directly measured wave speeds v_p = c and v_s = Rs*c of the torsion medium
+(alpha and r_p are used for numerical evaluation; both are derivable from
+(1,2) topology -- see [doc_alpha] and [doc_nucleus]).
 No free parameters are introduced. Companion Python scripts reproduce every
 numerical result.
 
-NEW GROUND: no prior approach to the Higgs hierarchy problem derives the
+No prior approach to the Higgs hierarchy problem derives the
 Higgs mass, quartic self-coupling, vacuum expectation value, and decay width
 simultaneously from a single topological input with zero Standard Model free
 parameters. Existing beyond-SM proposals (supersymmetry, technicolor,
@@ -56,7 +58,7 @@ eight primary claims.
 1. INTRODUCTION
 ---------------
 
-The Higgs boson mass m_H = 125.09-125.20 GeV (PDG) is a free parameter in the
+The Higgs boson mass m_H = 125.09-125.25 GeV (PDG) is a free parameter in the
 Standard Model. The SM provides no explanation for why m_H takes this value
 rather than any other. This is the hierarchy problem: without fine-tuning, quantum
 corrections would drive m_H to the Planck scale. Similarly, the quartic self-
@@ -68,16 +70,18 @@ scale: the characteristic energy E_cell of the Jobson cell of the
 torsion medium associated with the (1,2) Hopf fibration. This cell energy is
 derived in Section 2. The Higgs boson mass formula is presented in Section 3.
 The quartic coupling, vev, and width derivations follow in Sections 4-6.
-Section 7 discusses the self-consistency of the framework. Section 8 gives the
-honest assessment of what is and is not claimed. Section 5a presents conditional
-results from the Clebsch-Gordan structure of T_1g x T_1g (inverted hypothesis).
+Section 5a (between Sections 5 and 6) presents conditional results from the
+Clebsch-Gordan structure of T_1g x T_1g (inverted hypothesis). Section 7
+discusses the self-consistency of the framework. Section 8 gives the
+honest assessment of what is and is not claimed.
 
 The one physical assumption of this paper is that the electron's topology is a
 (1,2)-wound torus in the Hopf fibration of S^3 -- the same assumption as in
-the alpha derivation [DOC ALPHA, https://doi.org/10.5281/zenodo.22013651]. The torsion medium is the elastic medium
+the alpha derivation [doc_alpha]. The torsion medium is an icosahedral cell
+lattice (Jobson cell lattice)
 filling the vacuum whose properties are derived from this topology; its wave speeds
 (v_p = c, v_s = Rs*c), Poisson ratio (nu = 0.484), and cell geometry (L_J = 9.93e-3 fm)
-are established in [DOC TORSION, https://doi.org/10.5281/zenodo.22016573]. All results here are consequences of that
+are established in [doc_torsion]. All results here are consequences of that
 single topological input plus two directly measured wave speeds.
 
 
@@ -93,22 +97,22 @@ constants alpha and phi and the measured proton charge radius r_p:
 
 Physical: L_J is the minimum arc segment of the (1,2) torus knot path at the
 proton scale. The closure condition requires N_lock = 2*pi/(alpha*phi) = 532.1
-such segments per toroidal loop [as derived in DOC ALPHA, https://doi.org/10.5281/zenodo.22013651, Section 5].
+such segments per toroidal loop [as derived in [doc_alpha], Section 5].
 
 The characteristic energy of this Jobson cell:
 
   E_cell = 2*pi * hbar*c / L_J = N_lock * hbar*c / r_p = 124.799 GeV
 
-This is the energy of the zone-boundary A_g phonon of the cell spring lattice
-(wavelength = L_J, K-channel bulk compression). It uses only CODATA-2018
+This is the energy of the zone-boundary A_g phonon of the Maxwell-critical
+icosahedral cell network (wavelength = L_J, K-channel bulk compression). It uses only CODATA-2018
 constants. No fitting.
 
-PHYSICAL MODEL (2026-08-23): The torsion medium is a spring lattice of
-icosahedral cells. Phonons propagate THROUGH the spring lattice; cells are
+PHYSICAL MODEL: The torsion medium is a Maxwell-critical icosahedral cell
+lattice (Jobson cells). Phonons propagate THROUGH the lattice; cells are
 NOT independent oscillators. E_cell = 2*pi*hbar*c/L_J is the quantum of the
 zone-boundary A_g (isotropic bulk) phonon -- the Higgs field.
   HIGGS = A_g isotropic cone (all 20 face corkscrews in phase): same I52
-    geometry as the tau lepton, at the phonon energy scale [F-14].
+    geometry as the tau lepton, at the phonon energy scale.
   W/Z = T_1g directed cones (compression along one axis, 3 orthogonal
     directions). Before SSB: massless. After SSB: directed cone must propagate
     through locked isotropic medium -> acquires mass m_W = g*v/2.
@@ -120,22 +124,25 @@ zone-boundary A_g (isotropic bulk) phonon -- the Higgs field.
 3. THE HIGGS BOSON MASS
 -----------------------
 
-The Higgs boson is spin-0 (scalar). A scalar particle couples to the
-electromagnetic field via charge^2 (two EM vertices). The leading one-loop
-QED mass correction is delta_m/m = alpha/pi [standard result, see Section 3a
-for the topological derivation]. The Higgs being spin-0 is confirmed by LHC.
+The Higgs boson is spin-0 (scalar). In the torsionverse the A_g mode of the
+cell lattice couples to the Born vertex (coupling constant alpha), the same
+fundamental coupling as electromagnetism -- not from electric charge, but from
+the (1,2) winding's vertex interaction. The leading one-loop correction from
+this coupling is delta_m/m = alpha/pi [torsionverse Born vertex; same algebraic
+form as the charged-fermion QED result; Section 3a derives this from topology]. The Higgs being spin-0 is confirmed by LHC.
 The Jobson-Higgs conjecture:
 
   m_H = E_cell * (1 + alpha/pi) = 124.799 * 1.002322 = 125.089 GeV
 
 Comparison with measurement:
   vs PDG combined (older, 125.09 GeV): -1.18 MeV = -0.001%
-  vs PDG 2022 (125.20 +/- 0.11 GeV):  -111 MeV  = -1.01 sigma
+  vs PDG 2022 (125.25 +/- 0.17 GeV):  -161 MeV  = -0.95 sigma
 
 The formula connects three independently measured constants:
   m_H (electroweak), r_p (QCD/nuclear), alpha (EM/topology)
 
-Remark on phi: the structural coupling f1=PHI in the alpha derivation equals
+Remark on phi: the structural coupling f1=PHI in the alpha derivation (f1 is
+the icosahedral load-path stiffness ratio; see [doc_alpha] Section 4) equals
 chi(E_1/2, C_5) = phi, the C_5 character of the electron's spin-1/2 representation
 under the binary icosahedral group 2I [algebraically exact; see higgs_doc.py, V19a-c].
 This provides a representation-theoretic origin for phi's appearance -- phi arises
@@ -165,18 +172,25 @@ The (p,q) torus knot traces the path (t, q*t) on the torus for t in [0, 2*pi].
 Under a pi-rotation of the major axis: this path maps to (t+pi, q*t).
 This maps back to the original path if and only if q is even (n = p*q even).
 
-THEOREM: The (p,q) torus knot has pi-rotation symmetry iff n = p*q is even.
+THEOREM: The (p,q) torus knot has pi-rotation symmetry iff q is even.
 Proof: the path (t, q*t) maps to (t+pi, q*t). Setting s = t+pi: this requires
 q*pi = 0 (mod 2*pi), i.e., q must be even. [Exact.]
 
 Physical consequence:
-  n even -> pi-rotation symmetry -> scalar field (spin-0) -> QED correction alpha/pi
-  n odd  -> no pi-rotation sym.  -> vector field (spin-1) -> QED correction 2*alpha/pi
+  n even -> pi-rotation symmetry -> A_g scalar mode (spin-0) [doc_jobson_cell: I_h
+  irrep table; the A_g irrep is the unique totally-symmetric mode invariant under all
+  I_h operations including pi-rotation; spin-2 is H_g, a different irrep whose dimension
+  matches J=2 but lacks the pi-rotation constraint that forces A_g] -> QED correction alpha/pi
+  n odd  -> no pi-rotation sym.  -> T_1g vector mode (spin-1) -> QED correction 2*alpha/pi
 
 For the (1,2) Hopf winding: n = 1*2 = 2 (even) -> the Higgs is scalar. [Exact.]
-  => The alpha/pi correction is DERIVED from topology, not merely cited from QED.
+  => The mode type (scalar vs. vector) is DERIVED from topology.
+     Topology selects which QED formula applies: A_g scalar modes use
+     delta_m/m = alpha/pi; T_1g vector modes use 2*alpha/pi. The 1/pi
+     prefactor comes from the standard QED one-loop result; topology
+     determines which version to apply.
 
-Extension (directional, not yet fully derived):
+Extension (directional; E_cell(1,3) derivation deferred):
   (1,3) winding: n = 3 (odd) -> vector (spin-1) -> correction 2*alpha/pi
   The (1,3) topology predicts a vector boson at E_cell(1,3) * (1 + 2*alpha/pi).
   E_cell(1,3) requires separate derivation (different phi from (1+sqrt(10))/2);
@@ -191,7 +205,7 @@ Script: higgs_doc.py  (Sec 3a: linking number, spin-0)
 -----------------------------
 
 Two coupling regimes exist in the torsion medium, determined by the ratio
-N_J = R_Compton / L_J:
+N_J = lambda_Compton / L_J:
 
   BULK (N_J >> 1): particle wavelength >> L_J; resolves vertex structure.
     Coupling via vertex stiffness. Mechanism: same as alpha derivation.
@@ -200,18 +214,18 @@ N_J = R_Compton / L_J:
     Coupling via bulk medium Poisson ratio nu.
 
 The Higgs boson, with m_H = E_cell, has:
-  N_J_H = hbar_c / (m_H * L_J) = 1/(2*pi) = 0.15915
-  Actual N_J_H = 0.1589  (within alpha/pi level of 1/(2*pi))
+  N_J_H = hbar_c / (m_H * L_J) \u2248 1/(2*pi) = 0.15915  (at m_H = E_cell exactly)
+  Actual N_J_H = 0.1589  (0.16% from 1/(2*pi), at alpha/pi level)
 
 The Higgs is therefore sub-cell with respect to the Jobson cell (N_J_H < 1). It couples via the bulk
 medium Poisson ratio nu.
 
 The medium wave speeds are measured directly:
   v_p = c     [GW170817: gravitational wave arrival, direct observation]
-  v_s = Rs*c  [flyby K-formula: Earth flyby anomaly, direct observation]
+  v_s = Rs*c  [flyby K-formula: Earth flyby anomaly, direct observation; [doc_torsion] Section 3]
 
 For any isotropic medium, the Poisson ratio follows from the wave speed ratio:
-  nu = (1 - 2*Rs^2) / (2*(1 - Rs^2)) = 0.48372   [standard continuum mechanics]
+  nu = (1 - 2*Rs^2) / (2*(1 - Rs^2)) = 0.48365   [standard continuum mechanics]
 
 The algebraic identity (exact):
   1 - nu = 1 / (2*(1 - Rs^2))
@@ -223,18 +237,20 @@ self-coupling is:
 
 The factor of 4 is the number of real scalar components in the SU(2) Higgs
 doublet (one complex doublet = 4 real scalars). The medium coupling per
-scalar component is (1-nu); for the full doublet the quartic coupling is
-(1-nu)/4. This connects the SU(2) structure of the Higgs to the medium's
-compressibility via nu.
+scalar component is (1-nu) -- in continuum mechanics a unit bulk compression
+generates (1-nu) net longitudinal strain energy (standard result from the
+stiffness tensor for an isotropic elastic medium; see [doc_jobson_cell]
+for the derivation of nu from the Maxwell-critical wave speeds). For the
+full doublet the quartic coupling is (1-nu)/4.
 
 The derivation uses only Rs (from the (1,2) winding vector: Rs = sqrt(5)/(4*pi))
 and standard wave mechanics. No density, no cosmological model, no rho_Lambda.
 
 Comparison with SM:
-  lambda_SM = m_H^2 / (2*v_EW^2) = 125.20^2 / (2*246.22^2) = 0.12928
-  Gap = 0.149%
-  sigma(lambda_SM) from m_H alone: 2*delta_m_H/m_H = 0.176% > 0.149%
-  The gap is 0.84 sigma -- within PDG measurement precision.
+  lambda_SM = m_H^2 / (2*v_EW^2) = 125.25^2 / (2*246.22^2) = 0.12938
+  Gap = 0.226%
+  sigma(lambda_SM) from m_H alone: 2*delta_m_H/m_H = 2*0.17/125.25 = 0.272% > 0.226%
+  The gap is 0.83 sigma -- within PDG 2022 measurement precision.
 
 Script: higgs_doc.py  (Sec 4: N_J analysis, lambda)
 
@@ -253,7 +269,7 @@ Comparison:
   v_EW = 246.220 GeV  [from Fermi constant G_F, muon decay lifetime -- no GR needed]
   Gap  = -35 MeV = -0.014%
 
-The full chain from Rs alone, zero free parameters:
+The full chain from Rs (with m_H from Section 3), zero free parameters:
   Rs --> nu = (1-2*Rs^2)/(2*(1-Rs^2)) --> lambda = (1-nu)/4 --> v = m_H/sqrt(2*lambda)
 
 Script: higgs_doc.py  (Sec 5: vev)
@@ -291,8 +307,9 @@ The unique Higgs-gauge coupling from the A_g component of T_1g x T_1g:
   (T_1g squared norm, a=1,2,3 vector components), alpha^2 = two EM vertices
   (alpha is the framework's only derived coupling), and phi^2 = chi(T_1g,C_5)^2.
 
-  phi^2 = 1 + 2*cos(2*pi/5) = 1 + 2*cos(72 deg) is NOT the icosahedral edge
-  length; it is the C_5 rotation character of T_1g, squared for two propagators.
+  phi = 1 + 2*cos(2*pi/5) = chi(T_1g, C_5) = 1.6180... (the C_5 character of T_1g;
+  phi^2 = phi + 1 = 2.6180... by the Fibonacci identity) is NOT the icosahedral
+  edge length; it appears here as the T_1g character squared for two propagators.
 
 5a.3  Mass correction and extended vev prediction
 
@@ -320,18 +337,19 @@ The unique Higgs-gauge coupling from the A_g component of T_1g x T_1g:
     A_g x A_g   = A_g                -> H->gammagamma: ALLOWED, CG=1 (loop)
     T_1g x T_2g = G_g + H_g          -> H->T_1g+T_2g: FORBIDDEN (no A_g)
 
-  The W/Z SPLIT within T_1g (Gamma(WW)/Gamma(ZZ) ~ 8): ESSENTIALLY CLOSED
-  by GAP C. cos(theta_W) = sqrt(phi/sqrt5)*(1+5*alpha) derived from
-  chi(T_1g,C_5)/||(1,2)||. The leading ratio 2*cos^2(theta_W) = 1.554 vs PDG
-  8.09 ratio: remaining gap is off-shell phase space (3-body integral), not
-  a coupling derivation gap.
+  The W/Z SPLIT within T_1g (Gamma(WW)/Gamma(ZZ) ~ 8): ESSENTIALLY CLOSED (82%)
+  Leading coupling ratio: 2*cos^2(theta_W) = 1.5538 (19.2% of PDG 8.0947).
+  Dalitz phase-space integration (higgs_h2_dalitz.py): predicted 6.67 vs PDG 8.09
+  = 82.4% of PDG value. Remaining 18% gap: fermion multiplicity and Z* coupling
+  structure (g_Z vs g_W) -- identified, not yet computed.
+  [higgs_h2_dalitz.py STATUS: "RATIO ESSENTIALLY DERIVED (82%)"]
   Script: higgs_doc.py  (Sec 5a: CG decomp, Lagrangian, H2 structure)
 
 
 6. THE HIGGS DECAY WIDTH
 ------------------------
 
-The alpha self-consistency equation (from the alpha derivation [DOC ALPHA, https://doi.org/10.5281/zenodo.22013651])
+The alpha self-consistency equation (from the alpha derivation [doc_alpha])
 gives, to leading order:
 
   Q * alpha = Rs   where Q = 4*pi^2/phi = CS/(phi) [Chern-Simons coupling, proven]
@@ -377,7 +395,8 @@ Script: higgs_doc.py  (Sec 6: Gamma_H)
      regime, justifying the Poisson coupling for lambda. Self-consistent.
 
 7.3  The b quark boundary
-     The b quark has N_J = 4.75 -- the heaviest fermion below E_cell.
+     The b quark has N_J = 4.75 -- the heaviest fermion below E_cell (at m_b = 4.18 GeV;
+     no Standard Model fermion sits between m_b and E_cell = 124.8 GeV).
      H→bb dominates at BR = 58.1%. The torsion medium independently identifies
      the b quark as the boundary particle: both theories (SM Yukawa and torsion
      medium) single out the same mass scale as special.
@@ -392,7 +411,7 @@ CLAIMS:
      n = 2, which implies pi-rotation symmetry, which implies a scalar field.
      The alpha/pi QED correction therefore follows from topology, not convention.
      [Linking number theorem: exact. Physical implication: demonstrated.]
-  3. lambda = (1-nu)/4 = 0.12909  (0.84 sigma; within PDG measurement precision).
+  3. lambda = (1-nu)/4 = 0.12909  (0.83 sigma; within PDG 2022 measurement precision).
   4. v = m_H / sqrt(2*lambda) = 246.185 GeV  (-35 MeV = -0.014%).
   5. Gamma_H = alpha^2 * m_H / phi = 4.117 MeV  (0.28 sigma).
   6. The hierarchy problem is dissolved: m_H = 2*pi*hbar*c*(1+alpha/pi)/(alpha*phi*r_p)
@@ -419,7 +438,9 @@ CLAIMS:
      sin^2(theta_W)* = sin^2(theta_W) + n*alpha^2*phi^2
      where n=2 = linking number of (1,2) Hopf winding, gauge correction.
      sin^2(theta_W)* = 0.22290456  vs PDG 0.22290000 (residual 4.6e-6, essentially exact).
-     m_Z = m_W/cos(theta_W)* = 91.179 GeV (gap -8.6 MeV from m_W prediction only).
+     m_Z = m_W_PDG/cos(theta_W)* = 91.1822 GeV (PDG 91.1876, gap -5.4 MeV).
+     Using torsionverse-predicted m_W ~ 80.4 GeV (Section 5a): m_Z = 91.179 GeV
+     (gap -8.6 MeV from m_W prediction propagated via Weinberg angle).
      Script: higgs_doc.py  (C11: Weinberg angle 1-loop + 2-loop)
 
  12. Fermion mass ratio (essentially derived):
@@ -432,7 +453,7 @@ CLAIMS:
      verified in doc_leptons.txt / leptons_doc.py (18/18 PASS).
      Script: higgs_doc.py  (C12: fermion ratio + Koide)
 
-RESOLVED (2026-08-20) -- all formally closed:
+RESOLVED -- all formally closed:
   (A) T_1g=gauge: E_1/2 x E_1/2 = A_g + T_1g in 2I (SU(2) analog) => A_g subset
       of E_1/2 x T_1g x E_1/2 (reciprocity) => coupling psi^dag(T_1g)psi invariant.
       Script: higgs_doc.py  (C9: GAP A coupling invariance)
@@ -440,15 +461,19 @@ RESOLVED (2026-08-20) -- all formally closed:
       and b=lambda=(1-nu)/4 [DERIVED] IS the Mexican hat potential. FULLY CLOSED.
       Script: higgs_doc.py  (C10: GAP B Mexican hat, jamming)
   (C) Weinberg angle: cos(theta_W)=sqrt(phi/sqrt5)*(1+5*alpha) from chi/||v||.
-      Two-loop: sin^2(theta_W)* = sin^2(theta_W) + n*alpha^2*phi^2 (n=2) = PDG (4.6e-6).
+      One-loop: sin^2(theta_W) = 1 - [sqrt(phi/sqrt5)*(1+5*alpha)]^2 = 0.22262
+      (torsionverse prediction, used as RHS input below).
+      Two-loop: sin^2(theta_W)* = sin^2(theta_W) + n*alpha^2*phi^2 (n=2) = 0.22290
+      vs PDG 0.22290 (on-shell scheme; residual 4.6e-6).
       Script: higgs_doc.py  (C11: GAP C Weinberg angle)
 
 DOES NOT CLAIM:
   - That this is a rigorous mathematical theorem. Two formal steps remain:
     (i) The Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 and Weinberg angle
     derivation are physics-level (motivated by group theory), not axiomatic.
-    (ii) The 0.038% residual in k_n/k_eff and m_W 1.6 sigma are non-zero.
-    These drive the -8.6 MeV m_Z gap as the only remaining systematic residual.
+    (ii) The 0.038% residual in k_n/k_eff and m_W 1.6 sigma gap (predicted
+    m_W = g*v/2 ~ 80.4 GeV from conditional Section 5a; gap -8.6 MeV
+    from m_W prediction propagated to m_Z; using PDG m_W gives -5.4 MeV gap) are non-zero.
   - That the Higgs FIELD IS the torsion medium field. The identification
     is interpretive, not derived.
   - That absolute H2 partial widths are fully derived. g_HWW = 2*m_W^2/v is derived;
@@ -465,18 +490,18 @@ DOES NOT CLAIM:
 
   Property     Formula                              Predicted        Measured         sigma
   ---------    -------                              ---------        --------         -----
-  m_H [GeV]    E_cell*(1+alpha/pi)                  125.089          125.09 / 125.20  -0.001% / -1.01s
-  lambda        (1-nu)/4 = 2*pi^2/(16*pi^2-5)       0.12909          0.12928          0.84s
+  m_H [GeV]    E_cell*(1+alpha/pi)                  125.089          125.09 / 125.25  -0.001% / -0.95s
+  lambda        (1-nu)/4 = 2*pi^2/(16*pi^2-5)       0.12909          0.12938          0.83s
   v [GeV]       m_H/sqrt(2*lambda)                  246.185          246.220          -0.014%
   Gamma_H [MeV] alpha^2*m_H/phi                     4.117            4.07 +/- 0.17    0.28s
 
   Conditional (Section 5a, inverted hypothesis):
-  m_H* [GeV]   E_cell*(1+a/pi+a^2*phi^2)            125.106          125.20           0.86s
+  m_H* [GeV]   E_cell*(1+alpha/pi+alpha^2*phi^2)      125.106          125.25           0.85s
   v* [GeV]     m_H*/sqrt(2*lambda)                  246.219          246.220          -0.0001%
 
   Inputs: Rs = sqrt(5)/(4*pi)  [from (1,2) Hopf winding]
-          alpha = 7.2974e-3     [CODATA-2018, direct measurement]
-          r_p = 0.8414 fm       [CODATA-2018, direct measurement]
+          alpha = 7.2974e-3     [CODATA-2018; derivable from topology in doc_alpha]
+          r_p = 0.8414 fm       [CODATA-2018; derivable from Maxwell jamming in doc_nucleus]
           v_p = c               [GW170817, direct observation]
           v_s = Rs*c            [flyby K-formula, direct observation]
 
@@ -485,7 +510,7 @@ DOES NOT CLAIM:
 ---------------------
 
   analysis/demos/higgs_doc.py  -- 12/12 PASS  [STANDALONE -- no external deps]
-  Repository: https://doi.org/10.5281/zenodo.22032555
+  This paper's Zenodo record: https://doi.org/10.5281/zenodo.22032555
 
 
 ACKNOWLEDGMENT
@@ -518,6 +543,17 @@ REFERENCES
   [PDG]         Particle Data Group (2022). Prog. Theor. Exp. Phys. 2022, 083C01.
 
   [GW170817]    Abbott et al. (2017). Phys. Rev. Lett. 119, 161101.
+
+  [doc_jobson_cell] Jobson, R. (2026). "The Jobson Cell: Icosahedral Structure,
+                    Maxwell Criticality, and Particle Modes of the Torsion Medium."
+                    DOI: https://doi.org/10.5281/zenodo.22032906
+
+  [doc_nucleus]     Jobson, R. (2026). "The Proton as Spinning Icosahedral Engine."
+                    DOI: https://doi.org/10.5281/zenodo.22042337
+
+  [doc_leptons]  Jobson, R. (2026). "Leptons and Koide: Three Icosahedral Modes
+                 of the Jobson Cell Lattice."
+                 DOI: https://doi.org/10.5281/zenodo.22057421
 
 
 Repository: https://doi.org/10.5281/zenodo.22105622

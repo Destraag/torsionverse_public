@@ -4,11 +4,11 @@ ENTANGLEMENT SELECTIVITY FROM ICOSAHEDRAL CG STRUCTURE:
 DERIVED RESULTS AND MECHANISM
 
 Author: Robert Jobson
-Date:   2026-08-21; revised 2026-08-23
-Status: DERIVED -- All sections closed (zero free parameters).
+Date:   2026-09-01
+Status: PREPRINT
         Sections 2-4 covered by entanglement_doc.py (35/35 PASS).
         Section 4: G32 alignment chain derived; t closed (two routes):
-          entanglement t_hop = m_mu/sqrt(3) = 61.0 MeV; Delta = 44.7 MeV [EH1-EH6];
+          entanglement t = m_mu/sqrt(3) = 61.0 MeV; Delta = 44.7 MeV [EH1-EH6];
           medium phonon t_cell = E_cell/(2pi) = 19862 MeV [EH7-EH9].
           Bell violation: CHSH S = -2*sqrt(2) from A_g geometry [ET1-ET8].
         All physics derivations are closed (zero free parameters).
@@ -35,10 +35,12 @@ the activation threshold determines whether it actually occurs.
 These are the same CG tables that predict the deuteron spin-1 ground state
 (T_1g x T_2g has no A_g), di-neutron near-binding (T_1g x T_1g has A_g), and
 Cooper pairs (T_1u x T_1u has A_g). All are zero-free-parameter retrodicts.
-The Tsirelson bound |S| = 2*sqrt(2) follows from chi(A_g)=1 for all group elements.
+The Tsirelson bound |S| = 2*sqrt(2) follows from chi(A_g)=1 for all group elements;
+the geometry selects the negative extremum S = -2*sqrt(2) (anticorrelated singlet),
+so |S| = 2*sqrt(2) throughout this paper.
 This paper additionally obtains the exact quantum-mechanical Bell/CHSH maximum
 from a finite discrete symmetry group's character table -- not from the standard
-Hilbert-space operator-norm argument (Cirel'son [1]). No prior derivation of this
+Hilbert-space operator-norm argument [Cirelson1980]. No prior derivation of this
 bound comes from a lattice symmetry group acting on a physical medium. Furthermore,
 standard QM postulates that any two particles CAN be entangled but gives no
 mechanistic criterion for WHY certain pairs become entangled while others cannot.
@@ -48,12 +50,12 @@ geometric threshold. Entanglement selectivity is for the first time derivable fr
 a symmetry table rather than postulated. All derivable claims are closed (zero free
 parameters); the Zenodo v1 non-locality claim is superseded.
 
-Companion scripts: see Section 7. entanglement_doc.py 35/35 PASS; 7 supplementary
-scripts fully pass; face_coloring.py 6/7 (FC3 geometric check open -- does not
+Companion scripts: see Section 7. entanglement_doc.py 35/35 PASS; 8 supplementary
+scripts (7 fully pass; face_coloring.py 6/7, FC3 geometric check open -- does not
 affect the paper's physics claims).
 
 
-1. STANDING WAVES IN THE TORSION MEDIUM
+1. INTRODUCTION: STANDING WAVES IN THE TORSION MEDIUM
 -----------------------------------------
 
 1.1  Two distinct wave regimes
@@ -95,7 +97,9 @@ is the co-rotating cell shell (r > r_p) driven by the Hopf winding.
 Zone 3 fields are classical (fall as 1/r^2). But when two Zone 3 fields
 overlap sufficiently, the combined medium configuration can settle into the
 A_g scalar mode -- the lowest-dimensional I_h irrep, rotationally invariant,
-total topological charge Q_total = 0 (equal and opposite windings sum to zero).
+total topological charge Q_total = 0 (equal and opposite spin windings sum to
+zero; note that Cooper pair electrons have parallel charge windings -- "opposite"
+here refers to the spin topological quantum number, not charge).
 
 Once the A_g mode is established, the two winding systems enter a joint
 A_g-constrained configuration: neither can be described by an independent topological
@@ -128,7 +132,8 @@ I_h symmetry types (T_1g x T_2g) -- even though both contain the same dimension.
 Physical reading: T_1g and T_2g are Galois conjugates (C_5/C_5^2 character
 swap, proven in torsionverse_doc.py SY15). They are distinguishable by the
 icosahedral lattice even though they have the same dimension. A_g couples only
-to itself (A_g x A_g = A_g by Schur's lemma); the singlet requires the two
+to itself (A_g \u2297 A_g = A_g; A_g is the trivial representation -- it appears
+in V \u2297 W only when V \u2245 W, by CG orthogonality); the singlet requires the two
 partners to be IDENTICAL in I_h symmetry.
 
 Entanglement is symmetry-selective. It requires identical I_h character, not
@@ -158,7 +163,10 @@ Torsionverse prediction:
   J=0 singlet is TOPOLOGICALLY FORBIDDEN.
   The lowest available channel is G_g (dim=4, not dim=1).
   Therefore the deuteron ground state cannot be J=0.
-  Deuteron J=1 is the ONLY possibility for the ground state. [EQ5]
+  J=1 (the G_g channel, dim=4) is the lowest available option. [EQ5]
+  (J=0 is forbidden by the CG table; J=1 is experimentally observed and
+  consistent with the absence of the A_g channel. G_g is the lowest available
+  torsionverse channel; its ground-state projection is the observed J=1 triplet.)
 
 This is a retrodict from the same CG table used for:
   - magic number 28 (G_g as boundary-regime intruder)
@@ -212,21 +220,26 @@ No additional free parameters.
 
   (1) JAMMED A_g AT EACH PARTICLE SITE:
       When two compatible particles form the singlet, the local A_g phonon
-at each particle's cell jams into a locked configuration --
-the propagating A_g phonon (124.8 GeV = E_cell) locks to the SSB state (vev, zero frequency).
-[E_cell from doc_jobson_cell https://doi.org/10.5281/zenodo.22032906]
-This is a local mini-SSB event at each particle location.
-The frozen A_g costs nothing to maintain (lower energy than the oscillating
-state): this follows from the Higgs potential in doc_higgs -- the SSB minimum
-(frozen phi_0 != 0) has strictly lower energy than the symmetric oscillating
-phase. The frozen state is analogous to a magnetised magnet: it costs nothing
-because it IS the ground state.
+      at each particle's cell jams into a locked configuration --
+      the propagating A_g phonon (124.8 GeV = E_cell) locks to the SSB state
+      (vev, zero frequency).
+      [E_cell from doc_jobson_cell https://doi.org/10.5281/zenodo.22032906]
+      This is a local mini-SSB event at each particle location.
+      The frozen A_g costs nothing to maintain (lower energy than the oscillating
+      state): from the Higgs potential in [doc_higgs], the SSB minimum
+      (frozen phi_0 != 0; phi_0 is the Higgs-like field vev, distinct from
+      phi = (1+sqrt(5))/2, the golden ratio) has strictly lower energy than
+      the symmetric oscillating phase. The frozen state is analogous to a
+      magnetised magnet: it costs nothing because it IS the ground state.
 
   (2) G32 (MUON) ALIGNMENT CHAIN AS CONNECTIVE TISSUE:
       The G32 edge mode is the natural mode of the icosahedral lattice edges.
-The lattice already maintains G32 edge modes everywhere via the Maxwell critical
-geometry (3V-E=6). More precisely: the structural G32 mode consists of the 10
-I_h-orbit circuits (20 corpuscles bilateral), the unique smallest I_h-symmetric
+  The lattice already maintains G32 edge modes everywhere via the Maxwell critical
+  geometry (3V-E=6; Maxwell stability criterion for pin-jointed frames: 3 times
+  the vertex count minus edge count equals the rigid-body degrees of freedom,
+  here = 6, meaning the icosahedral lattice is exactly at the jamming threshold).
+  More precisely: the structural G32 mode consists of the 10
+  I_h-orbit circuits (20 corpuscles bilateral), the unique smallest I_h-symmetric
 subset of the 70 possible muon circuits. These 10 circuits cover all 30 edges
 and visit each vertex exactly 5 times (= gluon channel count per vertex;
 60 = 12x5 = gluon count = muon vertex visits). [muon_orbit_count.py MO1-MO6, 6/6 PASS]
@@ -248,7 +261,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
 
   CHAIN LENGTH COST (zero per-link) AND PHASE COHERENCE (one position only):
   For a macroscopic separation D, the alignment chain recruits ~D/L_J cells
-  (~10^20 cells for D=1 km). Each cell boundary handoff is cost-free:
+  (L_J = alpha*phi*r_p = 9.93e-3 fm; ~10^20 cells for D=1 km). Each cell boundary handoff is cost-free:
   chi(G32,C3) = +1 = chi(G_g,C3) -- muon and gluon share the same C3 character,
   so no A_g term appears in G32 x G_g (verified: ih_double_cg.py; see also
   [cell_rotation_propagation.py RP2a: gluon-gluon C3 coupling constructive]).
@@ -304,10 +317,26 @@ alignment, not transfer or depletion. The medium is intact throughout.
   - CG: A_g x T_1u = T_1u. Thread locked to axis by topology. Bilateral singlet.
 
   TIGHT-BINDING RESULT (muon_slip_derivation.py, 5/5 PASS):
-    Local G32 cell loop (5-edge):   E = -sqrt(3) * t = -1.7321 t
-    G32 thread (4-vertex, free):    E = -phi * t     = -1.6180 t  [EXACT -- golden ratio!]
-    Thread with singlet pinning:    E = -1.0 * t
+    The three configurations are DIFFERENT topological objects with different
+    adjacency matrices. The caution: do NOT compare the free thread (−phi·t)
+    to the local loop (−sqrt(3)·t) and infer that thread formation costs
+    (sqrt(3)−phi)·t ≈ 0.11·t uphill — those are eigenvalues of different graphs.
+    What IS physically meaningful: the energy cost to transition a cell from
+    its local-loop ground state (−sqrt(3)·t) to the singlet-pinned state (−1.0·t)
+    — this is the activation barrier Delta, a real energy difference across a
+    physical state change within the same cell.
+    Local G32 cell loop (5-edge):   E = -sqrt(3) * t = -1.7321 t  [resting state]
+    G32 thread (4-vertex, free):    E = -phi * t     = -1.6180 t  [interior chain cells]
+    Thread with singlet pinning:    E = -1.0 * t                  [endpoint cells, locked]
+    (The A_g singlet imposes Dirichlet boundary conditions: G32 wavefunction
+    must be zero at both endpoint vertices. This leaves 2 interior vertices as
+    the active system. If connected, 2-site tight-binding gives eigenvalues ±t;
+    ground state E = -t = -1.0*t. Exact. [muon_slip_derivation.py MS3 PASS])
     Activation barrier:             Delta = (sqrt3 - 1) * t = +0.7321 t
+                                           = E_pinned - E_loop (within one cell)
+    (Intermediate chain cells adopt thread energy -phi*t, phase-aligned, zero
+    activation cost. Only endpoint cells shift to -1.0*t; that shift IS Delta.
+    Cells outside the chain remain at -sqrt(3)*t unchanged.)
 
   The golden ratio phi appears EXACTLY because the 3-edge G32 path is a 4-vertex
   path graph with characteristic polynomial lambda^4 - 3*lambda^2 + 1 = 0,
@@ -332,7 +361,7 @@ alignment, not transfer or depletion. The medium is intact throughout.
 
     At each vertex nexus (10 G channels: 5 edges x 2 gluon windings):
     - Gluon gradient creates net inward radial force = -10/sqrt(phi+2)  [exact algebraic]
-    - T_1g Born stiffness provides the outward balance [alpha derivation, J17/J24]
+    - T_1g Born stiffness provides the outward balance [alpha derivation, J17/J24; doc_alpha]
     - G32 bilateral: chain arrives from BOTH endpoint directions simultaneously.
       G32 from particle A + G32 from particle B at every intermediate vertex =
       equal and opposite forces. Net G32 force at each vertex = 0.
@@ -370,28 +399,32 @@ alignment, not transfer or depletion. The medium is intact throughout.
   (4) CLOSED:
       - t in MeV from medium Green's function: [hopping_amplitude.py 6/6; dynamical matrix]
       - (sqrt3-1)t vs Zone 3 overlap: formation spontaneous [entanglement_hopping_t.py ET4: YES]
-      - SU(3) from face 3-coloring [CLOSED; face_coloring.py F-7]
+      - SU(3) from face 3-coloring [CLOSED; face_coloring.py FC7]
       - Full Bell violation from alignment chain mechanism [entanglement_tsirelson.py 8/8]
 
 4.3  Retrodicts of the G32 alignment chain mechanism
 
   UNIVERSAL ACTIVATION SCALE (entanglement_hopping_t.py, 6/6 PASS):
   The tight-binding G32 mode gives Delta/E_particle = (sqrt3-1)/sqrt3 = 42.3%
-  at every energy scale. This is a single dimensionless ratio from geometry:
+  at every energy scale. Here E_particle is the relevant coupling energy of the
+  mechanism listed in the "Provided by" column -- NOT the particle rest mass.
+  (For Cooper pairs: phonon energy ~meV; for atomic electrons: binding energy ~0.5 eV;
+  for optical photons: photon energy ~2 eV; for muons: nuclear gluon channel ~m_mu.)
+  This is a single dimensionless ratio from geometry:
 
-    Particle      Delta           Provided by                  Status
-    -----------   ----------      ---------------------------  ----------
-    Optical (2eV) ~0.85 eV        Beamsplitter / optical field Trivial ✓
-    Electron      ~0.22 eV        Atomic binding               Easy ✓
-    Muon          ~44.7 MeV       Nuclear gluon channel        Requires contact ✓
-    Cooper pair   ~meV scale      Phonon coupling              BCS threshold ✓
+    Particle         Delta           Provided by                  Status
+    -----------      ----------      ---------------------------  ----------
+    Cooper pair      ~meV scale      Phonon coupling              BCS threshold ✓
+    Electron         ~0.22 eV        Atomic binding               Easy ✓
+    Optical (2eV)    ~0.85 eV        Beamsplitter / optical field Trivial ✓
+    Muon             ~44.7 MeV       Nuclear gluon channel        Requires contact ✓
 
   RETRODICTS (facts explained by the same mechanism, zero new parameters):
 
   (a) OPTICAL PHOTON ENTANGLEMENT IS EASY:
-      Delta << E_photon at optical frequencies. The beamsplitter interaction
-      provides the needed activation with large margin. This is why photon
-      entanglement works trivially in tabletop experiments.
+      Delta = 42.3% of E_photon, but the beamsplitter interaction can easily
+      supply this fraction -- no cooling, no threshold, large activation margin.
+      This is why photon entanglement works trivially in tabletop experiments.
 
   (b) COOPER PAIRS / BCS THRESHOLD:
       The BCS gap exists because phonon coupling must exceed the activation
@@ -399,8 +432,10 @@ alignment, not transfer or depletion. The medium is intact throughout.
       Below threshold: no alignment chain -> no Cooper pair -> no superconductivity.
       Above threshold: chain forms -> Cooper pair condenses.
       The T_1u x T_1u -> A_g selectivity [EQ4] forces spin-0 Cooper pairs.
-      WHY COOLING MATTERS: the formed chain sits at energy -phi*t (endpoint cells).
-      Breaking it costs +Delta. If kT > Delta, thermal fluctuations break chains
+      WHY COOLING MATTERS: once formed, the chain's interior cells sit at
+      energy -phi*t (free thread energy); the endpoint cells are locked at
+      -1.0*t (singlet pinning). Breaking the chain costs +Delta from the
+      endpoint pinning energy. If kT > Delta, thermal fluctuations break chains
       as fast as phonons form them -- no net condensate. If kT < Delta, formed
       chains survive: this is the superconducting phase. T_c is the crossover
       where kT = Delta. Cooling does not provide the activation energy (phonons
@@ -464,6 +499,9 @@ CONFIRMED (from existing CG checks, EQ1-EQ10):
   - No FTL signaling: perturbations bounded by c [EQ8]
   - d-wave gap = H_g/B1g channel (D4h crystal field); s-wave = A_g channel (I_h free)
     [crystal_field_projection.py CF1-CF9, 9/9 PASS]
+  - Three-particle entanglement: CG selectivity extends to three-body systems;
+    only triples whose CG product contains A_g can form a GHZ-type singlet
+    [three_particle_entanglement.py 6/6 PASS]
 
 FALSIFIABLE PREDICTIONS:
   (a) ENTANGLEMENT SELECTIVITY: Two particles of different I_h symmetry type
@@ -517,7 +555,7 @@ GENUINELY OPEN (physics claims of this paper):
   (Note: face_coloring.py FC3 is a geometric detail in a supplementary script;
   it does not affect any claim in this paper.)
   Note: "wavefunction collapse" = resolution of A_g global winding under local medium
-  perturbation. Follows from topological persistence (EP7) + no-FTL (EQ8). Scope for doc_qm.txt.
+  perturbation. Follows from topological persistence (EP7) + no-FTL (EQ8). Scope: [doc_qm].
 
 
 6. STATUS SUMMARY
@@ -531,8 +569,8 @@ DERIVED (zero free parameters):
   - Activation = (sqrt3-1)*t = 42.3%; chain forms spontaneously at L_J scale  [entanglement_hopping_t.py ET4]
   - Mechanism: chi(G32,C3)=+1=chi(G_g,C3), no A_g in G32 x G_g -> frictionless alignment; cells NOT depleted
   - 4 retrodicts: photon entanglement easy, BCS threshold, He-4 spin-0, para-positronium  [ET1-ET6]
-  - Entanglement t = m_mu/sqrt(3) = 61.0 MeV  [entanglement_hopping_t.py 6/6 PASS]
-  - Medium phonon t = E_cell/(2*pi) = m_p/(4*alpha*phi) = 19862 MeV  [hopping_amplitude.py 6/6 PASS]
+  - Entanglement t   = m_mu/sqrt(3) = 61.0 MeV   (tight-binding, muon edge mode)
+  - Medium phonon t_c = E_cell/(2*pi) = 19862 MeV  [hopping_amplitude.py 6/6 PASS; EH7-EH9]
 
 GENUINELY OPEN:
   None. All derivable claims are closed.
@@ -544,7 +582,7 @@ GENUINELY OPEN:
   MAIN STANDALONE (covers Sections 1-5, all 35 checks):
   analysis/demos/entanglement_doc.py            -- 35/35 PASS  [STANDALONE]
     Incorporates: EQ1-EQ10 (CG selectivity), ET1-ET8 (Tsirelson bound),
-    EP1-EP8 (Zone 3 phase-lock), EH1-EH6 (t_hop = m_mu/sqrt(3)),
+    EP1-EP8 (Zone 3 phase-lock; see Section 1.2 and 4.2 for the mechanism), EH1-EH6 (t = m_mu/sqrt(3)),
     EH7-EH9 (t_cell = E_cell/2pi). Previously separate scripts
     entanglement_tsirelson.py, entanglement_hopping_t.py, and
     hopping_amplitude.py are fully incorporated here.
@@ -565,7 +603,10 @@ GENUINELY OPEN:
 REFERENCES
 ----------
 
-  [doc_entanglement]           https://doi.org/10.5281/zenodo.22052350
+  [doc_entanglement]           Superseded Zenodo v1:
+                               https://doi.org/10.5281/zenodo.22052350
+                               (overstated non-locality claim; this document
+                               corrects and extends it)
   [doc_jobson_cell]            https://doi.org/10.5281/zenodo.22032906
   [doc_nucleus]                https://doi.org/10.5281/zenodo.22042337
   [doc_alpha]                  https://doi.org/10.5281/zenodo.22013651

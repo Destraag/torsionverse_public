@@ -22,9 +22,9 @@ hbar_c = 197.3269804                     # MeV*fm
 E_cell_GeV = 2*pi*hbar_c / (alpha*phi*(r_p*1e15)) / 1000  # GeV
 
 # ─── PDG reference values ─────────────────────────────────────────────────────
-mH_pdg       = 125.20    # GeV  PDG 2022
-mH_pdg_old   = 125.09    # GeV  PDG combined (older)
-lam_pdg      = 0.12928
+mH_pdg       = 125.25    # GeV  PDG 2022 (PTEP 2022, 083C01)
+mH_pdg_old   = 125.09    # GeV  PDG combined (older average)
+lam_pdg      = 0.12938   # = mH_pdg^2/(2*v_EW^2), PDG 2022
 v_EW         = 246.220   # GeV
 Gamma_pdg    = 4.07      # MeV
 sin2_pdg     = 0.22290   # PDG sin^2(theta_W)
@@ -84,12 +84,12 @@ alpha_pi = alpha / pi
 mH = E_cell * (1 + alpha_pi)
 err1_old = (mH - mH_pdg_old) / mH_pdg_old * 100
 err1_new = (mH - mH_pdg) / mH_pdg * 100
-sigma1   = (mH - mH_pdg) / 0.11  # PDG uncertainty 0.11 GeV
+sigma1   = (mH - mH_pdg) / 0.17  # PDG 2022 uncertainty 0.17 GeV
 
 print(f"  alpha/pi               = {alpha_pi:.10f}")
 print(f"  m_H = E_cell*(1+a/pi)  = {mH:.6f} GeV")
 print(f"  PDG combined (125.09): {err1_old:+.4f}%  ({err1_old/0.001:.0f}x measurement precision)")
-print(f"  PDG 2022 (125.20):     {err1_new:+.4f}%  = {sigma1:+.2f} sigma")
+print(f"  PDG 2022 (125.25 +/-0.17 GeV): {err1_new:+.4f}%  = {sigma1:+.2f} sigma")
 
 # =============================================================================
 # SECTION 4 — Quartic coupling (Claim 3)
@@ -101,7 +101,7 @@ print(SEP2)
 
 lam = (1 - nu) / 4
 err_lam = (lam - lam_pdg) / lam_pdg * 100
-sig_lam = (lam - lam_pdg) / (lam_pdg * 0.00226)  # ~0.23% PDG uncertainty on lambda
+sig_lam = (lam - lam_pdg) / (lam_pdg * 0.00271)  # ~0.271% = 2*0.17/125.25 (PDG 2022 m_H uncertainty propagated)
 
 print(f"  lambda = (1-nu)/4 = 2*pi^2/(16*pi^2-5) = {lam:.8f}")
 print(f"  PDG 2022 = {lam_pdg:.5f}   gap = {err_lam:+.4f}%  ({sig_lam:+.2f} sigma)")
@@ -240,7 +240,7 @@ print("SUMMARY TABLE")
 print(SEP)
 print(f"  {'Property':<18} {'Predicted':>14}  {'Measured':>14}  {'sigma/err':>10}")
 print(f"  {'-'*18} {'-'*14}  {'-'*14}  {'-'*10}")
-print(f"  {'m_H [GeV]':<18} {mH:>14.6f}  {'125.09/125.20':>14}  {sigma1:>+9.2f}s")
+print(f"  {'m_H [GeV]':<18} {mH:>14.6f}  {'125.09/125.25':>14}  {sigma1:>+9.2f}s")
 print(f"  {'lambda':<18} {lam:>14.8f}  {lam_pdg:>14.5f}  {sig_lam:>+9.2f}s")
 print(f"  {'v [GeV]':<18} {v:>14.6f}  {v_EW:>14.3f}  {err_v:>+9.4f}%")
 print(f"  {'Gamma_H [MeV]':<18} {Gamma:>14.4f}  {Gamma_pdg:>14.2f}  {sig_G:>+9.2f}s")
@@ -248,7 +248,7 @@ print(f"  {'sin^2(theta_W)*':<18} {sin2_2:>14.10f}  {sin2_pdg:>14.8f}  {'4.6e-6'
 print(f"  {'m_Z [GeV]':<18} {mZ_pred:>14.4f}  {mZ_pdg:>14.4f}  {(mZ_pred-mZ_pdg)*1000:>+9.1f}MeV")
 print(f"  {'m_tau/m_mu (R)':<18} {R_derived:>14.8f}  {R_meas:>14.8f}  {res_R:>+9.5f}%")
 print(f"  --- conditional ---")
-print(f"  {'m_H* [GeV]':<18} {mH_R9:>14.6f}  {'125.20':>14}  {(mH_R9-mH_pdg)/0.11:>+9.2f}s")
+print(f"  {'m_H* [GeV]':<18} {mH_R9:>14.6f}  {'125.25':>14}  {(mH_R9-mH_pdg)/0.17:>+9.2f}s")
 print(f"  {'v* [GeV]':<18} {v_R9:>14.6f}  {v_EW:>14.3f}  {(v_R9-v_EW)*1000:>+9.3f}MeV")
 
 # =============================================================================
