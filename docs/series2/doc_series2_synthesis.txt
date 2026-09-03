@@ -99,7 +99,7 @@ Reference papers (Series 1 DOIs in Section 7).
   Ball lightning: a lightning strike creates a brief high-intensity rotating
   field. Torsionverse: a transient depleted zone forms at the vortex axis with
   a hyper-compressed boundary shell. The glow IS the boundary's pressure being
-  relieved -- the compressed shell propagates T_1g (EM pressure) waves outward
+  relieved -- the compressed shell propagates T_1g (EM transverse) waves outward
   as it equilibrates. EM and pressure are the same thing in this framework; the
   light is the pressure. Passes through walls because the interior has no cells
   to interact with. Collapses with a pop when the driving field stops: the stored

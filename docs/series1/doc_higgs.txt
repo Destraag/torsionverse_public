@@ -112,10 +112,12 @@ lattice (Jobson cells). Phonons propagate THROUGH the lattice; cells are
 NOT independent oscillators. E_cell = 2*pi*hbar*c/L_J is the quantum of the
 zone-boundary A_g (isotropic bulk) phonon -- the Higgs field.
   HIGGS = A_g isotropic cone (all 20 face corkscrews in phase): same I52
-    geometry as the tau lepton, at the phonon energy scale.
-  W/Z = T_1g directed cones (compression along one axis, 3 orthogonal
-    directions). Before SSB: massless. After SSB: directed cone must propagate
-    through locked isotropic medium -> acquires mass m_W = g*v/2.
+    geometry as the tau lepton, at the phonon energy scale. A_g is also the
+    v_p/GW170817 longitudinal branch [doc_torsion Section 3.1].
+  W/Z = T_1g directed transverse oscillations (3 orthogonal axes, vector
+    mode -- NOT compression). Before SSB: massless. After SSB: the directed
+    transverse mode must propagate through the locked isotropic A_g
+    background -> acquires mass m_W = g*v/2.
   SSB = JAMMING: A_g phonon builds amplitude (wave linger) until Maxwell
     critical flex budget is exhausted -> lattice locks -> vev = 246 GeV.
     Geometric (3V-E=6) and elastic (flex yield) are the SAME EVENT.

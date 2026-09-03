@@ -41,10 +41,17 @@ GEOMETRIC IDENTITIES:
   For tau: 20*tan(pi/20) = 3.168 (0.83% above pi)
 
 KOIDE STRUCTURE:
-  T1(W) x E-(L-antineutrino) = {G32, I52}  [2I CG]
-  -> Muon = G32 (dim=4), Tau = I52 (dim=6), Electron = E+ (dim=2) -- CG-forced
-  Koide 2/3 should emerge as algebraic identity from Euler/Maxwell icosahedral
-  constraints on the three path Born balances (OPEN -- needs tau winding factor).
+  Lepton generations assigned by spinor rank: E+(dim=2)=electron, G32(dim=4)
+  =muon, I52(dim=6)=tau -- these exhaust the 2I double group's spinor irreps
+  (doc_leptons.txt Section 1). NOT via a T1xE- CG selection rule: that claim
+  is arithmetically impossible (dim(T1)*dim(E-)=6, but dim(G32)+dim(I52)=10)
+  and was cut from doc_leptons.txt/doc_electron.txt after review found no
+  supporting derivation anywhere in the repo.
+  The 2/3 DIMENSION RATIO (dim(T1g+T2g)/dim(T1gxT2g)=6/9) is separately
+  proven group theory (FG11, face_gluon_geometry.py; koide_proof.py KP8).
+  What remains OPEN is different: showing the ACTUAL Born-balance-derived
+  mass formulas for the three paths algebraically satisfy Koide exactly --
+  needs the tau winding factor (see doc_leptons.txt Section 6.2).
 
 Run: python analysis/quantum/lepton_mass.py
 References:
@@ -247,16 +254,16 @@ print(SEP)
 print("SECTION 4: LEPTON GENERATIONS FROM 2I DOUBLE GROUP")
 print(SEP2)
 
-# T1(W) x E-(L-antineutrino) = {G32, I52}  [CG selection -- no E+ (electron)]
-# This is the torsionverse derivation of pion decay preference:
-# V-A weak coupling (left-handed antineutrino = E-) forces G32 (muon),
-# not E+ (electron). Electron production requires right-handed antineutrino.
+# Lepton generations assigned by spinor rank (E+=2, G32=4, I52=6 -- exhausts
+# the 2I double group's spinor irreps). NOT via T1xE- CG selection -- that
+# claim was arithmetically impossible and cut elsewhere; this script's
+# print below is updated to match.
 
 # Koide formula check
 m_tau_pdg = 1776.86  # MeV
 koide = (m_e_pdg + m_mu_pdg + m_tau_pdg) / (
     math.sqrt(m_e_pdg) + math.sqrt(m_mu_pdg) + math.sqrt(m_tau_pdg))**2
-print(f"  Lepton generation assignments (2I CG: T1 x E- = {{G32, I52}}):")
+print(f"  Lepton generation assignments (by spinor rank, 2I double group):")
 print(f"    E+ (dim=2): electron  m_e = {m_e_pdg:.6f} MeV")
 print(f"    G32 (dim=4): muon     m_mu = {m_mu_pdg:.6f} MeV  <- derived here")
 print(f"    I52 (dim=6): tau      m_tau = {m_tau_pdg:.4f} MeV  <- not yet derived")
@@ -385,6 +392,9 @@ print("    lattice. The Euler formula V-E+F=2 and Maxwell criterion 3V-E=6 const
 print("    the relative coupling constants eff_e, eff_mu, eff_tau. Once the tau face-")
 print("    mode winding factor is derived (OPEN), the Koide 2/3 should emerge as an")
 print("    algebraic identity from the icosahedral Euler/Maxwell structure.")
+print("    (Distinct from FG11's separately-proven dim(T1g+T2g)/dim(T1gxT2g)=6/9 --")
+print("     that is pure group theory; THIS is the harder claim that the actual")
+print("     Born-balance mass formulas algebraically reduce to it.)")
 
 # ── Section 7: Tau corkscrew winding factor ──────────────────────────────────
 print()

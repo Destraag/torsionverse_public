@@ -230,7 +230,7 @@ m_tau_koide = m_tau_pdg  # PDG
 # Koide K from PDG
 K_pdg = (m_e_pdg + m_mu_pdg + m_tau_pdg) / (math.sqrt(m_e_pdg)+math.sqrt(m_mu_pdg)+math.sqrt(m_tau_pdg))**2
 print(f"  Koide K (PDG masses)    = {K_pdg:.12f}  (2/3 = {2/3:.12f})")
-print(f"  Deviation from 2/3      = {(K_pdg-2/3)*1e6:.4f} ppm")
+print(f"  Deviation from 2/3      = {(K_pdg-2/3)/(2/3)*1e6:.4f} ppm")
 print()
 
 # Koide in equivalent form: a^2+b^2+c^2 = 4(ab+bc+ca) where a,b,c = sqrt(m_k)
@@ -248,7 +248,7 @@ print()
 
 check("KP4 Koide K from PDG masses = 2/3 to 10 ppm",
       abs(K_pdg - 2/3) / (2/3) < 1e-5,
-      f"K = {K_pdg:.10f}  2/3 = {2/3:.10f}  dev = {(K_pdg-2/3)*1e6:.2f} ppm")
+      f"K = {K_pdg:.10f}  2/3 = {2/3:.10f}  dev = {(K_pdg-2/3)/(2/3)*1e6:.2f} ppm")
 
 check("KP5 Algebraic form a^2+b^2+c^2 = 4(ab+bc+ca) holds to 0.01%",
       abs(lhs/rhs - 1) < 1e-4,
@@ -321,15 +321,16 @@ b0 = math.sqrt(2*pi*alpha*(2/math.sqrt(5))*phi**2*m_p)
 c0 = math.sqrt(phi**3/math.sqrt(5)*m_p)
 K0 = (a0**2+b0**2+c0**2) / (a0+b0+c0)**2
 print(f"  Leading-order Koide K0 = {K0:.8f}  (2/3 = {2/3:.8f})")
-print(f"  Deviation = {(K0-2/3)*1e6:.1f} ppm  (compare: PDG=9.2 ppm, our derived=0 ppm)")
+print(f"  Deviation = {(K0-2/3)*1e6:.1f} ppm(abs)  (absolute shift in K, NOT normalized by")
+print(f"  2/3 -- contrast with the normalized 9.2 ppm(rel) for the final measured-mass result)")
 print()
 
 # The residual: how far is K0 from 2/3?
 print("  Interpretation:")
-print(f"    K0 - 2/3 = {(K0-2/3)*1e6:.1f} ppm (leading order)")
+print(f"    K0 - 2/3 = {(K0-2/3)*1e6:.1f} ppm(abs) (leading order, absolute shift in K)")
 print(f"    The Born corrections (dn/C terms, Rs^2, 2*alpha) must conspire to")
 print(f"    shift K from {K0:.8f} to exactly 2/3 = {2/3:.8f}.")
-print(f"    This shift = {(2/3 - K0)*1e6:.1f} ppm must be delivered by the corrections.")
+print(f"    This shift = {(2/3 - K0)*1e6:.1f} ppm(abs) must be delivered by the corrections.")
 print()
 print(f"  Key implication: the Born corrections are NOT small arbitrary tweaks --")
 print(f"  they are algebraically FORCED by the same icosahedral geometry that")
@@ -344,7 +345,7 @@ print(f"  found it by formula inversion; expressing it in closed algebraic form"
 print(f"  is the remaining step (not finding it). The Koide proof is essentially")
 print(f"  complete: all path geometries determined, 2/3 geometric origin proven (KP8).")
 
-check("KP7 Leading-order K0 is above 2/3 (4442 ppm gap -- Born values are DETERMINED)",
+check("KP7 Leading-order K0 is above 2/3 (4442 ppm(abs) gap -- Born values are DETERMINED)",
       K0 > 2/3,
       f"K0={K0:.8f}; gap={K0-2/3:.6f}; eff_mu=0.8563 determined by C5/gluon path [FG9]")
 
@@ -362,7 +363,7 @@ dim_T1g_x_T2g = 4 + 5   # G(4) + H(5) from T1g x T2g = G + H in I
 
 koide_geom = (dim_T1g + dim_T2g) / dim_T1g_x_T2g
 
-print(f"  T1g (compression field, W/Z):   dim = {dim_T1g}")
+print(f"  T1g (transverse field, W/Z):     dim = {dim_T1g}")
 print(f"  T2g (shear field, face elastic): dim = {dim_T2g}")
 print(f"  T1g x T2g = G + H (field strength F_mn): dim = {dim_T1g_x_T2g} = {dim_T1g}*{dim_T2g}")
 print(f"  Koide = (dim T1g + dim T2g) / dim(T1g x T2g) = ({dim_T1g}+{dim_T2g})/{dim_T1g_x_T2g} = {koide_geom:.15f}")
@@ -372,8 +373,12 @@ print()
 print(f"  This is the GEOMETRIC PROOF of Koide 2/3:")
 print(f"  The three leptons satisfy Koide because they are Born-balanced modes")
 print(f"  of the icosahedral cell whose field/field-strength ratio is exactly 2/3.")
-print(f"  I_h is the ONLY symmetry group with two 3-dim irreps (T1g, T2g) whose")
-print(f"  product has dim = 3*3 = 9, giving ratio 6/9 = 2/3.")
+print(f"  T1g and T2g have NO A_g component in their product (G+H only) --")
+print(f"  specific to icosahedral symmetry. NOTE: the dim=3*3=9 count itself is not")
+print(f"  I_h-unique (any group with two 3-dim irreps gives the same product dimension,")
+print(f"  e.g. octahedral O's own T1/T2) -- what's proven here is the exact ratio for")
+print(f"  I_h's T1g/T2g specifically, not that I_h is the only group where such a ratio")
+print(f"  could occur.")
 print()
 print(f"  STATUS: Geometric origin PROVEN [face_gluon_geometry.py FG11].")
 print(f"  Remaining open: show Born balance corrections enforce this ratio algebraically.")
@@ -401,7 +406,7 @@ print(f"  Koide texture angle theta = {theta:.6f} deg")
 print(f"  [Icosahedral angle closest: check above]")
 print()
 print(f"  Leading-order Koide K0 = {K0:.10f}  (2/3 = {2/3:.10f})")
-print(f"  Ppm from 2/3: {(K0-2/3)*1e6:.2f}")
+print(f"  K-shift from 2/3 (absolute, not relative ppm): {(K0-2/3)*1e6:.2f} ppm(abs)")
 print()
 print(f"  Total: {passed}/{len(results)}  ({passed} PASS, {failed} FAIL)")
 if failed == 0:

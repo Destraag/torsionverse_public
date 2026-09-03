@@ -24,10 +24,16 @@ speed (GW170817: v_gw = c) and the torsion wave speed (flyby anomaly:
 v_s = Rs*c) -- model-independent mechanical properties are derived: Poisson
 ratio nu = 0.4837, stiffness ratio K/G = 30.2, and impedance ratio
 Z_s/Z_p = Rs. These depend only on Rs and c, with no cosmological model
-assumptions. Absolute elastic moduli (G = 1.66e-11 Pa, K = 5.03e-10 Pa)
-and wave impedances are additionally derived under the working hypothesis
-that the medium density equals the Planck 2018 cosmological vacuum density
-rho_Lambda; these are conditional and clearly labeled as such.
+assumptions. Absolute elastic moduli and wave impedances additionally
+require the medium density; as of a 2026-09-01 update this is DERIVED --
+not conditional -- as rho_medium = mu_0 = 1/(eps_0*c^2) from CODATA electric
+constants alone, no cosmological model needed (G = 3.58e9 Pa, K = 1.13e11
+Pa; Section 3.3). The paper's original 2026-08-19 values, which used the
+Planck 2018 cosmological vacuum density rho_Lambda as a working hypothesis,
+are retained in Section 3.3 for reference only and are now labeled circular
+rather than merely conditional: rho_Lambda is itself defined via H0 through
+the Friedmann equation, so a Jeans length built from it cannot independently
+corroborate anything about the torsion medium.
 The MOND critical acceleration a0 = Rs*c*H0 = 1.165e-10 m/s^2 is derived
 with zero free parameters (0.51 sigma from the RAR of 153 SPARC galaxies).
 No prior MOND variant (AQUAL, TeVeS, or other proposals since Milgrom 1983)
@@ -319,8 +325,14 @@ Two direct observational inputs:
   Input 1: v_p = c = 2.998e8 m/s
            Longitudinal (compressional) wave speed, from GW170817:
            |v_gw - c|/c < 5e-16 (Abbott et al. 2017)
-           Physical identification: v_p = c is the T_1g compression field mode
-           (T_1g dim=3, C5 char=+phi -- constructive coupling)
+           Physical identification: v_p = c is the A_g isotropic compression
+           mode (A_g dim=1, C5 char=+1 -- trivial, totally symmetric; a scalar
+           field's only wave motion is via its gradient, which is necessarily
+           longitudinal). T_1g (photon/W/Z) is a separate, genuinely
+           TRANSVERSE vector mode (dim=3) -- NOT the v_p branch; its own
+           free-propagation speed is also c, via its own constructive C5
+           character (chi=+phi), not via the A_g compression channel.
+           [doc_jobson_cell Section 7.1]
 
   Input 2: v_s = Rs*c = 5.335e7 m/s
            Transverse (torsion) wave speed, from flyby anomaly K-formula
@@ -433,29 +445,75 @@ COMPRESSION SHELLS (face-adjacency BFS, derived -- ih_lattice_phonon.py IP12-IP1
 
   [analysis/gravity/ih_lattice_phonon.py, IP12-IP14, 19/19 PASS]
 
-3.3  Conditional: absolute elastic values (requires medium density)
+3.3  Absolute elastic values: rho_medium = mu_0 (DERIVED, 2026-09-01 update)
 
-The following properties additionally require a value for the medium density
-rho. No direct measurement of rho exists. The values below use the working
-hypothesis rho = rho_Lambda = 5.84e-27 kg/m^3, where rho_Lambda is the Planck
-2018 cosmological vacuum density derived from CMB fitting (rho_Lambda =
-3*H0^2*Omega_Lambda/(8*pi*G)). This is a model-dependent parameter, not a
-direct observation. These results should be read as: IF rho = rho_Lambda, THEN:
+[This section originally (2026-08-19) treated the medium density as an open
+problem and used a cosmological placeholder. That placeholder is superseded
+below; the original numbers are kept afterward, clearly relabeled, for
+reference only.]
 
-  Shear modulus:        G  = rho * Rs^2 * c^2 = 1.663e-11 Pa
-  Bulk modulus:         K  = rho * (c^2 - 4/3*Rs^2*c^2) = 5.029e-10 Pa
-  Young's modulus:      E  = 2G(1+nu) = 4.933e-11 Pa
-  Longitudinal impedance: Z_p = rho * c     = 1.752e-18 Pa*s/m
-  Shear impedance:        Z_s = rho * Rs*c  = 3.117e-19 Pa*s/m
+The medium density is not a free parameter: it follows directly from two
+results already established elsewhere in this framework -- the EM bulk
+modulus K = 1/eps_0 (Coulomb's law pressure Green's function; doc_magnetism
+Section 1.2, doc_higgs Claim C7) and the pressure wave speed v_p = c
+(Section 3.1, GW170817). The acoustic relation rho = K/v_p^2 gives:
 
-  Jeans stability: L_Jeans = Rs*c*sqrt(pi/(G_Newton*rho)) = 4725 Mpc
+  rho_medium = 1/(eps_0*c^2) = mu_0 = 1.2566e-6 kg/m^3
+  [EXACT, CODATA electric constants only, no cosmological model,
+   zero free parameters -- P.6b; doc_magnetism Section 2.1]
+
+With rho_medium = mu_0:
+
+  Bulk modulus:           K  = 1/eps_0 = 1.129e11 Pa
+  Shear modulus:          G  = rho * Rs^2 * c^2 = 3.576e9 Pa
+  Young's modulus:        E  = 2G(1+nu) = 1.061e10 Pa
+  Longitudinal impedance: Z_p = rho * c     = 3.767e2 Pa*s/m
+  Shear impedance:        Z_s = rho * Rs*c  = 6.704e1 Pa*s/m
+  [torsion_doc.py T3.5-T3.9]
+
+NOTE ON K (SHORT TERM vs LONG TERM, per author 2026-09-01): K above is
+K=1/eps_0, the Coulomb Green's function value already established and
+reused throughout the framework (doc_magnetism Sections 1.2/2.1, doc_orbit_
+pressure, maxwell_from_medium.py ME1/ME3, magnetism_doc.py M2/M3/M8a) --
+used here as the headline value because it aligns with the existing,
+already-cited number rather than introducing a second one.
+This is a SHORT-TERM alignment choice, not a resolution: the general
+solid-mechanics relation behind this paper's OWN Poisson-ratio formula
+(Section 3.1, v_p^2=(K+4/3*G)/rho) gives a different value when solved
+directly for K: K_solid = rho*(c^2-4/3*Rs^2*c^2) = 1.082e11 Pa, a 4.22% gap
+from K=1/eps_0 (=1-4/3*Rs^2 exactly). LONG TERM, this gap itself is still
+open and needs full evaluation before either value can be called resolved
+-- not yet done.
+
+LEGACY, CONTAMINATED -- NOT PART OF THE DERIVED RESULT (reference only):
+The version of this section as originally published (2026-08-19) used the
+working hypothesis rho = rho_Lambda = 5.84e-27 kg/m^3, the Planck 2018
+cosmological vacuum density derived from CMB fitting (rho_Lambda =
+3*H0^2*Omega_Lambda/(8*pi*G)), before the rho = mu_0 result above existed:
+
+  G = 1.663e-11 Pa   K = 5.029e-10 Pa
+  Z_p = 1.752e-18 Pa*s/m   Z_s = 3.117e-19 Pa*s/m
+
+  Jeans stability: L_Jeans = Rs*c*sqrt(pi/(G_Newton*rho_Lambda)) = 4725 Mpc
   Hubble radius:   c/H0 = 4283 Mpc;  L_Jeans/r_Hubble = 1.10
-  (Marginally stable -- consistent with observed CMB homogeneity,
-  but ONLY if the rho = rho_Lambda working hypothesis is accepted.)
+  [torsion_doc.py T3.10-T3.11, legacy reproduction of the as-published numbers]
 
-The direct measurement of the medium density is an open problem. A future
-measurement of the absolute GW energy flux, combined with the derived wave
-speed v_p = c, could constrain rho independently of the cosmological model.
+This is CIRCULAR, not merely conditional: rho_Lambda is ITSELF defined via
+H0 and Omega_Lambda through the Friedmann equation above, so L_Jeans ~ c/H0
+follows automatically from that definition -- it is a consistency of the
+Friedmann equation in a dark-energy-dominated universe, not an independent
+prediction of the torsion medium (rs_v3.py's own commentary on this same
+calculation says so explicitly). It offers no evidence for or against the
+torsion medium and should not be read as corroborating rho_medium = mu_0
+above. It is retained only because it was part of the paper as originally
+published, consistent with how the same rho_Lambda input is labeled
+elsewhere in the project (medium_properties_clean.py, redshift_doc.py: both
+"conditional"/"CONTAMINATED", never treated as a derived result).
+
+The medium density is no longer an open problem (resolved by the rho = mu_0
+result above); the Jeans-length/Hubble-radius comparison specifically
+remains unresolved as an open, independent question, since the rho_Lambda
+input it depended on is circular.
 
 
 4. JOBSON CELL DISCRETIZATION AND SCALE CORRECTIONS
@@ -807,9 +865,12 @@ QCD/EW beta function implications [DOC HIGGS]:
 [EMPIRICAL, with H0 systematic]:
   - Rs at galactic scale: -0.84% deviation consistent with H0 tension
 
-[DERIVED (2026-08-22 update)]:
-  - v_p = c: T_1g compression mode has C5 char = +phi (constructive at all vertices
-    -> no dispersion -> propagates at c). GW170817 confirms. [Section 3.1]
+[DERIVED (2026-08-22 update; corrected 2026-09-02, see Section 3.1)]:
+  - v_p = c: A_g isotropic compression mode has C5 char = +1 (trivial, totally
+    symmetric -> no dispersion -> propagates at c). GW170817 confirms.
+    [Section 3.1] T_1g (photon/W/Z) is a separate transverse vector channel,
+    also undamped at c via its own constructive C5 char=+phi, but not the
+    v_p/compression branch itself.
   - v_s = Rs*c: T_2g shear mode has C5 char = -1/phi (destructive/shear coupling
     -> dispersive -> propagates at Rs*c). Flyby K-formula confirms. [Section 3.1]
   Both wave speeds are now identified with specific cell modes, not assumed.
@@ -822,10 +883,11 @@ QCD/EW beta function implications [DOC HIGGS]:
     (NOT 116.57 deg -- that is the DODECAHEDRON dihedral, the dual solid) [JC6b]
   - Tau corkscrew Hamiltonian cycle: exists, 20 steps, all at 138.19 deg [JC7-JC9]
   - Cell is a spring lattice, not oscillator. A_g zone-boundary phonon = Higgs.
-  - W/Z = directed T_1g cones (3 orthogonal axes); A_g = isotropic cone.
+  - W/Z = directed T_1g transverse oscillations (3 orthogonal axes, vector
+    mode); A_g = isotropic compression cone (the v_p/GW170817 branch).
   - Wave linger = entrainment force: see PHYSICAL MODEL section above.
   - Flex/jamming unified: geometric (3V-E=6) and elastic yield are the same
-    event at Maxwell criticality. [doc_jobson_cell.txt; jobson_cell_doc.py 43/43]
+    event at Maxwell criticality. [doc_jobson_cell.txt; jobson_cell_doc.py 47/47]
 
 [DERIVED (2026-08-22 update -- crystal field projection)]:
   When Jobson cells (I_h medium) are embedded in a macroscopic crystal with lower

@@ -135,12 +135,69 @@ check("T3.3", abs(N_lock - 532.14) < 0.1,
 check("T3.4", abs(E_cell_GeV - 124.8) < 0.5,
       f"E_cell = {E_cell_GeV:.3f} GeV")
 
-# Conditional: absolute moduli (requires rho = rho_Lambda)
-rho = 5.84e-27          # kg/m^3  (Planck 2018 dark energy density)
-G_shear  = rho * (Rs*c)**2
-K_bulk   = rho * c**2 * (1 - 2*nu_derived)/(2*(1-nu_derived)) * (1 + nu_derived)
-print(f"  [conditional] G = rho*v_s^2 = {G_shear:.3e} Pa  (rho = rho_Lambda)")
-print(f"  [conditional] K = {K_bulk:.3e} Pa")
+# Absolute elastic moduli: rho_medium = mu_0 (DERIVED, not conditional)
+# rho = 1/(eps_0*c^2) = mu_0  [P.6b; doc_magnetism Section 2.1] -- supersedes
+# the rho_Lambda-conditional version of this section as published 2026-08-19.
+mu_0    = 4 * pi * 1e-7          # kg/m^3 (SI, exact)
+eps_0   = 8.8541878128e-12       # F/m (CODATA)
+rho_mu0 = mu_0
+K_em    = 1 / eps_0              # Pa  (Coulomb Green's function bulk modulus --
+                                  # headline K, per MG-J5: aligns with the value
+                                  # already established/reused throughout the
+                                  # framework, e.g. maxwell_from_medium.py,
+                                  # magnetism_doc.py, doc_orbit_pressure)
+G_mu0   = rho_mu0 * (Rs*c)**2
+K_solid = rho_mu0 * (c**2 - 4/3*(Rs*c)**2)   # solid-mechanics cross-check, see MG-J5
+E_mu0   = 2 * G_mu0 * (1 + nu_derived)
+Zp_mu0  = rho_mu0 * c
+Zs_mu0  = rho_mu0 * (Rs*c)
+
+print(f"  rho_medium = mu_0 = 1/(eps_0*c^2) = {rho_mu0:.4e} kg/m^3  [DERIVED, P.6b]")
+print(f"  K = 1/eps_0 (headline, MG-J5)      = {K_em:.4e} Pa")
+print(f"  G = rho*v_s^2                     = {G_mu0:.4e} Pa")
+print(f"  E = 2G(1+nu)                       = {E_mu0:.4e} Pa")
+print(f"  Z_p = rho*c                        = {Zp_mu0:.4e} Pa*s/m")
+print(f"  Z_s = rho*v_s                      = {Zs_mu0:.4e} Pa*s/m")
+print(f"  [cross-check] K_solid = rho*(c^2-4/3*v_s^2) = {K_solid:.4e} Pa  "
+      f"({(K_em-K_solid)/K_em*100:+.2f}% vs K above -- fluid vs solid v_p relation, gap not yet resolved)")
+
+check("T3.5", abs(G_mu0 - 3.576e9)/3.576e9 < 1e-2, f"G={G_mu0:.4e} Pa")
+check("T3.6", abs(K_em - 1.129e11)/1.129e11 < 1e-2, f"K={K_em:.4e} Pa")
+check("T3.7", abs(E_mu0 - 1.061e10)/1.061e10 < 1e-2, f"E={E_mu0:.4e} Pa")
+check("T3.8", abs(Zp_mu0 - 376.7)/376.7 < 1e-2, f"Z_p={Zp_mu0:.4e} Pa*s/m")
+check("T3.9", abs(Zs_mu0 - 67.04)/67.04 < 1e-2, f"Z_s={Zs_mu0:.4e} Pa*s/m")
+
+# LEGACY/CONTAMINATED: original 2026-08-19 rho_Lambda values, kept ONLY as a
+# historical/reference reproduction of the as-published numbers -- NOT part
+# of the derived result above.
+print()
+print("  LEGACY/CONTAMINATED (rho=rho_Lambda, reference only -- not derived):")
+rho_Lambda = 5.84e-27            # kg/m^3  (Planck 2018 dark energy density)
+G_legacy   = rho_Lambda * (Rs*c)**2
+K_legacy   = rho_Lambda * (c**2 - 4/3*(Rs*c)**2)
+Zp_legacy  = rho_Lambda * c
+Zs_legacy  = rho_Lambda * (Rs*c)
+G_Newton   = 6.674e-11
+Mpc_m      = 3.086e22
+L_Jeans_m  = (Rs*c) * math.sqrt(pi / (G_Newton * rho_Lambda))
+L_Jeans_Mpc  = L_Jeans_m / Mpc_m
+r_Hubble_Mpc = c / H0_planck / Mpc_m
+
+print(f"    G_legacy = {G_legacy:.4e} Pa   K_legacy = {K_legacy:.4e} Pa")
+print(f"    Z_p_legacy = {Zp_legacy:.4e} Pa*s/m   Z_s_legacy = {Zs_legacy:.4e} Pa*s/m")
+print(f"    L_Jeans(rho_Lambda) = {L_Jeans_Mpc:.1f} Mpc;  c/H0 = {r_Hubble_Mpc:.1f} Mpc;  "
+      f"ratio = {L_Jeans_Mpc/r_Hubble_Mpc:.2f}")
+print(f"    CIRCULAR, not just conditional: rho_Lambda = 3*H0^2*Omega_Lambda/(8*pi*G)")
+print(f"    is ITSELF defined via H0, so L_Jeans ~ c/H0 is a Friedmann-equation")
+print(f"    identity, not an independent medium prediction (see rs_v3.py's own")
+print(f"    'automatic consequence of the Friedmann equation' note).")
+
+check("T3.10 (legacy, contaminated) reproduces originally-published rho_Lambda G/K",
+      abs(G_legacy-1.663e-11)/1.663e-11 < 1e-2 and abs(K_legacy-5.029e-10)/5.029e-10 < 1e-2,
+      f"G={G_legacy:.4e} Pa, K={K_legacy:.4e} Pa (matches 2026-08-19 published values)")
+check("T3.11 (legacy, contaminated) Jeans/Hubble ratio ~1.10 -- circular, not corroborating",
+      abs(L_Jeans_Mpc/r_Hubble_Mpc - 1.10) < 0.05,
+      f"ratio={L_Jeans_Mpc/r_Hubble_Mpc:.2f} (matches as-published value; see note above)")
 
 # =============================================================================
 # SECTION 5 -- MOND prediction
@@ -198,7 +255,6 @@ print(f"  6.1 a0(z=1) = {a0_z1:.4e} m/s^2  (JWST extended rotation curves)")
 
 # 6.2 B meson medium radius
 kappa_pred = 0.8840        # GeV/fm (QCD string tension)
-r_B = math.sqrt(kappa_pred / (G_shear * 1e9 / 1.602e-19 / 1e15))  # rough
 # From doc formula: r_B = Rs * r_p / kappa_sensitivity
 r_B_doc = 0.826            # fm  (from doc)
 print(f"  6.2 r_B = {r_B_doc} fm  (B meson medium radius, EIC prediction)")

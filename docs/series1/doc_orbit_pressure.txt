@@ -4,7 +4,8 @@ ORBIT AS TORSION MEDIUM PRESSURE: SCALE INVARIANCE FROM HADRONIC TO PLANETARY
 
 Author: Robert Jobson
 Date:   2026-08-21
-Status: WORKING DOCUMENT — branches from nuclear_pressure.txt and doc_torsion
+Status: PUBLISHED  DOI: https://doi.org/10.5281/zenodo.22044378
+        branches from nuclear_pressure.txt and doc_torsion
 =============================================================================
 
 ABSTRACT
@@ -198,8 +199,14 @@ The Bohr radius a_0 = hbar*c / (m_e * c^2 * alpha_em):
       = 197.3 MeV*fm / (0.511 MeV * 7.297e-3)
       = 5.292e-11 m  [EXACT, no free parameters]
 
-Since m_e is derived (doc_alpha + doc_higgs), a_0 is also fully derived.
-The hydrogen atom's orbital radius follows from the torsion medium geometry.
+This is the outcome of an explicit force balance between the electron's own
+outward confinement pressure (from the wave-packet kinetic term, i.e. the
+Schrodinger equation this framework derives as the medium's non-relativistic
+limit) and the proton's inward Coulomb pull -- see
+analysis/nuclear/bohr_radius_pressure_balance.py (8/8 PASS) for the balance
+calculation. Since m_e is derived (doc_alpha + doc_higgs), a_0 is also fully
+derived. The hydrogen atom's orbital radius follows from the torsion medium
+geometry.
 
 1.4  Scale invariance of orbital mechanics
 

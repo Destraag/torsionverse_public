@@ -1,0 +1,152 @@
+JUDGMENT CALLS AUDIT — SERIES 1 CRITICAL-READER SWEEPS
+=============================================================================
+Date: 2026-09-01
+Purpose: track substantive (non-mechanical) issues found by critical-reader
+  subagent sweeps of doc_jobson_cell.txt, doc_leptons.txt, doc_magnetism.txt
+  that need author judgment before editing -- so they are not lost. Mechanical
+  fixes (stale PASS counts, duplicate section numbers, wrong cross-refs,
+  formula typos with an unambiguous correct form already in-doc, misattributed
+  citations) were applied directly in the same pass this file was created --
+  see git diff / commit for that list. Each item below was researched first
+  (grepped analysis/**/*.py and docs/**/*.txt for a resolving script/section,
+  or read the cited source doc in full) before being logged -- "Search
+  performed" notes what was checked, so a "no script found" verdict below is
+  not from a shallow look.
+=============================================================================
+
+STATUS LEGEND
+  OPEN        : no resolving script/text found after search; needs new work
+                (a script) or honest softening in the doc.
+  PROPOSED    : a resolution is well-supported by existing scripts/docs;
+                needs author confirmation before the doc text is changed
+                (usually because it would change a published headline number).
+  NEEDS-CALL  : a genuine either-way judgment on physics framing/tone/content
+                that a search cannot resolve by itself.
+
+RESOLVED ITEMS: moved to docs/series1/judgment_calls_resolved.txt to keep
+  this file small. That archive has the full resolution history for
+  JC-J1-4, LP-J1-2, JC2-1, MG-J1-4, MG-J5 (short-term), the two
+  "items resolved during research" / "round 2 mechanical fixes" logs, and
+  ROUND 3 (2026-09-01): JC2-2,3,4,5,6,7,8,9,10,11; LP2-1,3,4,5,7,8,9,10;
+  MG2-3,4,5,6,7,8,9,10,11,12,13,14 -- all found to be honest-wording fixes
+  or citation gaps rather than open physics questions once existing (often
+  uncited) script coverage was checked directly. Only 4 items from that
+  sweep needed genuine author judgment and remain below: LP2-2, LP2-6,
+  MG2-1 (narrowed), MG2-2.
+
+=============================================================================
+DOC: doc_magnetism.txt
+=============================================================================
+
+MG-J5 [LONG TERM STILL OPEN] K formula self-consistency: doc_magnetism
+  Section 1.1/2.1 derives rho=mu_0 via the FLUID relation v_p=sqrt(K/rho)
+  (K=1/eps_0, no shear term); doc_torsion Section 3.1 uses the general SOLID
+  relation v_p^2=(K+4/3*G)/rho for its own Poisson-ratio result. These give
+  DIFFERENT K once rho=mu_0 is substituted: K=1/eps_0=1.1294e11 Pa vs
+  K=mu_0*(c^2-4/3*Rs^2*c^2)=1.0817e11 Pa, a 4.22% discrepancy (=1-4/3*Rs^2
+  exactly). SHORT-TERM fix already applied (K=1/eps_0 is now the headline
+  value in doc_torsion.txt Section 3.3 and torsion_doc.py T3.6, matching
+  what's used everywhere else in the framework) -- see
+  judgment_calls_resolved.txt for that history, including the author's own
+  challenge on whether this was pre-existing (checked via git diff against
+  pre-session HEAD: it wasn't -- this specific gap only became visible after
+  MG-J1 unified rho to mu_0 in both docs). STILL OPEN: WHY the fluid and
+  solid v_p-rho relations disagree by 4.22%, and which one is physically
+  correct for this medium -- not resolved, needs dedicated evaluation,
+  likely alongside doc_torsion's own full critical-reader pass (not yet
+  started).
+
+=============================================================================
+SUBSTANTIVE FINDINGS -- NOT YET DISCUSSED WITH AUTHOR
+-------------------------------------------------------
+Legend as before (OPEN/PROPOSED/NEEDS-CALL). Severity tags (minor/moderate/
+major) are the subagents' own assessments, included as a starting point for
+triage, not a final verdict.
+
+DOC: doc_leptons.txt
+---------------------
+LP2-2 [NEEDS-CALL, MAJOR] Section 4's muon mass eff_mu: the doc's wording is
+  now honest about the uncertainty (see judgment_calls_resolved.txt ROUND 3
+  for the citation/wording fix applied), but the underlying physics question
+  remains open: THREE distinct candidate values exist in the repo, none
+  derived from first principles without an external input -- (1)
+  eff_mu=0.845492 (bipyramid analogy, what's actually used in the mass
+  formula); (2) eff_mu=0.856308 (koide_proof.py KP1/KP2, numerical inversion
+  against the PDG-measured muon mass, ~1.3% higher than (1)); (3) eff_mu=1.0
+  (muon_internal_force_check.py F1-F3, recomputing the Born-ratio on the
+  doc's own corrected uniform-72-deg path -- the ratio trivially collapses
+  to 1, suggesting the Born-RATIO construction itself may not carry over
+  from the mixed-mode bipyramid model to the pure single-mode path). NEEDS
+  AUTHOR CALL: which candidate (if any) to adopt as the working value, or
+  whether this needs new derivation work before any of the three can be
+  trusted.
+
+LP2-6 [NEEDS-CALL, MAJOR -- upgraded from MODERATE on further research]
+  Section 9's "E+/E- = particle/antiparticle" framing (used to argue exactly
+  3 lepton generations) doesn't just lack an argument -- it DIRECTLY
+  CONTRADICTS a sibling published series-1 paper. doc_particle_generation.txt
+  line 376 states "E- (2): electron neutrino candidate (chi(C5)=-1/phi,
+  nexus-free) [F-15]", backed by neutrino_freed_lepton.py (6/6 PASS, NL1
+  uses chi(E-,C5)^2 to place nu_e in the mass hierarchy) and
+  weak_interaction_cg.py ("WI2: T_1g x E- = I52", 10/10 PASS). ih_double_group.py's
+  own "NEUTRINO CONJECTURE" section stays agnostic (E- is just "Galois
+  conjugate of E+"), so doc_leptons' own cited script doesn't itself
+  contradict it -- but corpuscle_uniqueness_proof.py STEP3b, which
+  independently asserts the SAME "E+/E- particle/antiparticle" claim
+  doc_leptons makes, backs it with a hardcoded `True`, not a real
+  derivation. Two published series-1 papers currently assert INCOMPATIBLE
+  physical identities for E- (antiparticle of E+ vs. electron neutrino).
+  NEEDS AUTHOR CALL: (a) adopt doc_particle_generation's "E+ = bound charged
+  lepton, E- = its freed neutrino" framing in doc_leptons too (the "exactly
+  3 generations" CONCLUSION likely survives either way, just via
+  charged-lepton+neutrino pairing rather than particle/antiparticle
+  pairing), or (b) keep particle/antiparticle and explain why it disagrees
+  with the neutrino identification used elsewhere in the same framework.
+
+DOC: doc_magnetism.txt
+------------------------
+MG2-1 [NEEDS-CALL, MODERATE -- narrowed] Section 1.3's specific retracted
+  claim has been fixed (brought in line with MG-J4's Section 3.3/5.2
+  wording -- see judgment_calls_resolved.txt ROUND 3). STILL OPEN: the same
+  scale-mismatch logic that killed the iron/G_g "boundary regime" distance
+  claim plausibly applies to EVERY row of Section 3.1's "N_J regime" column
+  (sub-cell/bulk/boundary for A_g/T_1g/T_2g/G_g/H_g/E_1/2) -- all
+  transition-metal d-electrons sit at the same eV energy scale as iron's,
+  so none can plausibly reach the GeV-scale N_J the formula needs for ANY
+  of those regime labels. Confirmed via research: no script anywhere
+  computes N_J at realistic energy scales for Co (T_1g)/Ni(E_1/2)/Mn(H_g)
+  the way iron_dscale_NJ_survey.py did for iron/G_g -- the conclusion
+  almost certainly generalizes, but nobody has run the numbers, and
+  rewriting Section 3.1's whole "N_J regime" column is a scope decision
+  (how much of the sub-cell/bulk/boundary language to keep or reframe), not
+  something a search alone can settle. NEEDS AUTHOR CALL: leave Section
+  3.1's column as category-only symmetry labels (like Section 1.3/3.3 now
+  do for iron), or invest in a fuller multi-element N_J survey first.
+
+MG2-2 [NEEDS-CALL, MAJOR] Sections 1.1/1.2/2.1's central "rho_medium=mu_0,
+  K=1/eps_0" identification: K=1/eps_0 is introduced in Section 1.2 by
+  "Identifying Q=e and K=1/epsilon_0" specifically so the generic 3D
+  pressure Green's function reduces to the ALREADY-KNOWN Coulomb potential
+  -- K isn't measured independently of that known result, it's chosen to
+  match it. Section 1.1 then combines that with the externally-imported
+  premise v_p=c to get rho=mu_0. Since c^2=1/(eps_0*mu_0) is already a CODATA
+  identity, any medium stipulated to have K=1/eps_0 and v_p=c automatically
+  has rho=mu_0 -- CONFIRMED via research: this is pure algebra given the
+  premises, and doc_torsion.txt's own Section 3.3 says so explicitly ("The
+  medium density is not a free parameter: it follows directly from two
+  results already established elsewhere..."). The only OTHER rho-derivation
+  route in the repo (medium_properties.py's rho_Lambda from Planck
+  dark-energy parameters) is disowned elsewhere as "LEGACY, CONTAMINATED"
+  and off by 20 orders of magnitude -- not an independent confirmation
+  either. Bonus finding: doc_torsion's OWN alternative K route
+  (solid-mechanics Poisson-ratio relation) disagrees with K=1/eps_0 by
+  4.22% (tracked separately as MG-J5) -- so K=1/eps_0 isn't even
+  self-consistent with the framework's other internal machinery, let alone
+  independently measured. This is the abstract's central "NEW GROUND"
+  claim, so the circularity concern matters more here than elsewhere.
+  NEEDS AUTHOR CALL: (a) explicitly state in Sections 1.1/2.1 that rho=mu_0
+  is a CONSEQUENCE of the two adopted premises rather than a third
+  independent check, softening the "NEW GROUND" framing accordingly, or (b)
+  find/create a genuinely independent measurement route before calling it
+  new ground.
+

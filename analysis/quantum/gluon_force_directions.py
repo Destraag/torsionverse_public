@@ -207,7 +207,7 @@ k_n_over_k_eff = alpha*phi*(1 - 0.75*alpha**2) / (1 + alpha*phi**2 + alpha**2*ph
 
 # At each vertex, T_1g coupling chi(T_1g,C5) = phi:
 # The T_1g mode constructively interferes (5 contributions add with phase phi)
-# The resulting force is radially OUTWARD (T_1g = compression field pushing vertices out)
+# The resulting force is radially OUTWARD (T_1g = transverse vertex-coupling mode pushing vertices out)
 # Force magnitude: proportional to k_n/k_eff * phi = alpha*phi^2/(1+alpha*phi^2)
 
 print("  Born balance at vertex (from doc_alpha.txt, J17/J24):")

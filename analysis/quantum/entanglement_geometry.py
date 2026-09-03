@@ -298,7 +298,7 @@ print(f"  Best edge for pair axis: {best_edge_for_pair.round(4)}")
 print(f"  C3 (z-component) character: {best_alignment:.4f}")
 
 # More systematic: check if the gradient aligns with any specific I_h mode
-# The gradient along the pair axis = T_1g (compression, C5=+phi) or T_2g (shear, C5=-1/phi)?
+# The gradient along the pair axis = T_1g (transverse, C5=+phi) or T_2g (shear, C5=-1/phi)?
 # If the pair axis is along an edge, it's a T_1g or T_2g direction.
 
 # For a T_1g edge direction (C5 char = phi), the G32 (C5 char = -1) would NOT naturally align.

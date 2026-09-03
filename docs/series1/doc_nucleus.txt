@@ -357,7 +357,8 @@ derive quark irrep assignment (T_1u vs T_2u) from I_h mode geometry]
   The u and d quarks are the ONLY two vertex winding modes available in Zone 1.
   The I_h group admits exactly one pair of Galois-conjugate vector irreps for
   vertex modes: T_1u (C5=+phi) and T_2u (C5=-1/phi). These ARE u and d.
-  The same group structure gives T_1g and T_2g for the compression modes (W/Z).
+  The same group structure gives the T_1g/T_2g Galois-conjugate pair, with
+  T_1g the W/Z transverse gauge mode (T_2g is the separate face-shear mode).
   The framework is complete: every quark is a specific I_h mode in Zone 1,
   and no other modes are available. There is no room for undiscovered quarks
   from vertex modes -- both T_1u and T_2u are already assigned.

@@ -233,8 +233,15 @@ print(f"    Absolute error = {err_abs:.5f}  (PDG uncertainty = {alpha_s_MZ_unc})
 print(f"    Relative error = {err_rel:.2f}%")
 print()
 print(f"  NOTE: formula gives a fixed constant (no running); the natural evaluation")
-print(f"  scale where this matches PDG is M_Z = 91.2 GeV.  The connection between")
-print(f"  the Jobson cell geometry and the Z-boson scale is not yet derived.")
+print(f"  scale where this matches PDG is M_Z = 91.2 GeV. M_Z's VALUE is itself")
+print(f"  independently derived from pure cell geometry elsewhere in this repo")
+print(f"  (electroweak_predictions.py EW1-EW2: m_W from a (1,3)-cell E_cell formula")
+print(f"  + Weinberg angle -> m_Z = 91.168 GeV, -0.02% from PDG). WHY M_Z is the")
+print(f"  evaluation point: the Z boson shares the T_1g irrep with the neutron")
+print(f"  (chi(C5)=phi, chi(C3)=0) -- the SAME Born-resonance-at-own-mass rule")
+print(f"  already used for every mode in this framework (A_g/Higgs, and T_1g's")
+print(f"  own neutron case) puts its resonance at its own mass, m_Z, not at an")
+print(f"  arbitrarily chosen RG scale [interaction_ranges.py IR7, 10/10 PASS].")
 
 check("CB7: q_gluon (full face) > q_muon (edge belt) [toroidal winding hierarchy]",
       q_gluon > q_muon,

@@ -66,7 +66,7 @@ m_s_c = 474.5          # MeV  (constituent strange mass, doc_particle_generation
 # C5 characters for relevant I_h / 2I irreps
 phi_ = phi
 chi = {
-    'T_1g':  phi_,        # photon / W/Z directed compression
+    'T_1g':  phi_,        # photon / W/Z directed transverse mode
     'T_1u':  phi_,        # u quark (same C5 char as T_1g, ungerade parity)
     'T_2g': -1/phi_,      # proton Zone 2 / gerade shear
     'T_2u': -1/phi_,      # d quark (Galois conjugate of T_1u, ungerade)

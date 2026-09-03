@@ -168,7 +168,7 @@ dim_T2g = 3
 maxwell_critical = dim_T1g + dim_T2g   # = 3V-E = 6 = dim(T_1g) + dim(T_2g)
 n_from_fields = dim_T1g * maxwell_critical
 
-print(f"  T_1g (compression field, W/Z): dim = {dim_T1g}")
+print(f"  T_1g (transverse field, W/Z): dim = {dim_T1g}")
 print(f"  T_2g (shear field, face elastic): dim = {dim_T2g}")
 print(f"  Maxwell critical 3V-E = {maxwell_critical} = dim(T_1g) + dim(T_2g)  [same number, not coincidence]")
 print(f"  n = dim(T_1g) x (dim T_1g + dim T_2g) = {dim_T1g} x {maxwell_critical} = {n_from_fields}")
@@ -211,7 +211,7 @@ print(f"  Divided by 2 (each edge shared between 2 vertices): {passive_total}/2 
 print(f"  n_gravity = {passive_per_vertex} passive x {V_ico} vertices / 2 = {n_passive}")
 print()
 print(f"  Equivalently: n = (passive per vertex) x Maxwell_critical = {passive_per_vertex} x {n_zero} = {n_passive}")
-print(f"  The 3 passive face-tension edges ARE the T_1g+T_2g shear/compression modes.")
+print(f"  The 3 passive face-tension edges ARE the T_1g+T_2g elastic stress modes.")
 print(f"  Maxwell 3V-E=6 is the passive-edge balance: exactly 3 face-tension edges per vertex")
 print(f"  keep the cell marginally rigid -- one more would over-constrain, one less = floppy.")
 

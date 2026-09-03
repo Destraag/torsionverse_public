@@ -225,7 +225,7 @@ print(SEP2)
 print("SECTION 5: PHOTON (T_1g) CG PRODUCTS -- WHY PHOTONS INTERACT WITH MATTER")
 print(SEP2)
 print()
-print(f"  Photon = T_1g mode (directed compression wave, same irrep as W boson before SSB)")
+print(f"  Photon = T_1g mode (directed transverse wave, same irrep as W boson before SSB)")
 print(f"  Question: does photon resonate with proton Zone 2 more than with a free cell?")
 print()
 

@@ -108,6 +108,13 @@ check("M6 T_1g x T_1g -> A_g appears once  [consistent with J13, W/Z coupling]",
       n_Ag_T1gxT1g == 1,
       f"n(A_g in T_1g x T_1g) = {n_Ag_T1gxT1g}  [same as J13]")
 
+# M9: H_g x H_g -> A_g (Mn self-coupling channel exists; frustration is from the
+# other 5 competing channels, not from A_g being absent -- see M7b)
+n_Ag_HgxHg = n_Ag_in_product(4, 4)   # H_g index = 4
+check("M9 H_g x H_g -> A_g appears exactly once  [Mn self-coupling channel exists]",
+      n_Ag_HgxHg == 1,
+      f"n(A_g in H_g x H_g) = {n_Ag_HgxHg}")
+
 # M7: Transition metal magnetic classification from unpaired d-electron count
 print()
 print(SEP2)
@@ -193,9 +200,17 @@ check("M8e E=mc^2 confirmed: m=rho*V, neutron (V_n>V_p) -> m_n>m_p (0.0003% matc
       abs(m_n_from_V - m_n)/m_n < 0.0001,
       f"m_n(from volume)={m_n_from_V:.4f}  actual={m_n:.4f}  err={abs(m_n_from_V-m_n)/m_n*100:.6f}%")
 
+# M10: a_0/r_p ratio (electron orbital scale vs proton charge radius)
+m_e_MeV     = 0.51099895                 # MeV
+a_0_fm      = hbar_c / (m_e_MeV * alpha)  # fm  (a_0 = hbar_c/(m_e*c^2*alpha))
+ratio_a0_rp = a_0_fm / r_p_fm
+check("M10 a_0/r_p ratio ~ 62,895  [electron orbital scale vs proton charge radius]",
+      abs(ratio_a0_rp - 62895)/62895 < 0.01,
+      f"a_0={a_0_fm:.4e} fm  r_p={r_p_fm:.4f} fm  a_0/r_p={ratio_a0_rp:.1f}")
+
 print()
 print("  MAXWELL CLOSED: K=1/eps_0, rho=mu_0 -> c=1/sqrt(eps_0*mu_0) -> Faraday+Ampere.")
-print("  Light = T_1g massless pressure wave. 100% derived. [ME1-ME6 all PASS]")
+print("  Light = T_1g massless transverse wave. 100% derived. [ME1-ME6 all PASS]")
 print("  E=mc^2: m = rho*V_displaced. m_n/m_p = V_n/V_p to 0.0003%. NOT broken.")
 
 # =============================================================================

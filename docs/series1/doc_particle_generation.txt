@@ -359,8 +359,9 @@ known particles. These are PREDICTIONS: particles that MUST exist if the
 framework is correct, or require explanation if they are absent.
 
   GERADE (even parity) -- structure modes, all assigned:
-    A_g (1): Higgs field (K-channel phonon, jamming=SSB);
-    T_1g (3): W/Z/photon (directed compression cone);
+    A_g (1): Higgs field (K-channel phonon, jamming=SSB; also the v_p/GW170817
+             longitudinal branch, doc_torsion Sec 3.1);
+    T_1g (3): W/Z/photon (directed transverse oscillation, NOT compression);
     T_2g (3): face shear (elastic medium material);
     2G_g (8): 8 gluons in TWO SPATIAL LAYERS:
       OUTER (6): off-diagonal -- spinning jump ropes at 30 edge midpoints
@@ -544,7 +545,8 @@ DERIVED -- CLOSED (2026-08-23):
           Zone 2 re-locks T_1g -> T_2g (CG: WI1+WI2). Electron and antineutrino
           carry off the energy balance (IBD threshold = 1.806 MeV, WD1).
       (5) Zone 2 re-locks in the new diquark configuration T_1g (neutron)
-          The T_1g lock mode IS the virtual W boson (T_1g = directed compression = W)
+          The T_1g lock mode IS the virtual W boson (T_1g = directed transverse
+          oscillation = W, not compression -- see doc_torsion Section 3.1)
       (6) Freed lepton gains the released vertex nexus from step (2) -> becomes
           a bound charged lepton (electron, muon, or tau per chi matching)
     W boson is not fundamental -- it is the transient T_1g lock mode during

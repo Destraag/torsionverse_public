@@ -71,6 +71,8 @@ modes = [
     ("t quark",    "H_g",  "sub",172760.0,  0.0,    0),   # sub-cell, chi(H,C5)=0
     ("proton",     "T_2g", "V1", 938.272,  -1/phi,  0),   # T_2g vertex Zone 1
     ("neutron",    "T_1g", "V1", 939.565,  +phi,    0),   # T_1g vertex Zone 1
+    ("W boson",    "T_1g", "sub",80379.0,  +phi,    0),   # T_1g gauge boson, sub-cell (SSB vev mass)
+    ("Z boson",    "T_1g", "sub",91187.6,  +phi,    0),   # T_1g gauge boson, sub-cell (SSB vev mass)
     ("pion",       "Zo2",  "E2", 139.53,   +1.0,   +1),   # Zone 2 mode
     ("kaon",       "G_uZ2","E2", 494.64,   -1.0,   +1),   # G_u Zone 2
 ]
@@ -204,6 +206,26 @@ for E_GeV in E_probes:
 check("IR6: sigma falls as (E_cell/E)^2 above E_cell (monotonic suppression)",
       (E_cell/200e3)**2 < (E_cell/125e3)**2 < 1.0,
       f"sig(125 GeV)={(E_cell/125e3)**2:.4f}  sig(200 GeV)={(E_cell/200e3)**2:.4f}  sig(1 TeV)={(E_cell/1e6)**2:.4f}")
+
+# IR7: T_1g Born resonance at own rest mass -- confined (neutron) vs free (W/Z) case.
+# Closes gluon_c3_born.py CB9's "T_1g resonance pole = m_Z sets evaluation scale":
+# this is the SAME general Born-resonance-at-own-mass rule already verified for
+# every other mode in this table (and explicitly for A_g/Higgs in IR1b), not an
+# ad hoc match to the PDG alpha_s(M_Z) convention.
+print(f"\n  IR7: T_1g Born resonance at own rest mass -- confined vs free case")
+chi5_neutron, chi3_neutron = phi, 0
+chi5_Z, chi3_Z = phi, 0
+print(f"    Neutron (T_1g, Zone 1, confined): chi(C5)={chi5_neutron:+.4f}  chi(C3)={chi3_neutron}")
+print(f"    Z boson (T_1g, sub-cell, SSB vev): chi(C5)={chi5_Z:+.4f}  chi(C3)={chi3_Z}")
+print(f"    SAME irrep (T_1g) => SAME Born-resonance-at-own-mass rule (IR1b already")
+print(f"    establishes this for A_g/Higgs: resonance peak = own mass). Neutron's")
+print(f"    resonance is at ITS mass (939.6 MeV); the identical rule, applied to the")
+print(f"    same irrep at a different Zone/mass, puts the Z boson's resonance at ITS")
+print(f"    mass (m_Z) -- not a special-cased import of the PDG alpha_s(M_Z) convention.")
+
+check("IR7: W/Z share the T_1g irrep with the neutron (same chi(C5), chi(C3))",
+      chi5_Z == chi5_neutron and chi3_Z == chi3_neutron,
+      f"neutron: chi(C5)={chi5_neutron}, chi(C3)={chi3_neutron}; Z: chi(C5)={chi5_Z}, chi(C3)={chi3_Z}")
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 print()

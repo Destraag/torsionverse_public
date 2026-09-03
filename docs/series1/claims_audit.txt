@@ -232,11 +232,17 @@ Script: analysis/demos/leptons_doc.py   Result: 18/18 PASS
 [VERIFIED] L-2
   m_mu = 105.655 MeV from G32 circuit. Gap: -0.002922% PDG.
 
-[VERIFIED] L-3
-  Koide K = 2/3 to machine precision with derived m_e and m_mu.
+[VERIFIED, TAUTOLOGICAL BY CONSTRUCTION] L-3
+  Koide K = 2/3 to machine precision with derived m_e and m_mu. NOTE: m_tau
+  here is obtained by algebraically SOLVING the Koide equation for m_tau
+  given derived m_e/m_mu (see L-4) -- verifying K=2/3 afterward is guaranteed
+  by construction, not an independent confirmation (unlike the genuinely
+  independent 9.2 ppm Koide-with-PDG-masses check elsewhere in this doc).
 
 [VERIFIED] L-4
-  m_tau from Koide = 1776.922 MeV. Gap: +0.0035% PDG.
+  m_tau from Koide = 1776.922 MeV. Gap: +0.0035% PDG. (This IS the genuine
+  prediction; L-3 above is a tautological self-check of this same result,
+  not a second independent confirmation.)
 
 [VERIFIED] L-5
   phi^3/sqrt(5) = 1+2/sqrt(5) (exact). m_tau(LO) = 1777.49 MeV (+0.035%).
@@ -269,15 +275,16 @@ Script: analysis/demos/magnetism_doc.py   Result: 13/13 PASS
 
 [VERIFIED] MG-4
   Maxwell equations derived from medium: Faraday, Ampere, c=sqrt(K/rho),
-  photon = T_1g massless pressure wave, E=mc^2.
+  photon = T_1g massless transverse wave, E=mc^2.
 
 [OPEN] MG-5
   Curie temperature exchange energy at d-electron scale not yet derived.
   Correctly labeled OPEN.
 
 [NOTE] MG-6
-  Absolute moduli (G, K in Pa) conditional on rho=rho_Lambda; ratios and
-  speeds are model-independent. Correctly labeled "[conditional]".
+  Absolute moduli (G, K in Pa): UPDATED 2026-09-01 -- no longer conditional.
+  rho_medium=mu_0 is now DERIVED from CODATA electric constants (no
+  cosmological model). See doc_torsion.txt Section 3.3.
 
 =============================================================================
 DOC: doc_nucleus.txt
@@ -402,7 +409,7 @@ Script: analysis/demos/qm_doc.py   Result: 21/21 PASS
 
 =============================================================================
 DOC: doc_torsion.txt
-Script: analysis/demos/torsion_doc.py   Result: 17/17 PASS
+Script: analysis/demos/torsion_doc.py   Result: 24/24 PASS
 =============================================================================
 
 [VERIFIED] T-1
@@ -420,8 +427,11 @@ Script: analysis/demos/torsion_doc.py   Result: 17/17 PASS
   m_H, lambda, Gamma_H, sin^2(theta_W) match doc_higgs values exactly.
 
 [NOTE] T-5
-  Absolute moduli G, K labeled "[conditional]" on rho=rho_Lambda; ratios
-  and speeds model-independent.
+  UPDATED 2026-09-01: rho_medium=mu_0 is now DERIVED (not conditional) from
+  CODATA electric constants -- see Section 3.3. The original rho_Lambda
+  values are retained as legacy/circular reference only (the Jeans-length
+  vs Hubble-radius comparison is a Friedmann-equation identity, not an
+  independent check).
 
 [NOTE] T-6
   "0.51 sigma from 153 SPARC galaxies" (RAR fit) comes from a separate

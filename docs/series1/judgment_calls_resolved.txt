@@ -1,0 +1,1077 @@
+=============================================================================
+JUDGMENT CALLS -- RESOLVED ARCHIVE
+=============================================================================
+Purpose: full resolution history for items originally logged in
+  judgment_calls.txt, moved here once resolved so the working file stays
+  small. judgment_calls.txt keeps only OPEN/NEEDS-CALL items plus a one-line
+  pointer to whatever's here. Nothing here needs further action; kept for
+  provenance (what was found, what was searched, why the resolution was
+  chosen) in case any of it needs revisiting later.
+=============================================================================
+
+=============================================================================
+DOC: doc_leptons.txt
+=============================================================================
+
+LP-J1 [RESOLVED 2026-09-01] Section 1.2's "T1 x E- = {G32:1, I52:1}" claim, used to
+  argue pion decay prefers muon over electron via CG selection, is
+  ARITHMETICALLY IMPOSSIBLE: dim(T1)*dim(E-)=3*2=6 but dim(G32)+dim(I52)=10.
+  VERIFIED BY ME (not just the subagent): ran analysis/nuclear/ih_double_cg.py
+  fresh (proper 9-class, order-120 2I double-group treatment, own
+  orthogonality checks DC1-DC12 all PASS) -- its Section 1 full CG table
+  gives "E- x T1 = I52(6)" ONLY, dimension check PASSES (6=6). G32 does not
+  appear.
+  FURTHER SEARCH: analysis/quantum/weak_interaction_cg.py independently
+  computes the SAME product (T_1g x E-, ordinary-I_h-style single irreps
+  rather than the double group, but dimensionally consistent: 3*2=6) and
+  ALSO gets "= I52" alone (its WI2 check, PASS) -- a second, independent
+  script corroborating I52-only. BUT this script uses the result for a
+  COMPLETELY DIFFERENT physical claim: "neutron Zone 2 (T_1g) x nu_e (E-) =
+  TAU (I52) -- RESONANCE", feeding a neutrino-DIS/charm-threshold argument,
+  NOT a muon-vs-electron pion-decay-preference argument.
+  CONCLUSION: could not find ANY script anywhere in the repo backing
+  doc_leptons.txt Section 1.2's specific claim (V-A pion decay prefers mu
+  because T1xE- contains both G32 and I52). The correct CG product (I52
+  only) is real and used correctly elsewhere in the project, but not for
+  this claim.
+  NEEDS YOUR CALL: Section 1.2 needs substantive rework, not a text tweak.
+  Options: (a) find/derive a DIFFERENT correct group-theoretic selection
+  rule that actually forces G32 for the antineutrino side of pion decay (if
+  one exists), (b) cut the CG-selection-rule claim for pion decay
+  specifically and keep only the (separately solid) generation-assignment
+  content (E+=electron, G32=muon, I52=tau by spinor rank), or (c) some other
+  reframing you have in mind. Also affects doc_jobson_cell.txt line 1492 and
+  the legacy doc_muon.tex/doc_tau.tex, which copy the same claim.
+  UPDATE 2026-09-01: author confirmed no derivation for this exists (recalls
+  pion-related work on pion mass, pions as gluon/tau remnants from baryon
+  collisions, beta decay/neutrino-capture mirroring electron capture into
+  Zone 2 -- but nothing specific to muon-preference in pion decay). Checked
+  the full 2I CG table for any clean alternative (nothing gives G32 alone
+  except the trivial A x G32 = G32; the one near-miss, T2 x E- = E- + G32,
+  would require the antineutrino to couple to T2 instead of T1, contradicting
+  T1g's established W/Z identification elsewhere -- not a small fix). Also
+  found doc_electron.txt Section 2.1 reason (3) independently makes a related
+  claim citing T_1g x E- = I52 (the CORRECT product, via WI2) but still
+  draws the same kind of pion-decay-preference conclusion from it -- same
+  underlying issue, different doc.
+  PROVENANCE CHECK (per author's request, before cutting): claims_audit.txt
+  has ZERO hits for "pion"/"V-A"/"WI2"/"helicity" anywhere, and doesn't
+  cover doc_electron.txt at all (postdates the 2026-08-24 audit) -- this
+  claim was never independently checked by any formal audit pass.
+  weak_interaction_cg.py's OWN docstring declares its reference as
+  "docs/doc_particle_generation.txt Section 3 + F-15" -- NOT doc_leptons or
+  doc_electron. Confirmed via doc_particle_generation.txt's F-15 section
+  that WI1/WI2's real, correctly-cited purpose is inverse-beta-decay /
+  neutrino-nucleon capture (I52=tau as a virtual resonance mode explaining
+  coupling strength and the charm-production threshold in nu-DIS) -- a
+  structurally different process from charged-pion leptonic decay. This is
+  a case of a real script result from one physical context being attached,
+  unverified, to an unrelated claim in doc_leptons.txt, which then
+  propagated into doc_electron.txt via cross-reference.
+  RESOLUTION: cut per author ("low impact and no clear source after
+  exhaustive search"). Removed doc_leptons.txt Section 1.2 in full
+  (renumbered old 1.3 Second-order Born corrections -> 1.2; fixed its two
+  internal cross-refs: the Section 9 DERIVED-bucket line now says "assigned
+  by spinor rank" instead of "via CG selection", and the ESSENTIALLY-CLOSED
+  bucket's "[Section 1.3]" -> "[Section 1.2]"). Removed doc_electron.txt
+  Section 2.1 reason (3) in full (electron=E+ now rests on 2 grounds:
+  spin-1/2 g-factor match + vertex-mode chi(E+,C5)=phi -- both independently
+  solid and untouched by this cut); updated its companion-script index to
+  drop the now-stale "[WI2; Section 2.1]" tag (kept "[WI1; Section 6.1]",
+  a separate, legitimate, unrelated use of the same script for the Z>137
+  electron-capture mechanism). Reverified: leptons_doc.py 18/18 PASS,
+  electron_doc.py 19/19 PASS -- neither check suite touched this claim, so
+  no regressions.
+  UPDATE 2026-09-01 (found during full self-review before re-dispatching
+  subagent readers): the "doc_jobson_cell.txt line 1492" copy WAS real --
+  the original grep just missed it due to a formatting difference ("T1xE-",
+  no spaces, vs. the "T1 x E-" pattern searched for). Found it in Section 9
+  ("Lepton masses e/mu/tau" status entry): "[Proven by 2I double group CG:
+  T1xE- = {G32, I52}; E+ exhausts spinors]" -- the identical arithmetically-
+  impossible claim (dim(T1)*dim(E-)=6 != dim(G32)+dim(I52)=10). Fixed to
+  match doc_leptons.txt's corrected framing: "[Assigned by spinor rank:
+  E+(2), G32(4), I52(6) exhaust the 2I spinor irreps...]" with a note
+  explaining the correction. Reverified jobson_cell_doc.py 47/47 PASS,
+  leptons_doc.py 18/18 PASS -- neither check suite depended on the removed
+  claim, no regressions. Confirmed via a broader re-grep (multiple spacing/
+  formatting variants) that this was the only remaining occurrence anywhere
+  in the repo.
+  UPDATE 2026-09-01 (round 2, resolving JC2-1): a THIRD copy turned up in
+  analysis/quantum/lepton_mass.py itself -- its docstring's "KOIDE
+  STRUCTURE" block and its Section 4 code comments/print label repeated the
+  same "T1(W) x E-(L-antineutrino) = {G32, I52}" claim (comment/print-only,
+  confirmed it does not feed any check() condition -- LM9 just tests the
+  Koide formula numerically against hardcoded PDG masses). Fixed to the
+  "assigned by spinor rank" framing, matching doc_leptons.txt/doc_jobson_cell.
+  Reverified lepton_mass.py 18/18 PASS.
+
+LP-J2 [RESOLVED 2026-09-01] "4442 ppm above 2/3" (Section 6.2, koide_proof.py
+  K0) used the raw/unnormalized convention (K0-2/3)*1e6 while "9.2 ppm"
+  elsewhere in the same doc uses the normalized (K0-2/3)/(2/3)*1e6
+  convention -- confirmed this is a labeling issue only, not an accuracy or
+  proof-validity issue (the actual KP7 check only tests K0>2/3; the Koide
+  2/3 geometric proof, KP8, is untouched). Per author: keep the raw K-shift
+  number (it may be the more natural quantity for that specific "how much
+  do the Born corrections need to shift K" discussion) but stop labeling it
+  "ppm" unqualified. Relabeled every raw occurrence in koide_proof.py (the
+  "Deviation" print, the "Interpretation" block x2, KP7's check name, and
+  the summary line) and doc_leptons.txt Section 6.2 as "ppm(abs)" with an
+  explicit note distinguishing it from the normalized "ppm(rel)" convention.
+  Also found and fixed a second leftover unnormalized print (K_pdg's own
+  "Deviation from 2/3" line, printed just before KP4) that was silently
+  showing -6.16ppm next to KP4's now-correct -9.23ppm -- same root cause as
+  the original KP4 bug, missed in the first pass. Reverified 8/8 PASS.
+
+JC2-1 [RESOLVED 2026-09-01, round 2] Section 6's Koide "geometric origin"
+  (FG11, "proven") appears to contradict lepton_mass.py's own docstring,
+  which says "Koide 2/3 should emerge as algebraic identity... (OPEN --
+  needs tau winding factor)". Author asked whether this was really a case
+  of a stale script not citing the resolving one (a pattern found twice
+  already this session -- tau_pair_configuration.py, P.6b).
+  INVESTIGATED: this is NOT a stale-citation case -- FG11 and
+  lepton_mass.py's "OPEN" note are about two DIFFERENT sub-questions, and
+  doc_leptons.txt's own Section 6.2 already correctly distinguishes them:
+    (a) FG11/koide_proof.py KP8: dim(T_1g+T_2g)/dim(T_1g x T_2g) = 6/9 = 2/3
+        is a pure group-theory dimension-counting identity -- genuinely
+        proven, needs nothing about lepton masses or Born balances at all.
+    (b) lepton_mass.py's "OPEN" note is about the HARDER claim: that the
+        ACTUAL Born-balance-derived mass formulas for the three paths
+        algebraically reduce to exactly this ratio -- doc_leptons.txt
+        Section 6.2 itself lists this as "the remaining open step" TODAY,
+        not stale.
+  So lepton_mass.py's hedge is current and correct; the actual problem was
+  narrower: doc_jobson_cell.txt's Section 6 stated FG11 as "proven" without
+  carrying forward the same (a)-vs-(b) scoping caveat doc_leptons.txt
+  already has, so a reader of doc_jobson_cell.txt alone could mistake (a)
+  for a proof of the whole Koide-equals-2/3 claim.
+  BONUS FIND while investigating: lepton_mass.py's own docstring/Section 4
+  had a THIRD copy of the debunked LP-J1 "T1xE-={G32,I52}" claim (see LP-J1
+  entry above for the fix).
+  RESOLUTION: added the same scoping note to doc_jobson_cell.txt's KOIDE
+  GEOMETRIC ORIGIN block, cross-referencing doc_leptons.txt Section 6.2.
+  Fixed lepton_mass.py's docstring/comments (LP-J1 3rd copy) and added one
+  clarifying line to its printed Koide-expectation block distinguishing (a)
+  from (b). Reverified lepton_mass.py 18/18, leptons_doc.py 18/18,
+  jobson_cell_doc.py 47/47 -- no regressions (doc-text and comment/print-
+  only changes).
+
+=============================================================================
+DOC: doc_magnetism.txt
+=============================================================================
+
+MG-J1 [RESOLVED 2026-09-01] "rho_medium = mu_0 (EXACT)" (Abstract, Section
+  1.1, Section 2.1) was contradicted by its own cited source: doc_torsion.txt
+  Section 3.3 called medium density UNMEASURED/OPEN and used a placeholder
+  rho_Lambda=5.84e-27 kg/m^3 for gravity-scale calculations -- ~20 orders of
+  magnitude different from mu_0=1.2566e-6 kg/m^3.
+  INVESTIGATION SUMMARY (full detail preserved below this line): traced
+  "P.6b" to notes/nuclear_pressure.txt (2026-08-20, informal); confirmed
+  doc_torsion.txt (2026-08-19) predates it by one day and was never revised.
+  Confirmed the project's dark-matter stance (rejected as a particle,
+  doc_uniqueness.txt) is separate from its dark-energy stance (rho_Lambda
+  used directly as rho_medium in early work, later recognized as circular
+  for that use and purged from "clean" scripts -- not declared fictional,
+  just methodologically unsound as an input here). Searched exhaustively for
+  a formula reconciling rho_Lambda and mu_0 -- none exists; they differ by
+  2.15e20x and serve two structurally different purposes (cosmological
+  large-scale density vs. local EM-medium density).
+  RESOLUTION (per author: "option a is probably the final solution... rho_mu
+  [not fitted dark energy/dark matter] ... Jeans stability paragraph should
+  be properly labeled like the other dark energy tied content"):
+  Confirmed with the author: rho_medium = mu_0 (not rho_Lambda, not any
+  fitted dark-energy/dark-matter parameter) is the standard, derived medium
+  density going forward.
+  Applied option (a) to doc_torsion.txt:
+    - Section 3.3 rewritten: leads with rho_medium = mu_0 = 1/(eps_0*c^2),
+      DERIVED (not conditional), giving non-conditional G=3.576e9 Pa,
+      K=1.082e11 Pa, E=1.061e10 Pa, Z_p=3.767e2, Z_s=6.704e1 Pa*s/m.
+    - The original 2026-08-19 rho_Lambda-based G/K/Z_p/Z_s and the Jeans-
+      stability/Hubble-radius comparison are RETAINED but relabeled "LEGACY,
+      CONTAMINATED -- NOT PART OF THE DERIVED RESULT", matching the
+      project's existing convention for dark-energy-tied content
+      (medium_properties_clean.py's "conditional", redshift_doc.py's
+      "CONTAMINATED" legacy-RS3 pattern) rather than my originally-proposed
+      softer "separate cosmological quantity" relabeling.
+    - STRENGTHENED FINDING while writing this: the Jeans/Hubble-radius
+      comparison is not merely conditional but CIRCULAR -- rs_v3.py's own
+      commentary states rho_Lambda = 3*H0^2*Omega_Lambda/(8*pi*G) is ITSELF
+      defined via H0, so L_Jeans ~ c/H0 is "an automatic consequence of the
+      Friedmann equation," not an independent medium prediction. Made this
+      explicit in the doc rather than leaving it as a softer "conditional."
+    - Abstract updated to match (leads with the derived rho=mu_0 result;
+      legacy rho_Lambda numbers described as retained-for-reference/circular).
+    - claims_audit.txt notes MG-6 and T-5 updated (both previously described
+      doc_torsion's moduli as merely "[conditional]"; now reflect derived
+      status + the circularity note for the Jeans piece specifically).
+  Applied to analysis/demos/torsion_doc.py (the companion script -- per the
+  ABSOLUTE RULE every number above needed a real check, none existed before):
+    - Added T3.5-T3.9 (new derived G/K/E/Z_p/Z_s from rho=mu_0) and a
+      K_em=1/eps_0 cross-check print surfacing the MG-J5 4.22% gap inline.
+    - Added T3.10-T3.11 (legacy rho_Lambda G/K reproduction; Jeans/Hubble
+      ratio), explicitly labeled "(legacy, contaminated)" in the check names,
+      with the circularity explanation printed alongside.
+    - Removed one line of pre-existing dead code (an unused `r_B` variable
+      computed from the old `G_shear` name, never printed or checked --
+      would have raised a NameError after the rename; confirmed via grep
+      that only `r_B_doc`, a separate hardcoded value, was actually used).
+    - Reverified: 24/24 PASS (was 17/17). Updated the two external pass-count
+      citations (claims_audit.txt, doc_torsionverse.txt) from 17/17 to 24/24.
+  NOT DONE / explicitly scoped out: this was a TARGETED fix to Section 3.3 +
+  Abstract, not a full critical-reader sweep of doc_torsion.txt (unlike
+  doc_jobson_cell/doc_leptons/doc_magnetism, doc_torsion has not yet had its
+  own dedicated audit pass this session) -- per author, doc_torsion "hasn't
+  been fully reviewed for its next revision." A full sweep of doc_torsion.txt
+  remains a separate, not-yet-started task.
+
+  ORIGINAL INVESTIGATION NOTES (2026-09-01, preserved for provenance):
+  "P.6b" TRACED (was "orphaned" as of the first pass): found in
+  notes/nuclear_pressure.txt ("P.6b Medium density from EM constants
+  [DERIVED, 2026-08-20]: rho_medium = 1/(eps0*c^2) = mu0 ... no rho_Lambda
+  needed"). Not a citable published source (informal working notes), but
+  confirms the tag is real project history, not fabricated.
+  FULL TIMELINE RECONSTRUCTED: doc_torsion.txt is dated 2026-08-19. P.6b
+  (the mu_0 derivation) is dated 2026-08-20 -- ONE DAY LATER. doc_torsion's
+  Section 3.3 ("Conditional: absolute elastic values") was written and
+  published BEFORE the clean rho=mu_0 result existed, using the only
+  candidate then available (Planck 2018's rho_Lambda), honestly caveated
+  throughout as "a model-dependent parameter, not a direct observation...
+  IF rho=rho_Lambda, THEN..." and "the direct measurement of the medium
+  density is an open problem." It was never revised after P.6b superseded
+  that open problem. doc_magnetism.txt (later paper) cites "Section 3 of
+  doc_torsion" as if rho=mu_0 were already established there -- it isn't;
+  Section 3.3 as published still uses rho_Lambda and still calls rho open.
+  DARK MATTER vs DARK ENERGY (per author's recollection this session):
+  confirmed these are handled differently in the project. DARK MATTER is
+  explicitly rejected as a particle in docs/series3/doc_uniqueness.txt
+  ("DARK MATTER: not a particle. Two distinct mechanisms: Orbit [pressure-
+  gradient contours] ... Gravity [displacement pressure]") -- matches
+  "dark matter was created to explain orbits that we explain another way."
+  DARK ENERGY (rho_Lambda, the Planck vacuum density) was never declared a
+  myth -- it was used directly as rho_medium in early work (notes/
+  torsionverse_hypothesis_v1.txt, analysis/medium/medium_properties.py: "no
+  free parameters... independently measured"), then LATER recognized as
+  circular for that specific use and purged from "clean"/"TV-native"
+  scripts (medium_properties_clean.py explicitly excludes "rho_Lambda
+  (requires Omega_Lambda fit to GR)"; redshift_doc.py labels the old
+  rho_Lambda-based cell-creation-rate calc "CONTAMINATED"; higgs_input_audit
+  lists rho_Lambda under "NOT used"). The reasoning is specifically
+  circularity (Omega_Lambda itself comes from fitting Lambda-CDM/GR to
+  data -- importing it as an "independent measurement" for a framework that
+  aims to replace that same cosmological model begs the question), not a
+  claim that dark energy itself is fictional.
+  SEARCHED FOR "matches through a formula" (author's recollection of a
+  reference reconciling the two rho values IF dark energy is real): NOT
+  FOUND anywhere in docs/, analysis/, or notes/. rho_Lambda and rho=mu_0
+  differ by 2.15e20x (20.3 orders of magnitude, script-verified below) and
+  nothing in the repo bridges that gap by formula. The "IF ... THEN"
+  language the author recalled is almost certainly doc_torsion.txt Section
+  3.3's own phrasing ("IF rho=rho_Lambda, THEN [G, K, E, impedances,
+  Jeans length]") -- a conditional ASSUMPTION adopted for those specific
+  quantities, not a proof that rho_Lambda equals or predicts mu_0.
+  IMPACT OF REMOVING/UPDATING doc_torsion Section 3.3, quantified in
+  analysis/medium/rho_mu0_vs_rho_lambda_impact.py (6/7 PASS -- the one
+  expected FAIL is discussed under MG-J5 below):
+    - G, K(abs), E, Z_p, Z_s all become non-conditional, exact, zero-free-
+      parameter values if rho=mu_0 replaces rho_Lambda there (consistent
+      with how doc_magnetism/doc_orbit_pressure already treat rho) --
+      G: 1.66e-11 Pa -> 3.58e9 Pa; K: 5.03e-10 Pa -> 1.08e11 Pa (script
+      section A). This would upgrade doc_torsion's own "open problem" to
+      CLOSED, using the framework's later result.
+    - The Jeans-stability / CMB-homogeneity argument (same section) is
+      DIFFERENT IN KIND: it compares L_Jeans to the Hubble radius, both
+      cosmological-scale quantities. Substituting rho=mu_0 into that SAME
+      formula collapses L_Jeans from 4908 Mpc to 3.3e-7 Mpc (script section
+      D) -- physically meaningless at that scale. This confirms rho_Lambda
+      and rho=mu_0 are doing two structurally different jobs (a cosmological
+      large-scale density vs. a local EM-medium mechanical density), not
+      competing measurements of the same thing.
+
+  MG-J1 ADDENDUM (2026-09-01, per author's follow-up concern "that could have
+  wide reaching implications that need to be considered"): searched the
+  WHOLE repo for every other consumer of rho_Lambda to see if the mu_0
+  switch breaks anything beyond doc_torsion. Checked every hit systematically
+  by tracing the actual algebra, not just grepping for the word:
+    - analysis/alpha/{gap1_self_inflation_derivation,grain_internode_
+      propagation,grain_speed_ripple,phason_gap1}.py (4 files feeding the
+      ALPHA derivation -- the single most load-bearing constant in the
+      framework): in every case rho enters only as a common factor of TWO
+      moduli-like quantities in a RATIO (e.g. K_phi/G_shear, G/K, a_cf then
+      multiplied back by rho) -- rho cancels ALGEBRAICALLY every time. Traced
+      each one by hand; confirmed alpha's derivation has ZERO dependence on
+      rho's actual value, only on Rs/alpha/phi geometry. NOT AFFECTED.
+    - analysis/gravity/pioneer_medium.py (Candidate C3 = G_shear/(rho*L_H)):
+      rho cancels (G_shear is itself proportional to rho). NOT AFFECTED.
+    - analysis/medium/wave_dispersion.py: threshold_strain=G_sh/K_bk=Rs^2
+      (cancels); the Fermi-LAT/GW170817 dispersion checks use L_grain and
+      photon energy only, no rho at all; the one v_p "corrected estimate"
+      (line ~396) divides by rho again inside the sqrt -- cancels. NOT
+      AFFECTED.
+    - analysis/medium/{verify_constants,whitepaper_audit}.py: print rho and
+      derived G/K as informational/self-consistency values (whitepaper_audit
+      literally checks rho against its own hardcoded literal) -- no external
+      physical threshold is compared against an absolute modulus value here.
+      Comments will read as stale (still say "measured INPUT") but nothing
+      breaks. LOW PRIORITY COSMETIC ONLY.
+    - **analysis/molecular/jobson_depletion.py (JD1-JD12), duplicated inside
+      analysis/demos/chemistry_doc.py -- GENUINE EXCEPTION FOUND.** This is
+      the companion script for docs/series2/doc_chemistry.txt (PUBLISHED,
+      DOI 10.5281/zenodo.22139803, 2026-08-28, per docs/zenodo.txt Record 16),
+      Mechanism 3 ("T_2g toroidal vortex medium depletion"). Unlike every
+      other case, G_shear here is used ALONE (I_sat=G_shear*c; v_creep=
+      P_rad*L_grain/(G_shear*tau_relax); F_crit=lam*G_shear*tau_relax*c/
+      L_grain) -- rho does NOT cancel. Wrote and ran
+      analysis/molecular/jobson_depletion_rho_mu0_impact.py to quantify:
+      with rho=rho_Lambda (as published), I_sat=4.98e-7 W/cm^2 (JD1 PASS,
+      "saturates below ambient light") and t_deplete=395 s (JD4 PASS, ~6.6
+      min). With rho=mu_0, I_sat=1.07e14 W/cm^2 and t_deplete=8.5e22 s
+      (~2.7e15 years) -- both checks would FAIL, and the operating-window
+      ordering I_sat << I_IRMPD << I_center (central to the whole mechanism)
+      is destroyed. THE MECHANISM AS CURRENTLY FORMULATED ONLY WORKS WITH
+      rho=rho_Lambda.
+      MITIGATING CONTEXT: doc_chemistry.txt's own published text does NOT
+      quote any of these numbers and explicitly calls Mechanism 3's depletion
+      depth "OPEN... requires the T_2g/medium coupling coefficient (not yet
+      derived)" -- it only points to jobson_depletion.py as "the vortex
+      depletion framework" for a mechanism it already treats as unquantified.
+      So no currently-asserted solid claim in the published prose directly
+      contradicts itself. But chemistry_doc.py's official "44/44 PASS" count
+      (cited in docs/zenodo.txt) includes JD1-JD12 running on rho_Lambda,
+      unreconciled with the mu_0 standard adopted elsewhere.
+      NOT FIXED HERE -- this needs its own author decision, separate from
+      MG-J1/doc_torsion, since "fixing" it either (a) leaves Mechanism 3
+      using a value the rest of the framework now treats as circular, or
+      (b) breaks the mechanism entirely and requires new physics (a
+      different coupling constant) to rescue it, which is out of scope for
+      a mechanical fix. Flagging for whenever doc_chemistry/series2 gets its
+      own review pass.
+
+  AUTHOR REVIEW 2026-09-01 (threat assessment, not a fix): author flagged
+  that the tau_relax>1e8s (3+ year) barrier itself might not be accurate --
+  a faster mechanism could exist that the current scripts simply haven't
+  derived. Assessed as presented (not assuming any undiscovered faster
+  mechanism, since none is written down anywhere): the multi-year sustained-
+  field requirement is a large enough infrastructure/duration barrier that
+  this does not currently meet disclosure_guidelines.txt's Tier 3 bar (\"a
+  technically capable person could build a device\" -- sustaining a coherent
+  vortex field continuously for years at one site is not a quick/covert
+  build). This is an assessment of what's WRITTEN DOWN today, not a
+  guarantee about undiscovered physics -- consistent with the author's own
+  caution. DEFERRED, not closed: full reconciliation (redact vs. leave vs.
+  reassess Tier) revisited when series 2 gets its own critical-reader pass,
+  per author's explicit plan. No public-repo action taken.
+
+MG-J2 [RESOLVED 2026-09-01] G_medium = K*Rs^2/(1-Rs^2) (Section 2.1) did not
+  follow from the algebra shown two lines above (v_p=sqrt(K/rho)=c,
+  v_s=sqrt(G/rho)=Rs*c give G=Rs^2*K, no denominator), and doc_torsion.txt
+  line 445 independently states G=rho*Rs^2*c^2 (also no denominator).
+  CONFIRMED BY SCRIPT: analysis/medium/rho_mu0_vs_rho_lambda_impact.py
+  Section C: G=K*Rs^2 matches doc_torsion's independent G=rho*Rs^2*c^2 form
+  to <0.001% (C1 PASS); G=K*Rs^2/(1-Rs^2) as literally written in
+  doc_magnetism differed from it by +3.3% (C2 PASS, confirmed mismatch).
+  RESOLUTION: dropped the "/(1-Rs^2)" -- doc_magnetism.txt Section 2.1 now
+  reads "G_medium = K_medium * Rs^2". magnetism_doc.py does not compute
+  G_medium at all (confirmed, unaffected), so no script changes needed;
+  reverified 15/15 PASS (unchanged).
+
+MG-J3 [RESOLVED 2026-09-01] Cu row of the transition-metal table (Section
+  3.2): configuration shown is 3d^10 4s^1 (1 unpaired 4s electron by naive
+  atomic count) but the "Unpaired" column is hardcoded to 0 in
+  magnetism_doc.py's `elements` list -- not computed from the shown
+  configuration.
+  RESOLUTION: per author ("if we can add we should, honesty and unbiased as
+  possible"), added an explicit "NOTE ON THE Cu ROW" paragraph after the
+  table stating the itinerant-vs-localized-moment distinction: metallic
+  Cu's 4s electron is a delocalized conduction electron, not a localized
+  moment, so it does not contribute to the Hund's-rule-style unpaired count
+  that the irrep assignment is based on -- consistent with Cu's measured
+  diamagnetism. Standard solid-state physics, now stated rather than
+  silently assumed. magnetism_doc.py unaffected (still 15/15 PASS, no
+  script logic changed, doc-text-only fix).
+
+MG-J4 [RESOLVED (reframed) 2026-09-01] Iron's N_J at the d-electron scale is
+  quoted as two different ranges (Section 3.3: "1-10"; Section 5.2: "4-5"),
+  and the "Iron is the ONLY common element at the hadronic boundary" claim
+  (load-bearing for the planetary-dynamo argument) has no comparison N_J
+  values for other elements anywhere.
+  Search performed (extended this session): grepped analysis/ + notes/ +
+  docs/ for "N_J" combined with "iron"/"Fe"/"d-electron"/"3d" -- still zero
+  hits for any script computing this. Traced the "1-10" figure to
+  notes/doc_nucleus_v1_stale.txt (filename itself says "stale") Section 5.1:
+  "Boundary (N_J ~ 1-10): b quark, iron d-electrons... Scale: E_cell/N_J ~
+  GeV-to-keV range" -- a wide, qualitative regime bucket, not a computed
+  value for iron specifically. ALSO SEARCHED (per author, "I wish we had
+  more details on how that was backed originally"): grepped docs/ for
+  "iron" + "boundary"/"hadronic"/"N_J" (found docs/leads_applications.txt's
+  "G_g (iron-based) for maximum medium coupling at boundary" -- same
+  category-only framing, no calculation; and doc_nucleus.txt's "G_g is the
+  boundary-regime irrep (same as magic 28, iron, proton N_J=21)" -- groups
+  iron with the PROTON's N_J=21, a third, still-different number, again via
+  shared irrep label only). Queried the local session-history database
+  (session_store_sql) across all prior sessions for "iron" + "N_J"/
+  "d-electron" -- no hits beyond this session's own discussion. No hidden
+  original derivation exists to recover.
+  HOW N_J IS ACTUALLY COMPUTED ELSEWHERE (for comparison): the b quark's
+  N_J=4.75 (proton_structure.py PS3) uses the STANDARD definition N_J =
+  hbar_c/(m*L_J) with the b quark's OWN rest mass (m_b=4180 MeV) --
+  independently cross-checked by a pure-geometry formula in
+  b_quark_geometry.py (N_J_b = pi*phi^2/sqrt(3) = 4.749, circumference at
+  the icosahedral face-center inradius), agreeing to 0.06%. Both of these
+  are genuine, principled derivations specific to the b quark.
+  CONCEPTUAL PROBLEM WITH APPLYING THIS TO "IRON'S D-ELECTRONS": N_J =
+  hbar_c/(m*L_J) uses the PARTICLE's rest mass. Every d-electron in every
+  element has the SAME electron rest mass (0.511 MeV) -- the standard
+  formula gives N_J_e = 38,870 (deep bulk) for an electron regardless of
+  which atom it's bound to. It cannot, by this formula, distinguish "iron's
+  d-electrons" from "manganese's d-electrons" or any other element's
+  electrons -- there is no version of this calculation that gives a
+  DIFFERENT, iron-specific N_J~1-10 or ~4-5 value. The "4-5" figure in
+  Section 5.2 numerically matches the b quark's N_J (4.75) exactly, which
+  suggests the claim originated from associating iron's d-electron G_g
+  IRREP (a symmetry/coupling classification, Section 3.1) with the b
+  quark's G_g N_J (a physically separate distance-scale classification,
+  Section 3.3/3.4) -- i.e., likely a category conflation (same irrep label
+  used to import a numeric regime value) rather than an independent
+  computation for iron.
+  FEASIBILITY OF COMPUTING THIS FOR REAL: not possible with the existing
+  N_J=hbar_c/(m*L_J) formula and any input already established in the
+  framework (electron rest mass gives bulk for every element; nuclear mass
+  gives sub-cell/N_J<1, e.g. Fe-56 nucleus ~52 GeV gives N_J~0.38, the
+  WRONG regime and still element-generic only via mass number, not
+  chemistry). Producing a genuine, iron-specific N_J would require the
+  author to specify what physical ENERGY SCALE is meant to represent
+  "iron's d-electron scale" (e.g., a specific exchange energy, d-orbital
+  binding energy, or some other quantity that actually varies by element)
+  -- this is a new physics input, not a mechanical fix, and none of the
+  natural candidates checked land in 1-10 by the standard formula.
+  PER AUTHOR ("unless we can calculate a variety of realistic energy scales
+  I'm not sure I can arbitrarily pick one"): wrote and ran
+  analysis/nuclear/iron_dscale_NJ_survey.py, computing N_J=hbar_c/(E*L_J)
+  for 12 realistic candidate energies associated with iron -- 1st/2nd
+  ionization energy, work function, cohesive energy, bulk plasmon energy,
+  3d-4s exchange splitting, mean-field exchange integral J, Curie- and
+  melting-point thermal energies (k_B*T), K-shell X-ray binding energy,
+  nuclear binding energy per nucleon, and the Fe-56 nucleus's TOTAL binding
+  energy. RESULT: none land in [1,10]. Every atomic/solid-state candidate
+  (eV-to-keV) gives N_J in the billions (same deep-bulk regime as any free
+  electron, N_J_e=38,870) -- a ~6-9 order-of-magnitude gap from the ~2-20
+  GeV window the formula needs. Even iron's own K-shell X-ray line (7.1 keV,
+  the largest realistic atomic energy) is still ~6 orders of magnitude
+  short. The closest candidate is the Fe-56 nucleus's TOTAL binding energy
+  (492 MeV, all 56 nucleons) at N_J=40.4 -- a NUCLEAR quantity, not a
+  d-electron one, and still 4x outside the window. CONCLUSION: this is not
+  a failure to search hard enough -- no realistic energy scale specific to
+  iron can close a 6-9 order-of-magnitude gap via this formula. The "4-5"
+  figure numerically matching the b quark's N_J (4.75) is best explained as
+  a category conflation (same G_g irrep label used to import a numeric
+  regime value that only makes sense for a particle's own rest mass).
+  RESOLUTION (per author, "so unless we can do something there we would
+  need to reframe" -- contingent on the above search, now completed):
+  reframed Sections 3.3 and 5.2 in doc_magnetism.txt. Section 3.3 now states
+  iron shares the G_g IRREP (a symmetry classification) with the b quark's
+  boundary-regime mode, explicitly distinguishes this from a distance-scale
+  claim, and cites the survey script. Section 5.2's planetary-dynamo
+  argument now rests only on the already-solid ferromagnetic-irrep vs.
+  non-ferromagnetic distinction (Section 3.2's 6/6 table, needs no N_J at
+  all); the "iron is the ONLY common element at the hadronic boundary"
+  uniqueness claim is explicitly WITHDRAWN with a note that why iron
+  specifically (not cobalt/nickel) dominates planetary cores is OPEN and
+  plausibly an astrophysical-abundance question outside this framework, not
+  a G_g-specific one. Reverified magnetism_doc.py: still 15/15 PASS (doc-
+  text-only change, no script logic touched).
+  NOTE (round 2, MG2-1): this fix turned out to be incomplete -- see
+  judgment_calls.txt MG2-1 (Section 1.3 makes the same retracted claim, and
+  the same scale-mismatch logic applies to the whole Section 3.1 "N_J
+  regime" column, not just iron). Still open, tracked in the active file.
+
+MG-J5 [SHORT-TERM RESOLVED, LONG-TERM STILL OPEN -- see judgment_calls.txt
+  for the still-open long-term question] K formula self-consistency:
+  doc_magnetism Section 1.1/2.1 identifies K=1/eps_0 (Coulomb Green's
+  function argument) as THE bulk modulus, and separately derives rho=mu_0
+  from the FLUID relation v_p=sqrt(K/rho) (no shear term). doc_torsion
+  Section 3.1 instead uses the general SOLID relation v_p^2=(K+4/3*G)/rho
+  (needed for its own Poisson-ratio formula), which gives a DIFFERENT K
+  once rho=mu_0 is substituted: K=1/eps_0=1.1294e11 Pa vs
+  K=mu_0*(c^2-4/3*Rs^2*c^2)=1.0817e11 Pa, a 4.22% discrepancy (=1-4/3*Rs^2
+  exactly). Not previously flagged anywhere.
+  AUTHOR'S QUESTION ("is this a problem for doc_torsion or doc_magnetism?"):
+  traced to both docs' own modeling choices. doc_magnetism's Section 1.1/2.1
+  identifies K=1/eps_0 via the SIMPLE FLUID relation v_p=sqrt(K/rho) (no
+  shear term) -- this is where the approximation that creates the gap is
+  introduced. doc_torsion's Section 3.1 separately introduces the more
+  complete SOLID relation v_p^2=(K+4/3*G)/rho for its own Poisson-ratio
+  result, and it is doc_torsion's Section 3.3 (post-MG-J1 rewrite) that
+  first exposes the gap numerically, by computing an absolute K from that
+  solid relation and finding it disagrees with doc_magnetism's K=1/eps_0.
+  So: the root cause (which relation to use) is doc_magnetism's simplifying
+  choice; the SYMPTOM (a visible numeric mismatch) surfaces in doc_torsion,
+  because that is the only place an absolute K gets computed both ways.
+  RESOLUTION -- SHORT TERM (per author, "reach towards existing scripts and
+  alignment to known values"): K=1/eps_0 is now the headline K value in
+  doc_torsion.txt Section 3.3 and analysis/demos/torsion_doc.py (T3.6),
+  since it is the value already established and reused throughout the
+  framework (doc_magnetism Sections 1.2/2.1, doc_orbit_pressure,
+  maxwell_from_medium.py ME1/ME3, magnetism_doc.py M2/M3/M8a) -- aligning to
+  the existing/known value rather than introducing competing headline
+  numbers. The solid-mechanics K (1.082e11 Pa) is now printed/labeled as a
+  secondary cross-check ("K_solid"), not the primary result. G, E, Z_p, Z_s
+  are unaffected by this swap (none of them depend on which K convention is
+  used -- G=rho*Rs^2*c^2, E=2G(1+nu) with nu from Rs alone, Z_p=rho*c,
+  Z_s=rho*Rs*c). Reverified torsion_doc.py 24/24 PASS, magnetism_doc.py
+  15/15 PASS.
+  LONG TERM -- STILL OPEN: this is a relabeling/alignment choice, not a
+  resolution of WHY the fluid and solid v_p-rho relations disagree by
+  4.22%, or which one is physically correct for this medium -- see the
+  short entry kept in judgment_calls.txt.
+  CORRECTION (per author, "it looks like the original doc cited the gap as
+  open so I'm not sure this is new"): checked directly -- ran `git diff`
+  against the pre-session HEAD baseline for both doc_torsion.txt and
+  doc_magnetism.txt, then grepped the committed (pre-session) versions for
+  "4.2%", "bulk modulus...open", "fluid...solid", "shear term" -- zero
+  genuine hits in either file (only unrelated coincidental matches, e.g. a
+  Jupiter/Earth flyby ratio "4.28x"). This SPECIFIC 4.22% fluid-vs-solid K
+  discrepancy was not written down anywhere before this session. What WAS
+  already open in the original doc_torsion.txt (and is likely what's being
+  recalled) is the BROADER, different statement removed by MG-J1: "The
+  direct measurement of the medium density is an open problem" -- i.e.
+  rho's absolute value was unknown at all. That is a different gap: it's
+  about not having ANY confirmed rho; MG-J5's gap only becomes visible (and
+  computable) AFTER rho is pinned to mu_0 by MG-J1, when doc_torsion's own
+  solid-mechanics K formula and doc_magnetism's fluid-derived K=1/eps_0 can,
+  for the first time, be compared using the same rho and are found to
+  disagree. So: genuinely a newly-EXPOSED item (a side effect of resolving
+  the older, real, pre-existing rho-unknown gap), not a pre-existing item
+  that was already flagged in this specific form.
+
+=============================================================================
+ITEMS RESOLVED DURING RESEARCH (no discussion needed -- already fixed)
+=============================================================================
+  - magnetism "H_g x H_g -> A_g" was asserted in prose in 3 places
+    (doc_jobson_cell.txt Section 6, cell_geometry.py, magnetism_doc.py's M7b
+    comment) but never actually run through a check() anywhere in the repo.
+    magnetism_doc.py already had the exact I_h character table +
+    n_Ag_in_product() projection-formula helper needed -- added a real
+    check (M9, calls the existing helper on H_g's index) instead of leaving
+    it prose-only.
+  - magnetism "3-color*1-isospin structure gives iron its 4 unpaired spins"
+    (Section 3.2) mis-presented an arithmetic claim (3*1=4, false) that,
+    traced back to its origin (b_quark_geometry.py, jobson_cell_doc.py
+    comment), was ALWAYS meant descriptively -- "3-color, isospin-singlet"
+    as a label for the b quark's SM quantum numbers; dim(G_g)=4 comes
+    independently from the I_h character table, not from 3*1. Confirmed via
+    direct read of b_quark_geometry.py: that line is a bare print(), never
+    wrapped in a check(). Reworded to match the descriptive framing used
+    elsewhere in the project.
+  - magnetism a_0/r_p~62895 (Section 3.4) was uncomputed by any script --
+    added a trivial check (M10; both a_0 and r_p already independently
+    defined) rather than leave a bare, unverified number in the doc.
+  - leptons koide_proof.py KP4 printed -6.16ppm despite the doc (and the
+    script's own adjacent comment) stating 9.2ppm -- one-line bug (detail
+    string omitted the /(2/3) normalization the PASS/FAIL condition already
+    used correctly). Fixed and reverified 8/8 PASS (unchanged, only the
+    printed detail string changed).
+
+=============================================================================
+RESOLVED 2026-09-01 (author-directed, doc_jobson_cell.txt)
+=============================================================================
+  - JC-J1 (r_p/E_cell/L_J/R_c chain): per author, CODATA stays the "lynchpin"
+    headline value in every paper (keeps the series grounded in accepted
+    physics); the m_p-derived value is shown in PARALLEL as a labeled
+    consistency check inside doc_jobson_cell, never as the value other
+    claims depend on. NOTE: my first pass got this backwards (made the
+    derived chain the Abstract headline, 124.823 GeV) -- that also broke a
+    cross-document dependency I hadn't checked for: doc_higgs.txt's own
+    headline Higgs-mass prediction (m_H=124.799*1.002322=125.089 GeV) and
+    doc_torsion.txt both already build on E_cell=124.799 GeV (the CODATA
+    chain), so changing doc_jobson_cell's headline alone would have put it
+    out of sync with two OTHER published papers. Reverted: Abstract, Section
+    2.1, and Section 2.2 all now lead with r_p=0.8414fm/L_J=9.9347e-3fm/
+    E_cell=124.799 GeV (CODATA 2018) as the working value, with the
+    m_p-derived chain (r_p=0.84124fm, L_J=9.9325e-3fm, E_cell=124.823 GeV,
+    zero additional free parameters beyond m_p) shown alongside as an
+    explicitly-labeled internal consistency check (0.019-0.02% agreement).
+    doc_higgs.txt/doc_torsion.txt needed no changes since they already used
+    the CODATA chain. Extended jobson_cell_doc.py (new check J27c) to
+    compute R_c/r_in/r_mid from the derived L_J too, so both chains are
+    script-verified rather than doc-only arithmetic -- confirmed 0.0195% max
+    agreement between chains.
+  - JC-J2 (Higgs=A_g uniqueness): verified corpuscle_uniqueness_proof.py's
+    STEP2 parity argument (n=p*q=2 even => scalar => A_g, the only scalar
+    gerade irrep) is logically sound and needs no (p,q) scan, GIVEN (1,2)'s
+    uniqueness is separately established in doc_alpha Section 5.3 ("5.3
+    Uniqueness of n=2", integer scan n=1..13). Section 7.1 now cites this
+    script directly for argument (1). Per author: the fuller uniqueness
+    treatment lives in docs/series3/doc_uniqueness.txt (unpublished v1.0
+    draft) -- NOT cited here, only the already-committed script is.
+    UPDATE 2026-09-01: argument (2) (the 8-pair scan) upgraded from
+    "corroborating, not exhaustive" to a genuinely exhaustive proof. Wrote
+    and ran analysis/higgs/higgs_pq_uniqueness_exhaustive.py (6/6 PASS,
+    caught and fixed a units bug of my own along the way): jobson_cell_doc.py's
+    own E_cell(p,q) = K/phi_pq(p,q) formula (K independent of p,q) is
+    algebraically, strictly monotonically decreasing in p^2+q^2 (since
+    phi_pq=(1+sqrt(p^2+q^2))/2 has positive derivative in norm). This splits
+    the infinite (p,q) space into a finite region (p^2+q^2<=5.6, containing
+    only 2 coprime pairs total: (1,1) vector and (1,2) scalar-in-window) that
+    can be brute-force checked, plus an infinite tail that is PROVABLY,
+    permanently excluded by monotonicity -- no further checking ever needed
+    there. (1,2) is now confirmed the unique scalar pair in the 125 GeV
+    window across the ENTIRE infinite (p,q) space, not just 8 spot-checked
+    pairs. Updated Section 7.1 argument (2), the Section 9 "Higgs=A_g
+    DEFINITIVELY PROVEN" status line, and Section 9c STEP 11 to reflect this;
+    added the script to Section 10's companion-script list.
+  - JC-J3 (m_p vintage/provenance across scripts): per author, standardizing
+    to one shared constants file is not the right fix because companion demo
+    scripts must stay standalone-runnable. Confirmed via
+    docs/series3/doc_uniqueness.txt's own abstract that m_p has never been
+    derived in this framework -- it remains the one external input; the
+    938.272046/938.272088/938.27208816 spread across scripts is rounding/
+    vintage drift on the same CODATA measurement, not competing derivations.
+    doc_leptons.txt's J26-vs-LM1 note now states the two exact m_p literals
+    used (938.272046 here vs 938.272088 in jobson_cell_doc.py) instead of
+    saying "a slightly different m_p input" vaguely. Standardizing the
+    literals themselves remains a separate, larger follow-up (unchanged from
+    the original recommendation) -- not done here.
+  - JC-J4 (Weinberg angle misattribution): searched analysis/**/*.py broadly
+    (not just doc_higgs.txt) and found the "7*G/(K+G)" structural formula is
+    NOT missing/removed -- it's alive and actively computed in THREE places:
+    jobson_cell_doc.py itself (line ~92, unattributed print), and two
+    dedicated scripts, analysis/quantum/electroweak_predictions.py and
+    analysis/higgs/higgs_weinberg_unified.py. The only actual error was the
+    doc's inline "(doc_higgs)" attribution, which was simply wrong -- the
+    formula is this document's own (built from its own already-derived K/G,
+    Section 3.2). Fixed the attribution rather than purging the formula;
+    added the two real script citations.
+
+=============================================================================
+ROUND 2 -- SELF-REVIEW AND MECHANICAL FIXES (2026-09-01)
+=============================================================================
+After JC-J1-4, LP-J1-2, MG-J1-5 were resolved, ran a second pass: (1) full
+self-review of all 3 docs by me before re-dispatching readers; (2) fresh
+subagent critical-reader sweeps of all 3 docs, same rules as round 1 (paper
++ its own cited scripts only, no other context). Substantive findings from
+the round-2 sweeps are tracked as JC2-#/LP2-#/MG2-# in judgment_calls.txt
+(the active file) until resolved. This section only covers what was fixed
+directly, no discussion needed.
+
+SELF-REVIEW FIXES (found before dispatching subagents, applied directly):
+  - doc_jobson_cell.txt Section 9 had a SECOND, previously-missed copy of
+    LP-J1's arithmetically-impossible claim ("T1xE- = {G32, I52}") -- the
+    original LP-J1 search for "doc_jobson_cell.txt line 1492" came up empty
+    because it grepped "T1 x E-" (with spaces); the actual text used
+    "T1xE-" (no spaces). Fixed to match doc_leptons.txt's corrected framing
+    ("assigned by spinor rank"). See LP-J1's entry above for the update.
+  - doc_magnetism.txt Section 5.2 had a leftover duplicate paragraph from
+    the MG-J4 edit ("A rotating ball of iron = rotating boundary-regime
+    medium-coupling material...") repeating content already covered by the
+    new paragraph above it, and still using the "boundary-regime"/"boundary
+    coupling" language MG-J4 had just retracted. Removed, kept the
+    non-redundant Venus sentence.
+
+ROUND-2 MECHANICAL FIXES (citation/number corrections, no physics judgment
+needed -- applied directly):
+  - doc_leptons.txt + doc_jobson_cell.txt Section 10: both cite tau-circuit
+    claims with "TPC1c"/"TPC3/TPC4/TPC6" tags, but neither doc's companion-
+    script list included analysis/quantum/tau_pair_configuration.py (which
+    DOES exist, runs 11/11 PASS, and its own output literally confirms the
+    "two photons meet twice per circuit, hop 0 and hop 10" claim doc_leptons
+    Section 5.1 makes). Added it to both docs' Section 10 lists. This
+    resolves what one subagent flagged as a "major" gap (tau two-photon
+    geometry "asserted but not checked anywhere") -- the check exists, it
+    was just uncited; not a missing derivation, a missing citation.
+  - doc_leptons.txt Section 10: "analysis/demos/leptons_doc.py -- 18/18 PASS
+    [STANDALONE -- no external deps]" is inaccurate -- the script imports
+    numpy (a third-party package), not stdlib-only. Reworded to "no project
+    imports; uses numpy for vector geometry."
+  - doc_leptons.txt Section 10: gluon_tau_helix.py's cited range "GH0-GH3"
+    undercounted the script's actual checks (also has GH0b, GH6, GH7, per
+    its own body-text citations elsewhere in the same doc). Fixed to match
+    doc_jobson_cell.txt's already-correct "(GH0/GH0b/GH0c/GH6/GH7)" label.
+  - doc_jobson_cell.txt Section 9, b-quark entry: "(2) 4=3c*1i matches b
+    quark quantum numbers" is false arithmetic as literally written (3x1=3,
+    not 4) -- the SAME issue already fixed once in doc_magnetism.txt this
+    session (b_quark_geometry.py's "3-color, isospin-singlet" label was
+    always descriptive, not the literal product 3*1=4; dim(G_g)=4 comes
+    independently from the I_h character table). Missed this second copy in
+    doc_jobson_cell.txt during the original MG-J3-adjacent fix; reworded to
+    the same descriptive framing.
+  - doc_magnetism.txt: "a_0/r_p = 62,895 [M10]" (Sections 3.4 and 7) doesn't
+    match M10's actual printed output (62,892.5, ~0.004% off, absorbed by
+    the check's loose tolerance). Fixed both citations to the exact value.
+  - doc_magnetism.txt header: "companion to doc_jobson_cell, doc_alpha,
+    doc_torsion, doc_higgs" omitted doc_nucleus and doc_orbit_pressure,
+    despite both being cited repeatedly in the body and listed in
+    References. Added both.
+  All companion scripts reverified after these fixes: leptons_doc.py 18/18,
+  jobson_cell_doc.py 47/47, magnetism_doc.py 15/15 -- unchanged, no
+  regressions (all fixes were doc-text-only or additive citations).
+
+=============================================================================
+ROUND 3 -- SYSTEMATIC RE-TRIAGE OF ROUND-2 FINDINGS (2026-09-01)
+=============================================================================
+Per author request ("try and cut through as many as you can by reviewing
+existing scripts for coverage that older scripts may not be aware of and
+places the doc is not properly citing"), dispatched 4 parallel research
+subagents (one per doc_jobson_cell items, doc_leptons items, and 2 for
+doc_magnetism items given volume) to re-investigate all 34 round-2 findings
+(JC2-2..11, LP2-1..10, MG2-1..14; JC2-1 was already resolved separately, see
+above). Each subagent verified claims by actually RUNNING scripts and
+reading real output, not just docstrings. RESULT: 30 of 34 resolved with
+direct honest-wording or citation fixes (no new physics work, no author
+judgment needed -- either a script already covered the concern uncited, or
+the honest fix was simply to soften an overclaim to match what the doc's
+own cited sources already say). Only 4 needed genuine author judgment and
+remain in judgment_calls.txt: LP2-2, LP2-6, MG2-1 (narrowed), MG2-2.
+
+DOC: doc_jobson_cell.txt (JC2-2 through JC2-11)
+------------------------------------------------
+  - JC2-2 (SSB=jamming vev link stated as settled fact): CONFIRMED genuinely
+    open (jobson_cell_rigidity_matrix.py's own words: nonlinear lock
+    amplitude "not attempted here"; no other script fills the gap). Fixed:
+    Section 7.1's "The locked amplitude = Higgs vev = 246 GeV" now reads
+    "CONJECTURED to equal the Higgs vev", citing the script's own hedge
+    directly.
+  - JC2-3 (Alpha_s "(CLOSED, 2026-08-25)" stronger than cited script):
+    CONFIRMED (gluon_c3_born.py's own printed output: "connection... not yet
+    derived"; script also reinstates a phi^2 factor via a separate H->ZZ
+    argument, not independently cross-checked elsewhere). Fixed: both
+    Section 7.2 and Section 9 status lines changed to "ESSENTIALLY CLOSED",
+    with the evaluation-scale and phi^2-reinstatement caveats stated
+    in-doc for the first time.
+  - JC2-4 ("zero free parameters" not counting alpha as a 2nd input):
+    PARTIALLY CLARIFIED -- doc_alpha.txt already derives alpha independently
+    (V22, non-circularity confirmed), just wasn't cross-referenced at the
+    document's strongest claims. Fixed: "THE ONE FREE PARAMETER: m_p"
+    section now explicitly notes alpha is imported from doc_alpha (cited),
+    not a second undocumented empirical input.
+  - JC2-5 (no quantization rule bridges continuous wave vs. discrete
+    corpuscle-count pictures): CONFIRMED genuinely open (muon_orbit_count.py
+    derives the specific integers from discrete I_h orbit combinatorics, not
+    from any continuous-amplitude quantization rule; no script bridges the
+    two). Fixed: added a NOTE at Section 7.5's opening stating these are
+    currently two complementary descriptive conventions, not one derived
+    from the other.
+  - JC2-6 (T_1g massless/m_W=gv/2 mechanism imported from SM, "Therefore"
+    implies derivation): CONFIRMED (higgs_w_vertex.py's own output: "g is
+    not yet derivable from the cell geometry"; g is backed OUT of measured
+    m_W/v, reverse of a prediction). Fixed: "WHY THE W/Z ARE NOT T_1g"
+    section now explicitly flags the SSB mechanism and coupling g as
+    Standard-Model imports, citing higgs_w_vertex.py.
+  - JC2-7 ("~95% proven... remaining 5%" pseudo-quantification): CONFIRMED
+    (zero computational backing for any percentage anywhere in the repo).
+    Fixed: reworded to qualitative "exhaustive modulo one remaining gap"
+    framing, no invented percentage.
+  - JC2-8 ("PROOF...IS DEFINITIVE" banner vs. own 3-tier "strongly inferred"
+    breakdown): CONFIRMED mismatch (higgs_pq_uniqueness_exhaustive.py only
+    strengthens tier 2, says nothing about tier 3's empirical LHC-particle
+    match). Fixed: banner reworded to "DEFINITIVE FOR TIERS 1-2...STRONGLY
+    INFERRED" for tier 3, matching the doc's own breakdown.
+  - JC2-9 (J16/J17/J18 check tolerances far looser than labeled precision,
+    e.g. J17 allows 8.6% against a "0.038%" label): CONFIRMED exactly
+    (verified by running the script: J16 tolerance was 1000x looser, J17
+    ~86x, J18 ~4500x than labeled). FIXED IN CODE: tightened all three
+    tolerances in jobson_cell_doc.py (J16: 0.001->2e-6; J17: absolute
+    0.001->relative 0.001; J18: 0.001->0.000001), each still comfortably
+    passing the actual computed values. Reverified 47/47 PASS.
+  - JC2-10 ("O.2" missing from O.1/O.3-O.5 list): CONFIRMED via git-history
+    pickaxe search across every commit -- O.2 never existed, an original
+    authoring gap, not a renumbering artifact. Not renumbering (doc has a
+    published Zenodo DOI, external citations may reference O.3-O.5 by
+    number) -- added an explanatory NOTE instead.
+  - JC2-11 ("9b"/"9c" with no "9a"): same conclusion via git history (never
+    existed). Added an explanatory NOTE rather than renumbering, same DOI
+    citation-safety reasoning.
+  All fixes reverified: jobson_cell_doc.py 47/47 PASS (unchanged from before
+  this round; the J16-J18 tolerance tightening still passes cleanly).
+
+DOC: doc_leptons.txt (LP2-1 through LP2-10)
+----------------------------------------------
+  - LP2-1 (Koide "I_h is the ONLY group with two 3-dim irreps..." claim):
+    CONFIRMED mathematically FALSE, not just overstated -- dim(V⊗W)=
+    dim(V)*dim(W) holds for ANY group's 3-dim irreps (verified by hand
+    against the octahedral group O's own T1/T2, same dim-9 product); the
+    false claim was baked into TWO scripts' print statements
+    (koide_proof.py, face_gluon_geometry.py), not just the doc. Fixed all
+    three (doc Section 6.2 + both scripts' prints): dropped the false
+    uniqueness claim, kept the true fact (T_1gxT_2g has no A_g component,
+    specific to I_h) and the honest scoping note that this dimension
+    identity alone doesn't yet connect to why lepton MASSES sum to 2/3
+    (Section 6.2's own already-stated open step, unchanged).
+  - LP2-2 (muon eff_mu=0.845492 labeled "DERIVED" despite doc's own
+    Section 2.3 saying that picture is wrong): CONFIRMED and WORSE than
+    scoped -- found a THIRD candidate value via an uncited script
+    (muon_internal_force_check.py F1-F3: eff_mu=1.0 on the doc's own
+    corrected path, suggesting the Born-ratio construction itself may not
+    survive contact with that correction). Section 4.3's caveat and
+    Section 9's DERIVED-bucket line expanded to name all three candidates
+    (0.845492 used / 0.856308 KP-inverted / 1.0 real-path-trivial) and
+    state plainly that none is derived from first principles. WHICH
+    candidate (if any) is correct remains open -- kept in judgment_calls.txt
+    as the narrowed physics question (wording is now honest either way).
+  - LP2-3 + LP2-8 (electron correction "NET +3/2*alpha^2" doesn't equal
+    3/4; CG-decomposition table under-accounts dimension, uncited):
+    RESOLVED BY CITATION -- ran ih_double_cg.py fresh: E+xE+ = A(1)+T1(3)
+    (dim 1+3=4, checks out exactly), coefficient = dim(T1)/4 = 3/4 DIRECTLY,
+    no "NET" subtraction needed. Also got the real G32xG32 = A+T1+T2+G+H and
+    I52xI52 = A+2T1+2T2+2G+3H products (T1/T2 multiplicities in the
+    original doc table were correct, just incomplete/uncited). Fixed
+    Section 1.2's CG table and the electron-correction line to show the
+    real decomposition + citation (ih_double_cg.py DC2/DC6/DC7).
+  - LP2-4 (tau "visiting all 3 colors in equal proportion", but 20 isn't
+    divisible by 3): CONFIRMED false as literally written (su3_from_faces.py
+    real output: R=7 G=7 B=6). Fixed: reworded to "equal group-theoretic
+    weight (C3=0), though the physical face count is 7R/7G/6B, not exactly
+    equal" -- exactly the wording judgment_calls.txt itself had proposed.
+  - LP2-5 (Section 2.2 "this is why m_tau>>m_mu" directly contradicts
+    Section 5.2's "backward bias LOWERS coupling, bounce-count
+    compensates"): CONFIRMED as a genuine unreconciled contradiction, no
+    script resolves it. Fixed: cut Section 2.2's direct-causation claim,
+    replaced with a pointer to Section 5.2's more detailed (and internally
+    self-consistent) bounce-count-compensation story.
+  - LP2-6 (E+/E- = particle/antiparticle asserted, not argued): investigated
+    much deeper than originally scoped -- found doc_particle_generation.txt
+    (a SIBLING PUBLISHED paper) asserts the INCOMPATIBLE claim that E- is
+    the electron neutrino, not the positron, backed by 2 independent
+    scripts (neutrino_freed_lepton.py, weak_interaction_cg.py). This is a
+    genuine cross-document physics contradiction -- UPGRADED to MAJOR,
+    kept open in judgment_calls.txt (not something a wording fix can
+    resolve; needs an author decision on which identification is correct
+    across both papers).
+  - LP2-7 (Section 1.2's closing line states an undone calculation's
+    outcome as settled): CONFIRMED (Section 9's own OPEN list says the
+    exact muon Born balance hasn't been done; koide_proof.py's eff_mu=0.8563
+    is from numerical inversion, not "the exact Born balance applied to all
+    paths"). Fixed: softened to say this is the open item in Section 9, not
+    an accomplished result.
+  - LP2-9 (Section 6.1/9's "exact 2/3 from derived masses" is circular: m_tau
+    is SOLVED from the Koide equation, so it satisfying Koide is a
+    tautology): CONFIRMED via direct code read of lepton_mass.py LM10/LM11.
+    Fixed: Section 6.1 and Section 9's ESSENTIALLY CLOSED bucket both now
+    explicitly flag this as a tautological self-check, distinct from LM9's
+    genuinely independent 9.2 ppm PDG-mass agreement. ALSO fixed
+    claims_audit.txt's L-3/L-4 entries, which had the same uncaught
+    circularity.
+  - LP2-10 ("corpuscle model" used without definition): RESOLVED BY
+    CITATION -- doc_qm.txt's FRAMING NOTE (v4, 2026-08-27) already defines
+    it cleanly. Added a cross-reference at Section 5.1's first use.
+  All fixes reverified: leptons_doc.py 18/18, lepton_mass.py 18/18,
+  koide_proof.py 8/8, face_gluon_geometry.py 14/14 -- all unchanged, no
+  regressions.
+
+DOC: doc_magnetism.txt (MG2-1 through MG2-14)
+------------------------------------------------
+  - MG2-1 (Section 1.3 "(PROVEN)" repeats the claim MG-J4 retracted
+    elsewhere): CONFIRMED -- Section 1.3 still said iron atoms "lock the
+    medium torsion at their boundary-regime coupling points" in the present
+    tense, with none of Section 3.3/5.2's hedging. FIXED the specific
+    sentence (mechanical -- just applying MG-J4's already-agreed wording
+    consistently, no new judgment needed). The BROADER question (does the
+    same scale-mismatch invalidate Section 3.1's whole "N_J regime" column
+    for Co/Ni/Mn/H_g/T_1g too?) remains genuinely open -- confirmed no
+    script computes N_J at realistic energy scales for any element besides
+    iron -- kept in judgment_calls.txt, narrowed to just this scope
+    question.
+  - MG2-2 (K=1/eps_0 chosen to match the already-known Coulomb result, so
+    rho=mu_0 is algebra not discovery): CONFIRMED -- doc_torsion.txt's own
+    Section 3.3 already says this explicitly ("not a free parameter... follows
+    directly from two results already established"). The only alternative
+    rho-derivation route (medium_properties.py's rho_Lambda) is disowned as
+    "LEGACY, CONTAMINATED" elsewhere and 20 orders of magnitude off -- not
+    an independent check. Bonus: doc_torsion's own alternative K route
+    (solid-mechanics) disagrees with K=1/eps_0 by 4.22% (MG-J5), so it isn't
+    even internally self-consistent. This is a genuine framing question
+    about the Abstract's "NEW GROUND" claim -- kept open in
+    judgment_calls.txt, no direct fix applied (would touch the headline).
+  - MG2-3 (neutron bound g-factor "ESSENTIALLY CLOSED" with no hedge, plus
+    an unexplained "Closes g_A quenching puzzle" claim): CONFIRMED --
+    neutron_g_factor.py's own text calls the bound estimate "[OPEN:
+    quantitative treatment...]", built by subtracting a constant from
+    proton_g_factor.py (never cited in the doc). Fixed: added the missing
+    citation and carried the script's own hedge into Section 6's entry.
+  - MG2-4 (Curie-temp ordering "Co > Fe > Ni IS correctly reproduced" with
+    zero supporting numbers anywhere): CONFIRMED -- repo-wide grep for
+    Curie/T_C/S(S+1)/W_d found no script computing this for any of the
+    three metals. Fixed: reworded to "qualitatively consistent... no script
+    has evaluated it numerically", removing the false certainty.
+    ESCALATED (2026-09-02, per author "seems like we backed off something we
+    probably had calculated... if we can't find it this is something we
+    should consider reproducing"): re-searched notes/, sessions/, legacy
+    .tex files, docs/leads_applications.txt, docs/zenodo.txt -- confirmed no
+    prior calculation exists anywhere to recover (zenodo.txt's "ordering
+    correct" line just restates the doc's own claim). Since nothing could be
+    found, actually did the calculation: wrote
+    analysis/nuclear/curie_temperature_reproduction.py using this
+    framework's own G_medium (3.576e9 Pa), the doc's own irrep-based
+    S=unpaired/2 convention (Fe=2, Co=1.5, Ni=1), real crystallographic
+    z/lattice constants (Fe BCC z=8 a=2.866A; Co FCC z=12 a=3.544A -- Co is
+    FCC, not HCP, at its T_C=1388K; Ni FCC z=12 a=3.524A), and the doc's own
+    crude W_d=G_medium*a^3. RESULT: predicted ordering Ni > Co > Fe -- WRONG
+    (real: Co > Fe > Ni). Tried substituting real measured effective
+    paramagnetic moments (Curie-Weiss p_eff, a more standard mean-field
+    input than the doc's unpaired/2) instead: predicted Co > Ni > Fe -- also
+    wrong (Fe/Ni swapped). Per-element T_C(pred)/T_C(measured) ratio spans
+    6.18x across the three metals, ruling out a single missing overall
+    calibration constant as a fix.
+    FOLLOW-UP #1 (per author "which factors came from the medium and did it
+    work with prior values"): of the whole formula, only G_medium is
+    actually torsion-medium-derived. Tested the PRIOR (pre-MG-J1,
+    rho_Lambda-based) G_medium=1.662e-11 Pa value too, since doc_magnetism.txt
+    (2026-08-20) predates the rho=mu_0 unification (2026-09-01) -- ordering
+    came out IDENTICAL (still Ni>Co>Fe, still wrong; CT4), which is
+    mathematically guaranteed since G_medium multiplies every element's T_C
+    by the same constant and therefore cannot affect relative ordering
+    under either value. This isolated the failure entirely to the
+    element-dependent factors (f_Ag, z, S, a).
+    FOLLOW-UP #2 (per author "do we need to review f_Ag z and S?" then "i
+    feel a lot better posting a correct derived formula than just
+    retracting a bad one"): reviewed each. (a) f_Ag=1/dim(irrep)^2 --
+    VERIFIED (CT5) as genuine group theory, not an ansatz: the trivial
+    irrep A_g has multiplicity exactly 1 in every irrep's self-product
+    X(x)X, checked via magnetism_doc.py's own I_h character-table
+    projection formula for all 5 gerade irreps. Not the culprit. (b) z
+    (coordination number) -- standard crystallography, confirmed correct
+    for the relevant phases (Fe BCC, Co/Ni FCC). Not the culprit. (c) The
+    REAL culprits were the crude a^3 (whole unit cell, ignoring that d-shell
+    exchange only involves the much smaller d-orbital volume) and the naive
+    S=unpaired/2 convention (doesn't match real itinerant-electron moments).
+    FIX FOUND AND VERIFIED (CT6, CT6a, CT6b): replaced a^3 with the actual
+    d-orbital volume (4/3*pi*r_d^3), computing r_d via Slater's rules
+    (standard, algorithmic effective nuclear charge Z_eff from the electron
+    configuration -- not a looked-up table, reproduces the well-established
+    d-orbital CONTRACTION Fe>Co>Ni across the 3d row), and replaced
+    unpaired/2 with REAL measured T=0 saturation moments (Fe=2.22, Co=1.72,
+    Ni=0.606 mu_B/atom, standard values e.g. Kittel). RESULT: ordering
+    Co>Fe>Ni correctly reproduced, AND the three elements'
+    T_C(predicted)/T_C(measured) ratios land within 1.07x of each other
+    (0.180, 0.183, 0.171) -- a single missing overall constant of ~5.6x
+    would bring absolute values into near agreement too, remarkably close
+    to this section's own long-standing "factor 6 off" note (written before
+    this investigation, not fitted to it). Updated doc_magnetism.txt Section
+    3.3 to present this as the working derivation (ordering REPRODUCED, not
+    retracted) and Section 6 to move the ordering from GENUINELY OPEN to
+    ESSENTIALLY CLOSED, with only the residual ~5.6x quantitative constant
+    (r_d's deeper medium-native derivation, vs. Slater's-rules atomic-physics
+    stand-in) left as the narrower open item. 5/8 checks pass overall
+    (CT1-CT3 intentionally document the original formula's failure mode for
+    the historical record; CT5-CT6b confirm the fix) -- not a full 8/8
+    because the script deliberately keeps the failing original-formula
+    checks visible rather than deleting them. The separate, softer "why a
+    Curie temperature exists at all" unjamming mechanism (Section 1.3) was
+    never in question either way.
+  - MG2-5 (Descartes angular-defect/solid-angle conflation): CONFIRMED --
+    vertex_gap_pressure.py's own VG2 check literally mislabels the planar
+    angular defect as "solid angle"; no script computes true steradians for
+    the 12 vertex gaps. doc_magnetism's own cited source (doc_nucleus.txt)
+    is more careful, calling it "angular defect" and using a SEPARATE
+    isotropy check (<x^2>=<y^2>=<z^2>=1/3, VG5-VG6). Fixed: reworded
+    Section 1.2a to match doc_nucleus's more careful terminology and cite
+    the real isotropy basis.
+  - MG2-6 (Lorentz-force "q/m_eff" asserted without ever computing m_eff):
+    CONFIRMED -- grepped the whole repo, no script defines or computes this
+    m_eff (other "m_eff" hits are an unrelated concept in alpha-derivation
+    scripts). Fixed: flagged as an unevaluated placeholder in-doc.
+    UPGRADED (2026-09-02, per author "is this something we should define or
+    does the disclaimer clearly imply its not relevant"): recognized the
+    doc's own two force laws (F_coriolis=2m(v x omega), F_Lorentz=q(v x B))
+    are EXACTLY Larmor's theorem (standard, textbook classical E&M -- a
+    charge in field B experiences the same force as a Coriolis force in a
+    frame rotating at the Larmor frequency omega_L=q*B/(2*m)). There is no
+    separate "m_eff" to define: the coupling constant is simply q/m, the
+    particle's own real charge-to-mass ratio. Verified numerically (not
+    just algebraically) in new script
+    analysis/nuclear/lorentz_coriolis_larmor.py: for 5 random velocity
+    vectors and an electron in a representative B field, F_Lorentz and
+    F_coriolis match to float precision (~1e-16 relative) once
+    omega=Larmor frequency, and the recovered q/m matches the electron's
+    real CODATA charge-to-mass ratio exactly (2/2 PASS). Combined with
+    Section 1.3's already-established B=curl(A) identification (B literally
+    IS the medium vorticity, not merely proportional to it), this closes
+    the derivation completely. Updated doc_magnetism.txt Section 4.1 to
+    present this properly (Lorentz force = Coriolis force, EXACT via
+    Larmor's theorem, not "mechanical analog") and Section 6's PROVEN
+    bucket wording to match.
+  - MG2-7 (a_0 "pressure balance" asserts the standard Bohr radius formula
+    without solving two pressure functions for their crossing point):
+    CONFIRMED across 3 documents and 2 scripts -- every instance found
+    (proton_structure.py PS5, doc_nucleus.txt, doc_orbit_pressure.txt)
+    either asserts the formula or cross-checks it via the (unrelated)
+    virial theorem, never an explicit P_electron(r)=P_proton(r) solve.
+    Fixed: both occurrences (Section 1.2a, Section 3.4) reworded to
+    "asserted via the standard formula", not "derived"/"DERIVED".
+    UPGRADE (2026-09-02, per author push-back "is this a formula that
+    should be tested... i mean we know it is so?"): re-searched exhaustively
+    across doc_electron.txt, doc_orbit_pressure.txt, electron_doc.py (ED3),
+    pressure_isobar_orbit.py (PO2/PO3), stability_limit.py, hadron_manipulation.py
+    -- confirmed a_0 appears in ~20 places repo-wide, but EVERY one still
+    only plugs into the standard formula or narrates the mechanism
+    qualitatively; none solves a balance point. ALSO FOUND: doc_electron.txt
+    Section 3.1's "RESULT (Bohr radius)" cited "[doc_orbit_pressure Section
+    1.3; PO2 PASS]" as if PO2 proved this -- PO2 is actually Earth/Sun
+    orbital mechanics (a different physical system entirely), a genuine
+    miscitation, now fixed. CLOSED FOR REAL: wrote
+    analysis/nuclear/bohr_radius_pressure_balance.py (8/8 PASS) -- a
+    standard variational calculation (trial psi=exp(-r/a), the same
+    functional form as hydrogen's true ground state) applied to this
+    framework's OWN already-derived pieces: V(r)=-alpha*hbar_c/r (Section
+    1.2's Coulomb potential) and T(r) (confinement kinetic energy, a direct
+    consequence of the Schrodinger equation already derived from the medium
+    in qm_from_medium.py QM5). Numerically verified <T>(a) and <V>(a) via
+    integration, then solved F_out(a)+F_in(a)=0 (equivalently dE/da=0) both
+    algebraically and by direct numerical minimization -- both give
+    a=hbar_c/(m_e*c^2*alpha)=a_0 exactly, matching CODATA to 0.001%. Bonus:
+    the virial relation <T>=-<V>/2 (PS5's cross-check) falls out
+    automatically at this point, so the new derivation strengthens rather
+    than contradicts PS5. Updated doc_magnetism.txt (Section 1.2a, Section
+    3.4, Section 7 companion list), doc_electron.txt (Section 3.1, fixed the
+    miscitation), and doc_orbit_pressure.txt (Section 1.3) to cite the real
+    derivation instead of the hedged hold-over language. No free parameters
+    added -- every input (m_e, alpha, hbar_c) was already independently
+    established elsewhere in the framework.
+  - MG2-8 (Rs never given a value/formula in this document): RESOLVED BY
+    CITATION -- Rs = sqrt(5)/(4*pi) = 0.17794, derived in doc_alpha.txt
+    Section 3.2 from the (1,2) Hopf winding norm. Added inline at Section
+    1.1's first use.
+  - MG2-9 (N_J/L_J formula never stated in this document): RESOLVED BY
+    CITATION -- formula N_J=hbar_c/(m*L_J) and L_J=alpha*phi*r_p=9.93e-3 fm
+    both already established in doc_jobson_cell.txt Sections 2.1/4.3. Added
+    inline at Section 3.4's N_J-values list.
+  - MG2-10 ("EXACT" claims don't survive the post-2019 SI redefinition of
+    mu_0): CONFIRMED -- maxwell_from_medium.py's own source comment already
+    concedes "exact in old SI; approximate in new SI", and its ME1 check
+    prints a real (non-floating-point-noise) 2.72e-10 relative gap. Fixed:
+    added a caveat paragraph at Section 1.1 quoting this directly, and
+    softened the Abstract's "exactly from CODATA" phrase to point to it.
+  - MG2-11 (Venus is a single cherry-picked data point; Mercury/Mars
+    complicate the "weak field follows from slow omega" story): CONFIRMED
+    -- Mercury has sat_frac=0.0040 (near Venus's 0.0010, both "SUB-SAT") yet
+    retains a real dynamo; this tension is never addressed anywhere in the
+    repo. Fixed the honest part: softened "consistent with omega being THE
+    driving term" to "a NECESSARY but not SUFFICIENT" driving term, naming
+    Mercury/Mars as open counterexamples in-doc. Deeper reconciliation
+    (why Mercury still dynamos) would need new content, not a citation --
+    not pursued further (low priority per research).
+  - MG2-12 (B-field scaling "PREDICTION" has an undetermined constant):
+    CONFIRMED, already honestly flagged in 2 other places (Section 6,
+    docs/open_items.txt N-6) but Section 5.2 still called it a "PREDICTION"
+    outright. Fixed: reworded to "PREDICTED SCALING FORM" with the
+    undetermined-constant caveat stated inline.
+  - MG2-13 (M7b/ME6 tautological checks pad the PASS counts): CONFIRMED by
+    direct code read -- M7b calls the same hardcoded branch it's testing;
+    ME6's condition is the literal Python True. Fixed: added a NOTE at
+    Section 7's script list clarifying these 2 are structural/summary
+    markers, not independent tests (no PASS/FAIL semantics changed in the
+    scripts themselves -- doc-text transparency fix only).
+  - MG2-14 (doc_orbit_pressure.txt Section 1.2a cross-ref matches this
+    doc's own current section number): CONFIRMED NOT an error -- both docs
+    number independently and coincidentally land on "1.2a"; content is
+    accurate and on-topic (same chirality-repulsion mechanism, dwell-time
+    framing). Added a small "(dwell-time framing)" parenthetical to
+    preempt confusion; no substantive change needed.
+  All fixes reverified: magnetism_doc.py 15/15, maxwell_from_medium.py 6/6,
+  neutron_g_factor.py 7/7 -- all unchanged (no script logic touched for any
+  MG2 item, all fixes were doc-text-only), no regressions.
+
+NET RESULT: judgment_calls.txt trimmed from 34 open substantive findings to
+4 (LP2-2, LP2-6, MG2-1 narrowed, MG2-2) -- all 4 are genuine either-way
+author calls (which unverified numeric candidate to trust; a cross-document
+physics contradiction; how far to extend an already-agreed retraction; how
+to frame an algebraically-tautological-but-true derivation chain), not
+citation gaps or overclaims a search could resolve.

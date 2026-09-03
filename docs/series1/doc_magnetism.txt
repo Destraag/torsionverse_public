@@ -5,7 +5,8 @@ IN THE TORSION MEDIUM
 
 Author: Robert Jobson
 Date:   2026-08-20
-Status: REFERENCE DOCUMENT -- companion to doc_jobson_cell, doc_alpha, doc_torsion, doc_higgs
+Status: REFERENCE DOCUMENT -- companion to doc_jobson_cell, doc_alpha, doc_torsion,
+        doc_higgs, doc_nucleus, doc_orbit_pressure
 =============================================================================
 
 ABSTRACT
@@ -24,8 +25,9 @@ The Lorentz force IS the Coriolis drag on a charge moving through the
 rotating/shearing medium.
 
 From this framework we derive: (1) Coulomb's law exactly from the pressure
-Green's function; (2) the medium density rho = mu_0 exactly from CODATA;
-(3) a table of ferromagnetic/paramagnetic/diamagnetic behavior of transition
+Green's function; (2) the medium density rho = mu_0 from CODATA (exact in
+the pre-2019 SI; see Section 1.1 caveat for the current, measurement-based
+SI); (3) a table of ferromagnetic/paramagnetic/diamagnetic behavior of transition
 metals from the I_h irrep of their unpaired electron count; (4) the connection
 between ferromagnetism, boundary-regime N_J particles, and the G_g irrep of
 the Jobson cell. The irrep table predicts Fe, Co, Ni as ferromagnetic (irreps
@@ -39,7 +41,7 @@ Standard gauge theory treats mu_0 as a unit-defining constant, not as the
 measured density of anything; here rho_medium = mu_0 is a mechanical
 identity, not a dimensional coincidence.
 
-Companion script: analysis/demos/magnetism_doc.py  (13/13 PASS)  [STANDALONE]
+Companion script: analysis/demos/magnetism_doc.py  (15/15 PASS)  [STANDALONE]
 
 
 1. ELECTRICITY AND MAGNETISM AS TORSION MEDIUM PHENOMENA
@@ -49,7 +51,9 @@ Companion script: analysis/demos/magnetism_doc.py  (13/13 PASS)  [STANDALONE]
 
 From Section 3 of doc_torsion, the torsion medium has:
   v_p = c  (pressure wave speed = speed of light)  [GW170817, EXACT]
-  v_s = Rs*c  (shear wave speed)  [flyby anomaly K-formula, EXACT]
+  v_s = Rs*c  (shear wave speed)  [Rs = sqrt(5)/(4*pi) = 0.17794, from the
+    (1,2) Hopf winding norm; doc_alpha.txt Section 3.2, doc_torsion.txt
+    Section 2; flyby anomaly K-formula, EXACT]
   rho = mu_0 = 4*pi*1e-7 kg/m^3  (medium density)  [derived below, EXACT]
 
 The identification c = v_p follows from:
@@ -59,6 +63,17 @@ The identification c = v_p follows from:
 Since epsilon_0*mu_0 = 1/c^2 exactly (CODATA definition), and v_p = c:
   rho = K/c^2 = 1/(epsilon_0*c^2) = mu_0  [EXACT, no free parameters]
   K = 1/epsilon_0  [bulk modulus of torsion medium = inverse permittivity]
+
+SI-DEFINITION CAVEAT: "EXACT" above holds in the PRE-2019 SI, where
+mu_0 = 4*pi*1e-7 was exact by definition. In the CURRENT SI (post-2019),
+mu_0 is a MEASURED quantity tied to the measured fine-structure constant,
+so this identification is exact only to within that measurement's current
+~1e-10 relative uncertainty -- maxwell_from_medium.py's own source comment
+concedes this directly ("exact in old SI; approximate in new SI"), and its
+ME1 check prints a real (non-floating-point-noise) relative gap of 2.72e-10,
+consistent with that uncertainty. magnetism_doc.py's M1/M2 checks likewise
+use finite (1e-8/1e-9) tolerances, not bit-exact equality, for this reason.
+Every "EXACT" tag on rho/mu_0/K below should be read with this caveat.
 
 The vacuum magnetic permeability mu_0 IS the density of the torsion medium.
 This is not an analogy. It is the mechanical definition.
@@ -137,10 +152,18 @@ The proton is a spinning icosahedral cog (derived in doc_nucleus.txt):
 
   Zone 3 cells co-rotate under Zone 2 frame-dragging. As each Zone 3 cell
     rolls past its 12 vertex contacts, 12 gaps open per cycle. By Descartes'
-    theorem (12 * pi/3 = 4*pi), these 12 gaps cover solid angle 4*pi
-    isotropically. This is the Coulomb source: 12 rhythmic gap openings
-    per cell rotation = the 1/r pressure field from the 3D Laplace Green's
-    function. (Section 2 above, doc_nucleus.txt Section 2.)
+    theorem, the total ANGULAR DEFECT summed over all 12 vertices is exactly
+    12*pi/3 = 4*pi (radians, not steradians -- vertex_gap_pressure.py's own
+    VG2 check computes this as "gap solid angle" but it is the planar angular
+    defect, 2*pi-5*(pi/3), not a true spherical-polygon solid-angle
+    computation). The genuinely independent basis for isotropy is a separate
+    check: <x^2>=<y^2>=<z^2>=1/3 over the 12 vertex directions (doc_nucleus.txt
+    Section 2.1, VG5-VG6) -- THIS is what establishes the 12 gap openings are
+    isotropically distributed, not the 4*pi angular-defect sum by itself
+    (which totals 4*pi for a reason unrelated to true solid angle). This is
+    the Coulomb source: 12 rhythmic gap openings per cell rotation = the 1/r
+    pressure field from the 3D Laplace Green's function. (doc_nucleus.txt
+    Section 2.)
 
   The Coulomb field IS the proton's spin encoding itself into the medium
   through Zone 3 cell rolling. It is not static; it is the rolling imprint
@@ -172,7 +195,15 @@ OPPOSITE CHIRALITY (proton and electron):
     - At r < a_0: electron's outward pressure exceeds proton's inward pull
     - At r > a_0: proton's inward pull exceeds electron's outward pressure
     - At r = a_0: balanced -- the stable orbital is this equilibrium radius
-    - This is a_0 = hbar*c/(m_e*alpha) = 5.29e-11 m [DERIVED, zero free parameters]
+    - This is a_0 = hbar*c/(m_e*c^2*alpha) = 5.29e-11 m [DERIVED: writing
+      P_electron(r) as the confinement (kinetic) energy of a localized wave
+      packet, -dT/dr = +(hbar*c)^2/(m_e*c^2*r^3) (outward, from the same
+      Schrodinger equation this framework derives from the medium,
+      qm_from_medium.py QM5), and P_proton(r) as the already-derived Coulomb
+      pull, -dV/dr = -alpha*hbar*c/r^2, and solving where they balance gives
+      exactly this formula -- not merely asserted. Also reproduces the
+      virial relation <T>=-<V>/2 automatically (matching PS5's cross-check).
+      analysis/nuclear/bohr_radius_pressure_balance.py, 8/8 PASS]
 
   No hard core on this side: the electron has no Zone 2 jammed boundary, so
   there is no 0.421 fm grinding contact. The balance occurs at the much
@@ -192,7 +223,7 @@ OPPOSITE CHIRALITY (proton and electron):
 The force is the proton's cog rotation either cooperating with (mesh) or
 fighting (grind) the local cell-rolling of the approaching object.
 [Full derivation: doc_nucleus.txt Sections 1-2, doc_orbit_pressure.txt
- Section 1.2a]
+ Section 1.2a (dwell-time framing of the same mechanism)]
 
 1.3  Magnetic field = torsion/shear in the medium (PROVEN)
 
@@ -220,11 +251,16 @@ MAGNETIC FIELDS ARE DIFFERENT -- THEY CAN JAM:
   Maxwell jamming critical point (3V-E=6, proven in doc_jobson_cell).
 
   A PERMANENT MAGNET IS A MACROSCOPIC JAMMED STATE OF THE TORSION MEDIUM.
-  The G_g irrep sites (iron atoms) lock the medium torsion at their boundary-
-  regime coupling points. The Maxwell criterion is satisfied at those sites,
-  meaning the local medium geometry is exactly critical -- it cannot relax.
-  The magnetic field lines are frozen torsion lines held rigid by the
-  jamming of the medium around G_g coupling sites.
+  The G_g irrep sites (iron atoms) are a SYMMETRY match to the Jobson cell's
+  boundary-regime G_g mode -- a classification, not a distance-scale claim.
+  Iron's d-electrons remain at the ordinary eV energy scale; no realistic
+  d-shell energy reaches the GeV-scale N_J the boundary-regime formula would
+  need (checked exhaustively across 12 candidate energies, none landing near
+  N_J=1-10: analysis/nuclear/iron_dscale_NJ_survey.py). The magnetic field
+  lines are frozen torsion lines held rigid by jamming of the medium at G_g
+  coupling sites -- this jamming/lock mechanism rests on Section 3.2's
+  ferromagnetic irrep classification (6/6 table), not on the retracted
+  N_J/distance-scale claim (see Section 3.3).
 
   This explains the Curie temperature physically:
     T < T_C: medium is jammed at G_g sites, torsion is frozen = magnet
@@ -266,7 +302,7 @@ torsion medium. It is not a new postulate -- it IS the wave equation.
 
 From the acoustic analog of the torsion medium:
   Bulk modulus K_medium = 1/epsilon_0   [from Coulomb Green's function]
-  Shear modulus G_medium = K_medium * Rs^2 / (1-Rs^2) ... [from wave speeds]
+  Shear modulus G_medium = K_medium * Rs^2        [from wave speeds]
   Density: v_p^2 = K/rho => rho = K/c^2 = 1/(epsilon_0*c^2)
 
 Using c^2 = 1/(epsilon_0*mu_0) exactly:
@@ -313,10 +349,11 @@ d-electron count (Hund's rule). The classification is:
   dim 5   (H_g): paramagnetic only  [H_g x H_g has 5 competing exchange paths]
   dim 0-1 (A_g): diamagnetic
 
-H_g has A_g in its self-product (H_g x H_g -> A_g + ...) but the 5 competing
-exchange channels create geometric frustration -- collective alignment cannot
-persist. Mn (3d^5 = half-filled d-shell = maximally symmetric H_g state)
-behaves analogously to a 'closed sub-shell' for exchange purposes.
+H_g has A_g in its self-product (H_g x H_g -> A_g + ..., verified [M9]) but
+the 5 competing exchange channels create geometric frustration -- collective
+alignment cannot persist. Mn (3d^5 = half-filled d-shell = maximally
+symmetric H_g state) behaves analogously to a 'closed sub-shell' for
+exchange purposes.
 
 3.2  Transition metal magnetic properties
 
@@ -334,14 +371,30 @@ counts 4, 3, 2 -- exactly the G_g, T_1g, E_1/2 dimensions. The paramagnetic
 Mn (5 unpaired = H_g) is sub-cell regime and does NOT achieve the sustained
 collective alignment (domain formation) that G_g/T_1g coupling allows.
 
+NOTE ON THE Cu ROW: the free-atom configuration 3d^10 4s^1 has one formally
+unpaired 4s electron, so a naive electron count gives 1, not the 0 shown.
+The table's "0" is the correct BULK METAL value, not the free-atom value:
+in metallic copper that 4s electron is itinerant (delocalized into the
+conduction band) rather than a localized moment coupled to the ionic core.
+Hund's rule -- and the irrep assignment above -- classifies LOCALIZED
+unpaired spins; a delocalized conduction electron contributes no net local
+moment, consistent with copper's measured diamagnetism (small core-electron
+diamagnetic susceptibility only, no paramagnetic term). This is standard
+solid-state physics (itinerant vs localized moments), not a new claim; it is
+stated explicitly here because the table's "0" would otherwise look like an
+unexplained departure from the free-atom configuration shown in the same row.
+
 PHYSICAL INTERPRETATION:
   G_g (dim 4): 4 unpaired spins in boundary regime. The G_g x G_g -> A_g
   Clebsch-Gordan coupling is strong (A_g appears once, unique). This unique
-  scalar coupling allows collective alignment of spin domains. Iron IS the
-  hadronic regime particle (G_g = b quark in the EW sector) -- the same
-  irrep that gives the b quark its 3-color*1-isospin structure gives iron
-  its 4 unpaired spins. The "color" of the b quark is the "spin degree of
-  freedom" of the iron d-electron, projected onto the icosahedral lattice.
+  scalar coupling allows collective alignment of spin domains. Iron's
+  d-electrons occupy the same irrep as the b quark's boundary-regime mode
+  (G_g, dim=4 -- b_quark_geometry.py labels this "3-color, isospin-singlet"
+  as a descriptive tag for the b quark's SM quantum numbers, NOT a product
+  3*1=4; dim(G_g)=4 comes independently from the I_h character table). The
+  "color" of the b quark and the "spin degree of freedom" of the iron
+  d-electron are both realizations of the same G_g irrep, projected onto
+  the icosahedral lattice.
 
   H_g (dim 5): 5 unpaired spins but sub-cell regime (N_J_Mn < 1 for the
   d-electron scale). H_g x H_g -> A_g also has A_g, but the sub-cell
@@ -352,7 +405,17 @@ PHYSICAL INTERPRETATION:
 
 3.3  Why iron specifically (not cobalt) is the "default" magnetic metal
 
-Iron (G_g, dim 4) lies at the exact hadronic boundary regime N_J ~ 1-10.
+Iron (G_g, dim 4) shares its I_h irrep classification with the b quark's
+boundary-regime mode (G_g, N_J=4.75 -- proton_structure.py PS3). This is a
+SYMMETRY match, not a distance-scale one: iron's d-electrons carry the
+ordinary electron rest mass and sit at N_J_e=38,870 (deep bulk, same as any
+electron in any element) -- no realistic energy scale for iron's d-shell
+reproduces a hadronic-boundary N_J [checked exhaustively across 12
+candidate energies spanning ionization energy through nuclear binding
+energy; none land near 1-10 -- analysis/nuclear/iron_dscale_NJ_survey.py].
+What DOES carry over from the b quark's regime
+is the IRREP itself: the same G_g x G_g -> A_g coupling structure applies
+regardless of what physical system realizes G_g.
 The G_g x G_g -> A_g coupling has:
   - A_g appears ONCE (unique, as in the b quark coupling)
   - T_1g appears ONCE (spin-1 vector mode)
@@ -380,21 +443,56 @@ CURIE TEMPERATURES:
   The Curie temperature is the point where wave kinetic energy = exchange coupling:
     k_B*T_C = J  (exchange coupling at G_g site)
 
-  FORMULA IDENTIFIED: In the mean-field Heisenberg model:
+  FORMULA: In the mean-field Heisenberg model:
     T_C = f_Ag * W_d * z*S(S+1) / (3*k_B)
-  where:
-    f_Ag = A_g coupling fraction = 1/dim(irrep)^2
-    W_d  = d-electron exchange energy (NOT the full d-band width)
-    z    = lattice coordination number (crystal structure)
-    S    = total spin quantum number (unpaired/2)
+  where each factor is:
 
-  The ordering Co > Fe > Ni IS correctly reproduced once z*S(S+1) is included.
-  The formula structure is derived from the framework + equipartition.
+    f_Ag = A_g coupling fraction = 1/dim(irrep)^2. This is derived group
+      theory, not an ansatz: the trivial irrep A_g has multiplicity exactly
+      1 in every irrep's self-product X(x)X (verified for all 5 gerade
+      irreps via the same I_h character-table projection formula
+      magnetism_doc.py's M4/M5/M6 already use), so f_Ag=n_Ag(X,X)/dim(X)^2
+      =1/dim(X)^2 follows directly.
 
-  MISSING INPUT: W_d = G_medium * a^3 gives correct order of magnitude (factor 6 off).
-  The remaining factor is the d-orbital fraction of the unit cell:
-    W_d = G_medium * a^3 * (V_d_orbital / V_unit_cell)
-  where V_d_orbital depends on the d-orbital radius r_d.
+    W_d = d-electron exchange energy = G_medium * (4/3*pi*r_d^3), the
+      medium's shear modulus times the D-ORBITAL'S OWN VOLUME (not the
+      whole unit cell -- see MISSING INPUT below for why that distinction
+      matters). r_d is the 3d orbital radius, computed via Slater's rules
+      (standard atomic-physics effective nuclear charge Z_eff from the
+      electron configuration) with hydrogen-like scaling r_d=n^2*a_bohr/
+      Z_eff. This reproduces the well-established d-orbital CONTRACTION
+      across the 3d row (Z_eff increases Fe->Co->Ni, so r_d shrinks in the
+      same order).
+
+    z = lattice coordination number (crystal structure: Fe is BCC, z=8;
+      Co and Ni are FCC at their respective Curie points, z=12 each --
+      cobalt's HCP->FCC transition at 695K is well below its T_C=1388K, so
+      FCC is the correct phase to use here).
+
+    S = total spin quantum number, from REAL measured T=0 saturation
+      magnetic moments (mu_s=g*S, g~2; Fe=2.22, Co=1.72, Ni=0.606
+      mu_B/atom -- standard values, e.g. Kittel's Introduction to Solid
+      State Physics), not a naive unpaired-electron-count convention
+      (which does not match real itinerant-electron moments for these
+      three metals).
+
+  RESULT: this reproduces the correct ordering Co > Fe > Ni, and the three
+  elements' T_C(predicted)/T_C(measured) ratios land within 1.07x of each
+  other (0.180, 0.183, 0.171) -- i.e. a single missing overall constant of
+  ~5.6x would bring absolute values into close agreement too.
+  [analysis/nuclear/curie_temperature_reproduction.py, CT5-CT6b, 5/8 PASS --
+  CT1-CT3 test the naive whole-unit-cell/unpaired-count inputs for
+  comparison and are expected to fail; CT4 confirms the result is unaffected
+  by which torsion-medium density (rho=mu_0 or the prior rho_Lambda) sets
+  G_medium, since it is a common factor across all three elements and
+  cannot affect relative ordering either way.]
+
+  MISSING INPUT: r_d is computed via Slater's rules (Z_eff from the
+  electron configuration) as a stand-in for the FULL WAVE CHAIN's
+  torsion-medium-native route below (steps 1-4) -- that deeper derivation
+  (nuclear potential -> r_d from quark wave charge distribution) remains a
+  separate, not-yet-attempted project; Slater's rules is a standard
+  external atomic-physics method, not a medium-native replacement for it.
 
   FULL WAVE CHAIN: All waves in the system contribute to T_C:
     (1) Quark waves (bulk, N_J >> 1) inside the proton set the proton charge
@@ -412,9 +510,13 @@ CURIE TEMPERATURES:
   All waves participate; the d-electron wave is the free propagating one.
   This is why T_C depends on atomic number Z (which counts protons = quark waves).
 
-  STATUS: T_C mechanism and ordering ESSENTIALLY CLOSED.
-          Quantitative: W_d requires r_d from atomic structure (Z, shielding).
-          r_d derivation from torsion medium + quark wave charge distribution: OPEN.
+  STATUS: T_C UNJAMMING MECHANISM (why a Curie temperature exists at all)
+          and the Co>Fe>Ni ORDERING are both DERIVED (see above).
+          Quantitative: absolute values still carry a uniform ~5.6x
+          residual -- r_d's full derivation from torsion medium + quark
+          wave charge distribution (steps 1-4 below) remains OPEN;
+          Slater's rules is an external-physics stand-in for it, not yet a
+          medium-native result.
 
 3.4  Why electrons (not protons) control electromagnetic motion
 
@@ -431,20 +533,23 @@ CURIE TEMPERATURES:
 
   WHY THE ELECTRON DOES NOT FALL INTO THE PROTON:
   The electron IS a wave -- it cannot be compressed below its natural wave-packet
-  size (~Bohr radius a_0 = hbar*c/(m_e*c^2*alpha) = 5.29e-11 m, fully derived).
+  size (~Bohr radius a_0 = hbar*c/(m_e*c^2*alpha) = 5.29e-11 m -- derived from
+  an explicit outward/inward force balance, see Section 1.2a).
   The orbital is not a path but a STANDING WAVE in the proton's pressure well:
     r < a_0: electron's own outward pressure > proton's inward pull  -> repelled
     r > a_0: proton's inward pull > electron's outward pressure      -> attracted
     r = a_0: balanced (stable orbital = resonant standing wave condition)
 
-  The ratio a_0/r_p = 62,895 -- the electron wave packet is ~63,000x larger than
-  the proton. The electron's own pressure prevents it from reaching the proton,
-  even though the proton's pressure well extends outward to the orbital scale.
+  The ratio a_0/r_p = 62,892.5 [M10] -- the electron wave packet is ~63,000x
+  larger than the proton. The electron's own pressure prevents it from
+  reaching the proton, even though the proton's pressure well extends
+  outward to the orbital scale.
 
-  N_J values:
+  N_J values [N_J = hbar_c/(m*L_J), the Jobson grain number; L_J = alpha*phi*r_p
+  = 9.93e-3 fm; doc_jobson_cell.txt Sections 2.1, 4.3]:
     electron:  N_J = 38,870  [deep bulk -- wave propagates freely]
     proton:    N_J =    21   [boundary regime -- embedded in medium]
-    b quark:   N_J =     4.75 [boundary regime]
+    b quark:   N_J =  4.75   [boundary regime; proton_structure.py PS3]
 
   WHY THE PROTON CANNOT CARRY CURRENT IN A SOLID:
   The proton's pressure well is FILLED by the electron's standing wave (the bond).
@@ -470,17 +575,22 @@ CURIE TEMPERATURES:
 A charge q moving with velocity v through a magnetic field B experiences:
   F = q*v × B
 
-In the torsion medium picture:
-  - B = vorticity of medium (local angular velocity omega of medium)
-  - v = velocity of charged particle through medium
-  - The cross product v × B is the Coriolis-like drag force on the particle
+In the torsion medium picture, B is the medium's own local vorticity
+(Section 1.3: B=curl(A), the curl of the medium's torsional displacement
+field). This makes the Lorentz force literally the Coriolis force felt by
+a particle moving through a rotating medium:
+  F_coriolis = 2*m*(v × omega)   [omega = local rotation rate]
+  F_Lorentz  = q*(v × B)
 
-This is exactly the drag force in a rotating fluid:
-  F_coriolis = 2*m*(v × omega) for rotation rate omega
-  F_Lorentz = q*(v × B)
-
-The ratio gives the effective "coupling" between charge and vorticity:
-  q/m_eff corresponds to the charge-to-mass ratio in the medium.
+These are not merely analogous in FORM -- they are the SAME force.
+Identifying omega with the Larmor frequency omega_L = q*B/(2*m) (a
+standard, exact classical-electrodynamics identity, not new physics --
+Larmor's theorem) makes the two force laws identical term-by-term for any
+v, verified to floating-point precision in
+analysis/nuclear/lorentz_coriolis_larmor.py (LC1, 2/2 PASS). No separate
+"effective mass" is needed: the coupling constant is simply q/m, the
+particle's own already-known charge-to-mass ratio (LC2 confirms this
+exactly recovers the electron's real CODATA q/m).
 
 The magnetic force is not a new force -- it is the Coriolis/drag force of
 a charged particle moving through the rotating/shearing torsion medium.
@@ -519,22 +629,62 @@ Estimate: B ~ mu_0 * j * r_core where j = charge density * v_rotation
 
 5.2  Why iron cores create planetary magnetic fields
 
-The key insight: G_g is the boundary-regime irrep. Iron is the ONLY common
-element at the hadronic boundary (N_J ~ 4-5 for iron's d-electron scale).
-This means iron uniquely bridges the sub-cell and bulk regimes -- it is the
-material most strongly coupled to the torsion medium boundary layer.
+The key insight: G_g is iron's I_h irrep (Section 3.1-3.3), giving the
+unique scalar A_g coupling that makes ferromagnetic domain alignment
+possible in any direction -- the same mechanism that makes Fe/Co/Ni
+(G_g/T_1g/E_1/2, all ferromagnetic per Section 3.2) behave differently from
+non-ferrous cores (silicate, aluminum: no unpaired d-electrons, no
+comparable coupling). A rotating ferromagnetic-irrep core is a dynamo that
+twists the medium vorticity around its rotation axis; a rotating
+non-ferromagnetic core does not.
 
-A rotating ball of iron = rotating boundary-regime medium-coupling material
-= a dynamo that twists the medium vorticity around its rotation axis.
-Non-ferrous cores (silicate, aluminum) lack this boundary coupling and 
-generate much weaker or no magnetic fields. Venus has a slow rotation and
-weak field despite having a similar bulk composition -- consistent with
-omega being the driving term.
+WITHDRAWN CLAIM (2026-09-01): this section previously asserted iron is
+"the ONLY common element at the hadronic boundary (N_J ~ 4-5 for iron's
+d-electron scale)" as the reason it specifically -- not cobalt or nickel --
+dominates planetary cores. That N_J claim does not survive scrutiny (see
+Section 3.3's correction) and is removed. Why
+iron specifically, rather than cobalt or nickel, is the common
+planetary-core material remains OPEN here; it is plausibly a matter of
+cosmic elemental abundance (iron is the endpoint of exothermic stellar
+fusion) rather than anything G_g-specific, but that is outside what this
+framework derives.
 
-PREDICTION: Planetary magnetic field strength should scale as:
+Venus has a slow rotation and weak field despite having a similar bulk
+composition -- consistent with omega being a NECESSARY driving term, though
+not by itself SUFFICIENT: Mercury is also a very slow rotator yet retains a
+real (if weak) measurable dynamo field, and Mars rotates faster than Venus
+yet has no present global field -- both are open counterexamples to a simple
+"weak field follows from slow omega" story (not reconciled anywhere in this
+framework; mainstream planetary science attributes the difference to core
+convection/solidification state, external to what this document derives).
+
+PREDICTED SCALING FORM: Planetary magnetic field strength should scale as:
   B ~ constant * (omega * r_core^3 * rho_core) / r^3
   where the "constant" involves the G_g coupling strength.
-  [OPEN: Derive the constant from G_g x G_g -> A_g coupling]
+  [OPEN: Derive the constant from G_g x G_g -> A_g coupling; docs/open_items.txt
+  N-6. Until the constant is derived/bounded, this is an unconstrained scaling
+  FORM that can fit nearly any observed B, not yet a testable prediction.
+  NOT the same question as the aurora-oval investigation: analysis/cosmo/
+  aurora_test.py asked whether the Lense-Thirring frame-drag "wrapper"
+  topology has a not-fully-closed opening whose LATITUDE matches the aurora
+  oval -- a geometric/positional question, verdict "RED HERRING" (formula
+  trend wrong cross-body; notes/medium_chains.txt). That result does not
+  bear on THIS question, which is about field STRENGTH from Coriolis-driven
+  shear stress reaching the Maxwell jamming critical point (Section 1.3's
+  jamming mechanism), not about dipole position/topology.
+  The actually relevant blocker: the framework's own most mature treatment
+  of "stress driving a medium toward Maxwell criticality produces an EM-
+  scale response" is the piezoelectric mechanism (doc_series2_piezo_escalator.txt
+  Section 3), where voltage ~ (proximity to Maxwell criticality) * chi(T_1g).
+  Even there, with a far better-characterized material (quartz) and simpler
+  geometry, the numerical proximity-to-criticality factor is explicitly
+  underived: "the gap from current geometry to Maxwell criticality in
+  unstressed quartz is not yet parameterised" (same doc, Section 3.3, its
+  own listed open item). The planetary constant needs the identical missing
+  piece -- a first-principles way to quantify how far Coriolis stress pushes
+  the core medium toward/past criticality -- so this is a structural,
+  cross-cutting gap shared with the piezoelectric d11 coefficient, not a
+  planetary-specific data gap.]
 
 
 6. STATUS SUMMARY
@@ -544,27 +694,42 @@ PROVEN:
   - rho_medium = mu_0 (exact, from acoustic analog + c^2 = 1/(eps_0*mu_0))
   - Coulomb's law from pressure Green's function (C7 of doc_higgs)
   - E = pressure, B = vorticity (by mechanical identification)
-  - Lorentz force = Coriolis/drag in rotating medium (mechanical analog)
+  - Lorentz force = Coriolis force in the medium's rotating frame, EXACT via
+    Larmor's theorem (Section 4.1; lorentz_coriolis_larmor.py LC1-LC2, 2/2
+    PASS) -- not merely a mechanical analogy
   - Maxwell's equations DERIVED from Jobson cell medium:
     K=1/eps_0, rho=mu_0 -> c=1/sqrt(eps_0*mu_0). T_1g transverse vector wave
     at c with E=-dA/dt, B=curl(A) gives Faraday and Ampere exactly.
-    Light = T_1g massless pressure wave. 100% derived.
+    Light = T_1g massless transverse wave (NOT a compression/pressure wave --
+    that is A_g's role; see doc_torsion Section 3.1). 100% derived.
     [maxwell_from_medium.py 6/6 PASS: ME1-ME6]
 
 ESSENTIALLY CLOSED:
   - Neutron magnetic moment g_n: two-tier free/bound prediction from Zone 3
     free (absent) vs bound (proton Zone 3 acts externally). Sign from Galois
-    mirror T_1g/T_2g. g_n free = -1.567 mu_N, bound = -1.927 mu_N (0.7% PDG).
-    Closes g_A quenching puzzle. [doc_nucleus Sec 5.6; neutron_g_factor.py 7/7]
+    mirror T_1g/T_2g. g_n free = -1.567 mu_N, bound = -1.927 mu_N (0.7% PDG),
+    built by subtracting a constant (0.3602) imported from proton_g_factor.py.
+    neutron_g_factor.py's own text calls the bound estimate an "[OPEN:
+    quantitative treatment of proton Zone 3 pressure on bound neutron]"
+    estimate -- the free-neutron prediction is the solid result; the bound
+    correction is a plausible but not yet quantitatively derived adjustment.
+    [doc_nucleus Sec 5.7; neutron_g_factor.py 7/7, proton_g_factor.py]
   - Fe/Co/Ni ferromagnetic, Mn paramagnetic, Cu/Zn diamagnetic from irreps (6/6)
   - Ferromagnetism = jammed torsion at G_g/T_1g sites (Section 1.3)
   - Iron ferromagnetic: G_g gives unique scalar A_g coupling
   - Curie temperature MECHANISM: T_C = thermal energy to unjam the medium
     at G_g coupling sites (kicks past Maxwell critical point). DERIVED.
+  - Curie temperature Co>Fe>Ni ORDERING: derived from W_d using the actual
+    d-orbital volume (Slater's-rule r_d) and S from real saturation
+    moments (Section 3.3). Quantitative absolute values still off by a
+    uniform ~5.6x factor -- see GENUINELY OPEN below.
 
 GENUINELY OPEN:
-  - Curie temperature W_d: exchange energy at d-electron scale not yet derived
-    from G_medium * (d-orbital volume). When derived, T_C values follow directly.
+  - Curie temperature absolute scale: the ~5.6x uniform residual left after
+    the ordering fix (Section 3.3) -- r_d's deeper derivation from torsion
+    medium + quark wave charge distribution (the FULL WAVE CHAIN steps 1-4)
+    remains undone; Slater's rules is a standard external atomic-physics
+    stand-in for it, not yet a medium-native result.
   - Earth's magnetic field exact value (needs core dynamics)
   - Superconductivity from medium (A_g scalar condensate?)
   - Hall effect and quantum Hall from icosahedral medium topology
@@ -574,14 +739,33 @@ GENUINELY OPEN:
 7. COMPANION SCRIPT TARGETS
 -----------------------------
 
-  analysis/demos/magnetism_doc.py  -- 13/13 PASS  [STANDALONE -- no external deps]
+  analysis/demos/magnetism_doc.py  -- 15/15 PASS  [STANDALONE -- no external deps]
   - M1: rho = mu_0 exact
   - M2: c = sqrt(K/rho) exact
   - M3: K = rho*c^2  (E=mc^2 derived)
   - M4: G_g x G_g -> A_g once (ferromagnetic scalar)
   - M5: T_1g x H_g -> no A_g (face coupling forbidden)
   - M6: T_1g x T_1g -> A_g once (consistent J13)
+  - M9: H_g x H_g -> A_g once (Mn self-coupling channel exists)
   - M7/M7b: 6/6 transition metal table + Mn sub-cell check
+  - M8a-M8e: Maxwell equations from medium (c^2, Faraday, Ampere, T_1g=photon, E=mc^2)
+  - M10: a_0/r_p ~ 62,892.5 (electron orbital vs proton charge radius)
+
+  analysis/medium/maxwell_from_medium.py  -- 6/6 PASS  [ME1-ME6, cited Section 6]
+  analysis/nuclear/neutron_g_factor.py    -- 7/7 PASS  [neutron g-factor, cited Section 6]
+  analysis/nuclear/bohr_radius_pressure_balance.py -- 8/8 PASS [a_0 from explicit
+    electron/proton force balance, cited Section 1.2a]
+  analysis/nuclear/curie_temperature_reproduction.py -- 5/8 PASS [Co>Fe>Ni
+    ordering: crude formula fails (CT1-CT3), Slater's-rule d-orbital + real
+    saturation-moment fix succeeds (CT5-CT6b), cited Section 3.3]
+  analysis/nuclear/lorentz_coriolis_larmor.py -- 2/2 PASS [Lorentz force =
+    Coriolis force via Larmor's theorem, cited Section 4.1]
+
+  NOTE ON PASS COUNTS: 2 of the above checks are structural/summary rather
+  than independent tests -- magnetism_doc.py's M7b calls the same hardcoded
+  branch it's testing (can't fail by construction), and maxwell_from_medium.py's
+  ME6 condition is the literal Python `True` (a summary marker for ME1-ME5,
+  not its own test). The remaining checks in each suite are independent.
 
 
 REFERENCES
@@ -589,10 +773,12 @@ REFERENCES
 
   [doc_magnetism]  https://doi.org/10.5281/zenodo.22036406
 
-  [doc_alpha]        https://doi.org/10.5281/zenodo.22013651
-  [doc_torsion]      https://doi.org/10.5281/zenodo.22016573
-  [doc_higgs]        https://doi.org/10.5281/zenodo.22032555
-  [doc_jobson_cell]  https://doi.org/10.5281/zenodo.22032906
+  [doc_alpha]          https://doi.org/10.5281/zenodo.22013651
+  [doc_torsion]        https://doi.org/10.5281/zenodo.22016573
+  [doc_higgs]          https://doi.org/10.5281/zenodo.22032555
+  [doc_jobson_cell]    https://doi.org/10.5281/zenodo.22032906
+  [doc_nucleus]        https://doi.org/10.5281/zenodo.22042337
+  [doc_orbit_pressure] https://doi.org/10.5281/zenodo.22044378
 
 
 ACKNOWLEDGMENT

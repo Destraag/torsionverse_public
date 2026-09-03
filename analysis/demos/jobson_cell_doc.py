@@ -259,14 +259,14 @@ check("J15 k_n_max = 3125/3456 (exact algebraic)",
       abs(k_n_max - 3125/3456) < 1e-14, f"3125/3456 = {3125/3456:.10f}")
 
 check("J16 7*k_n_max/(2*pi) = 1+alpha+alpha^2*phi (0.0001%)",
-      abs((lhs_jam-rhs_jam)/rhs_jam) < 0.001,
+      abs((lhs_jam-rhs_jam)/rhs_jam) < 2e-6,
       f"residual = {(lhs_jam-rhs_jam)/rhs_jam*100:+.6f}%")
 
 check("J17 k_n/k_eff = alpha*phi/(1+alpha*phi^2) (essentially closed, 0.038%)",
-      abs(k_n_k_eff - 0.01158) < 0.001, f"k_n/k_eff = {k_n_k_eff:.8f}")
+      abs(k_n_k_eff - 0.01158)/0.01158 < 0.001, f"k_n/k_eff = {k_n_k_eff:.8f}")
 
 check("J18 alpha from n_exact: residual 0.00000022%",
-      abs(err_alpha) < 0.001, f"error = {err_alpha:+.10f}%")
+      abs(err_alpha) < 0.000001, f"error = {err_alpha:+.10f}%")
 
 check("J19 sin^2(theta_W)* = PDG (4.6e-6 gap)",
       abs(sin2_tw2 - 0.22290) < 1e-4, f"gap = {sin2_tw2-0.22290:.2e}")
@@ -403,6 +403,22 @@ check("J27 N_J_p = 1/(4*alpha*phi): boundary condition from I_h EM sector (0.02%
 check("J27b E_cell = pi*m_p/(2*alpha*phi) from m_p alone -- matches CODATA to 0.02%",
       abs(err_ecell) < 0.05,
       f"E_cell(m_p)={E_cell_mp:.4f} GeV  E_cell(r_p)={E_cell:.4f} GeV  dev={err_ecell:+.4f}%")
+
+# J27c: full derived-chain cell geometry (L_J, R_c, r_in, r_mid) from r_p_pred
+# alone -- parallels Section 2's CODATA-chain geometry so both chains are
+# available as script-verified numbers, not hand-computed in the doc.
+L_J_pred   = alpha * phi * r_p_pred
+R_c_pred   = L_J_pred * math.sqrt(1 + phi**2) / 2
+r_in_pred  = L_J_pred * phi**2 / (2*math.sqrt(3))
+r_mid_pred = L_J_pred * phi / 2
+print(f"  => L_J   (derived, m_p only) = {L_J_pred:.7f} fm  (CODATA r_p chain: {L_J_fm:.7f} fm)")
+print(f"  => R_c   (derived, m_p only) = {R_c_pred:.7f} fm  (CODATA r_p chain: {R_c:.7f} fm)")
+print(f"  => r_in  (derived, m_p only) = {r_in_pred:.7f} fm  (CODATA r_p chain: {r_in:.7f} fm)")
+print(f"  => r_mid (derived, m_p only) = {r_mid_pred:.7f} fm  (CODATA r_p chain: {r_mid:.7f} fm)")
+check("J27c derived-chain L_J/R_c/r_in/r_mid agree with CODATA-chain to 0.02%",
+      all(abs(a-b)/b < 2e-4 for a, b in
+          [(L_J_pred,L_J_fm),(R_c_pred,R_c),(r_in_pred,r_in),(r_mid_pred,r_mid)]),
+      f"max diff = {max(abs(a-b)/b for a,b in [(L_J_pred,L_J_fm),(R_c_pred,R_c),(r_in_pred,r_in),(r_mid_pred,r_mid)])*100:.4f}%")
 
 # =============================================================================
 # SECTION JP -- Pentagonal belt (muon circuit) geometry

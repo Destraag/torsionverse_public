@@ -97,7 +97,7 @@ Cross-references:
   of an icosahedral elastic structure, differing only in the scale of the
   enclosing geometry.
 
-  H-O-H bend:        nu_2 = 1595 cm^-1  -->  T_1g symmetry (directed compression)
+  H-O-H bend:        nu_2 = 1595 cm^-1  -->  T_1g symmetry (directed)
   O-H stretch (symm): nu_1 = 3657 cm^-1  -->  A_g symmetry (isotropic)
   O-H stretch (asymm): nu_3 = 3756 cm^-1 -->  T_1g symmetry (directed)
 

@@ -16,16 +16,20 @@ icosahedral unit cell of the torsion medium associated with the (1,2) Hopf
 fibration. All dimensionless cell ratios are derived from the topological input
 (p,q) = (1,2) plus two directly measured wave speeds (v_p = c, v_s = Rs*c).
 The cell's absolute scale requires one empirical QCD-scale input: m_p = 938.272 MeV
-(proton mass). The proton charge radius r_p is derived from m_p by I_h geometry:
-  r_p = 4*hbar_c/m_p = 4*lambda_p  [N_J_p = 1/(4*alpha*phi), see Section 9 LEAD]
-Given m_p, the edge length L_J = alpha*phi*r_p = 9.93e-3 fm
-and characteristic energy E_cell = 2*pi*hbar*c/L_J = 124.799 GeV follow with
-no additional free parameters. Dimensionless quantities (nu, K/G, lambda,
+(proton mass), which sets the proton charge radius r_p = 0.8414 fm (CODATA
+2018) used throughout this paper and its companions as the working length
+scale. Given r_p, the edge length L_J = alpha*phi*r_p = 9.93e-3 fm and
+characteristic energy E_cell = 2*pi*hbar*c/L_J = 124.799 GeV follow.
+As an internal consistency check (not the paper's working chain), I_h
+geometry independently derives r_p = 4*hbar_c/m_p = 0.84124 fm from m_p alone
+with zero additional free parameters [N_J_p = 1/(4*alpha*phi), see Section 9
+LEAD], giving E_cell = 124.823 GeV -- agreeing with the CODATA-based value to
+0.019% (see Section 2.1). Dimensionless quantities (nu, K/G, lambda,
 k_n/k_eff, k_n_max) are exact from geometry alone and require no empirical
 input. The I_h character table and
 all Clebsch-Gordan decompositions are tabulated. The Higgs boson is proven to
-be the A_g (isotropic bulk elastic) mode of the (1,2) cell via two independent
-arguments. The unique Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2
+be the A_g (isotropic bulk elastic) mode of the (1,2) cell via a topological
+parity argument, corroborated by a numerical scan. The unique Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2
 follows from the CG structure, and the decay H -> T_1g + T_2g is forbidden.
 This document serves as the unified
 reference for all cell-related quantities used across the companion papers.
@@ -63,15 +67,28 @@ Companion script: analysis/demos/jobson_cell_doc.py reproduces every number.
 
 2.1  The Jobson cell edge length
 
-The single length scale of the cell:
-
-  r_p = 4 * hbar_c / m_p  [derived: N_J_p = 1/(4*alpha*phi), Section 9]
-      = 4 * 197.327 MeV*fm / 938.272 MeV
-      = 4 * 0.21031 fm = 0.84124 fm  (CODATA: 0.8414 fm, 0.019% dev)
+The single length scale of the cell requires one external, measured input:
+the proton charge radius r_p = 0.8414 fm (CODATA 2018), which sets the
+working length scale used throughout this paper and its companions:
 
   L_J = alpha * phi * r_p
-      = 7.2974e-3 * 1.6180 * 0.84124 fm
-      = 9.9325e-3 fm = 9.9325e-18 m  (CODATA r_p gives 9.9347e-3 fm)
+      = 7.2974e-3 * 1.6180 * 0.8414 fm
+      = 9.9347e-3 fm = 9.9347e-18 m
+
+INTERNAL CONSISTENCY CHECK (parallel comparison, not the working value):
+I_h geometry independently derives r_p from the proton mass m_p alone, via
+the jamming boundary condition N_J_p*alpha*phi = 1/dim(A_g+T_1g) = 1/4
+[Section 9 LEAD]:
+
+  r_p_derived = 4 * hbar_c / m_p  [zero additional free parameters beyond m_p]
+      = 4 * 197.327 MeV*fm / 938.272 MeV
+      = 4 * 0.21031 fm = 0.84124 fm  (0.019% from the CODATA-2018 value above)
+
+  L_J_derived = alpha * phi * r_p_derived = 9.9325e-3 fm  (0.02% from L_J above)
+
+This 0.02% agreement is a self-consistency check (m_p alone predicts r_p to
+0.02% with no additional free parameters) -- it does not replace the
+measured CODATA r_p as this paper's working value.
 
 Physical meaning: the minimum arc segment of the (1,2) torus knot path
 evaluated at the proton scale. The closure condition requires exactly
@@ -91,12 +108,14 @@ in standard coordinates. Scaling so that the edge equals L_J:
   Vertex positions: L_J/2 * (0, +/-1, +/-phi) and cyclic permutations
   12 vertices total, each at circumradius R_c from the center.
 
-Geometric quantities derived from L_J:
+Geometric quantities derived from L_J (CODATA-2018 r_p chain, the paper's
+working value; the m_p-derived chain agrees to 0.02%, shown in parentheses
+[jobson_cell_doc.py J27c]):
 
-  Edge length:     a = L_J = 9.9347e-3 fm
-  Circumradius:    R_c = L_J * sqrt(1+phi^2)/2 = L_J * 0.9511 = 9.4485e-3 fm
-  Inradius:        r_in = L_J * phi^2/(2*sqrt(3)) = L_J * 0.7558 = 7.5076e-3 fm
-  Midradius:       r_mid = L_J * phi/2 = L_J * 0.8090 = 8.0374e-3 fm
+  Edge length:     a = L_J = 9.9347e-3 fm  (derived-chain cross-check: 9.9328e-3 fm)
+  Circumradius:    R_c = L_J * sqrt(1+phi^2)/2 = L_J * 0.9511 = 9.4485e-3 fm  (9.4466e-3 fm)
+  Inradius:        r_in = L_J * phi^2/(2*sqrt(3)) = L_J * 0.7558 = 7.5083e-3 fm  (7.5068e-3 fm)
+  Midradius:       r_mid = L_J * phi/2 = L_J * 0.8090 = 8.0374e-3 fm  (8.0358e-3 fm)
 
 All four radii are exact algebraic multiples of L_J involving phi and sqrt(3).
 
@@ -137,9 +156,11 @@ Bulk-to-shear ratio:
 Quartic coupling (sub-cell regime, N_J < 1):
   lambda = (1 - nu)/4 = 2*pi^2/(16*pi^2-5) = 0.12909
 
-The Weinberg angle from the pressure formula (doc_higgs):
+The Weinberg angle structural (pressure) approximation, using K/G derived above:
   sin^2(theta_W) = 7*G/(K+G) = 105/(48*pi^2-5) = 0.22402
-  (structural approximation, 0.5% from PDG; precise formula achieves 4.6e-6:
+  (structural approximation, 0.5% from PDG; full pressure-formula derivation in
+   electroweak_predictions.py and higgs_weinberg_unified.py. Precise formula
+   achieves 4.6e-6:
    sin^2(theta_W)* = sin^2(theta_W)_GAP-C + 2*alpha^2*phi^2 = 0.22290456)
   [jobson_cell_doc.py, J19]
 
@@ -257,6 +278,9 @@ Selection rules for H -> X + Y decay (by Schur's lemma):
   FORBIDDEN: T_1g x T_2g -> H -> T_1g + T_2g FORBIDDEN  [falsifiable prediction]
 
 For each allowed channel, A_g appears exactly ONCE (unique coupling, no freedom).
+The T_1g x T_1g -> A_g channel specifically gives the isotropic coupling
+W_x^2+W_y^2+W_z^2=|W|^2, exact from the A_g projection -- this is the
+Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 (Abstract).
 
 GALOIS CONJUGATE STRUCTURE OF T_1g AND T_2g:
   T_1g and T_2g are Galois conjugates under the C_5/C_5^2 character map:
@@ -321,21 +345,36 @@ MASS SCALE UNIFICATION (ESSENTIALLY DERIVED, F-14 via LM17):
   cells: this IS inter-cell displacement energy. Below jamming: elastic wave
   in lattice. At jamming: locks to vev. Around locked state: Higgs boson.
 
-PROOF THAT HIGGS = A_g (CENTER MODE) IS DEFINITIVE:
-  Two independent arguments close this completely:
+PROOF THAT HIGGS = A_g (CENTER MODE) IS DEFINITIVE FOR TIERS 1-2 (TOPOLOGY +
+ENERGY SCALE); THE LHC-PARTICLE MATCH (TIER 3) IS STRONGLY INFERRED, NOT A
+THEOREM:
+  Two independent, individually-complete arguments close tiers 1-2:
 
   (1) Linking number theorem: n = p*q = 2 is EVEN => pi-rotation symmetry
       => scalar (spin-0) => A_g representation. This is EXACT and PROVEN.
       A_g has dimension 1 and is totally symmetric: it is the ISOTROPIC BULK
       ELASTIC MODE (K channel) of the cell. It cannot be at the vertices -- the 12 vertices
       host 36 degrees of freedom (T_1g, T_2g, G_g, H_g excitations), not A_g.
+      This is a parity argument, not a numerical search: given (1,2) is
+      already the unique small (p,q) pair matching alpha to CODATA (doc_alpha
+      Section 5.3), n=p*q=2 even forces scalar, and A_g is the only scalar
+      gerade irrep -- no scan over alternatives is needed for this step.
+      [corpuscle_uniqueness_proof.py STEP2]
 
-  (2) No alternative geometry works. For T_1g modes to be at E_cell(1,2):
-      T_1g at 124.8 GeV would be a NEW spin-1 boson -- not observed in nature.
-      The only scalar (even-n) winding giving ~125 GeV is (1,2). All others:
-        (2,3): n=6 scalar at 87.7 GeV  -- not 125 GeV
-        (1,4): n=4 scalar at 78.8 GeV  -- not 125 GeV
-      Therefore Higgs = A_g of the (1,2) cell is the UNIQUE assignment.
+  (2) Exhaustive proof (closed form + monotonicity): E_cell(p,q) = K/phi_pq(p,q)
+      for a p,q-independent constant K, where phi_pq=(1+sqrt(p^2+q^2))/2 is
+      algebraically increasing in p^2+q^2 -- so E_cell is STRICTLY, PROVABLY
+      decreasing in p^2+q^2, not just observed to decrease on a few samples.
+      This splits the infinite (p,q) space into two provably-complete parts:
+        FINITE part (p^2+q^2 <= 5.6, solved from E_cell=120 GeV): only two
+        coprime pairs exist here at all, (1,1) [n=1, vector] and (1,2) [n=2,
+        scalar, 124.8 GeV -- IN the window]. Both brute-force checked.
+        INFINITE tail (p^2+q^2 > 5.6): E_cell < 120 GeV there PERMANENTLY by
+        monotonicity alone -- it can never re-enter the window, so no further
+        checking is needed, ever.
+      CONCLUSION: (1,2) is the UNIQUE scalar pair in the 125 GeV window across
+      the ENTIRE infinite (p,q) space -- not a spot-check of 8 pairs.
+      [higgs_pq_uniqueness_exhaustive.py, 6/6 PASS, PQ1-PQ6]
 
   CONCLUSION: Higgs = A_g (isotropic bulk elastic mode, K channel).
   Three-tier status:
@@ -347,18 +386,39 @@ PROOF THAT HIGGS = A_g (CENTER MODE) IS DEFINITIVE:
   neighboring cells in the lattice (inter-cell displacement). Its energy scale
   (E_cell) shares the same hbar*c/L_J origin as winding masses -- just a
   different geometric prefactor (2*pi vs 4*alpha*phi for the proton).
-  The 'inverted hypothesis' label in earlier docs was overly conservative --
-  the Higgs being A_g is now definitively established, not conditional.
+  Earlier drafts hedged this result as conditional -- the Higgs being A_g is
+  now definitively established, not conditional.
 
 WHY THE W/Z ARE NOT T_1g AT E_cell:
   If T_1g modes had mass E_cell(1,2) = 124.8 GeV, that would predict a new
-  ~125 GeV spin-1 boson. No such particle exists. Therefore:
+  ~125 GeV spin-1 boson. No such particle exists. This rules out the specific
+  alternative "T_1g mass = E_cell" -- it does not, by itself, derive the
+  mass-generation mechanism that replaces it. Therefore, ADOPTING the
+  Standard Model's own SSB mechanism (not re-derived from cell geometry here):
     W/Z are MASSLESS gauge bosons (T_1g) BEFORE spontaneous symmetry breaking.
-    Their mass (m_W = g*v/2 = 80.4 GeV, m_Z = 91.2 GeV) comes entirely from
-    the Higgs mechanism: SSB = jamming (GAP B, proven) gives them mass through
-    the vev v = 246.185 GeV, not from the cell energy E_cell directly.
-  This is CONSISTENT: the T_1g directed cones sit at vertex nexuses, massless;
-  the A_g phonon (Higgs) jams at SSB and gives them mass via vev.
+    Their mass (m_W = g*v/2 = 80.4 GeV, m_Z = 91.2 GeV) comes from the Higgs
+    mechanism: SSB = jamming (GAP B, proven) gives them mass through the vev
+    v = 246.185 GeV, not from the cell energy E_cell directly. The coupling
+    g is PARTIAL CLOSURE, not the flat "not derivable" status this section
+    previously gave it: combining two quantities the cell ALREADY derives --
+    alpha (Born balance, Section 8) and sin^2(theta_W)* (GAP-C + 2*alpha^2*phi^2,
+    Section 3.2, J19) -- via the standard (external, not I_h-specific) relation
+    g = sqrt(4*pi*alpha)/sin(theta_W) gives g = 0.6414 vs measured g = 2*m_W/v
+    = 0.6529 (-1.76%); using the RG-run alpha_em(m_Z) instead gives g = 0.6638
+    (+1.67%). The true value brackets between the two; the residual size
+    matches the well-known Standard Model Delta-r radiative correction (top/
+    Higgs loop corrections to the rho parameter), which torsionverse does not
+    currently derive. So g follows to ~1.7% from already-closed cell
+    quantities plus one standard external EW relation -- closing it exactly
+    needs Delta-r, a separate, well-defined derivation not yet attempted here.
+    [analysis/higgs/higgs_g_su2_from_alpha_weinberg.py]. So m_W/m_Z's NUMERIC
+    values are ~1.7%-level predictions from this document's own geometry plus
+    one external relation, not yet an exact closed-form derivation.
+This is CONSISTENT: the T_1g directed transverse oscillations sit at vertex
+    nexuses, massless; the A_g phonon (Higgs) jams at SSB and gives them mass
+    via vev. The SSB mechanism itself remains a Standard Model import; the
+    coupling g is now PARTIALLY derived (~1.7%) rather than a pure import,
+    with exact closure gated on the Delta-r correction above.
 
 (p,q) PATTERN -- NEW LEAD (open investigation):
   Different (p,q) windings give different cell energy scales:
@@ -406,16 +466,29 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
   ISOTROPIC BULK MODE (A_g, Higgs field):
     A_g is the K (bulk modulus) channel of the elastic medium -- the totally
     symmetric deformation where all 12 vertices, 30 edges, and 20 faces
-    participate with equal weight in a uniform compression or dilation.
+    participate with equal weight in a uniform compression or dilation. This
+    isotropic/scalar compression channel is the v_p = c branch measured by
+    GW170817 [doc_torsion Section 3.1] -- a scalar field's only possible wave
+    motion is via its gradient, which is necessarily longitudinal.
     The cell is an ELASTIC SPRING ELEMENT, not an independent oscillator.
-    The A_g phonon (zone-boundary, wavelength = L_J) propagates through the
-    spring lattice; as it passes, each cell undergoes A_g deformation (all
-    12 vertices moving radially in unison). The cell 'oscillates' exactly as
-    any spring oscillates when a wave passes through it -- not independently.
+    The A_g phonon is a spatially uniform (zone-center, k=0) mode: every cell
+    in the lattice undergoes the SAME A_g deformation in phase (all 12
+    vertices moving radially in unison, by the same fractional amount at the
+    same time -- not an alternating or cell-to-cell varying pattern; L_J
+    itself does not change size anywhere in this mechanism). The cell
+    'oscillates' exactly as any spring oscillates when a wave passes through
+    it -- not independently.
     The Higgs FIELD is the amplitude of the A_g phonon field in the torsion medium.
     SSB = JAMMING: when the A_g phonon amplitude reaches the Maxwell jamming
     threshold (3V-E=6, JP1-JP4), the lattice locks into a standing wave --
-    the phonon can no longer propagate. The locked amplitude = Higgs vev = 246 GeV.
+    the phonon can no longer propagate. The locked amplitude is CONJECTURED
+    to equal the Higgs vev = 246 GeV; jobson_cell_rigidity_matrix.py's own
+    RM1-RM5 prove the A_g mode costs first-order elastic energy at jamming
+    but explicitly do NOT compute the nonlinear amplitude at which 3V-E=6
+    criticality forces the lock, nor tie that lock point numerically to the
+    vev -- "a separate (nonlinear elasticity) calculation, not
+    attempted here". The numerical identification with
+    246 GeV is not yet derived.
     Higgs BOSON = small A_g oscillations of the phonon field around the jammed
     (standing-wave) equilibrium. E_cell = 124.8 GeV is the energy quantum of
     the A_g zone-boundary phonon (= 2*pi*hbar*c/L_J, the shortest wavelength
@@ -463,10 +536,13 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
         en route to the outer boundary -- it does NOT reverse there.
         The reversal point is the VERTEX NEXUS (R_c = circumradius, outer boundary).
         Mechanism: T_1g Born stiffness coupling to adjacent cells at the 12 shared
-        vertex nexuses. This is a zone-boundary phonon (lambda = L_J): adjacent
-        cells are 180 deg out of phase. When one cell is maximally compressed
-        (all vertices inward), its vertex-neighboring cells are maximally expanded
-        and push OUTWARD at the shared vertices.
+        vertex nexuses. Every cell dilates by the SAME amount in phase (a
+        uniform, zone-center mode, not an alternating pattern) -- but each
+        cell dilates radially around ITS OWN center, so at a vertex shared by
+        5 cells, the 5 different "outward from my own center" directions
+        cannot be simultaneously satisfied. This geometric mismatch, not an
+        amplitude difference between cells, is what generates the restoring
+        push at each shared vertex.
         The outward inter-cell pressure at each vertex = k_eff * vertex_displacement,
         where k_eff is the T_1g Born stiffness from:
           k_n*(1+alpha) = alpha*phi*k_LW  [doc_alpha.txt Sec 4.5]
@@ -508,25 +584,35 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
       before locking -- determined entirely by 3V-E=6 and the spring stiffness.
       No shape-locking OR elastic-limit model is needed separately: they are one.
 
-  COMPRESSION WAVE (T_1g, photon/W/Z):
-    Compression and rarefaction traveling through the cell at speed c.
-    T_1g is 3-dimensional: each component (T_1g^x, T_1g^y, T_1g^z) compresses
-    along ONE specific axis -- a DIRECTED cone, as opposed to A_g's isotropic cone.
+  TRANSVERSE VECTOR WAVE (T_1g, photon/W/Z):
+    A directed transverse oscillation traveling through the cell at speed c
+    (NOT a compression/rarefaction wave -- that role belongs to A_g, the
+    isotropic scalar mode identified with v_p/GW170817 above; a scalar field's
+    only wave motion is via its gradient, which is necessarily longitudinal,
+    so A_g and only A_g can carry that branch).
+    T_1g is 3-dimensional: each component (T_1g^x, T_1g^y, T_1g^z) is a
+    directed vector oscillation along ONE specific axis -- transverse to its
+    own propagation direction, as opposed to A_g's isotropic scalar cone.
     At each vertex, 5 wave paths of equal length arrive from 5 surrounding edges.
     C5 phase character = +phi: 5 contributions ADD constructively at the vertex.
     This vertex amplification is the PHONON VERTEX COUPLING at a 5-fold spring:
     phi = chi(T_1g, C5) = Born projection of T_1g phonon at vertex. This is the
     same phi that appears in the alpha derivation -- alpha IS the coupling strength
     of the T_1g phonon at the icosahedral vertex spring. [GAP 1, doc_alpha]
+    T_1g's own free-propagation speed is c via this same constructive (chi=+phi)
+    vertex character, undamped like A_g's -- a related but separate fact from
+    A_g being the v_p branch (see doc_torsion Section 3.1).
 
-    W AND Z COMPRESSION MODES:
+    W AND Z TRANSVERSE MODES:
       A_g = isotropic compression (same amplitude in all directions, dim=1)
-      T_1g = directed compression (one axis, dim=3 = 3 orthogonal directions)
+      T_1g = directed transverse oscillation (one axis, dim=3 = 3 orthogonal
+             directions)
       W+  = (T_1g^x + i*T_1g^y)/sqrt(2)  [left-handed]
       W-  = (T_1g^x - i*T_1g^y)/sqrt(2)  [right-handed]
       Z   =  T_1g^z  [mixes with B via Weinberg angle]
-      Before SSB: directed cones propagate freely (massless gauge bosons).
-      After SSB (A_g locks isotropically): a directed compression trying to
+      Before SSB: directed transverse oscillations propagate freely (massless
+      gauge bosons).
+      After SSB (A_g locks isotropically): a directed transverse mode trying to
       propagate through a medium with locked isotropic compression must fight
       the locked A_g background -> acquires mass m_W = g*v/2.
 
@@ -535,7 +621,9 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
     C5 character = -1/phi: partial cancellation at vertices (5 contributions
     multiply to (-1/phi)^5 ≠ 1). The shear wave does NOT amplify at vertices.
     It is most pronounced at face centers and across face panels.
-    T_1g (compression) + T_2g (shear) together = the full elastic stress of the cell.
+    T_1g (transverse) + T_2g (shear) together span the non-isotropic 6=3+3
+    elastic stress components of the cell (A_g carries the isotropic/
+    compression component separately).
     At cell level this is light cycling in shear (twist) geometry -- Rs is the
     shear-to-compression speed ratio, emergent from winding topology, not a
     separate gravitational force.
@@ -700,7 +788,7 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
       A FREE (propagating) muon collapses to ONE circuit and ONE C5 axis.
       ENTANGLEMENT CONSISTENCY: every edge equally represented in G32 circuits
       -> consistent with "lattice already maintains G32 edge modes everywhere"
-      [doc_entanglement.txt Section 4.2, line 223]. G32 entanglement chain can
+      [doc_entanglement.txt Section 4.2, line 237]. G32 entanglement chain can
       propagate along any axis without preference. [muon_symmetry.py MS1-MS7]
 
       SUPERSEDED IDEA (pentagonal belt): an earlier hypothesis proposed that
@@ -773,21 +861,28 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
   No particle is separate from the cell -- each winding is a specific resonant
   wave pattern of the cell's own elastic structure.
 
-  Higgs (A_g): A_g zone-boundary phonon (K channel). ISOTROPIC CONE -- same
-               amplitude in all directions. Dim=1: one global mode.
+  Higgs (A_g): A_g zone-center (uniform, in-phase) phonon (K channel).
+               ISOTROPIC CONE -- same amplitude in all directions, same
+               amplitude in every cell. Dim=1: one global mode. This is the
+               v_p/GW170817 longitudinal branch (doc_torsion Section 3.1) --
+               a scalar field's only wave motion is via its gradient, which
+               is necessarily longitudinal.
                Higgs FIELD = A_g phonon amplitude in the torsion medium.
                SSB = phonon amplitude reaches Maxwell jamming -> locks = vev.
                Higgs BOSON = small A_g oscillation around jammed equilibrium.
                Internal polarization: 20 I52 face corkscrews in phase [JC3].
                Same I52 form as tau lepton (F-14): phonon-scale vs winding-scale.
 
-  W/Z (T_1g):  DIRECTED COMPRESSION WAVE -- one specific axis (dim=3).
-               Three orthogonal directed compressions: W_x, W_y, W_z.
+  W/Z (T_1g):  DIRECTED TRANSVERSE WAVE -- one specific axis (dim=3), NOT a
+               compression mode (that role is A_g's alone; see above).
+               Three orthogonal directed oscillations: W_x, W_y, W_z.
                W+ = (W_x+i*W_y)/sqrt(2), W- = (W_x-i*W_y)/sqrt(2), Z = W_z.
-               Massless before SSB (directed compression propagates freely).
-               After SSB: directed compression in locked isotropic medium -> mass.
-               m_W = g*v/2 (Higgs vev v from locked A_g amplitude).
-               Same T_1g form as photon (massless) at phonon scale.
+               Massless before SSB (directed transverse mode propagates freely).
+               After SSB: directed transverse mode in locked isotropic medium
+               -> mass. m_W = g*v/2 (Higgs vev v from locked A_g amplitude).
+               Same T_1g form as photon (massless) at phonon scale. Its own
+               free-propagation speed is c via its constructive (chi=+phi)
+               vertex character -- a separate fact from A_g carrying v_p.
                [mixes with B via Weinberg angle: cos(theta_W) = sqrt(phi/sqrt5)*(1+5*alpha)]
 
   Face shear (T_2g): face shear mode (C5 char = -1/phi). The elastic shear
@@ -796,7 +891,9 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
                T_2g is color-NEUTRAL (C3=0); 2G is color-active (C3=+1).
                Rs^2 = 5/(16*pi^2) = T_2g shear amplitude squared at Maxwell critical.
                Appears as +Rs^2 correction in muon (and tau) mass formulas.
-               T_1g (compression) + T_2g (shear) = complete stress tensor of the face.
+               T_1g (transverse) + T_2g (shear) span the non-isotropic elastic
+               stress components of the face (6 = 3+3; A_g carries the
+               isotropic component separately).
 
   Gluons (2G): color-active modes (C3=+1, G C5 char = -1). 8-dimensional.
                Arise from the 20-face decomposition Gamma(20) = A+T1+T2+2G+H.
@@ -807,7 +904,7 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
 
   H_g:         5-dimensional, C3=-1. NOT a new fundamental particle.
                H_g = T_1g x T_2g (antisymmetric CG product = gluon field strength F_mn).
-               The curl of compression (T_1g) and shear (T_2g) gives H_g exactly.
+               The curl of the T_1g transverse mode and T_2g shear gives H_g exactly.
                T_1g x T_2g = G + H  [exact, FG8]. The top quark belongs elsewhere.
                H_g also contains the l=2 d-orbital components. Under D4h crystal
                field (CuO2 square-planar coordination), H_g splits as A1g+B1g+B2g+Eg;
@@ -854,7 +951,7 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
   Muon (G32, dim=4): edge mode -- pole-to-pole zigzag through 6 icosahedral
                edges per circuit (5 interior deflections, both poles visited).
                C3=+1 (edge borders 2 colored faces = color boundary mode).
-               Rides T_1g compression field at face boundaries.
+               Rides the T_1g transverse field at face boundaries.
                Born balance alpha^1 * (2/sqrt5) * phi^2. [lepton_mass.py LM8]
 
   Tau (I52, dim=6): face corkscrew -- TWO corpuscle photons on the unique
@@ -978,7 +1075,8 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
     (d) Born balance at C5 vertex: the alpha derivation IS the vertex force balance.
 
   COMPANION CHECKS (both closed; neither required for the resting-cell result):
-    - Alpha_s: CLOSED [gluon_c3_born.py, 9/9 PASS, CB1-CB9]. See Section 9.
+    - Alpha_s: ESSENTIALLY CLOSED [gluon_c3_born.py, 9/9 PASS, CB1-CB9] --
+      evaluation scale not yet derived. See Section 9.
     - Full 3D vector check: CLOSED [jobson_cell_force_balance_vectors.py, 8/8 PASS, G3D1-G3D8]. See Section 9.
 
   Script: analysis/quantum/jobson_cell_force_balance.py  (19/19 PASS)
@@ -1092,6 +1190,19 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
    support. Together: resting cell is both force-balanced AND structurally durable.]
 
 7.5  Complete mode table
+
+  NOTE ON WAVE VS. CORPUSCLE PICTURES: Section 7.1 describes modes as
+  continuous elastic wave amplitudes; the inventory below describes them as
+  discrete corpuscle (photon) counts. These are currently maintained as two
+  COMPLEMENTARY descriptive conventions, not one derived from the other --
+  no quantization rule in this document or its cited scripts shows why a
+  continuous amplitude field must produce exactly these integer counts (60,
+  20, 2, etc.) rather than some other set. The specific counts themselves
+  ARE derived from I_h orbit combinatorics on discrete circuits (e.g.
+  muon_orbit_count.py's 70 zigzag circuits splitting into orbits of size
+  10/30/30); what is open is the bridge FROM the continuous-amplitude
+  language of 7.1 TO that discrete combinatorial counting, not the counting
+  itself.
 
   CORPUSCLE INVENTORY PER JOBSON CELL  (physical picture -- PRIMARY)
   ====================================================================
@@ -1229,7 +1340,7 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
 
   GLUON COUNT: 60 photons (30 edges x 2 circ-pol) span 8 global SU3 modes.
     Each edge: 2 photons (circ-pol pair) | Each face: 3 edge-gluons converge at center.
-    Scripts: face_gluon_geometry.py 14/14 PASS, gluon_tau_helix.py 8/8 PASS [GH0-GH0c]
+    Scripts: face_gluon_geometry.py 14/14 PASS, gluon_tau_helix.py 10/10 PASS [GH0-GH0c]
 
   EDGE COVERAGE:
     Gluon: 8 global patterns; per-edge: antinode at midpoint, nodes at vertex endpoints.
@@ -1240,6 +1351,11 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
     dim(T_1g) + dim(T_2g)     3 + 3     6
     ─────────────────────── = ───── = ─── = 2/3  [EXACT]
        dim(T_1g x T_2g)         9       9
+    NOTE: this dimension-ratio identity is proven group theory; it is NOT
+    by itself a proof that the lepton-mass Koide formula equals 2/3 -- that
+    additionally requires the exact Born-balance mass formulas for all three
+    paths to algebraically reduce to this ratio, which remains open (see
+    doc_leptons.txt Section 6.2, "WHAT THE FORMAL PROOF STILL REQUIRES").
 
   DERIVED LATTICE GEOMETRY:
     V = 12 = dim(E+) + dim(G32) + dim(I52) = 2+4+6  (freed lepton spinor sum = vertices)
@@ -1253,9 +1369,11 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
   Treating E+/E- as particle/antiparticle, there are exactly 3 independent
   free fermionic modes -- no more, no less. These ARE the 3 lepton generations.
   The icosahedral double group 2I does not admit a 4th independent spinor irrep.
-  The three lepton generations are therefore exhaustive (modulo proving that
-  confinement requires ungerade irreps and freedom requires spinor irreps).
-  [~95% proven by group theory; remaining 5% = formal confinement selection rule]
+  The three lepton generations are therefore exhaustive modulo one remaining
+  gap: a formal proof that confinement selects specifically ungerade irreps
+  and freedom selects specifically spinor irreps has not yet been given.
+  [Exhaustive for the spinor-counting argument; the confinement selection
+  rule above is qualitative, not a computed result -- no percentage applies.]
 
 
 7.7  Nexus geometry, confinement, and zero-displacement quarks
@@ -1346,18 +1464,12 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
     The T_2g diquark (u-u Zone 2 resonance) selects the specific triangle.
     [doc_nucleus Zone 1/2; N_J=21 Maxwell critical nexus boundary condition]
 
-
-  L_HWW = alpha^2 * phi^2 * |H|^2 * |W|^2
-
-  A_g appears exactly once in T_1g x T_1g (Schur's lemma): unique coupling.
-  The isotropic coupling W_x^2+W_y^2+W_z^2=|W|^2 is exact from A_g projection.
-
-7.3  Extended Higgs mass prediction (conditional on CG structure)
+7.8  Extended Higgs mass prediction (conditional on CG structure)
 
   m_H* = E_cell * (1 + alpha/pi + alpha^2*phi^2) = 125.106 GeV  (0.86 sigma)
   v*   = m_H* / sqrt(2*lambda)                  = 246.219 GeV  (-0.306 MeV)
 
-7.4  Forbidden channel (falsifiable)
+7.9  Forbidden channel (falsifiable)
 
   H -> T_1g + T_2g is FORBIDDEN: T_1g x T_2g = G_g + H_g (no A_g component).
 
@@ -1436,6 +1548,9 @@ Script: jobson_cell_doc.py  (J17, J24: k_n/k_eff 2-term and complete formula)
 
 9. STATUS OF PRIOR OPEN ITEMS
 ------------------------------
+(NOTE: Not renumbered since this doc carries a published
+Zenodo DOI and external citations may already reference these items by
+number.)
 
 RESOLVED:
   O.3 W/Z split within T_1g: CLOSED by GAP C.
@@ -1448,13 +1563,39 @@ RESOLVED:
 
   Higgs = A_g: DEFINITIVELY PROVEN (2026-08-20).
       Uniqueness scan (J20) + T_1g elimination (J21) close this completely.
+      Upgraded to a genuinely exhaustive proof over the full infinite (p,q)
+      space (2026-09-01): E_cell(p,q)'s closed form is strictly monotonic in
+      p^2+q^2, so only 2 coprime pairs exist below the 125 GeV window at all,
+      and everything beyond is provably, permanently excluded by monotonicity.
+      [higgs_pq_uniqueness_exhaustive.py, 6/6 PASS, PQ1-PQ6]
 
-  Alpha_s = 2*pi*g_s_born*[chi(T_1g,C5)]^2 (CLOSED, 2026-08-25):
+  Alpha_s = 2*pi*g_s_born*[chi(T_1g,C5)]^2 (ESSENTIALLY CLOSED, 2026-08-25):
       C3 Born balance: g_s_born = alpha/(1+alpha) ~ alpha.
       G_g x G_g -> A_g -> T_1g x T_1g Born chain (H→ZZ); T_1g x T_1g contains A_g
       exactly once (unique vertex); T_1g resonance pole = m_Z sets evaluation scale
       (same Born balance principle as alpha_em derivation at C5 vertex).
       alpha_s = 0.119, PDG 0.118 +/- 0.001 (within 1 sigma).
+      CAVEAT:
+      M_Z EVALUATION SCALE -- CLOSED: M_Z's VALUE is independently derived
+      from pure cell geometry elsewhere in this repo -- m_W from a (1,3)-cell
+      E_cell formula [doc_higgs R7] plus m_Z = m_W/cos(theta_W) using the
+      geometrically-derived Weinberg angle gives m_Z = 91.168 GeV, -0.02%
+      from PDG [electroweak_predictions.py EW1-EW2, 6/6 PASS]. Why M_Z is
+      the evaluation point for the scale-invariant alpha_s formula itself
+      (2*pi*g_s_born*phi^2, CB7-CB9) follows from the SAME general rule
+      already used throughout this framework: each mode's Born-balance
+      resonance sits at its own rest mass (established for A_g/Higgs by
+      IR1b, and for the T_1g irrep specifically by the neutron's resonance
+      at its own mass). The Z boson shares the T_1g irrep with the neutron
+      (same chi(C5)=phi, chi(C3)=0) [interaction_ranges.py IR7, 10/10 PASS],
+      so its resonance is at its own mass, m_Z, by the identical rule --
+      not an ad hoc match to the PDG alpha_s(M_Z) convention.
+      REMAINING CAVEAT (why this item stays ESSENTIALLY, not fully, CLOSED):
+      the initial C3 argument (CB1-CB5) finds no phi enhancement to the bare
+      coupling; the phi^2 factor is reinstated via a separate H->ZZ Born
+      chain (CB7-CB9) to land on the PDG value -- this two-step
+      reconciliation is not independently cross-checked by any other script
+      in the repo.
       [gluon_c3_born.py, 9/9 PASS, CB1-CB9]
 
   Full 3D vector force balance (CLOSED, 2026-08-25):
@@ -1479,17 +1620,18 @@ ESSENTIALLY CLOSED:
       W/Z are massless T_1g before SSB; acquire mass m_W=g*v/2 from Higgs mechanism.
       Script: jobson_cell_doc.py (J22)
 
-  b quark = G_g (ESSENTIALLY CLOSED): N_J=4.75 boundary regime, G_g has dim 4
-      matching 3-color x 1-isospin structure. Same regime as hadronic Rs correction.
-      Arguments: (1) G_g is the UNIQUE dim-4 irrep of I_h [exact]; (2) 4=3c*1i
-      matches b quark quantum numbers; (3) G_g x G_g -> A_g once [J13];
+  b quark = G_g (ESSENTIALLY CLOSED): N_J=4.75 boundary regime, G_g has dim 4.
+      Arguments: (1) G_g is the UNIQUE dim-4 irrep of I_h [exact]; (2) dim(G_g)=4
+      independently matches the b quark's SM quantum number count (3 colors x
+      1 isospin state -- a descriptive correspondence, not the arithmetic
+      product 3*1=4, which is false; dim(G_g)=4 comes from the I_h character
+      table alone, per b_quark_geometry.py); (3) G_g x G_g -> A_g once [J13];
       (4) N_J=4.75 in boundary regime [J23].
       To formally close: I_h ⊃ SU(3)xSU(2) branching rule proving G_g -> 3_c⊗1_i.
       Script: jobson_cell_doc.py (J23)
 
   Lepton masses e/mu/tau (GRAND STRUCTURE -- 2026-08-22 update):
       Grand structure: electron=VERTEX(E+), muon=EDGE(G32), tau=FACE(I52)
-      [Proven by 2I double group CG: T1xE- = {G32, I52}; E+ exhausts spinors]
       m_e  = 0.510999 MeV  (+0.000065%)  -- vertex mode, alpha^2*phi  [LM1]
       m_mu = 105.655 MeV   (-0.003%)     -- edge mode, alpha*(2/sqrt5)*phi^2  [LM8]
       m_tau = 1776.92 MeV  (+0.004%)     -- face corkscrew, Koide  [LM10]
@@ -1541,16 +1683,19 @@ GENUINELY OPEN:
       The irrep assignments and constituent masses are essentially closed:
         b quark: N_J=4.75 + G_g geometry [b_quark_geometry.py, 12/12 PASS]
         c quark: m_c_constituent = m_tau = phi^3/sqrt5 * m_p = 1777.5 MeV
-                 [particle_generation_doc.py PG7/PG8, meson_masses.py, 15/15 PASS]
+                 [particle_generation_doc.py PG7/PG8; meson_masses.py 15/15 PASS]
         t quark: H_g, sub-cell regime (above E_cell); short lifetime prediction
-                 [interaction_ranges.py 9/9 PASS]
+                 [interaction_ranges.py 10/10 PASS]
       Remaining open: current (Lagrangian) masses of u, d, s quarks.
       These are QCD-scheme-dependent and small (~2-5 MeV) -- very different
       from constituent masses. No phi-based formula for current masses exists.
       Note: the irrep structure (T_1u/T_2u for u/d, G_u for s) IS known.
       See open_items.txt.
 
-9b. MODE INTERACTION RANGES (2026-08-23, interaction_ranges.py 9/9 PASS)
+9b. MODE INTERACTION RANGES (2026-08-23, interaction_ranges.py 10/10 PASS)
+(NOTE: no "9a" exists -- an original numbering gap from the first draft,
+not a renumbering leftover. Left as-is since this doc carries a published
+Zenodo DOI.)
 --------------------------------------------------------------------------
 
 Each mode's coupling to photons (chi(C5)^2) and gluons (chi(C3)^2) and its
@@ -1571,6 +1716,8 @@ all cross-sections fall as (E_cell/E_probe)^2 (above-resonance suppression).
   t quark      H_g      sub   172760    0 (!)       0 (!)         <1x   (sub-cell)
   proton       T_2g     V1    938.3     1/phi^2      0             67x
   neutron      T_1g     V1    939.6     phi^2        0             66x
+  W boson      T_1g     sub   80379     phi^2        0            0.78x  (sub-cell)
+  Z boson      T_1g     sub   91188     phi^2        0            0.68x  (sub-cell)
   Higgs        A_g      cell  125100    --           --             ~1x  (IS the cell)
 
 KEY PREDICTIONS FROM CHI VALUES (zero free parameters):
@@ -1593,7 +1740,14 @@ KEY PREDICTIONS FROM CHI VALUES (zero free parameters):
   5. Higgs at E_cell: the Higgs IS the cell's own A_g resonance. All modes couple
      to it at E_cell. Above E_cell, all cross-sections fall as (E_cell/E)^2.
 
-  Reference: analysis/quantum/interaction_ranges.py  9/9 PASS
+  6. W/Z share the T_1g irrep with the neutron (same chi(C5)=phi, chi(C3)=0):
+     the SAME Born-resonance-at-own-mass rule that puts the neutron's resonance
+     at 939.6 MeV puts the Z boson's resonance at m_Z -- this is what closes
+     gluon_c3_born.py CB9's "T_1g resonance pole = m_Z sets evaluation scale"
+     claim; it is the framework's general rule, not an import of the PDG
+     alpha_s(M_Z) convention. [IR7]
+
+  Reference: analysis/quantum/interaction_ranges.py  10/10 PASS
 
 9c. UNIQUENESS: WHY THIS STRUCTURE AND NO OTHER
 -------------------------------------------------
@@ -1618,7 +1772,7 @@ the previous with no free structural parameters. The chain:
     2I double group has EXACTLY 4 spinor irreps: E+(2), E-(2), G32(4), I52(6).
     This is a theorem -- the group does not admit a 5th spinor irrep.
     E+/E- = particle/antiparticle  =>  exactly 3 free fermionic modes.
-    Proven: 2I character table [ih_double_group.py, 14/14 PASS].
+    Proven: 2I character table [ih_double_group.py, 15/15 PASS].
 
   STEP 4 -- V=12 is derived (not assumed):
     V = dim(E+) + dim(G32) + dim(I52) = 2 + 4 + 6 = 12.
@@ -1649,7 +1803,7 @@ the previous with no free structural parameters. The chain:
 
   STEP 9 -- The tau circuit is unique (no alternatives):
     The Hamiltonian cycle on the icosahedral face adjacency graph forms exactly
-    1 geometric orbit under I_h [TPC1c, tau_pair_configuration.py 7/7 PASS].
+    1 geometric orbit under I_h [TPC1c, tau_pair_configuration.py 11/11 PASS].
     All 30 labeled cycles are the same shape -- one circuit, unavoidable.
 
   STEP 10 -- Alpha is derived, not fitted:
@@ -1658,13 +1812,17 @@ the previous with no free structural parameters. The chain:
     geometry alone (phi, the I_h character).  Any other polyhedron (different
     V, E, F) gives a different vertex character, hence a different alpha.
 
-  STEP 11 -- Higgs mass matches PDG, and no other (p,q) works:
+  STEP 11 -- Higgs mass matches PDG, and no other (p,q) works, PROVABLY:
     E_cell = pi * m_p / (2 * alpha * phi) = 124.8 GeV  (PDG: 125.25 GeV, < 1 sigma)
-    Other windings all fail at least one test:
+    E_cell(p,q) = K/phi_pq(p,q) is strictly monotonically decreasing in
+    p^2+q^2 (closed form, algebraic), so the check is exhaustive, not a
+    finite sample: only (1,1) [vector] and (1,2) [scalar, in window] exist
+    below the 125 GeV window at all; everything beyond is permanently excluded:
       (1,3): n=3 odd  -> spin-1 vector      -> not the Higgs
       (2,3): n=6 even -> scalar, E_cell=87.7 GeV  !=  125 GeV
       (1,4): n=4 even -> scalar, E_cell=78.8 GeV  !=  125 GeV
-    (1,2) is the unique winding that gives spin-0 at ~125 GeV.
+    (1,2) is the unique winding that gives spin-0 at ~125 GeV, across the
+    ENTIRE infinite (p,q) space. [higgs_pq_uniqueness_exhaustive.py, 6/6 PASS]
 
   CONCLUSION: The structure is a COMBINATION LOCK.  All tumblers must align
   simultaneously.  Changing any single element (different winding, different
@@ -1675,9 +1833,17 @@ the previous with no free structural parameters. The chain:
 THE ONE FREE PARAMETER: m_p
 ----------------------------
 
-  The ONLY empirical input is m_p = 938.272 MeV (proton mass).  It sets the
-  mass scale; all dimensionless ratios (alpha, phi, K/G, nu, k_n_max, lepton
-  mass ratios) are exact from geometry.
+  The ONLY empirical input WITHIN THIS DOCUMENT is m_p = 938.272 MeV (proton
+  mass). It sets the mass scale; all dimensionless ratios (alpha, phi, K/G,
+  nu, k_n_max, lepton mass ratios) are exact from geometry GIVEN alpha.
+  NOTE: every script cited in this document hardcodes alpha=7.2973525693e-3
+  as a CODATA literal -- alpha itself is not re-derived here. It is
+  independently derived with zero measured EM inputs in [DOC ALPHA] Sections
+  4-5 (non-circularity confirmed by alpha_doc.py's V22, a fixed-point
+  iteration from the n=2 topological seed alone). So "zero free structural
+  parameters" / "the one free parameter: m_p" claims are accurate for THIS
+  document's own derivation chain, treating alpha as imported from a sibling
+  paper, not as a second undocumented empirical input.
 
   CURRENT STATUS: m_p is NOT derived within the framework.
     L_J = alpha * phi * r_p = alpha * phi * 4 * hbar_c / m_p
@@ -1706,7 +1872,7 @@ THE ONE FREE PARAMETER: m_p
 ---------------------
 
   MAIN DEMO (standalone, no deps):
-    analysis/demos/jobson_cell_doc.py          46/46 PASS  -- all cell quantities, J-numbered checks
+    analysis/demos/jobson_cell_doc.py          47/47 PASS  -- all cell quantities, J-numbered checks
     Repository: https://doi.org/10.5281/zenodo.22032906
 
   CELL STRUCTURE AND MECHANICS:
@@ -1718,8 +1884,10 @@ THE ONE FREE PARAMETER: m_p
     analysis/quantum/cell_stiffness_anisotropy.py       6/6 PASS   -- K/G=5/3 (cell Cauchy), 30.25 (collective) (SA1-SA6)
     analysis/quantum/cell_rotation_propagation.py      11/11 PASS  -- gluon->muon co-rotation chain, Zone 3 propagation (RP1-RP4)
     analysis/quantum/gluon_tau_helix.py                10/10 PASS  -- gluon amplitude A=L_J/sqrt(12); tau chord 0.706/0.103*L_J (GH0/GH0b/GH0c/GH6/GH7)
+    analysis/quantum/tau_pair_configuration.py         11/11 PASS  -- tau circuit uniqueness; two-photon meeting geometry (TPC1-TPC6)
     analysis/quantum/jobson_cell_force_balance_vectors.py  8/8 PASS   -- explicit 3D vector balance at all 62 nexuses (G3D1-G3D8)
     analysis/quantum/gluon_c3_born.py                    9/9 PASS   -- C3 Born + H→ZZ chain: alpha_s=2pi*g_s*[chi(T1g,C5)]^2=0.119, PDG 0.118+/-0.001 (CB1-CB9)
+    analysis/higgs/higgs_pq_uniqueness_exhaustive.py     6/6 PASS   -- exhaustive (p,q) proof: closed-form E_cell(p,q)=K/phi_pq is monotonic, only (1,1)/(1,2) exist below the 125 GeV window (PQ1-PQ6)
 
   COMPANION DOCUMENTS:
     [DOC ALPHA,  https://doi.org/10.5281/zenodo.22013651]

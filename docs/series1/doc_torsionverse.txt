@@ -952,15 +952,15 @@ of the cell geometry as their coherent internal state.
     at the phonon energy scale rather than the winding scale. [F-14]
     SSB = A_g phonon amplitude reaches Maxwell jamming -> locked standing wave.
     Vev = 246 GeV (locked amplitude). Boson = small A_g oscillation around lock.
-    W/Z gain mass because directed T_1g cones must propagate through the locked
-    isotropic A_g background. [UNIQUELY IDENTIFIED, doc_jobson_cell.txt]
+    W/Z gain mass because directed T_1g transverse oscillations must propagate
+    through the locked isotropic A_g background. [UNIQUELY IDENTIFIED, doc_jobson_cell.txt]
 
   TWO-SCALE PRINCIPLE (F-14 ESSENTIALLY DERIVED via LM17):
     Each I_h irrep form manifests at two scales -- same form, different energy:
       Winding scale:    Zone displacement mass  (tau, muon, electron, quarks)
       Phonon scale:     Zone-boundary phonon    (Higgs [I52], W/Z [T_1g])
     The tau lepton IS the same I52 face corkscrew as the Higgs internal structure.
-    The W/Z IS the same T_1g directed compression as the photon.
+    The W/Z IS the same T_1g directed transverse oscillation as the photon.
     Scale ratio: E_cell/m_tau = pi*sqrt(5)/(2*alpha*phi^4) ~ 70 [open: derive from spring coupling]
     [open_items.txt F-14]
 
@@ -1049,15 +1049,16 @@ PROVEN FROM FIRST PRINCIPLES (no free parameters):
     m_e: E+ irrep (dim=2), Born balance at 12 I_h vertices, J26 formula.
           m_e = 0.510999 MeV (+0.000065%). [lepton_mass.py LM1-LM11, 18/18 PASS]
     m_mu: G32 irrep (dim=4), pentagon Born balance, rides gluon edge channels.
-          m_mu = 105.655 MeV (-0.003%). [LM12]
+          m_mu = 105.655 MeV (-0.003%). [LM6-LM8]
     m_tau: I52 irrep (dim=6), face corkscrew phi^3/sqrt(5)*m_p = 1777.49 MeV (+0.035%)
            = 1777.49 MeV; algebraic identity phi^3/sqrt(5) = 1+2/sqrt(5). [LM13-LM17]
     Koide sum rule 2/3 = (dim T_1g + dim T_2g) / dim(T_1g x T_2g) = 6/9 EXACT
     from CG decomposition -- geometric, zero free parameters. [FG11]
     [lepton_mass.py 18/18 PASS; face_gluon_geometry.py 14/14 PASS]
   - Jobson cell mode assignments (I_h face/edge/vertex decomposition):
-    A_g (1): Higgs -- center breathing, SSB source.
-    T_1g (3): W/Z bosons -- compression modes, C5=+phi.
+    A_g (1): Higgs -- center breathing, SSB source; also the v_p/GW170817
+             longitudinal branch.
+    T_1g (3): W/Z bosons -- transverse modes, C5=+phi (not compression).
     T_2g (3): Face shear -- elastic face material, amplitude Rs^2 at Maxwell critical.
     2G   (8): 8 gluons -- color-active, from Gamma(20 faces), C3=+1.
     H_g  (5): = T_1g x T_2g (CG exact) -- field strength F_munu, NOT a new particle.
@@ -1130,10 +1131,10 @@ All claims verified. STANDALONE demo scripts (no external dependencies -- downlo
 Each covers all topics of its named document. torsionverse_doc.py covers the synthesis.
 
   python analysis/demos/alpha_doc.py               # 37/37 PASS  [fine structure constant derivation]
-  python analysis/demos/torsion_doc.py             # 17/17 PASS  [medium properties, MOND interpolation]
+  python analysis/demos/torsion_doc.py             # 24/24 PASS  [medium properties, MOND interpolation]
   python analysis/demos/higgs_doc.py               # 12/12 PASS  [Higgs mass, VEV, quartic coupling]
-  python analysis/demos/jobson_cell_doc.py         # 43/43 PASS  [I_h cell geometry, all quantities]
-  python analysis/demos/magnetism_doc.py           # 13/13 PASS  [EM, Maxwell derived, ferromagnetism]
+  python analysis/demos/jobson_cell_doc.py         # 47/47 PASS  [I_h cell geometry, all quantities]
+  python analysis/demos/magnetism_doc.py           # 15/15 PASS  [EM, Maxwell derived, ferromagnetism]
   python analysis/demos/nucleus_doc.py             # 31/31 PASS  [nuclear structure, magic numbers, g_p]
   python analysis/demos/orbit_doc.py               # 16/16 PASS  [G derivation, orbits, MOND]
   python analysis/demos/entanglement_doc.py        # 26/26 PASS  [CG selectivity, Bell, Tsirelson]

@@ -32,7 +32,9 @@ ISSUE 2: T_1g IS EMERGENT -- WHERE IS THE OUTWARD FORCE FROM?
     (a) Shear component: transverse stress along edge -> INWARD radially
     (b) Born coupling: C5 vertex coupling chi(T_1g,C5)=phi -> OUTWARD radially
   Component (b) is the "T_1g" mode -- it is NOT a separate photon but the
-  LONGITUDINAL COMPONENT of the gluon's interaction with the vertex spring.
+  RADIAL (vertex-coupling) COMPONENT of the gluon's interaction with the
+  vertex spring -- T_1g itself is a transverse mode (see doc_torsion Section
+  3.1), not a literal longitudinal/compression wave.
   Born balance: k_n*(1+alpha) = alpha*phi*k_LW ensures these cancel.
   ONE set of gluon corpuscles provides BOTH (a) and (b) -- no double counting.
 
@@ -217,7 +219,8 @@ print(f"    Born balance: k_n*(1+alpha) = alpha*phi*k_LW")
 print(f"    This coupling creates an OUTWARD restoring force (the 'T_1g Born stiffness')")
 print(f"    It IS the gluon's own C5 vertex coupling, not a separate particle.")
 print()
-print("  The 'T_1g mode' is the NAME given to this longitudinal coupling at C5 vertices.")
+print("  The 'T_1g mode' is the NAME given to this radial vertex coupling at C5")
+print("  vertices (T_1g itself is transverse, not longitudinal -- doc_torsion Sec 3.1).")
 print("  There are no T_1g corpuscle photons -- the mode EMERGES from the gluon-vertex")
 print("  coupling geometry. [doc_jobson_cell Sec 7.5: 'T_1g EMERGES from gluon geometry']")
 print()

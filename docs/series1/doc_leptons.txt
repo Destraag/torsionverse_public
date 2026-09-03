@@ -66,8 +66,9 @@ PHYSICAL ROLES IN THE JOBSON CELL MEDIUM:
   Analogy: the cell is the crystal lattice; leptons are the phonon/acoustic modes.
 
   CELL STRUCTURE (what the cell IS made of -- see doc_jobson_cell Section 7):
-    Higgs (A_g):   isotropic bulk mode (K channel), jamming = SSB
-    T_1g:          compression field (W/Z live here)
+    Higgs (A_g):   isotropic bulk mode (K channel), jamming = SSB; also the
+                   v_p/GW170817 longitudinal branch [doc_torsion Sec 3.1]
+    T_1g:          transverse vector field (W/Z live here) -- NOT compression
     T_2g:          ELASTIC FACE MATERIAL -- color-neutral shear field, creates
                    the triangular face panels. Rs^2 = T_2g shear amplitude squared
                    at the Maxwell critical point. Rs^2 appears in lepton mass
@@ -120,32 +121,26 @@ The lepton generations are assigned by spinor rank (half-integer j):
 The dimensions form the arithmetic sequence 2, 4, 6 -- all half-integer spinors
 in 2I, exhausting the sequence at j=5/2 (I52 is the highest spinor irrep in 2I).
 
-1.2  CG selection (V-A pion decay)
+1.2  Second-order Born corrections (why no alpha^2 for muon or tau)
 
-The V-A weak interaction couples: T1(W) x E-(L-antineutrino). From the 2I CG table:
-
-  T1 x E- = { G32: 1,  I52: 1 }
-
-E+ (electron) does NOT appear. Therefore:
-  - Pion decay pi->mu is CG-forced for left-handed antineutrino (G32)
-  - Pion->e is V-A suppressed (requires right-handed antineutrino for E+)
-  - The standard-model (m_e/m_pi)^2 helicity factor IS this CG selection rule
-
-Both G32 (muon) and I52 (tau) appear in T1 x E-, confirming both are 2I leptons.
-The electron E+ lives outside this product, consistent with its vertex (not edge/face)
-character -- in the corpuscle model, the electron scatters at VERTICES not along edges between decay products.
-
-1.3  Second-order Born corrections (why no alpha^2 for muon or tau)
-
-From 2I CG decompositions:
-  E+ x E+  -> T1=1x, T2=0x -> NET +3/2*alpha^2  => electron gets (3/4)*alpha^2
-  G32 x G32 -> T1=1x, T2=1x -> NET 0             => muon: no alpha^2 correction
-  I52 x I52 -> T1=2x, T2=2x -> NET 0             => tau:  no alpha^2 correction
+From 2I CG decompositions [ih_double_cg.py DC2, DC6, DC7 -- actual computed
+products, not just multiplicities]:
+  E+ x E+   = A(1) + T1(3)                       -> coefficient = dim(T1)/4 = 3/4
+  G32 x G32 = A(1)+T1(3)+T2(3)+G(4)+H(5)         -> T1=T2 (1x each) cancel
+  I52 x I52 = A(1)+2*T1(3)+2*T2(3)+2*G(4)+3*H(5) -> T1=T2 (2x each) cancel
 
 T1 (pressure, same as T_1g cell mode) and T2 (shear, same as T_2g cell mode)
-cancel exactly for G32 and I52 but not E+.
-The muon's -0.003% and the tau's +0.004% propagate together and close simultaneously
-when the exact Born balance is applied to all paths. No missing second-order terms.
+appear in EQUAL multiplicity for G32 and I52 (so their contributions cancel),
+but T2 is ABSENT for E+ (only A+T1 appear, no T2 term at all) -- this
+asymmetry is why the electron alone gets a nonzero alpha^2 correction, with
+coefficient = dim(T1)/dim(E+xE+) = 3/(1+3) = 3/4 directly (no separate "NET"
+subtraction step is needed or used).
+The muon's -0.003% and the tau's +0.004% are each individually-computed
+residuals from the current (approximate) Born-balance inputs; whether they
+"close simultaneously when the exact Born balance is applied to all paths"
+is the still-open calculation listed in Section 9 (exact muon Born balance,
+eff_mu=0.8563 numerical) -- not yet shown, despite the more confident
+phrasing this sentence previously had.
 
 
 2. THE ICOSAHEDRAL ELEMENT MAPPING
@@ -203,7 +198,10 @@ The three 2I spinors map to these three element types:
           "slides along" the edge direction with a moderate turn at each vertex.
     Tau:  cos = -0.447 -> deflection 116.57 deg, backward component dominates.
           The wave "bounces back inward" at each face boundary. More compact orbit.
-    This is why m_tau >> m_mu despite the tau having the same icosahedral host geometry.
+    This is a STEEPER deflection than the muon's, despite the tau having the same
+    icosahedral host geometry -- see Section 5.2 for how this translates to mass
+    (backward bias actually LOWERS the Born coupling amplitude; the tau's larger
+    bounce count N=20 vs the muon's N=5 is what makes up the difference).
 
 2.3  The bipyramid bridge (why the original model worked)
 
@@ -239,19 +237,27 @@ GEOMETRIC CORRECTION (verified in lepton_mass.py LM4b):
 3. ELECTRON (VERTEX MODE)
 ---------------------------
 
-Fully derived in doc_jobson_cell (J26). Summary for comparison:
+Fully derived in doc_jobson_cell (J26); independently re-verified here as
+LM1 (this doc's own companion script, using m_p=938.272046 MeV) vs
+jobson_cell_doc.py's J26 (using m_p=938.272088 MeV) -- both are the same
+CODATA proton mass at different rounding/vintage, not a derived quantity
+(m_p remains the framework's one external input). The tiny m_p difference
+is why the two scripts' quoted precision differs slightly (+0.000065% here
+vs +0.00007% for J26 directly, Section 8) -- both are cross-checks of the
+same formula, not two different claims.
 
   Path: (1,2) Hopf winding on the 12-vertex icosahedron.
         12 bounces per circuit, each at cos(72 deg).
   eff_e = phi = (1+sqrt5)/2 = 1.618
-  L3_e  = (phi^3 + log5^3) / (phi^2 + log5^2)
+  L3_e  = (phi^3 + log5^3) / (phi^2 + log5^2)   [log5 = ln(5), natural log]
   m_e   = 2*pi * alpha^2 * phi * m_p * (1 + dn_e/pi) * (1 + 3/4*alpha^2)
-        = 0.510999 MeV  (+0.000065%)
+        = 0.510999 MeV  (+0.000065%)  [LM1]
 
-The (3/4)*alpha^2 correction: from E+ x E+ -> T1=1x, T2=0x (no shear mode
-cancellation -- T2 absent). This is UNIQUE to the electron.
+The (3/4)*alpha^2 correction: from E+ x E+ = A(1) + T1(3) (T2 absent, so no
+shear-mode cancellation) -- coefficient = dim(T1)/dim(E+xE+) = 3/4 directly
+[ih_double_cg.py DC2]. This is UNIQUE to the electron.
 
-Polygon normalization: 12*tan(pi/12) = 3.215 ~ pi (2.4% difference). The electron
+Polygon normalization: 12*tan(pi/12) = 3.215 ~ pi (2.3% difference). The electron
 uses pi as an approximation; the dn_e/pi term absorbs the residual. For the muon
 and tau the polygon constant differs from pi by 15.6% and 0.83% respectively.
 
@@ -287,7 +293,27 @@ The pentagon polygon normalization uses N=5 (the symmetry order of the zig-zag):
 4.3  Born balance
 
   eff_mu = (9-sqrt5)/8 = (1 + sqrt5/(2*phi))/2 = 0.845492
-  [Derived from bipyramid deflection ratio; exact icosahedral Born balance open]
+  [Derived from bipyramid deflection ratio; exact icosahedral Born balance open.
+  NOTE: this is one of FOUR distinct candidate values in the repo, none
+  derived from first principles without an external input: (1) 0.845492 here
+  (bipyramid analogy, used in the mass formula below); (2) eff_mu=0.856308
+  (koide_proof.py KP1/KP2, numerical inversion against the PDG-measured muon
+  mass -- about 1.3% higher than (1)); (3) eff_mu=1.0 (muon_internal_force_check.py
+  F1-F3, recomputing the Born-ratio on this document's own corrected uniform-
+  72-deg path, Section 4.2 -- the ratio trivially collapses to 1 since the real
+  path has only one deflection type, suggesting the Born-RATIO construction
+  itself may not carry over cleanly from the mixed-mode bipyramid model to the
+  pure single-mode path); (4) eff_mu = 1/phi + alpha*(m_mu/m_e)^(2/3) = 0.873199
+  (muon_medium_plus_area_combined.py, additive combination of the G32|D5
+  sub-resonant root 1/phi, Section 4.1, with a medium-density-style correction
+  of order alpha scaled by the muon/electron mass ratio to the 2/3 power --
+  gives +0.0046%, comparable to but not better than (1); a robustness scan,
+  muon_combined_robustness_scan.py, shows this sits in a smooth, non-fragile
+  region of (exponent, coefficient) space rather than an isolated fitted
+  point, but the specific exponent 2/3 and coefficient (delta=alpha exactly)
+  were selected by testing a small number of options, not independently
+  derived). Which of these (if any) is the physically correct input is not
+  settled.]
 
   L3_mu = (eff_mu^3 + log5^3) / (eff_mu^2 + log5^2)  = 1.4442
   k_mu  = alpha * eff_mu * (1 - 3/4*alpha^2) / (1 + x_mu + x_mu^2)  = 0.006137
@@ -319,7 +345,9 @@ CORRECTED (2026-08-28): the earlier description of the tau as a single
 corkscrew "spiraling up through hemisphere faces" was the stale bipyramid
 model. The correct picture:
 
-TWO CORPUSCLE PHOTONS (in the corpuscle model) on the same Hamiltonian circuit (the unique 20-face
+TWO CORPUSCLE PHOTONS (in the corpuscle model -- see doc_qm.txt FRAMING NOTE,
+v4 2026-08-27, for the corpuscle interpretation used throughout this section)
+on the same Hamiltonian circuit (the unique 20-face
 cycle on the icosahedral face-adjacency graph, TPC1c) traveling in opposite
 directions at speed c. Each photon scatters at face-CENTER nexuses --
 impact-rebound at 72 deg (C5, GH2) off the convergent gluon maximum (all
@@ -328,9 +356,22 @@ three gluons of that face reaching amplitude peak simultaneously, GH0b).
 MEETING GEOMETRY: the two photons meet TWICE per circuit -- at hop 0 (start
 nexus) and hop 10 (the face-center nexus diametrically opposite on the
 circuit). Between meetings each photon traverses 10 face-center nexuses;
-together they cover all 20. At each meeting both arrive simultaneously,
-scatter independently off the same gluon maximum, and depart in opposite
-directions. No photon-photon interaction in the linear torsion medium.
+together they cover all 20.
+The N=2 tau count itself is established independently of the flawed full
+simulation below: tau_necessity_verify.py's TN1 exhaustively searches every
+(starting face, initial direction) pair against the fixed local exchange-
+angle rule alone (icosahedral geometry only -- no gluon model, no assumed
+backward-path shortcut) and finds exactly 1 valid 20-face completion per
+start, i.e. exactly 2 directed circuits (fwd + bwd) [TN1a-b].
+NOTE: what the two photons actually DO at the meeting nexus -- continue,
+reverse, or redirect -- remains OPEN. The broader corpuscle-billiard
+simulation (cell_cycle_billiard_v2.py, and TN4/TN5's gluon-timing
+arguments in the same file) is NOT currently a trusted reference for that
+mechanism: it defines the backward tau's role in the wider simulation as a
+reindex of the forward path rather than an independently-simulated bounce,
+and is inconsistent about the gluon count per face (6 vs 3). Pending a full
+force-vector resimulation (planned billiard v3), no claim about
+photon-photon interaction at the meeting nexus should be treated as derived.
 
 PATH GEOMETRY: between nexuses the photon travels as a STRAIGHT-LINE CHORD
 through the cell interior. At mid-hop: r = 0.706 x L_J, which is 0.103 x L_J
@@ -441,7 +482,12 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
     Koide ratio (derived masses) = 0.66666667  (exact 2/3 to 10 decimal places)
 
   The tau prediction inherits the muon's -0.003% error through the Koide formula.
-  Both residuals close simultaneously when the exact Born balances are applied.
+  This is a TAUTOLOGICAL check, not an independent confirmation: m_tau here is
+  obtained by algebraically SOLVING the Koide equation for m_tau given the
+  derived m_e/m_mu (LM10), so verifying that result satisfies Koide (LM11) is
+  guaranteed by construction. It does not, by itself, show the muon/tau
+  residuals "close" under an independently exact Born balance -- that remains
+  the open item in Section 9.
 
 6.2  Why Koide should be exact -- geometric origin and proof requirements
 
@@ -452,14 +498,22 @@ GEOMETRIC ORIGIN (new -- face_gluon_geometry.py FG11):
     ─────────────────────── = ───── = ─── = 2/3  [EXACT]
        dim(T_1g x T_2g)         9       9
 
-  T_1g (compression, W/Z field):    dim = 3
+  T_1g (transverse, W/Z field):     dim = 3
   T_2g (shear, elastic face field): dim = 3
   T_1g x T_2g = G + H (field strength F_mn, H_g = gluon flux lines): dim = 9
 
-  The icosahedral group I_h is the ONLY group with two 3-dimensional irreps
-  (T_1g and T_2g) whose product has dimension 3*3 = 9, giving ratio 6/9 = 2/3.
-  The three leptons satisfy Koide because they are Born-balanced modes of this
-  same icosahedral cell -- the 2/3 is encoded in the cell's structural geometry.
+  The icosahedral group I_h has two 3-dimensional irreps (T_1g and T_2g)
+  whose product has dimension 3*3 = 9, giving ratio 6/9 = 2/3. NOTE: this
+  dimension count alone is NOT I_h-specific -- dim(V⊗W)=dim(V)*dim(W) holds
+  for ANY two 3-dim irreps of ANY group (e.g. the octahedral group O's own
+  T1/T2 irreps give the identical dim-9 product; no script in this repo
+  checks uniqueness against other groups, and a by-hand check for this audit
+  found O is not excluded by this count alone). What IS icosahedron-specific
+  here is T_1g x T_2g decomposing with NO A_g component (G+H only, verified
+  by projection formula). The three leptons satisfy Koide because they are
+  Born-balanced modes of this same icosahedral cell -- but the connection
+  from this dimension-ratio fact to why the derived lepton MASSES sum to
+  exactly 2/3 is the separate, still-open step described next.
 
   Additionally: G32 x G (muon x gluon) = G32 + 2*I52, with NO A component.
   The muon is color-neutral (cannot emit/absorb a single gluon), consistent
@@ -467,8 +521,11 @@ GEOMETRIC ORIGIN (new -- face_gluon_geometry.py FG11):
   channels geometrically via C3=+1 coupling, not via direct vertex coupling.
 
 NUMERICAL STATUS (koide_proof.py, 8/8 PASS):
-  The leading-order mass formulas give K0 = 0.67111 (4442 ppm above 2/3).
-  The Born corrections must decrease K by 4442 ppm to reach 2/3.
+  The leading-order mass formulas give K0 = 0.67111 (4442 ppm(abs) above 2/3 --
+  an absolute shift in K, not the normalized relative-ppm convention used
+  elsewhere in this paper for final precision claims, e.g. the 9.2 ppm(rel)
+  Koide agreement below).
+  The Born corrections must decrease K by this amount to reach 2/3.
   This large shift is now understood: the corrections enforce the cell's
   geometric 2/3 ratio (field/field-strength) on the lepton Born balances.
 
@@ -487,8 +544,12 @@ WHAT THE FORMAL PROOF STILL REQUIRES:
 
 The icosahedron's 20 faces are 3-colorable: assign colors R, G, B such that no
 two adjacent faces share a color. This 3-coloring is identified with quark color
-charge (open item F-7). The tau (I52) traverses ALL 20 faces, visiting all 3 colors
-in equal proportion. Since C3=0 in I52, it couples to R, G, B with equal amplitude
+charge (open item F-7). The tau (I52) traverses ALL 20 faces, coupling to all 3
+colors with equal GROUP-THEORETIC weight (C3=0) -- though the physical face
+count itself is 7R/7G/6B, not exactly equal (20 is not divisible by 3;
+su3_from_faces.py SU3-8; face_gluon_geometry.py's own comment: "cannot be
+perfectly divided into 3 equal color groups"). Since C3=0 in I52, it couples
+to R, G, B with equal amplitude
 and zero net color charge:
 
   I52 dim = 6 = 2 (Dirac spinor) x 3 (quark color from face 3-coloring)
@@ -544,11 +605,14 @@ The bipyramid model bridges muon and tau:
 ----------
 
 DERIVED (zero free parameters, all verified by companion scripts):
-  - All three lepton = 2I spinors via CG selection  [exact, group theory]
+  - All three lepton = 2I spinors, assigned by spinor rank  [exact, group theory]
   - Electron = VERTEX, muon = EDGE, tau = FACE (icosahedral element mapping)  [LM12-LM13]
   - Bipyramid was superposition of muon (apex) and tau (equatorial) modes  [Section 2.3]
   - m_e  = 0.510999 MeV (+0.000065%)  J26 formula  [LM1]
-  - m_mu = 105.655 MeV  (-0.003%)     pentagon Born balance  [LM6-LM8]
+  - m_mu = 105.655 MeV  (-0.003%)     pentagon Born balance, using the
+    bipyramid-approximation eff_mu -- known to be ~1.3% from the numerically-
+    inverted value, and the Born-ratio construction itself is not yet settled
+    (three unreconciled candidates; see Section 4.3 caveat)  [LM6-LM8]
   - m_tau = 1776.92 MeV (+0.004%)     Koide from derived m_e, m_mu  [LM10]
   - Tau has a nexus with the gluon at each face boundary (20 per circuit) [LM14]
     Born balance deflection = arccos(-1/sqrt5); actual face-face dihedral 138.19 deg [JC5]
@@ -563,10 +627,17 @@ DERIVED (zero free parameters, all verified by companion scripts):
   - Muon rides gluon edge channels; 72-deg = gluon flux bending at C5 vertex  [FG9]
   - G32 x G = G32 + 2*I52 (no A): muon is color-neutral in gluon sector  [DG15]
   - KOIDE 2/3 geometric origin: dim(T1g+T2g)/dim(T1gxT2g) = 6/9 = 2/3  [FG11]
+  - F-7: SU(3) from icosahedral face 3-coloring [CLOSED 2026-08-23,
+    su3_from_faces.py 11/11]
 
 ESSENTIALLY CLOSED:
-  - Koide 9.2 ppm from measured masses; exact 2/3 from derived masses  [LM9, LM11]
-  - No alpha^2 correction for muon or tau (T1=T2 in G32xG32, I52xI52)  [Section 1.3]
+  - Koide 9.2 ppm from measured masses [LM9, independent -- uses PDG masses
+    directly]; Koide EXACTLY 2/3 from derived masses [LM10-LM11] -- this
+    second check is TAUTOLOGICAL, not independent: m_tau here is obtained by
+    algebraically SOLVING the Koide equation for m_tau given derived m_e/m_mu,
+    so it satisfying Koide is guaranteed by construction, not a confirmation
+    comparable in kind to LM9's PDG-mass agreement.
+  - No alpha^2 correction for muon or tau (T1=T2 in G32xG32, I52xI52)  [Section 1.2]
   - Color coupling from C3 characters (E+=-1, G32=+1, I52=0)  [Section 7]
   - Euler V-E+F=2 and Maxwell 3V-E=6 constrain all three path geometries  [LM12-LM13]
   - Lepton generations exhaust 2I spinors (3 independent spinor irreps)
@@ -579,7 +650,14 @@ OPEN:
   - Tau correction structure (no Born vertex contact -- differs from muon's Rs^2+2*alpha)
   - Born balance algebraic closure: show 4442 ppm correction enforces 6/9 ratio  [KP7]
   - Near-critical tau correction (N_J~11, Maxwell critical ~21)
-  - F-7: SU(3) from icosahedral face 3-coloring [CLOSED 2026-08-23, su3_from_faces.py 8/8]
+  - Tau meeting-nexus mechanism at hop 0/10: what the two photons actually do
+    when they coincide (continue, reverse, redirect) is OPEN. (The N=2 tau
+    count itself is NOT part of this open item -- it is independently
+    established by TN1's exchange-angle-rule enumeration, Section 5.1.) The
+    broader corpuscle-billiard simulation is NOT a trusted reference for the
+    meeting mechanism (undisclosed tau-backward shortcut in the wider sim,
+    inconsistent gluon-per-face count); needs a full force-vector
+    resimulation (planned billiard v3) before any claim here is derived.
 
 WHY THREE GENERATIONS (no more, no fewer):
   The 2I double group has exactly 4 spinor irreps: E+(2), E-(2), G32(4), I52(6).
@@ -590,11 +668,18 @@ WHY THREE GENERATIONS (no more, no fewer):
 10. COMPANION SCRIPTS
 ----------------------
 
-  analysis/demos/leptons_doc.py         -- 18/18 PASS  [STANDALONE -- no external deps]
+  analysis/demos/leptons_doc.py         -- 18/18 PASS  [STANDALONE -- no project imports; uses numpy for vector geometry]
   analysis/quantum/lepton_mass.py       -- 18/18 PASS  (main: all three leptons, exact formulas)
   analysis/quantum/face_gluon_geometry.py -- 14/14 PASS (T_2g, 2G, H_g, Koide origin, lattice geometry)
   analysis/quantum/koide_proof.py            -- 8/8 PASS  (Koide gap, eff_mu inversion, geometric origin 2/3=6/9 KP1-KP8)
   analysis/nuclear/ih_double_group.py   -- 15/15 PASS (2I character table, spinor irreps, G32xG=G32+2*I52 DG15)
+  analysis/quantum/gluon_tau_helix.py    -- 10/10 PASS (tau path geometry, GH0-GH0c, GH6-GH7)
+  analysis/quantum/tau_pair_configuration.py -- 11/11 PASS (TPC1-TPC6: tau circuit uniqueness, two-photon
+                                                meeting geometry -- NOT currently trusted, see Section 9 OPEN item)
+  analysis/corpuscle/tau_necessity_verify.py -- 12/12 PASS (TN1 only: N=2 tau count independently
+                                                established by exchange-angle-rule enumeration, trusted;
+                                                TN4/TN5 gluon-timing claims NOT trusted, see Section 9 OPEN item)
+  analysis/quantum/su3_from_faces.py     -- 11/11 PASS (F-7: SU(3) from face 3-coloring)
 
   LM1-2:   Electron J26 reference (+0.000065%)
   LM3-5:   Pentagonal bipyramid deflection geometry (exact, h_t/r_e = 1/phi)
