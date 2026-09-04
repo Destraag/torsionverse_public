@@ -661,8 +661,19 @@ OPEN:
 
 WHY THREE GENERATIONS (no more, no fewer):
   The 2I double group has exactly 4 spinor irreps: E+(2), E-(2), G32(4), I52(6).
-  Treating E+/E- as particle/antiparticle, there are exactly 3 independent
-  free fermionic modes. These ARE the 3 lepton generations. No 4th exists in 2I.
+  E+/E- are a Galois-conjugate pair distinguished by vertex-nexus coupling
+  strength: chi(C5)=+phi for E+ (strongly constructive -> binds at the vertex
+  nexus -> the electron) vs chi(C5)=-1/phi for E- (not constructive -> no
+  nexus binding -> propagates freely -> electron neutrino candidate) -- the
+  same bound/freed-at-its-own-nexus pattern already used for G32/muon and
+  I52/tau, not a particle/antiparticle relationship [ih_double_group.py
+  DG11-DG14; neutrino_freed_lepton.py NL1-NL6, which independently derives
+  G_F and the Fermi cross-section from this same picture (the mass-hierarchy
+  PATTERN also matches; whether a freed lepton actually keeps a persistent
+  chi(C5) character to produce it, or chi(C5) is only a bookkeeping label, is
+  open)]. Counting E+/E- as ONE generation (bound lepton + its own freed/
+  neutrino partner), there are exactly 3 independent generations. These ARE
+  the 3 lepton generations. No 4th exists in 2I.
 
 
 10. COMPANION SCRIPTS

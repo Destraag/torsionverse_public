@@ -251,6 +251,10 @@ Both the electron (spin-1/2) and the W/Z (spin-1) representations have the
 same C_5 character phi -- this is why phi appears throughout the framework.
 Formally: phi = 1 + 2*cos(2*pi/5) = 1 + 2*cos(72 deg) [from the T_1g matrix eigenvalues].
 
+NOTE: T_1g/T_2g are independently verified for ordinary spin-1 particles
+(photon, W/Z) but not yet for the hadronic diquark assignment (Section 4.3,
+doc_nucleus.txt Section 5) -- see analysis/nuclear/diquark_antisymmetric_square_check.py.
+
 5.3  Orthogonality and normalization
 
   ||T_1g||^2 = sum_class |class| * chi(T_1g)^2 = 1*9 + 15*1 + 20*0 + 12*phi^2 + 12*(1/phi)^2
@@ -359,7 +363,7 @@ THEOREM:
       already the unique small (p,q) pair matching alpha to CODATA (doc_alpha
       Section 5.3), n=p*q=2 even forces scalar, and A_g is the only scalar
       gerade irrep -- no scan over alternatives is needed for this step.
-      [corpuscle_uniqueness_proof.py STEP2]
+      [jobson_cell_doc.py J19b]
 
   (2) Exhaustive proof (closed form + monotonicity): E_cell(p,q) = K/phi_pq(p,q)
       for a p,q-independent constant K, where phi_pq=(1+sqrt(p^2+q^2))/2 is

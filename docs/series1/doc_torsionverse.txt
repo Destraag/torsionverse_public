@@ -339,6 +339,11 @@ The net directional imbalance in phase advance = a net shift in k per unit
 time = dk/dt = force. The winding drifts toward longer dwell times because
 it accumulates the most spatial phase going that way before being redirected.
 
+(This discrete nexus-hopping picture and the continuum k/omega-persistence
+picture above are the SAME dispersion relation at two orders of one
+expansion, not two separate postulates -- verified from a discrete Jobson-
+cell lattice model: analysis/quantum/lattice_dwell_time_bridge.py.)
+
 Pressure is only the bulk average of these dwell times. The wave does not
 feel pressure. It experiences: travel, impact, travel, impact. The asymmetry
 in impact spacing shifts k. That shift is the force.

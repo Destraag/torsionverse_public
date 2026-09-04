@@ -158,32 +158,49 @@ check("CA26c: m_strange_constituent within 2% of m_p/2 (strange fluctuation at Z
 # ── SECTION 4: WHY POSITRON NOT ELECTRON ("WRONG SPIN") ──────────────────────
 print()
 print(SEP2)
-print("SECTION 4: T_2u -> POSITRON (Galois-conjugate Zone 3 mode)")
+print("SECTION 4: FREED CORPUSCLE -> POSITRON (reversed chirality, NOT Galois conjugate)")
 print(SEP2)
 
-# T_1u (u quark): chi(C5) = +phi = chi(E+) -- u quark freed -> electron
-# T_2u (d quark): chi(C5) = -1/phi = chi(E-) -- d quark freed -> neutrino-like?
-# BUT: the d quark chi = -1/phi is the Galois conjugate of E+ chi = +phi
-# The positron is E+ with OPPOSITE Hopf winding chirality
-# In the torsionverse, particle/antiparticle differ by winding direction
-# The Galois conjugate of E+ (chi=phi) in the C5 representation is the mode with chi=-1/phi
-# This Galois conjugate Zone 3 mode = the positron (anti-electron)
+# CORRECTED 2026-09-03: a prior version of this section identified the
+# positron by chi(T_2u,C5) = -1/phi = chi(E-,C5) ("Galois conjugate of E+").
+# This was a computational error: chi=-1/phi is the ALREADY-established,
+# independently-verified character of a DIFFERENT object -- the no-mass,
+# non-vertex-coupling electron NEUTRINO (ih_double_group.py DG11-DG14,
+# neutrino_freed_lepton.py NL1-NL6, both matched against real neutrino
+# phenomenology: G_F to 0.088%, Fermi cross-section, mass hierarchy). The
+# error conflated two independent operations: swapping to the Galois-
+# conjugate chi VALUE, vs reversing the winding CHIRALITY. Chirality (which
+# way the (1,2) Hopf winding turns) sets the SIGN of EM coupling; WHICH
+# irrep governs vertex-coupling STRENGTH sets confinement/mass (doc_magnetism.txt
+# Section 3.4: mass = medium displacement). A positron has the SAME mass as
+# the electron (same displacement) and OPPOSITE charge (reversed chirality)
+# -- so it must keep chi(C5)=+phi (E+'s own coupling strength), with
+# chirality as a separate, independent label -- matching doc_electron.txt's
+# construction (Section 2.1: "positron... same vertex geometry as E+, same
+# C5 character"), renamed here to "anti-E+" to avoid colliding with E-
+# (already the neutrino's label elsewhere in the repo).
 print(f"\n  chi(T_1u, C5) = +phi  = {chi['T_1u']:+.6f}  [u quark; same as chi(E+) = electron]")
-print(f"  chi(T_2u, C5) = -1/phi = {chi['T_2u']:+.6f}  [d quark; Galois conjugate of E+]")
-print(f"  chi(E+, C5)   = +phi  = {chi['E+']:+.6f}  [electron]")
-print(f"  chi(E-, C5)   = -1/phi = {chi['E-']:+.6f}  [electron neutrino]")
-print(f"\n  The stripped T_2u winding has chi = -1/phi:")
-print(f"  - Same chi as E- (neutrino): but it has MASS (it was a Zone 1 confined mode)")
-print(f"  - It is the GALOIS CONJUGATE of E+ (electron)")
-print(f"  - In the torsionverse: Galois conjugate winding = opposite Hopf chirality")
-print(f"  - Opposite chirality E+ orbit = POSITRON (anti-electron)")
-print(f"  - This is the 'wrong spin': it settles into an E+ orbit but with")
-print(f"    reversed winding direction (left-handed instead of right-handed)")
+print(f"  chi(T_2u, C5) = -1/phi = {chi['T_2u']:+.6f}  [d quark, CONFINED Zone 1 value --")
+print(f"                                                this is NOT the freed lepton's identity]")
+print(f"  chi(E+, C5)   = +phi  = {chi['E+']:+.6f}  [electron AND positron (anti-E+) --")
+print(f"                                              same vertex-coupling strength/mass;")
+print(f"                                              chirality is the separate label that")
+print(f"                                              distinguishes them]")
+print(f"  chi(E-, C5)   = -1/phi = {chi['E-']:+.6f}  [electron NEUTRINO -- a DIFFERENT,")
+print(f"                                               no-mass object, NOT the positron]")
+print(f"\n  The freed corpuscle stabilizes into an E+-type winding (chi=+phi, same mass as")
+print(f"  the electron) with REVERSED Hopf winding chirality = positron (anti-E+) -- the")
+print(f"  reversal, not a chi-value match to T_2u's own confined character, is what makes it")
+print(f"  a positron.")
+print(f"  OPEN: the precise mechanism connecting the antipodal-bounce dynamics (T_2u -> T_1u)")
+print(f"  to why the co-emitted corpuscle specifically lands in reversed-chirality E+ (rather")
+print(f"  than some other configuration) is not derived at the CG-algebra level here -- this")
+print(f"  section describes the qualitative energy-transfer picture, not a computed selection rule.")
 
-# Check: chi(T_2u) = chi(E-) = Galois conjugate of chi(E+)
-check("CA26d: chi(T_2u,C5) = -1/phi = chi(E-,C5) = Galois conjugate of chi(E+,C5)",
-      abs(chi['T_2u'] - chi['E-']) < 1e-10 and abs(chi['T_2u'] + 1/phi_) < 1e-10,
-      f"chi(T_2u)={chi['T_2u']:+.6f}  chi(E-)={chi['E-']:+.6f}  -1/phi={-1/phi_:.6f}")
+check("CA26d: positron (anti-E+) has E+ coupling strength (chi=+phi, SAME as electron), not chi(E-)",
+      abs(chi['E+'] - phi_) < 1e-10 and abs(chi['E-'] - chi['E+']) > 1e-6,
+      f"chi(E+)={chi['E+']:+.6f}=phi (positron's coupling strength, same as electron)  "
+      f"chi(E-)={chi['E-']:+.6f} (neutrino's DIFFERENT value -- confirms positron != neutrino)")
 
 # Also check: T_1u -> electron mapping (control)
 check("CA26d_ctrl: chi(T_1u,C5) = +phi = chi(E+,C5) [u quark -> electron, control]",

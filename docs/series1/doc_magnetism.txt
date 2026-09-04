@@ -334,14 +334,22 @@ The magnetic properties of transition metals are determined by their unpaired
 electron count (Hund's rule). In the Jobson cell framework, the I_h irreps
 have the following dimensions:
 
-  I_h irrep | dim | N_J regime  | Magnetic coupling mode
-  ----------|-----|-------------|------------------------
-  A_g       |  1  | sub-cell    | Scalar: no net spin (fully filled shells)
-  T_1g      |  3  | bulk/medium | 3 unpaired spins: strong coupling
-  T_2g      |  3  | bulk/medium | 3 unpaired spins: strong coupling
-  G_g       |  4  | boundary    | 4 unpaired spins: FERROMAGNETIC
-  H_g       |  5  | sub-cell    | 5 unpaired spins: sub-cell (top quark regime)
-  E_1/2     |  2  | bulk        | 2 unpaired spins (spinor)
+  I_h irrep | Realized by     | dim | N_J regime      | Magnetic coupling mode
+  ----------|-----------------|-----|-----------------|------------------------
+  A_g       | Higgs boson     |  1  | sub-cell        | Scalar: no net spin (fully filled shells)
+  T_1g      | photon / W,Z    |  3  | bulk / sub-cell | 3 unpaired spins: strong coupling
+  T_2g      | proton diquark* |  3  | unverified      | 3 unpaired spins: strong coupling
+  G_g       | b quark         |  4  | boundary        | 4 unpaired spins: FERROMAGNETIC
+  H_g       | top quark       |  5  | sub-cell        | 5 unpaired spins: sub-cell (top quark regime)
+  E_1/2     | electron        |  2  | bulk            | 2 unpaired spins (spinor)
+
+  * proton diquark irrep not independently derived --
+    analysis/nuclear/diquark_antisymmetric_square_check.py. Doesn't change
+    the ferromagnetic conclusion either way: A_g appears exactly once in
+    X x X for X=T_1g OR X=T_2g (verified, same script Part 5) -- the two
+    irreps' C5/C5^2 characters are swapped, but the class sizes are equal
+    (|C5|=|C5^2|=12), so the swap is invisible to the A_g count. Cobalt's
+    ferromagnetism argument does not depend on which of the two it's labeled.
 
 KEY CLAIM: Ferromagnetism is determined by the I_h irrep of the unpaired
 d-electron count (Hund's rule). The classification is:

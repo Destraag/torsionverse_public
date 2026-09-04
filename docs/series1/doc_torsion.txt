@@ -158,7 +158,10 @@ PHYSICAL MODEL OF THE MEDIUM (2026-08-23):
 
     Neutrinos are freed lepton modes. They carry wave energy but have no nexus
     to interact with the medium. No displacement = no rest mass = E = pc.
-    (Near-zero residual mass comes from rare random winding contacts; see F-15.)
+    (Near-zero residual mass comes from rare, incidental winding contacts;
+    whether the freed mode is truly structureless between contacts, or
+    retains a persistent, coherent character, is open -- real neutrino
+    oscillation disfavors "structureless"; see F-15.)
     E = mc^2 is not violated -- it is a special case of E^2 = (pc)^2 + (mc^2)^2
     restricted to modes where the medium participates in displacement (m > 0).
 

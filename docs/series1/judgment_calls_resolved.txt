@@ -10,8 +10,145 @@ Purpose: full resolution history for items originally logged in
 =============================================================================
 
 =============================================================================
+DOC: doc_nucleus.txt
+=============================================================================
+
+NC-J1 [RESOLVED 2026-09-03] Section 5.1-5.2's proton=T_2g/neutron=T_1g
+  diquark irrep assignment. Three-stage investigation:
+  (1) The specific ANTISYMMETRIC-SQUARE mechanism sometimes cited for this
+  ("[T_1u x T_1u]_A = T_2g") does NOT check out -- computed directly
+  (analysis/nuclear/diquark_antisymmetric_square_check.py, Parts 1-3): the
+  antisymmetric square of T_1g is T_1g itself (standard vector-calculus
+  fact: a x b, the antisymmetric square of a vector, is a pseudovector with
+  the SAME rotational character, just flipped parity), and T_2g does not
+  appear anywhere in T_1g x T_1g's decomposition at all.
+  (2) Checked whether the bare LETTER (T_1g vs T_2g) is even a well-posed
+  question: NO. Every prediction checked (ferromagnetic A_g-count,
+  weak_interaction_cg.py's WI1/WI2 tau-resonance CG match) is unchanged
+  under a global, consistent swap T_1g<->T_2g paired with E+<->E- (Parts
+  5-6 of the same script) -- the bare letter carries no independent
+  physical content, so no script could ever "derive" it.
+  (3) BUT the ASSIGNMENT itself (which real hadron, proton or neutron,
+  pairs with the real electron) is not arbitrary: WI1/WI2 anchor to E+ =
+  the real electron, and require the PROTON specifically to have the
+  Galois-opposite phase from it to produce the tau resonance used in
+  verified weak-interaction/IBD-threshold predictions (real, measured
+  numbers). This is independently unsurprising too: protons and electrons
+  have opposite EM charge and bind (why hydrogen atoms exist) -- ordinary
+  physics, not something needing the Galois-CG machinery to justify.
+  CONCLUSION: the proton=T_2g/neutron=T_1g assignment is very likely
+  correct on ordinary physical grounds; none of the framework's numeric
+  results (m_n-m_p, g_n free/bound, <r^2>_n) depend on it being formally
+  derived either way, since they only use it as a given input. What
+  remains open (genuinely, but now narrow and low-priority) is whether a
+  correct BOTTOM-UP derivation from the bare u/d quark irreps exists
+  (candidate: color antisymmetrization, not modeled here) -- this is
+  future-work-if-ever, not a defect in current published claims.
+  DOC FIX APPLIED: Section 5.1's "[quark mass difference] is what causes
+  the neutron to form a T_1g diquark" oversold this as a derived causal
+  mechanism -- softened to "is consistent with" / "tracks" to match what's
+  actually established.
+
+=============================================================================
+DOC: doc_particle_generation.txt
+=============================================================================
+
+PG-J1 [RESOLVED 2026-09-03] F-15's neutrino mass-hierarchy mechanism (NL1:
+  residual mass ~ chi(C5)^2, using E-/G32/I52's own irrep character as if
+  it persists on the freed lepton) was challenged: a neutrino that "doesn't
+  properly interact with the medium or cells" arguably has no winding at
+  all -- so does chi(C5) even apply to it, or is it a bookkeeping label
+  over an otherwise structureless mode? (The two readings were later
+  suggested to not be fully mutually exclusive -- see CONCLUSION.)
+  SEARCHED FOR AN INTERNAL TEST: none exists. NL2 (G_F, +0.088% match) and
+  NL3-NL6 (Fermi cross-section, SN/reactor ratio, mean free path, N_pass)
+  use ONLY Rs/E_cell/E_nu -- no chi(C5), no flavor identity -- so none of
+  them can discriminate between the two readings, and none are at risk
+  either way. WI1 (T_2g x E+ = I52) doesn't depend on the question either
+  (E+ = the bound electron, already established, not in question). Only
+  NL1 (mass hierarchy) and WI2's PHYSICAL reading (T_1g x E- = I52 as
+  "neutron x neutrino resonance" -- not the CG arithmetic itself, which
+  holds as group theory regardless of physical interpretation) actually
+  assume the freed lepton keeps a persistent, flavor-specific chi(C5)
+  character.
+  ONE RELEVANT EXTERNAL FACT (not a repo script/test): real neutrino
+  flavor oscillation (nu_e<->nu_mu<->nu_tau over macroscopic reactor/
+  atmospheric baselines) is well-established experimentally and requires
+  SOME persistent, coherently-evolving internal quantum degree of freedom
+  -- this weighs against the most literal reading of "zero structure, mass
+  comes purely from rare random incidental contacts" (doc_torsion.txt's
+  own phrase for the same phenomenon). It does NOT independently validate
+  NL1's specific chi(C5)^2 formula as the mechanism, only that some
+  persistent structure of some kind is plausibly required. Net: narrows
+  but does not close the question. The repo has no PMNS/mixing-angle
+  treatment to take this further without substantial new (and equally
+  speculative) work.
+  CONCLUSION / AUTHOR CALL: cannot be resolved with current tools or
+  evidence -- back off the SPECIFIC mechanism claim (that chi(C5) exactly
+  is what persists) rather than assert it outright. CORRECTION (same
+  session): real neutrino flavor oscillation disfavors a pure
+  "structureless, random contact" picture -- SOME persistent, coherent
+  structure is required by that phenomenon, so "random" is not an
+  equally-weighted option and should not be presented as one. What remains
+  genuinely open is narrower: whether the persistent structure IS this
+  framework's chi(C5) character (NL1's assumption), or some other
+  persistent structure chi(C5) merely proxies for. NL1's numeric pattern
+  (chi(C5)^2 ratios matching the normal-hierarchy ORDERING) is kept as an
+  observed pattern, not a confirmed derived mechanism. F-15's status is
+  split: G_F/cross-section/mean-free-path results (NL2-NL6) remain CLOSED
+  (they don't depend on this question); the mass-hierarchy MECHANISM (NL1)
+  and WI2's "neutron x neutrino" physical reading are marked OPEN
+  (narrowly: WHICH persistent structure, not WHETHER one exists).
+  DOC FIXES APPLIED: neutrino_freed_lepton.py NL1 comments,
+  weak_interaction_cg.py's KEY RESULT block, doc_particle_generation.txt's
+  SPINORS bullet list and F-15 status block, and doc_leptons.txt Section
+  9's citation -- all now flag the mass-hierarchy MECHANISM (not the G_F/
+  cross-section results) as open.
+  SCOPE CONFIRMED NARROW: contained to the neutrino's own mass-generation
+  mechanism and WI2's physical-interpretation footnote -- does not touch
+  electron/muon/tau mass derivations (bound-nexus displacement, an
+  unrelated mechanism), beta-decay kinematics/Q-values (purely kinematic,
+  doesn't reference chi(C5)), or the "exactly 3 generations" counting
+  argument (only needs E-/G32/I52 to be distinct irreps of 2I, not that
+  the neutrino persistently retains their character).
+
+=============================================================================
 DOC: doc_leptons.txt
 =============================================================================
+
+LP2-6 [RESOLVED 2026-09-03] Section 9's "E+/E- = particle/antiparticle"
+  framing (used to argue exactly 3 lepton generations) conflicted with
+  doc_particle_generation.txt's "E- = electron neutrino candidate". Checked
+  the ACTUAL supporting computation on each side:
+  (1) The "particle/antiparticle" side has NO real derivation anywhere --
+  its only echo, corpuscle_uniqueness_proof.py STEP3b, backs it with a
+  literal hardcoded `True`. That script is also NOT a series-1 companion
+  script at all (its own docstring says it follows docs/series3/
+  doc_uniqueness.txt, an unpublished series-3 doc); it's cited in series 1
+  exactly once, for the UNRELATED Higgs=A_g parity argument (STEP2, now
+  ported into jobson_cell_doc.py J19b so doc_jobson_cell.txt no longer
+  depends on a series-3 companion script for that citation either).
+  (2) The "neutrino" side has substantial, already-verified backing:
+  ih_double_group.py's DG11-DG14 gives a real, computable discriminator
+  (vertex-nexus coupling strength via chi(C5): E+ binds constructively
+  like the electron; E- does not, matching the SAME pattern already used
+  for G32/muon and I52/tau's own neutrino candidates -- not an ad hoc
+  patch, the uniform rule already in use elsewhere). neutrino_freed_
+  lepton.py's NL1-NL6 (6/6 PASS) independently derives G_F, the Fermi
+  cross-section, the normal mass hierarchy, and the supernova/reactor
+  cross-section ratio (=100, matching real neutrino phenomenology) from
+  this SAME picture -- including the exact energy-dependent "weakly
+  couples, eventually captured" mechanism (NL6: N_pass ~ (E_cell/E_nu)^2
+  cell encounters before binding), independently proposed by the author
+  during this session before being shown NL6 already quantifies it.
+  CONCLUSION: "particle/antiparticle" was a category error (conflating the
+  Galois-conjugate spatial-symmetry relationship with the unrelated CPT/
+  antiparticle concept, which chi(C5) values don't address at all) --
+  correction. doc_leptons.txt Section 9 rewritten to use the vertex-nexus-
+  coupling framing (matching doc_particle_generation.txt, ih_double_group.py,
+  neutrino_freed_lepton.py). The "exactly 3 generations" CONCLUSION is
+  unchanged -- only the reasoning for why E+/E- count as one generation
+  was corrected.
 
 LP-J1 [RESOLVED 2026-09-01] Section 1.2's "T1 x E- = {G32:1, I52:1}" claim, used to
   argue pion decay prefers muon over electron via CG selection, is

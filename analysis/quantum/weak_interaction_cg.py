@@ -9,9 +9,19 @@ KEY RESULT:
   T_2g (proton Zone 2 diquark) x E+ (electron, dim=2) = I52 (tau)  [EXACT]
   T_1g (neutron Zone 2 diquark) x E- (nu_e, dim=2)   = I52 (tau)  [EXACT]
 
+  The CG arithmetic above is exact group theory either way. The PHYSICAL
+  reading of the second line (an actual nu_e bringing a persistent E-
+  character to the interaction, vs some OTHER persistent structure using
+  E- only as a bookkeeping label) is OPEN (2026-09-03) -- see
+  neutrino_freed_lepton.py NL1 note (real oscillation phenomenology
+  disfavors "no persistent structure at all"; which specific structure is
+  the open part). WI1 (electron side) is unaffected: the electron is
+  bound, not in question.
+
   The tau IS the natural resonance mode for:
     electron x proton diquark interaction (e + p -> tau-like -> hadronic)
     nu_e    x neutron diquark interaction (nu_e + n -> tau-like -> e + p)
+      [physical reading of this second line: OPEN, see above]
 
   This explains:
     - WHY charm is produced at nu-DIS threshold: m_D ≈ m_tau (tau resonance)

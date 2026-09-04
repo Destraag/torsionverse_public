@@ -139,6 +139,10 @@ Masses marked ESTIMATE are not yet derived from first principles.
     c quark -> D meson (3739 MeV), b quark -> B meson (10558 MeV),
     t quark -> direct (345 GeV, produced at LHC via gluon fusion above m_crit).
 
+  NOTE: the proton=T_2g/neutron=T_1g diquark labels are not independently
+  derived from the u/d quarks' own irreps -- see analysis/nuclear/
+  diquark_antisymmetric_square_check.py.
+
 
 3. WINDING ANGLE: BRAGG CONDITION ON THE JOBSON CELL LATTICE
 --------------------------------------------------------------
@@ -377,8 +381,11 @@ framework is correct, or require explanation if they are absent.
     E- (2): electron neutrino candidate (chi(C5)=-1/phi, nexus-free) [F-15]
     G32 (4): muon (edge nexus, bound); freed G32 = muon neutrino candidate [F-15]
     I52 (6): tau (face nexus, bound); freed I52 = tau neutrino candidate [F-15]
-    [F-15 ESSENTIALLY DERIVED: neutrinos = lepton modes outside nexus resonance coupling range;
-     no nexus = no displacement = near-zero mass. G_F derived +0.088%. See ESSENTIALLY DERIVED section.]
+    [F-15: neutrinos = lepton modes outside nexus resonance coupling range;
+     no nexus = no displacement = near-zero mass. G_F derived +0.088% (uses
+     only cell geometry, Rs and E_cell -- independent of the open question
+     below). OPEN: whether chi(C5) reflects a persisting freed-lepton
+     character or is only a bookkeeping label -- see DERIVED section below.]
 
   UNGERADE (odd parity, Zone 1 confined quarks) -- partially assigned:
     T_1u (3): u quark   [essentially closed]
@@ -504,7 +511,8 @@ ESSENTIALLY DERIVED (LM17, 2026-08-23):
        integral through one icosahedral face is computed. Koide constrains the
        corrected result to +0.004%."]
 
-DERIVED -- CLOSED (2026-08-23):
+DERIVED -- CLOSED (2026-08-23) for G_F/cross-sections; mass-hierarchy
+MECHANISM reopened 2026-09-03 (see OPEN note below):
   - F-15: Beta decay / weak interaction mechanism. Zero free parameters.
     neutrino_freed_lepton.py 7/7 PASS + weak_interaction_cg.py 10/10 PASS:
       NL1: chi(C5) hierarchy => nu_e < nu_mu ~ nu_tau (normal hierarchy, factor 1/phi)
@@ -516,6 +524,17 @@ DERIVED -- CLOSED (2026-08-23):
       WI4: |chi(nu_mu, nu_tau x Zone2)| = 1/phi (weaker by phi, explains hierarchy)
       WI5: Charm threshold in nu-DIS = m_D = m_tau x 1.052 (tau CG resonance)
       WI6: Suppression (G_F*m_tau^2)^2/pi = 4.3e-10 (derives the 'weak' in weak force)
+
+    OPEN (2026-09-03): NL1 and WI2 assume the freed lepton (neutrino) keeps
+    its OWN irrep's chi(C5) persistently after leaving its bound nexus. Real
+    neutrino flavor oscillation (experimentally established) requires SOME
+    persistent, coherent internal structure -- disfavoring a pure
+    "structureless, random contact" picture (see doc_torsion.txt's E=mc^2
+    vs E=pc discussion). What remains open is narrower: whether that
+    persistent structure IS this same chi(C5) character, or some other
+    persistent label. NL2-NL6 (G_F and everything built from it) use only
+    cell geometry (Rs, E_cell) and don't depend on this either way, so they
+    are unaffected.
 
     ZONE 2 SHELL AS FIRST COUPLING POINT (2026-08-23, proton_resonance.py PROVEN):
       The proton Zone 2 shell (N_J=21 locked cells) resonates at m_p = 938 MeV.

@@ -30,9 +30,10 @@ RESOLVED ITEMS: moved to docs/series1/judgment_calls_resolved.txt to keep
   ROUND 3 (2026-09-01): JC2-2,3,4,5,6,7,8,9,10,11; LP2-1,3,4,5,7,8,9,10;
   MG2-3,4,5,6,7,8,9,10,11,12,13,14 -- all found to be honest-wording fixes
   or citation gaps rather than open physics questions once existing (often
-  uncited) script coverage was checked directly. Only 4 items from that
-  sweep needed genuine author judgment and remain below: LP2-2, LP2-6,
-  MG2-1 (narrowed), MG2-2.
+  uncited) script coverage was checked directly. Only 3 items from that
+  sweep still need genuine author judgment and remain below: LP2-2,
+  MG2-1 (narrowed), MG2-2. NC-J1 and LP2-6 (both new items found/resolved
+  same-session, 2026-09-03) also moved to the archive.
 
 =============================================================================
 DOC: doc_magnetism.txt
@@ -63,6 +64,24 @@ Legend as before (OPEN/PROPOSED/NEEDS-CALL). Severity tags (minor/moderate/
 major) are the subagents' own assessments, included as a starting point for
 triage, not a final verdict.
 
+DOC: doc_electron.txt
+-----------------------
+EL-J1 [NEEDS-CALL, MAJOR] doc_electron.txt (Abstract, Sections 2.1, 4.2,
+  5.1-5.3) labels the positron "E-" throughout, with the same vertex
+  geometry as E+ but reversed chirality/roll direction. This COLLIDES with
+  E-'s independently-established meaning elsewhere in the repo (electron
+  neutrino candidate, chi(C5)=-1/phi -- ih_double_group.py DG11-DG14,
+  neutrino_freed_lepton.py; see judgment_calls_resolved.txt LP2-6, PG-J1).
+  CONFIRMED same-session: beta_plus_strip.py's Section 4 and
+  electron_doc.py's ED19 made the SAME error (positron identified via
+  chi=-1/phi, the neutrino's value, via a circular/conflated argument) --
+  both already fixed to use "anti-E+" (chi=+phi, same as electron,
+  reversed chirality only) instead. This doc's PROSE still needs the
+  identical rename; the underlying physics (positron = E+ vertex geometry,
+  reversed chirality) is not in question, only the LABEL. NEEDS AUTHOR
+  CALL: confirm "anti-E+" (or an alternative non-colliding label) before
+  applying the rename across all 5 sections.
+
 DOC: doc_leptons.txt
 ---------------------
 LP2-2 [NEEDS-CALL, MAJOR] Section 4's muon mass eff_mu: the doc's wording is
@@ -81,30 +100,6 @@ LP2-2 [NEEDS-CALL, MAJOR] Section 4's muon mass eff_mu: the doc's wording is
   whether this needs new derivation work before any of the three can be
   trusted.
 
-LP2-6 [NEEDS-CALL, MAJOR -- upgraded from MODERATE on further research]
-  Section 9's "E+/E- = particle/antiparticle" framing (used to argue exactly
-  3 lepton generations) doesn't just lack an argument -- it DIRECTLY
-  CONTRADICTS a sibling published series-1 paper. doc_particle_generation.txt
-  line 376 states "E- (2): electron neutrino candidate (chi(C5)=-1/phi,
-  nexus-free) [F-15]", backed by neutrino_freed_lepton.py (6/6 PASS, NL1
-  uses chi(E-,C5)^2 to place nu_e in the mass hierarchy) and
-  weak_interaction_cg.py ("WI2: T_1g x E- = I52", 10/10 PASS). ih_double_group.py's
-  own "NEUTRINO CONJECTURE" section stays agnostic (E- is just "Galois
-  conjugate of E+"), so doc_leptons' own cited script doesn't itself
-  contradict it -- but corpuscle_uniqueness_proof.py STEP3b, which
-  independently asserts the SAME "E+/E- particle/antiparticle" claim
-  doc_leptons makes, backs it with a hardcoded `True`, not a real
-  derivation. Two published series-1 papers currently assert INCOMPATIBLE
-  physical identities for E- (antiparticle of E+ vs. electron neutrino).
-  NEEDS AUTHOR CALL: (a) adopt doc_particle_generation's "E+ = bound charged
-  lepton, E- = its freed neutrino" framing in doc_leptons too (the "exactly
-  3 generations" CONCLUSION likely survives either way, just via
-  charged-lepton+neutrino pairing rather than particle/antiparticle
-  pairing), or (b) keep particle/antiparticle and explain why it disagrees
-  with the neutrino identification used elsewhere in the same framework.
-
-DOC: doc_magnetism.txt
-------------------------
 MG2-1 [NEEDS-CALL, MODERATE -- narrowed] Section 1.3's specific retracted
   claim has been fixed (brought in line with MG-J4's Section 3.3/5.2
   wording -- see judgment_calls_resolved.txt ROUND 3). STILL OPEN: the same

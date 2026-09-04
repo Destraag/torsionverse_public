@@ -90,6 +90,8 @@ Free waves satisfy:
   (d^2/dt^2 - c^2 * nabla^2) phi = 0
 
 Dispersion: omega = c * k  (massless, linear). [QM1]
+(Derived from a discrete Jobson-cell lattice in the continuum limit, not an
+independent postulate -- analysis/quantum/lattice_dwell_time_bridge.py.)
 
 1.2  Hopf winding rest energy -> mass gap
 
@@ -124,6 +126,8 @@ At k >> omega_C/c: omega -> c*k  (ultra-relativistic, massless limit)
 
 This IS the Klein-Gordon equation: (d^2/dt^2 - c^2*nabla^2)phi = -(m_p*c^2/hbar)^2*phi
 [QM3 PASS: both limits verified]
+(Both dispersion relations above are derived from a discrete Jobson-cell
+lattice model, not postulated -- lattice_dwell_time_bridge.py BR1-BR4.)
 
 
 2. NON-RELATIVISTIC LIMIT: SCHRODINGER EQUATION

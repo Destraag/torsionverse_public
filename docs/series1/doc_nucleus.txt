@@ -267,10 +267,12 @@ Zone 2 (see below) -- the quark type determines which diquark forms, and
 the diquark determines whether Zone 2 resonates.
 
 The d quark's role: m_d > m_u means d quarks occupy the T_2u irrep (heavier
-mode) vs u quarks in T_1u (lighter). This difference in irrep assignment is
-what causes the neutron to form a T_1g diquark instead of T_2g. The quark
-MASS DIFFERENCE is the origin of the DIQUARK SYMMETRY DIFFERENCE, which
-then propagates to Zone 2.
+mode) vs u quarks in T_1u (lighter). This mass-based irrep assignment is
+consistent with the neutron forming a T_1g diquark instead of T_2g, though
+a bottom-up derivation from the bare quark irreps alone remains open (see
+analysis/nuclear/diquark_antisymmetric_square_check.py). The quark MASS
+DIFFERENCE tracks the DIQUARK SYMMETRY DIFFERENCE, which then propagates
+to Zone 2.
 
 5.2  Crossed wave geometry and nuclear deformation
 

@@ -338,25 +338,36 @@ check("ED18: E_Z3 falls as 1/r^3: E(r)/E(2r) = 8 [EP2]",
 # ── Section 11: Positron Born balance (same chi(C5)=phi as E+) ───────────────
 print()
 print(SEP2)
-print("SECTION 11: POSITRON BORN BALANCE — chi(E-,C5) = chi(E+,C5) = phi")
+print("SECTION 11: POSITRON BORN BALANCE -- chi(anti-E+,C5) = chi(E+,C5) = phi")
 print(SEP2)
 
-# In the 2I_h double group, E+ and E- are the gerade and ungerade 2-dim spinor
-# irreps. Their characters differ under inversion (g vs u) but NOT under C5:
-#   chi(E+, C5) = chi(E-, C5) = 2*cos(pi/5) = phi
-# The Born balance coupling is through chi(C5) only (5-fold vertex nexus).
-# Since both irreps have chi(C5) = phi, both give identical n_exact -> same alpha.
-chi_Eplus_C5  = 2 * math.cos(math.pi / 5)   # E+ character at C5
-chi_Eminus_C5 = 2 * math.cos(math.pi / 5)   # E- character at C5 (same: phi is real)
+# CORRECTED 2026-09-03: previously labeled the positron "E-" and justified
+# chi(E-,C5)=chi(E+,C5) via "phi is real and self-conjugate" -- circular
+# (both sides were just assigned the identical literal expression) AND it
+# collided with "E-" already meaning something else (the Galois-conjugate,
+# no-vertex-coupling electron NEUTRINO irrep, chi(C5)=-1/phi --
+# ih_double_group.py DG11-DG14, neutrino_freed_lepton.py NL1-NL6, both
+# independently verified against real neutrino phenomenology). The positron
+# is NOT that object. Renamed to "anti-E+" (matches beta_plus_strip.py's own
+# usage) to avoid the collision.
+# REAL justification: chirality (winding handedness, sets charge sign) and
+# vertex-coupling strength (which irrep, sets confinement/mass) are
+# independent labels. Reversing chirality does not change WHICH irrep
+# governs coupling -- so anti-E+ (positron) keeps E+'s own chi(C5)=phi,
+# giving it the SAME mass as the electron (same medium displacement,
+# doc_magnetism.txt Section 3.4) -- matching the real, measured positron.
+chi_Eplus_C5     = 2 * math.cos(math.pi / 5)   # E+ character at C5
+chi_antiEplus_C5 = chi_Eplus_C5   # anti-E+ (positron): same irrep, chirality reversed only
 
-print(f"  chi(E+, C5) = 2*cos(pi/5) = {chi_Eplus_C5:.10f}  (= phi = {phi:.10f})")
-print(f"  chi(E-, C5) = 2*cos(pi/5) = {chi_Eminus_C5:.10f}  (same: phi is real and self-conjugate)")
-print(f"  E+ and E- differ only under inversion (g vs u parity); rotation characters identical.")
-print(f"  => Born balance for E- gives identical n_exact -> same alpha as E+.")
+print(f"  chi(E+, C5)      = 2*cos(pi/5) = {chi_Eplus_C5:.10f}  (= phi = {phi:.10f})")
+print(f"  chi(anti-E+, C5) = {chi_antiEplus_C5:.10f}  (SAME irrep as E+ -- chirality reversal")
+print(f"                     doesn't change vertex-coupling strength, only charge sign)")
+print(f"  => Born balance for anti-E+ gives identical n_exact -> same alpha as E+.")
+print(f"  (E- is a DIFFERENT object -- the electron neutrino, chi(C5)=-1/phi -- not the positron.)")
 
-check("ED19: chi(E-,C5) = chi(E+,C5) = phi  [positron Born balance = electron Born balance]",
-      abs(chi_Eminus_C5 - phi) < 1e-12 and abs(chi_Eplus_C5 - phi) < 1e-12,
-      f"chi(E+,C5)={chi_Eplus_C5:.10f}  chi(E-,C5)={chi_Eminus_C5:.10f}  phi={phi:.10f}")
+check("ED19: chi(anti-E+,C5) = chi(E+,C5) = phi  [positron Born balance = electron Born balance]",
+      abs(chi_antiEplus_C5 - phi) < 1e-12 and abs(chi_Eplus_C5 - phi) < 1e-12,
+      f"chi(E+,C5)={chi_Eplus_C5:.10f}  chi(anti-E+,C5)={chi_antiEplus_C5:.10f}  phi={phi:.10f}")
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 print()

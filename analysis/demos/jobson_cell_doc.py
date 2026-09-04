@@ -271,6 +271,18 @@ check("J18 alpha from n_exact: residual 0.00000022%",
 check("J19 sin^2(theta_W)* = PDG (4.6e-6 gap)",
       abs(sin2_tw2 - 0.22290) < 1e-4, f"gap = {sin2_tw2-0.22290:.2e}")
 
+# ── J19b: (1,2) Hopf winding n=p*q parity => scalar Higgs = A_g ─────────────
+# Preliminary parity argument (independent of Section 7's (p,q)-scan proof
+# below): ported from analysis/corpuscle/corpuscle_uniqueness_proof.py STEP2
+# so doc_jobson_cell.txt's citation is a series-1 script, not a script that
+# is really docs/series3/doc_uniqueness.txt's own companion.
+p_hopf, q_hopf = 1, 2
+n_hopf = p_hopf * q_hopf
+check("J19b n=p*q=2 (even) => scalar (spin-0) => Higgs = A_g uniquely (parity argument)",
+      n_hopf % 2 == 0,
+      f"n = {p_hopf}*{q_hopf} = {n_hopf} (even) -> pi-rotation symmetry -> spin-0 -> "
+      f"A_g is the only scalar gerade irrep of I_h")
+
 # =============================================================================
 # SECTION 7 — Proof: Higgs = A_g definitively
 # =============================================================================

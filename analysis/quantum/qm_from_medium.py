@@ -80,6 +80,10 @@ print()
 # Verify dispersion for a test k
 k_test = 1e12   # m^-1 (visible light range)
 omega_free = c_SI * k_test
+# NOTE: this check is definitional (omega_free IS defined as c_SI*k_test) --
+# omega=c*k is POSTULATED here, not derived. The derivation from a discrete
+# Jobson-cell lattice (continuum limit of a nearest-neighbor coupled chain)
+# is in lattice_dwell_time_bridge.py BR1-BR3.
 check("QM1 Free wave omega = c*k  (massless pressure wave in medium)",
       abs(omega_free - c_SI * k_test) < 1e-10,
       f"omega = c*k = {omega_free:.4e} rad/s for k = {k_test:.0e} m^-1")
