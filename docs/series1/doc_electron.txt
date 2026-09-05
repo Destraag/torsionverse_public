@@ -16,8 +16,9 @@ mechanism, its torsionverse derivation status, and its contribution to
 orbital structure. The key result: the electron's roll direction (the
 chirality of its (1,2) Hopf winding) is not merely a labelling convention
 but determines the sign of its electromagnetic coupling to the proton. A
-positron (E- spinor irrep of 2I, identical vertex geometry to E+ but opposite roll) is repelled from the proton for
-the same geometric reason that two protons repel. The four orbital forces
+positron (anti-E+: the E+ spinor irrep of 2I with reversed roll, not the
+distinct E- irrep) is repelled from the proton for the same geometric
+reason that two protons repel. The four orbital forces
 together produce atomic shell quantization from I_h icosahedral geometry
 with zero free parameters. Additionally: at each vertex contact the (1,2)
 Hopf winding splits force exactly 2:1 forward-to-sideways (Section 2.3);
@@ -65,11 +66,15 @@ The electron is assigned to E+ on two grounds:
       chi(E+, C5) = +phi  (phi = (1+sqrt(5))/2 = 1.618; constructive at 5-fold vertex nexuses).
       chi(E+, C3) = -1   (color singlet: vertex where 5 colored faces meet).
 
-E- is the positron. Both E+ and E- have the same real C5 character
-(chi(E±,C5) = +phi), because phi is real and is its own complex conjugate.
-The distinction between E+ and E- is roll direction relative to the proton's
-Zone 2 chirality reference: E+ meshes (electron), E- grinds (positron).
-Same vertex geometry, reversed chirality. See Section 5.
+The positron is anti-E+: the E+ irrep with reversed winding chirality
+(roll), not the distinct E- irrep. chi(anti-E+,C5) = chi(E+,C5) = +phi --
+chirality reversal changes roll (and therefore charge sign) only, not
+vertex-coupling strength, so the positron has the same vertex geometry as
+the electron, just reversed chirality. E- is a different 2I irrep entirely
+(chi(E-,C5) = -1/phi): the electron neutrino candidate [doc_leptons;
+ih_double_group.py DG11-DG14], not the positron. The distinction between
+E+ and anti-E+ is roll direction relative to the proton's Zone 2 chirality
+reference: E+ meshes (electron), anti-E+ grinds (positron). See Section 5.
 
 2.2  Cell interaction regime
 
@@ -276,11 +281,14 @@ a label assigned independently -- it follows directly from the cell-meshing
 mechanism. The electron's roll direction is the unique E+ winding orientation
 that produces attraction to the proton's Zone 2/3 cell chirality.
 
-The electron does not choose to have negative charge. The 2I double group has
-two E-type spinors: E+ and E-. The one that meshes with the proton is E+ (the
-electron). E- is the positron. Both exist as equally valid 2I irreps. The
-physical distinction is which one meshes with the proton's winding and which
-one grinds. The proton selects the labelling by fixing the chirality reference.
+The electron does not choose to have negative charge. The 2I double group's
+E+ irrep admits two winding chiralities: the one that meshes with the
+proton is the electron; the one that grinds is the positron (anti-E+ --
+the same irrep and vertex geometry as E+, reversed roll only; not the
+distinct E- irrep, which is a different object, the electron neutrino
+candidate). Both chiralities are equally valid. The physical distinction is
+which one meshes with the proton's winding and which one grinds. The
+proton selects the labelling by fixing the chirality reference.
 
 4.3  Measured consequence: Coulomb energy at grinding contact
 
@@ -299,15 +307,17 @@ finally prevents further approach). This asymmetry is why stable atoms exist.
 
 5.1  Identity
 
-The positron is E- (the complex conjugate irrep of E+ in 2I; physically,
-roll direction reversed relative to proton Zone 2/3 chirality). It is the 2I
-spinor conjugate of the electron. Same mass (CPT symmetry, automatic in the
-torsionverse from bilateral winding symmetry), same vertex geometry as E+, same
-C5 character (+phi), same Born balance. E+ and E- have identical chi(C5) = phi
-because phi is real (self-conjugate); the Born coupling is through chi(C5) only,
-so n_exact and alpha are the same for both irreps. [ED19 PASS]
-The sole physical difference: roll direction is reversed relative to the
-proton's Zone 2/3 chirality.
+The positron is anti-E+: the E+ irrep of 2I with roll direction reversed
+relative to proton Zone 2/3 chirality -- not the distinct E- irrep. Same
+mass (CPT symmetry, automatic in the torsionverse from bilateral winding
+symmetry), same vertex geometry as E+, same C5 character
+(chi(anti-E+,C5) = chi(E+,C5) = +phi -- chirality reversal changes roll/
+charge sign only, not vertex-coupling strength), same Born balance, so
+n_exact and alpha are the same for the positron as for the electron.
+[ED19 PASS] E- is a different 2I irrep (chi(C5) = -1/phi): the electron
+neutrino candidate [doc_leptons], not the positron.
+The sole physical difference between electron and positron: roll direction
+is reversed relative to the proton's Zone 2/3 chirality.
 
 5.2  Positron near a proton
 
@@ -348,7 +358,7 @@ energy. Sections 5.3.1 and 5.3.2 address this.
 
 5.3.1  ANNIHILATION AS CORPUSCLE EVIDENCE
   Positronium annihilation constrains the nature of the electron.
-  In a purely classical wave model -- where E+ and E- are continuous
+  In a purely classical wave model -- where E+ and anti-E+ are continuous
   amplitude patterns in the medium -- destructive interference is lossless:
   the medium returns to rest and no energy is released. The observed
   2 × 511 keV gamma emission (PDG: m_e*c^2 per photon) requires that the
@@ -358,23 +368,35 @@ energy. Sections 5.3.1 and 5.3.2 address this.
   corpuscle (discrete topological winding, by Hopf winding number quantization)
   satisfy the requirement. The torsionverse adds the mechanism: discreteness
   follows from winding number quantization, not from a postulate. When the E+
-  and E- windings cancel to A_g, the topological path energy (m_e*c^2 per
+  and anti-E+ windings cancel to A_g, the topological path energy (m_e*c^2 per
   corpuscle) is released as T_1g transverse waves (photon corpuscles).
   The A_g symmetry of the cancellation state forces no preferred emission
   axis (momentum conservation from the A_g coupling),
   consistent with observation.
 
 5.3.2  ANNIHILATION ENERGY BOOKKEEPING [CE5-CE6 PASS]
-  In the CM frame the E+ and E- momenta are equal and opposite in all
-  components. Their vector sum is zero. The total rest-mass energy of both
-  corpuscles (2 * m_e*c^2 = 1022 keV) is released as two 511 keV photon
-  corpuscles. Energy conservation requires each photon corpuscle to carry
-  m_e*c^2 = 511 keV [PDG2022]; the observation of two 511 keV photon
-  corpuscles confirms that the full winding energy is released, not retained. The direction of emission (back-to-back for the ideal
-  para-Ps L=0 case) follows from A_g symmetry above; the post-collision
-  status in non-ideal cases (orbital angular momentum, off-axis approach)
-  is an open item -- see open_items.txt: CORPUSCLE-ENERGY-DECOMPOSITION.
-  [corpuscle_energy_decomp.py CE5-CE6 PASS; see also CE1-CE2 for winding geometry]
+  In the CM frame the E+ (electron) and anti-E+ (positron) approach
+  head-on, so their forward momenta are equal and opposite and cancel
+  exactly -- zero net momentum, as required in the CM frame. The
+  displacement (rest-mass) energy of both corpuscles (2 * m_e*c^2 = 1022 keV)
+  is radiated as two 511 keV photons. Energy conservation requires each
+  photon to carry m_e*c^2 = 511 keV [PDG2022]; the measured 511 keV gamma
+  pair matches this to observational precision. The direction of emission
+  (back-to-back for the ideal para-Ps L=0 case) follows from A_g symmetry
+  above.
+
+  WHAT REMAINS OPEN is not the energy: a head-on collision with cancelling
+  momenta has nothing left to carry beyond the rest-mass energy, and the
+  measured gamma pair confirms it. What is open is the corpuscles'
+  structural fate -- their combined winding cancels to A_g (zero net
+  winding, above), and whether that means the corpuscle simply ceases to
+  exist or leaves some undetectable remnant is not something this
+  framework can currently measure or derive. The post-collision status in
+  non-ideal cases (orbital angular momentum, off-axis approach) is open
+  for the same reason.
+  [corpuscle_energy_decomp.py CE5-CE6 PASS; CE7 bounds any residual to
+  sub-eV for the ideal back-to-back case, from the measured photon
+  angular precision; see also CE1-CE2 for winding geometry]
 
 Positronium lifetime:
   tau = 2*hbar / (m_e*c^2 * alpha^5) = 124.5 ps  (para-Ps, singlet)
@@ -422,18 +444,16 @@ geometrically; the orbit has no solution.
   because chi(T_1u, C5^4) = -1/phi = chi(T_2u, C5) -- exact, geometric.
   Proton (uud) becomes neutron (udd). The corpuscle exits Zone 2 as a freed
   winding. Zone 2's proton chirality acts as a chirality mirror: the
-  incoming E+ winding exits as E- (opposite roll). A positron is an E-
-  with Compton-scale Zone 2 interaction range (it grinds with Zone 2); this
-  freed E- has no orbital structure at that scale and therefore interacts
-  only weakly -- it propagates without orbital structure, which is the
-  defining property of a neutrino mode. The formal irrep assignment of the
-  electron neutrino is in [doc_leptons]; the key point here is that the
-  same E- winding that is a positron at Compton-scale orbital energies
-  becomes neutrino-like when stripped of that structure.
+  incoming E+ winding exits as E- -- a distinct 2I irrep, not the
+  chirality-reversed E+ (anti-E+) that is the positron (Section 5.1). This
+  freed E- has no orbital structure at Compton scale and therefore
+  interacts only weakly -- it propagates without orbital structure, which
+  is the defining property of a neutrino mode. The formal irrep assignment
+  of the electron neutrino is in [doc_leptons].
   The CG algebra requires exactly this:
-    T_2g x E+ -> I52 -> T_1g + E-  [WI1 reversed, exact]
+    T_2g x E+ -> I52 -> T_1g + E-  [WI1, WI2 exact]
   The electron never enters Zone 1 or Zone 2. The whole event is kinetic.
-  [weak_quark_flip.py: antipodal vertex bounce; weak_interaction_cg.py WI1]
+  [weak_quark_flip.py: antipodal vertex bounce; weak_interaction_cg.py WI1, WI2]
   Z_crit = 1/alpha emerges from the corpuscle circuit geometry -- derived
   from the same icosahedral vertex structure that produces alpha, not
   assumed from the Dirac equation.
@@ -502,31 +522,34 @@ sets the window in which stable atoms can exist.
 
   ROLL = CHARGE SIGN:
     Electron (E+, meshing with proton) = negative charge: DERIVED [Section 4]
-    Positron (E-, grinding with proton) = positive charge: DERIVED [Section 5]
+    Positron (anti-E+, grinding with proton) = positive charge: DERIVED [Section 5]
 
   POSITRON vs ELECTRON DIFFERENCES:
     Mass:    Identical (CPT, from bilateral winding symmetry) [CLOSED]
     Charge:  Opposite (roll direction relative to proton) [CLOSED, Section 4-5]
     Orbit:   Positron does NOT orbit proton (grinds); electron does (meshes)
-    Annihil: Positron + electron → A_g (photons, clean, no Zone 1 wall) [CLOSED]
+    Annihil: Positron + electron → A_g (photons, 511 keV each, matches
+             rest mass) [CLOSED, Section 5.3.2; the corpuscles' own
+             post-annihilation structural fate is a separate, open question]
              Antiproton + proton → Zone 1 gluons released as pions (messy) [doc_nucleus]
 
   THE ROLL ANSWER:
     The electron must roll the way it does relative to the proton because its
     E+ winding (forward roll) is the specific 2I spinor whose chirality
     complements the proton's (1,2) Hopf Zone 2 winding. If the electron had
-    the opposite roll (= positron), it would not form a stable orbit around
-    the proton at all. The universe selects which E-type spinor is "electron"
-    and which is "positron" by the proton's chirality fixing the reference.
+    the opposite roll (= positron/anti-E+), it would not form a stable
+    orbit around the proton at all. The universe selects which E+ winding
+    chirality is "electron" and which is "positron" by the proton's
+    chirality fixing the reference.
     CP violation (slight asymmetry in matter vs antimatter abundance) may
-    trace to a slight imbalance in the initial population of E+ vs E- roll
-    states in the cosmological medium. (speculative, not yet derived)
+    trace to a slight imbalance in the initial population of E+ vs anti-E+
+    roll states in the cosmological medium. (speculative, not yet derived)
 
 
 8. OPEN ITEMS AND RECENT CLOSURES
 ------------------------
 
-  INNER-SHELL SCREENING: [PARTIAL — IS1-IS9 PASS, orbital penetration open]
+  INNER-SHELL SCREENING: [IS1-IS9, OP1-OP7 PASS]
     The electron creates a Coulomb pressure field V(r) = alpha*hbar_c/r from
     displacing cells in its wake (fractional displacement alpha per contact,
     Section 3.1). Gauss's law applied to this 1/r^2 field gives the shell
@@ -541,12 +564,25 @@ sets the window in which stable atoms can exist.
     1.92% error (IS5 PASS; expected — leading-order variational estimate).
     Script: analysis/atomic/inner_shell_screening.py  [9/9 PASS]
 
-    STILL OPEN: orbital penetration — the sigma=0.85 Slater coefficient for
-    n-1 shell electrons. This accounts for the fraction of time the 2s corpuscle
-    spends inside the 1s boundary (the 2s wavefunction has a node at 2a_0/Z
-    but nonzero density below a_0/Z). Fraction ~ 15%, giving sigma ~ 0.85.
-    Deriving this from torsionverse requires the 2s-vs-1s winding-path overlap
-    integral. See open_items.txt: ELECTRON-INNER-SHELL.
+    ORBITAL PENETRATION (n-1 shell, cross-shell 1s->2s screening): DERIVED.
+    The 2s corpuscle's radial density (standard hydrogenic 2s density, same
+    "corpuscle follows the QM density" bridge as sigma_same_1s above) has
+    nonzero weight inside the 1s boundary. Computing the 1s-2s Coulomb
+    (Slater-type-orbital) integral by direct numerical quadrature --
+    validated first against the known closed form for the same-shell case
+    (5*Z/8, matched to <0.01%) before trusting it on the new case -- and
+    minimizing the 2s electron's variational energy for Li (1s^2 2s^1),
+    reusing sigma_1s=5/16 and sigma_outer=0 above as fixed inputs (no new
+    assumptions):
+      Z_2s_opt = 1.3666  =>  sigma_derived = (3 - Z_2s_opt)/2 = 0.8167
+    vs Slater's empirical 0.85 (4% off) and the Hartree-Fock reference
+    Z_eff(Li,2s) = 1.28 (7% off) -- the same quality of match as sigma_1s=5/16
+    vs Slater's 0.30 above. Script: analysis/atomic/orbital_penetration_2s1s.py
+    [OP1-OP7, 9/9 PASS]. LIMITATION: a sequential (not fully joint
+    self-consistent) variational scheme -- Z_1s is fixed from the 1s^2-only
+    problem before Z_2s is optimized. Be (1s^2 2s^2) needs an additional
+    2s-2s same-shell term to disentangle from this 1s-2s term and is not
+    attempted here.
 
   CP VIOLATION:  (speculative; mechanism identified but not yet derived)
     The torsionverse medium is built from light: the (1,2) Hopf winding is a
@@ -593,10 +629,12 @@ sets the window in which stable atoms can exist.
   - Zone 3 co-rotation radial falloff: derived as 1/r^3 (Lense-Thirring).
     E_Z3(r_p) = alpha*hbar_c/r_p = 1.71 MeV (onset); E(r)/E(2r) = 8 (exact).
     [ED17-ED18 PASS; entanglement_doc.py EP1-EP2]
-  - Positron Born balance: chi(E-,C5) = chi(E+,C5) = phi (phi is real,
-    self-conjugate); Born coupling through chi(C5) gives same n_exact (the Born-
-    balance integer from [doc_alpha] J17/J24) -> same
-    alpha for E- as for E+. [ED19 PASS]
+  - Positron Born balance: chi(anti-E+,C5) = chi(E+,C5) = phi (chirality
+    reversal doesn't change vertex-coupling strength); Born coupling through
+    chi(C5) gives same n_exact (the Born-balance integer from [doc_alpha]
+    J17/J24) -> same alpha for the positron as for the electron. (E- is a
+    different object, the electron neutrino, chi(C5)=-1/phi -- not the
+    positron.) [ED19 PASS]
 
 
 COMPANION SCRIPTS (reproducibility):
@@ -607,8 +645,9 @@ COMPANION SCRIPTS (reproducibility):
   analysis/demos/entanglement_doc.py -- [EP1-EP2; Sections 3.3, 8]
   analysis/nuclear/atomic_shells.py  -- [AS1-AS7; Section 3.4]
   analysis/quantum/weak_quark_flip.py -- [Section 6.1]
-  analysis/quantum/weak_interaction_cg.py -- [WI1; Section 6.1]
+  analysis/quantum/weak_interaction_cg.py -- [WI1, WI2; Section 6.1]
   analysis/atomic/inner_shell_screening.py -- [IS1-IS9; Section 8, inner-shell screening]
+  analysis/atomic/orbital_penetration_2s1s.py -- [OP1-OP7; Section 8, orbital penetration]
   analysis/atomic/corpuscle_energy_decomp.py -- [CE1-CE2; Section 2.3], [CE5-CE6; Section 5.3]
   Repository: https://doi.org/10.5281/zenodo.22105622
   Code:        https://github.com/Destraag/torsionverse_public

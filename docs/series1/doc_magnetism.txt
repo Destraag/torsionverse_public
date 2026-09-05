@@ -351,6 +351,27 @@ have the following dimensions:
     (|C5|=|C5^2|=12), so the swap is invisible to the A_g count. Cobalt's
     ferromagnetism argument does not depend on which of the two it's labeled.
 
+NOTE ON THE "N_J regime" COLUMN: this describes the regime of the irrep's
+REALIZING PARTICLE (Higgs boson, photon/W/Z, proton diquark, b quark, top
+quark, electron) via the standard N_J=hbar_c/(m*L_J) formula applied to
+that particle's OWN rest mass -- genuine, independently-derived values (b
+quark N_J=4.75 [proton_structure.py PS3]; Higgs/W/Z/top N_J~0.12-0.25
+[doc_jobson_cell.txt Section 4.3]; electron N_J=38,870). T_1g's "bulk /
+sub-cell" entry reflects that T_1g has two realizing particles in
+different regimes (photon=bulk, W/Z=sub-cell), not an ambiguity about
+cobalt specifically. It is NOT a claim about the transition metal's own
+d-electron energy scale: every d-electron in every element carries the
+ordinary electron rest mass and sits at N_J=38,870 (deep bulk) regardless
+of element or irrep. Checked exhaustively for Mn, Fe, Co, Ni, Cu across 12
+realistic candidate energies each (ionization energy through nuclear
+binding energy): none reproduces a boundary- or sub-cell-scale N_J for any
+element's d-shell -- analysis/nuclear/transition_metal_NJ_survey.py,
+extending iron_dscale_NJ_survey.py's original single-element check. The
+IRREP LABEL each element shares with its realizing particle is a
+symmetry/coupling classification (which CG products are allowed, how many
+unpaired spins couple), not a shared physical distance scale -- exactly as
+Section 3.3 below establishes for iron/G_g specifically.
+
 KEY CLAIM: Ferromagnetism is determined by the I_h irrep of the unpaired
 d-electron count (Hund's rule). The classification is:
   dim 2-4 (E_1/2, T_1g, G_g): ferromagnetic
@@ -367,17 +388,21 @@ exchange purposes.
 
   Element | Z  | Config       | Unpaired | Irrep  | Magnetic     | Match?
   --------|----|-----------   |----------|--------|------------- |-------
-  Mn      | 25 | 3d^5 4s^2    | 5        | H_g    | paramagnetic | YES (H_g = sub-cell)
-  Fe      | 26 | 3d^6 4s^2    | 4        | G_g    | ferromagnetic| YES (G_g = boundary)
-  Co      | 27 | 3d^7 4s^2    | 3        | T_1g   | ferromagnetic| YES (T_1g = medium)
+  Mn      | 25 | 3d^5 4s^2    | 5        | H_g    | paramagnetic | YES (H_g, dim=5)
+  Fe      | 26 | 3d^6 4s^2    | 4        | G_g    | ferromagnetic| YES (G_g, dim=4)
+  Co      | 27 | 3d^7 4s^2    | 3        | T_1g   | ferromagnetic| YES (T_1g, dim=3)
   Ni      | 28 | 3d^8 4s^2    | 2        | E_1/2  | ferromagnetic| YES (spinor = E_1/2)
   Cu      | 29 | 3d^10 4s^1   | 0        | A_g    | diamagnetic  | YES (A_g = scalar)
   Zn      | 30 | 3d^10 4s^2   | 0        | A_g    | diamagnetic  | YES (full shell)
 
 All six elements match. The ferromagnetic metals (Fe, Co, Ni) have unpaired
 counts 4, 3, 2 -- exactly the G_g, T_1g, E_1/2 dimensions. The paramagnetic
-Mn (5 unpaired = H_g) is sub-cell regime and does NOT achieve the sustained
-collective alignment (domain formation) that G_g/T_1g coupling allows.
+Mn (5 unpaired = H_g) does NOT achieve the sustained collective alignment
+(domain formation) that G_g/T_1g coupling allows, because H_g x H_g -> A_g
+splits across 5 competing exchange channels (geometric frustration, see
+PHYSICAL INTERPRETATION below) -- not because of any distance-scale
+difference from Fe/Co (Mn's d-electrons sit at the same deep-bulk N_J as
+every other element's, verified below).
 
 NOTE ON THE Cu ROW: the free-atom configuration 3d^10 4s^1 has one formally
 unpaired 4s electron, so a naive electron count gives 1, not the 0 shown.
@@ -393,7 +418,7 @@ stated explicitly here because the table's "0" would otherwise look like an
 unexplained departure from the free-atom configuration shown in the same row.
 
 PHYSICAL INTERPRETATION:
-  G_g (dim 4): 4 unpaired spins in boundary regime. The G_g x G_g -> A_g
+  G_g (dim 4): 4 unpaired spins. The G_g x G_g -> A_g
   Clebsch-Gordan coupling is strong (A_g appears once, unique). This unique
   scalar coupling allows collective alignment of spin domains. Iron's
   d-electrons occupy the same irrep as the b quark's boundary-regime mode
@@ -404,12 +429,14 @@ PHYSICAL INTERPRETATION:
   d-electron are both realizations of the same G_g irrep, projected onto
   the icosahedral lattice.
 
-  H_g (dim 5): 5 unpaired spins but sub-cell regime (N_J_Mn < 1 for the
-  d-electron scale). H_g x H_g -> A_g also has A_g, but the sub-cell
-  coupling mechanism (lambda/Poisson ratio) does not support ferromagnetic
-  domain formation -- it's too deep sub-cell for cooperative alignment.
-  Hence Mn is paramagnetic: spins align individually to external fields but
-  do not form permanent domains.
+  H_g (dim 5): 5 unpaired spins. H_g x H_g -> A_g also has A_g
+  (verified [M9]), but the coupling splits across 5 competing exchange
+  channels (geometric frustration) rather than the single dominant channel
+  G_g/T_1g have -- this, not any distance-scale difference, is why
+  collective alignment cannot persist (Mn's d-electrons sit at the ordinary
+  electron N_J=38,870, deep bulk, same as Fe/Co/Ni's --
+  analysis/nuclear/transition_metal_NJ_survey.py). Hence Mn is paramagnetic:
+  spins align individually to external fields but do not form permanent domains.
 
 3.3  Why iron specifically (not cobalt) is the "default" magnetic metal
 

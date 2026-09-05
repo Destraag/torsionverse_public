@@ -141,28 +141,35 @@ check("T3.4", abs(E_cell_GeV - 124.8) < 0.5,
 mu_0    = 4 * pi * 1e-7          # kg/m^3 (SI, exact)
 eps_0   = 8.8541878128e-12       # F/m (CODATA)
 rho_mu0 = mu_0
-K_em    = 1 / eps_0              # Pa  (Coulomb Green's function bulk modulus --
-                                  # headline K, per MG-J5: aligns with the value
-                                  # already established/reused throughout the
-                                  # framework, e.g. maxwell_from_medium.py,
-                                  # magnetism_doc.py, doc_orbit_pressure)
+K_em    = 1 / eps_0              # Pa  (STATIC/fluid-regime bulk modulus --
+                                  # Coulomb Green's function value, doc_magnetism
+                                  # Sections 1.1/1.2/2.1; correctly scoped to a
+                                  # static point charge, which never shears the
+                                  # medium and so sees the unjammed FLUID ground
+                                  # state, per doc_torsion Section 3.1)
 G_mu0   = rho_mu0 * (Rs*c)**2
-K_solid = rho_mu0 * (c**2 - 4/3*(Rs*c)**2)   # solid-mechanics cross-check, see MG-J5
+K_solid = rho_mu0 * (c**2 - 4/3*(Rs*c)**2)   # JAMMED/wave-regime bulk modulus --
+                                  # headline K (resolved 2026-09-04): solved
+                                  # from the general solid relation
+                                  # v_p^2=(K+4/3*G)/rho, the regime relevant to
+                                  # G, E, Z_p, Z_s below (all wave-propagation
+                                  # quantities). See fluid_vs_jammed_K_resolution.py.
 E_mu0   = 2 * G_mu0 * (1 + nu_derived)
 Zp_mu0  = rho_mu0 * c
 Zs_mu0  = rho_mu0 * (Rs*c)
 
 print(f"  rho_medium = mu_0 = 1/(eps_0*c^2) = {rho_mu0:.4e} kg/m^3  [DERIVED, P.6b]")
-print(f"  K = 1/eps_0 (headline, MG-J5)      = {K_em:.4e} Pa")
+print(f"  K = rho*(c^2-4/3*v_s^2) (jammed/wave, headline) = {K_solid:.4e} Pa")
 print(f"  G = rho*v_s^2                     = {G_mu0:.4e} Pa")
 print(f"  E = 2G(1+nu)                       = {E_mu0:.4e} Pa")
 print(f"  Z_p = rho*c                        = {Zp_mu0:.4e} Pa*s/m")
 print(f"  Z_s = rho*v_s                      = {Zs_mu0:.4e} Pa*s/m")
-print(f"  [cross-check] K_solid = rho*(c^2-4/3*v_s^2) = {K_solid:.4e} Pa  "
-      f"({(K_em-K_solid)/K_em*100:+.2f}% vs K above -- fluid vs solid v_p relation, gap not yet resolved)")
+print(f"  [cross-check] K = 1/eps_0 (static/fluid regime) = {K_em:.4e} Pa  "
+      f"({(K_em-K_solid)/K_solid*100:+.2f}% vs K above -- two different medium "
+      f"states, not a discrepancy; see fluid_vs_jammed_K_resolution.py)")
 
 check("T3.5", abs(G_mu0 - 3.576e9)/3.576e9 < 1e-2, f"G={G_mu0:.4e} Pa")
-check("T3.6", abs(K_em - 1.129e11)/1.129e11 < 1e-2, f"K={K_em:.4e} Pa")
+check("T3.6", abs(K_solid - 1.082e11)/1.082e11 < 1e-2, f"K={K_solid:.4e} Pa")
 check("T3.7", abs(E_mu0 - 1.061e10)/1.061e10 < 1e-2, f"E={E_mu0:.4e} Pa")
 check("T3.8", abs(Zp_mu0 - 376.7)/376.7 < 1e-2, f"Z_p={Zp_mu0:.4e} Pa*s/m")
 check("T3.9", abs(Zs_mu0 - 67.04)/67.04 < 1e-2, f"Z_s={Zs_mu0:.4e} Pa*s/m")

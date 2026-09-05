@@ -679,6 +679,35 @@ MG-J5 [SHORT-TERM RESOLVED, LONG-TERM STILL OPEN -- see judgment_calls.txt
   the older, real, pre-existing rho-unknown gap), not a pre-existing item
   that was already flagged in this specific form.
 
+  LONG-TERM QUESTION NOW RESOLVED (2026-09-04): the author corrected the
+  medium's own physical model mid-session -- doc_torsion.txt's "spring
+  lattice" Introduction language was stale; the medium is a non-Newtonian
+  (dilatant) FLUID that flows freely (G -> 0) below the Maxwell-critical
+  shear threshold and JAMS into a near-incompressible elastic solid only
+  where a wave actively shears it past that threshold (Section 3.1 already
+  said this; the Introduction prose was updated to match). This directly
+  resolves the fluid-vs-solid K question: a STATIC point charge never
+  shears the medium, so K=1/eps_0 (doc_magnetism Section 1.2) correctly
+  describes the UNJAMMED fluid ground state; a PROPAGATING compression wave
+  actively jams the medium, so the solid relation's K=1.082e11 Pa correctly
+  describes the JAMMED state. These are two distinct mechanical properties
+  of two distinct states of the same medium, not competing measurements of
+  one quantity where one must be wrong -- verified numerically
+  (analysis/medium/fluid_vs_jammed_K_resolution.py, 6/6 PASS: each K
+  reproduces v_p=c correctly ONLY in its own regime's formula and clearly
+  fails, by the same 4.22%-derived factor, if cross-applied to the other's).
+  doc_torsion.txt Section 3.3's headline "Bulk modulus" (used alongside G,
+  E, Z_p, Z_s -- all wave-propagation quantities) switched from K=1/eps_0
+  to the jammed value, 1.082e11 Pa; analysis/demos/torsion_doc.py T3.6
+  updated to match (24/24 PASS, no other regressions). doc_magnetism.txt is
+  UNCHANGED -- its K=1/eps_0 was already correctly scoped to the static/
+  Coulomb regime. This reframing surfaces a further, separate, NOT yet
+  resolved question (tracked as MG-J7, see the active file): whether the
+  rho=mu_0 derivation itself (which also combines a static K with the
+  propagating v_p in one formula) mixes the same two regimes -- deliberately
+  left untouched pending dedicated review, since it is the framework's
+  single most load-bearing result.
+
 =============================================================================
 ITEMS RESOLVED DURING RESEARCH (no discussion needed -- already fixed)
 =============================================================================
@@ -1006,6 +1035,54 @@ DOC: doc_magnetism.txt (MG2-1 through MG2-14)
     script computes N_J at realistic energy scales for any element besides
     iron -- kept in judgment_calls.txt, narrowed to just this scope
     question.
+
+    MG2-1 FULLY RESOLVED 2026-09-04: author asked to try the multi-element
+    survey rather than just stripping the column, if feasible. Wrote
+    analysis/nuclear/transition_metal_NJ_survey.py, extending
+    iron_dscale_NJ_survey.py's own 12-candidate-energy method to Mn, Co,
+    Ni (the 3 elements named in the open question) plus Cu as a bonus
+    fourth case, using standard real reference values (ionization
+    energies, work function, cohesive energy, Curie/Neel temperature,
+    melting point, K-shell binding energy, nuclear binding energy per
+    nucleon and total) -- same confidence tiering as iron's own script
+    (well-tabulated values vs explicitly-labeled order-of-magnitude
+    placeholders for plasmon energy/exchange splitting/mean-field J).
+    RESULT: reproduces iron's own already-known result exactly as a
+    baseline (closest candidate N_J=40.35, matching iron_dscale_NJ_survey.py
+    to the reported precision), and the SAME pattern holds for every other
+    element: closest realistic candidate (always the element's OWN full
+    nuclear binding energy, not a d-electron quantity) lands at N_J~36-41
+    for all of Mn/Co/Ni/Cu -- nowhere near boundary (needs 1-10) or
+    sub-cell (needs <1). CONCLUSION CONFIRMED WITH REAL NUMBERS, not just
+    "almost certainly generalizes" reasoning: the scale-mismatch problem
+    generalizes to every row claiming boundary or sub-cell (Fe, Mn, and
+    possibly Co depending on which of T_1g's two realizing particles --
+    bulk photon vs sub-cell W/Z -- is meant). The "bulk" rows (Ni, and
+    Co under the other reading) were never actually at risk: N_J_e=38,870
+    satisfies bulk trivially for any element, no new scale needed. ALSO
+    FOUND (beyond the original scope): the same false "sub-cell" premise
+    was independently asserted in prose TWICE more, not just the table --
+    Section 3.2's "Mn... is sub-cell regime" sentence, and the PHYSICAL
+    INTERPRETATION paragraph's "H_g (dim 5): 5 unpaired spins but sub-cell
+    regime (N_J_Mn<1...)" claim, which also asserted a specific (now
+    disproven) MECHANISM -- that Mn's coupling uses the sub-cell lambda/
+    Poisson-ratio channel instead of the bulk vertex-stiffness/alpha
+    channel. FIXED by replacing with the framework's OWN already-
+    established, distance-scale-independent explanation for Mn's
+    paramagnetism (H_g x H_g -> A_g splits across 5 competing exchange
+    channels = geometric frustration, already stated earlier in the doc's
+    own "KEY CLAIM" bullet list, citation M9) -- same CONCLUSION (Mn is
+    paramagnetic), corrected MECHANISM/premise. RESOLUTION APPLIED: added
+    an explicit "NOTE ON THE 'N_J regime' COLUMN" disclaimer to Section
+    3.1 (this column describes the REALIZING PARTICLE's regime, not the
+    element's d-electron scale -- matching option (a) from the original
+    NEEDS-CALL, but now evidence-backed rather than assumed), reworded
+    Section 3.2's Match column (6 rows, now consistently dimension-based,
+    no regime language) and prose, and fixed the H_g PHYSICAL
+    INTERPRETATION paragraph's mechanism claim. magnetism_doc.py not
+    touched (doc-text-only fix, no script logic affected) -- still 15/15
+    PASS.
+
   - MG2-2 (K=1/eps_0 chosen to match the already-known Coulomb result, so
     rho=mu_0 is algebra not discovery): CONFIRMED -- doc_torsion.txt's own
     Section 3.3 already says this explicitly ("not a free parameter... follows
@@ -1212,3 +1289,50 @@ author calls (which unverified numeric candidate to trust; a cross-document
 physics contradiction; how far to extend an already-agreed retraction; how
 to frame an algebraically-tautological-but-true derivation chain), not
 citation gaps or overclaims a search could resolve.
+
+=============================================================================
+DOC: doc_electron.txt
+=============================================================================
+
+EL-J1 [RESOLVED 2026-09-04] doc_electron.txt (Abstract, Sections 2.1, 4.2,
+  5.1, 5.3.1, 5.3.2, 6.1, 7, 8) labelled the positron "E-" throughout,
+  colliding with E-'s independently-established meaning elsewhere in the
+  repo (electron neutrino candidate, chi(C5)=-1/phi -- ih_double_group.py
+  DG11-DG14, neutrino_freed_lepton.py; see LP2-6, PG-J1 above). Author
+  confirmed the physics was never in question (positron = E+ vertex
+  geometry, reversed chirality only) -- just the label, matching the
+  rename already applied to beta_plus_strip.py CA26d and electron_doc.py
+  ED19 in a prior session: "anti-E+" (same irrep/vertex geometry/
+  chi(C5)=+phi as E+, chirality reversed only -- NOT the distinct E-
+  irrep). Applied "anti-E+" across every section naming the positron.
+  Section 2.1 was not just a label collision but an outright WRONG chi
+  value for the real E- irrep -- it claimed chi(E±,C5)=+phi for both E+
+  and E-, when chi(E-,C5)=-1/phi (per ih_double_group.py and
+  weak_interaction_cg.py's own char table) -- the same "circular chi=+phi
+  assignment" bug already caught and fixed in the two scripts, now fixed
+  in the doc prose too.
+  SCOPE WIDER THAN THE ORIGINAL 5 SECTIONS: found and fixed 2 more spots
+  with the identical mislabel that the original sweep missed -- Section 7's
+  "ROLL = CHARGE SIGN" table + "THE ROLL ANSWER" paragraph, and Section 8's
+  closed-items ED19 status line (now matches electron_doc.py's own
+  corrected wording). Also fixed 3 spots in Sections 5.3.1/5.3.2
+  (positronium annihilation) using bare "E-" to mean "positron" alongside
+  "E+" -- reworded to "E+ and anti-E+" / "E+ (electron) and anti-E+
+  (positron)".
+  ADDITIONAL FINDING, NOT PURE RELABELING (fixed same session, flagged
+  here for visibility): Section 6.1 (the Z>137 electron-capture mechanism)
+  had a deeper, separate conflation -- its prose asserted "a positron is an
+  E- ... [that] becomes neutrino-like when stripped of that structure",
+  treating the positron and the electron neutrino as the SAME freed
+  corpuscle in different regimes. This doesn't fit either object: the
+  freed corpuscle in electron capture (p+e- -> n + nu_e) is only ever the
+  neutrino (E-, matching weak_interaction_cg.py's own WI2: T_1g x E- =
+  I52, already independently verified) -- positron production is a
+  DIFFERENT process entirely (beta+ decay, beta_plus_strip.py) that this
+  section isn't describing. Fixed by removing the erroneous "a positron is
+  an E-" tangent and citing WI2 directly (the doc previously cited only
+  "[WI1 reversed, exact]", a less precise label for what WI2 already
+  checks directly).
+  No scripts were edited (electron_doc.py, beta_plus_strip.py,
+  weak_interaction_cg.py were already correct) -- doc-text-only fix, no
+  PASS counts to reverify.

@@ -355,7 +355,7 @@ print(SEP2)
 # independent labels. Reversing chirality does not change WHICH irrep
 # governs coupling -- so anti-E+ (positron) keeps E+'s own chi(C5)=phi,
 # giving it the SAME mass as the electron (same medium displacement,
-# doc_magnetism.txt Section 3.4) -- matching the real, measured positron.
+# doc_torsion.txt "E=mc^2 vs E=pc" discussion) -- matching the real, measured positron.
 chi_Eplus_C5     = 2 * math.cos(math.pi / 5)   # E+ character at C5
 chi_antiEplus_C5 = chi_Eplus_C5   # anti-E+ (positron): same irrep, chirality reversed only
 

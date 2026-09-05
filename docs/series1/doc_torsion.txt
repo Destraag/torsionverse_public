@@ -105,16 +105,30 @@ defect, every force is a torsion wave, and torsion gravity (Einstein-Cartan)
 emerges naturally from the winding structure. 'Torsion medium' captures all
 three simultaneously.
 
-PHYSICAL MODEL OF THE MEDIUM (2026-08-23):
-  The torsion medium is a SPRING LATTICE of icosahedral unit cells (Jobson cells).
-  Cells are elastic spring elements, not independent oscillators. Phonons propagate
-  THROUGH the spring lattice by deforming each cell as they pass -- exactly as a
-  point on a string deforms when a wave passes (not an independent oscillator).
+PHYSICAL MODEL OF THE MEDIUM (2026-08-23; revised 2026-09-04 -- see Section 3.1
+for the mechanical picture this now matches):
+  The torsion medium is a non-Newtonian (dilatant) FLUID of icosahedral unit
+  cells (Jobson cells), not a permanently rigid lattice. In its ground state
+  (below the Maxwell-critical shear threshold) it flows freely: G -> 0, no
+  static shear stiffness. A disturbance passing through shears the medium past
+  that threshold and it locally JAMS into a near-incompressible, elastic
+  spring-lattice state -- a traveling jam front (Section 3.1), not the medium's
+  permanent condition. "Spring lattice," "elastic spring elements," and the
+  phonon-channel language below describe this JAMMED state specifically: the
+  state a propagating wave creates as it passes, which relaxes back to the
+  fluid ground state behind it.
+  Far from existing matter, the fluid ground state is expected to settle into
+  a single shared cell orientation -- this is what justifies using the I_h
+  point-group structure for the jammed state's elastic response throughout
+  this framework. Near matter, a particle's own winding (e.g. the proton's
+  spin; see the charge mechanism in doc_magnetism) locally disturbs this rest
+  orientation -- a separate, already-established effect, not a change to the
+  default/bulk picture.
 
-  TWO PHONON CHANNELS:
+  TWO PHONON CHANNELS (within the jammed state):
     K channel (bulk, A_g, isotropic): Higgs field. Zone-boundary phonon = 124.8 GeV.
     G channel (shear, T_2g, face-panel): torsion/gravity waves at Rs*c.
-    Both propagate through the same spring lattice via different elastic modes.
+    Both propagate through the jammed lattice via different elastic modes.
 
   WAVE LINGER = ENTRAINMENT FORCE:
     A phonon persisting in one direction pulls neighboring cells into its deformation
@@ -467,26 +481,38 @@ Section 1.2, doc_higgs Claim C7) and the pressure wave speed v_p = c
 
 With rho_medium = mu_0:
 
-  Bulk modulus:           K  = 1/eps_0 = 1.129e11 Pa
+  Bulk modulus (jammed/wave state): K = rho*(c^2-4/3*Rs^2*c^2) = 1.082e11 Pa
   Shear modulus:          G  = rho * Rs^2 * c^2 = 3.576e9 Pa
   Young's modulus:        E  = 2G(1+nu) = 1.061e10 Pa
   Longitudinal impedance: Z_p = rho * c     = 3.767e2 Pa*s/m
   Shear impedance:        Z_s = rho * Rs*c  = 6.704e1 Pa*s/m
-  [torsion_doc.py T3.5-T3.9]
+  [torsion_doc.py T3.5-T3.9; analysis/medium/fluid_vs_jammed_K_resolution.py FJ1-FJ6]
 
-NOTE ON K (SHORT TERM vs LONG TERM, per author 2026-09-01): K above is
-K=1/eps_0, the Coulomb Green's function value already established and
-reused throughout the framework (doc_magnetism Sections 1.2/2.1, doc_orbit_
-pressure, maxwell_from_medium.py ME1/ME3, magnetism_doc.py M2/M3/M8a) --
-used here as the headline value because it aligns with the existing,
-already-cited number rather than introducing a second one.
-This is a SHORT-TERM alignment choice, not a resolution: the general
-solid-mechanics relation behind this paper's OWN Poisson-ratio formula
-(Section 3.1, v_p^2=(K+4/3*G)/rho) gives a different value when solved
-directly for K: K_solid = rho*(c^2-4/3*Rs^2*c^2) = 1.082e11 Pa, a 4.22% gap
-from K=1/eps_0 (=1-4/3*Rs^2 exactly). LONG TERM, this gap itself is still
-open and needs full evaluation before either value can be called resolved
--- not yet done.
+NOTE ON K -- TWO REGIMES, NOT ONE VALUE (resolved 2026-09-04): this medium is
+a non-Newtonian fluid (Section 3.1 above): it flows freely (G -> 0) below the
+Maxwell-critical shear threshold, and JAMS into a near-incompressible elastic
+solid only where a wave actively shears it past that threshold. K = 1/eps_0
+(doc_magnetism Section 1.2) is the STATIC value: a non-propagating point
+charge never shears the medium, so it sees the unjammed FLUID ground state.
+The K above is the JAMMED value, relevant to the propagating pressure wave
+that this section's G, E, Z_p, Z_s already describe -- solved from the
+general solid relation v_p^2=(K+4/3*G)/rho using rho=mu_0, v_p=c, v_s=Rs*c.
+The two values differ by exactly 1-4/3*Rs^2 = 4.22%. Verified numerically:
+each K reproduces v_p=c correctly ONLY in its own regime's formula, and
+clearly fails (by that same factor) if cross-applied to the other regime's
+formula -- consistent with these being two distinct mechanical properties of
+two distinct states of the same medium, not competing measurements of one
+quantity where one must be wrong. doc_magnetism's K=1/eps_0 is UNCHANGED and
+correctly scoped to the static/Coulomb regime it actually describes; only
+this section's own headline (used for wave-propagation quantities) switches
+to the jammed value.
+This reframing surfaces a further, separate question worth its own scrutiny:
+whether the rho=mu_0 relation above, which itself combines a static-regime K
+with the propagating wave speed v_p in one formula, mixes the two regimes
+the same way the old K discrepancy did. Not resolved here -- rho=mu_0 is the
+framework's single most load-bearing result, cited throughout this and every
+companion paper, and deserves dedicated scrutiny before any change is made,
+not a conclusion reached as a side effect of this section's K fix.
 
 LEGACY, CONTAMINATED -- NOT PART OF THE DERIVED RESULT (reference only):
 The version of this section as originally published (2026-08-19) used the
