@@ -15,7 +15,7 @@ ratio Rs = sqrt(5)/(4*pi) = 0.177941 appears at four independent experimental
 scales: nuclear binding (pion-nucleon sigma term), hadronic QCD string tension,
 galactic MOND critical acceleration (153 galaxies, 0.51 sigma), and spacecraft
 flyby anomaly (Anderson et al. 2008). The four-scale cluster mean deviates from
-Rs by 0.29% with 1.1% spread; zero free parameters are adjusted. This ratio is
+Rs by 0.72% with 1.3% spread; zero free parameters are adjusted. This ratio is
 identified as the transverse-to-longitudinal wave speed ratio of the physical
 vacuum torsion medium -- a non-Newtonian (dilatant) liquid that jams into a
 near-incompressible solid under shear, conducting gravitational and torsion
@@ -28,7 +28,8 @@ assumptions. Absolute elastic moduli and wave impedances additionally
 require the medium density; as of a 2026-09-01 update this is DERIVED --
 not conditional -- as rho_medium = mu_0 = 1/(eps_0*c^2) from CODATA electric
 constants alone, no cosmological model needed (G = 3.58e9 Pa, K = 1.13e11
-Pa; Section 3.3). The paper's original 2026-08-19 values, which used the
+Pa; Section 3.3, which also notes a further, separate, not-yet-resolved
+question about this same relation). The paper's original 2026-08-19 values, which used the
 Planck 2018 cosmological vacuum density rho_Lambda as a working hypothesis,
 are retained in Section 3.3 for reference only and are now labeled circular
 rather than merely conditional: rho_Lambda is itself defined via H0 through
@@ -50,7 +51,11 @@ The gravity exponent n=18 follows from three independent derivations: the
 icosahedral spring network (dynamical matrix), the T_1g/T_2g field dimensions
 (3x6=18), and the face-adjacency compression cloud (3+6+6+3=18). This paper
 stands independently: the four-scale empirical cluster does not require
-acceptance of the derivation, only the numerical value.
+acceptance of the derivation, only the numerical value. The underlying
+elasticity-theory mechanism (isostatic-lattice modulus scaling, Lubensky,
+Kane, Mao, Souslov & Sun, Rep. Prog. Phys. 78, 073901 (2015)) and why a
+separate polynomial-invariant-ring route does NOT apply here are detailed in
+doc_torsionverse.txt Section 3.3.
 
 NEW GROUND: no prior formulation of MOND (AQUAL, TeVeS, or any variant since
 Milgrom 1983) derives the critical acceleration a0 from more fundamental constants.
@@ -97,13 +102,16 @@ confirmations stand regardless of theoretical origin.
 WHY 'TORSION MEDIUM': The name is physical at three levels. (1) Every particle
 in this framework is a Hopf winding configuration -- a topological torsion
 defect in the medium, directly analogous to the spin-torsion of Einstein-Cartan
-gravity [doc_orbit_pressure]. (2) The medium's transverse wave mode (T_2g,
-face-shear) propagates at Rs*c -- this IS the torsion wave. (3) The Hopf
-fibration (1,2) itself traces a helical/torsional path through the medium.
-The medium is not merely a carrier of torsion: every particle is a torsion
-defect, every force is a torsion wave, and torsion gravity (Einstein-Cartan)
-emerges naturally from the winding structure. 'Torsion medium' captures all
-three simultaneously.
+gravity [DOC ORBIT PRESSURE]. (2) The medium's transverse wave mode (labeled
+T_2g face-shear here; whether T_2g or H_g is the true elastic shear channel is
+still under active investigation, see Section 3.1) propagates at Rs*c -- this
+IS the torsion wave. (3) The Hopf fibration (1,2) itself traces a helical/
+torsional path through the medium. The medium is not merely a carrier of
+torsion: every particle is a torsion defect, every force is a torsion wave,
+and torsion gravity (Einstein-Cartan) emerges naturally from the winding
+structure. 'Torsion medium' captures all three simultaneously -- the naming
+rationale holds either way the T_2g/H_g question resolves, since both are
+genuine shear-type modes of the medium.
 
 PHYSICAL MODEL OF THE MEDIUM (2026-08-23; revised 2026-09-04 -- see Section 3.1
 for the mechanical picture this now matches):
@@ -121,7 +129,7 @@ for the mechanical picture this now matches):
   a single shared cell orientation -- this is what justifies using the I_h
   point-group structure for the jammed state's elastic response throughout
   this framework. Near matter, a particle's own winding (e.g. the proton's
-  spin; see the charge mechanism in doc_magnetism) locally disturbs this rest
+  spin; see the charge mechanism in [DOC MAGNETISM]) locally disturbs this rest
   orientation -- a separate, already-established effect, not a change to the
   default/bulk picture.
 
@@ -237,11 +245,11 @@ the longitudinal QCD energy scale at nuclear densities.
 
   R_nuclear = E_binding / sigma_piN = 8.0 MeV / 45.0 MeV = 0.17778
   Rs        = 0.17794
-  Deviation = +0.08%
+  Deviation = -0.09%
 
 The classical sigma_piN = 45 MeV (range 38-59 MeV from recent lattice QCD;
 Agadjanov et al. 2023 [7]; Liang et al. 2025 [8]). At the central value
-the ratio matches Rs to 0.08%. The lattice range brackets Rs from both sides:
+the ratio matches Rs to 0.09%. The lattice range brackets Rs from both sides:
 sigma_piN = 45.3 MeV gives exact agreement.
 
 2.3  Hadronic scale: QCD string tension
@@ -258,34 +266,38 @@ define the hadronic saturation ratio.
   (Using PDG 2022 values: kappa = 0.184 GeV^2 = 0.884 GeV/fm in natural units;
    m_b(MSbar) = 4.18 GeV; r_p = 0.8414 fm from CODATA.)
 
-Note: The hadronic scale shows a +1.81% deviation from Rs when using an older
-kappa value without discretization correction. With current PDG 2022 values
-(kappa = 0.884 GeV/fm), the raw ratio kappa*r_p/m_b matches Rs to better than
-0.01% -- stronger than previously stated. The Channel A correction (Section 4)
-k_A = 12*alpha*(1-alpha*phi^2) = 0.085895 (-0.12%) is essentially derived:
-12 icosahedral vertices, alpha = EM coupling per vertex, (1-alpha*phi^2) = same
-Fibonacci correction as R9 vev and alpha vertex stiffness (-0.12% residual).
-See torsion_doc.py for numerical verification.
+Note: an OLDER, pre-PDG-2022 kappa value gave a +1.81% deviation here,
+with a Channel A correction k_A = 12*alpha*(1-alpha*phi^2) = 0.085895
+proposed to close it further. That correction is SUPERSEDED, not needed:
+with the current PDG 2022 kappa (used above), the raw ratio kappa*r_p/m_b
+matches Rs directly to 0.001% -- see torsion_doc.py Section 2, which now
+computes this directly rather than asserting the old figure.
 
 2.4  Galactic scale: MOND critical acceleration
 
-The MOND critical acceleration a0 = 1.115e-10 m/s^2 (McGaugh et al. 2016,
-RAR of 153 SPARC galaxies) and the Hubble-scale acceleration c*H0:
+The MOND critical acceleration a0_measured = 1.20e-10 m/s^2 (153 SPARC
+galaxies, RAR) and the Hubble-scale acceleration c*H0:
 
-  R_galactic = a0 / (c * H0)
-             = 1.115e-10 / (2.998e8 * 2.184e-18)
-             = 0.17645
-  Rs         = 0.17794
-  Deviation  = -0.84%
+  R_galactic = a0_measured / (c * H0)
+  Planck H0 (67.4 km/s/Mpc): R_galactic = 0.18325   Rs = 0.17794   (+2.98%)
+  Local  H0 (73.3 km/s/Mpc): R_galactic = 0.16850   Rs = 0.17794   (-5.31%)
 
-The MOND prediction from the torsion medium is a0 = Rs*c*H0 = 1.165e-10 m/s^2.
-Comparison with the McGaugh+2016 RAR gives 0.51 sigma agreement across 153
-galaxies (see Section 5 for the full comparison).
+[analysis/demos/torsion_doc.py Section 2, T2.2]
 
-The 0.84% galactic deviation from Rs is consistent with an H0 systematic:
-the tension between CMB H0 (67.4 km/s/Mpc, Planck 2018) and local H0 (~73
-km/s/Mpc, Riess et al.) is ~8%. The galactic a0 measurement uses the local
-expansion rate; at the Planck H0 value the deviation narrows to ~0.3%.
+The MOND prediction from the torsion medium is a0 = Rs*c*H0 = 1.165e-10 m/s^2
+(Planck H0) or 1.267e-10 m/s^2 (local H0), both bracketing the measured
+1.20e-10 m/s^2 (see Section 5 for the full comparison; the 0.51 sigma
+figure quoted in the Abstract comes from a separate script, mond_rotation.py,
+using an intermediate H0=70.0 km/s/Mpc against the RAR's own quoted
+1.67% measurement uncertainty -- not from the Planck/local bracket shown
+here, which uses each H0's own value without an independent uncertainty band).
+
+The galactic scale's larger, H0-dependent spread (compared to the sub-0.1%
+matches at the nuclear, hadronic, and flyby scales) is consistent with the
+ongoing ~8% tension between CMB H0 (Planck 2018) and local H0 (Riess et al.)
+measurements -- this scale is the least precise of the four specifically
+because it inherits that external tension, not because the torsion-medium
+prediction itself is imprecise.
 
 2.5  Flyby anomaly: Anderson K-formula
 
@@ -320,16 +332,18 @@ Flyby comparison (prediction vs measured):
 2.6  Four-scale summary
 
   Scale        R_measured   Rs        Deviation
-  Nuclear      0.17778      0.17794   -0.08%
-  Hadronic     0.17794      0.17794   <0.01%  (PDG 2022 exact)
-  Galactic     0.17645      0.17794   -0.84%
+  Nuclear      0.17778      0.17794   -0.09%
+  Hadronic     0.17794      0.17794   +0.001%  (PDG 2022 exact)
+  Galactic     0.18325      0.17794   +2.98%   (Planck H0; -5.31% at local H0)
   Flyby        0.17794      0.17794   -0.0001%
 
-  Cluster mean = 0.17754   deviation from Rs: -0.22%
-  Cluster std  = 0.00199   spread: 1.11%
+  Cluster mean = 0.17923   deviation from Rs: +0.72%
+  Cluster std  = 0.00232   spread: 1.30%
 
 Zero free parameters are adjusted across all four scales. The four-scale
-cluster is consistent with a single underlying Rs to within 1.1% spread.
+cluster is consistent with a single underlying Rs to within 1.3% spread,
+largely driven by the galactic scale's H0-dependence (Section 2.4).
+[analysis/demos/torsion_doc.py Section 2]
 
 
 3. MEDIUM CONSTITUTIVE PROPERTIES
@@ -349,14 +363,18 @@ Two direct observational inputs:
            TRANSVERSE vector mode (dim=3) -- NOT the v_p branch; its own
            free-propagation speed is also c, via its own constructive C5
            character (chi=+phi), not via the A_g compression channel.
-           [doc_jobson_cell Section 7.1]
+           [DOC JOBSON CELL, Section 7.1]
 
   Input 2: v_s = Rs*c = 5.335e7 m/s
            Transverse (torsion) wave speed, from flyby anomaly K-formula
-           Physical identification: v_s = Rs*c is the T_2g shear field mode
-           (T_2g dim=3, C5 char=-1/phi -- destructive/shear coupling)
+           Physical identification: v_s = Rs*c is identified with the T_2g
+           shear field mode (T_2g dim=3, C5 char=-1/phi -- destructive/shear
+           coupling), though whether T_2g or H_g is the medium's true bulk
+           elastic shear channel is still under active investigation (see
+           [DOC MAGNETISM] Section 1.1 for the current state of this question).
            Rs^2 = T_2g shear mode amplitude squared at the Maxwell critical
-           point (3V-E=6 = dim T_1g + dim T_2g = 6). [doc_jobson_cell FG5]
+           point (3V-E=6 = dim T_1g + dim T_2g = 6).
+           [analysis/quantum/face_gluon_geometry.py FG5]
 
 From these two inputs alone, by standard continuum mechanics, the following
 properties are derived with no cosmological assumptions:
@@ -471,13 +489,13 @@ reference only.]
 
 The medium density is not a free parameter: it follows directly from two
 results already established elsewhere in this framework -- the EM bulk
-modulus K = 1/eps_0 (Coulomb's law pressure Green's function; doc_magnetism
-Section 1.2, doc_higgs Claim C7) and the pressure wave speed v_p = c
+modulus K = 1/eps_0 (Coulomb's law pressure Green's function; [DOC MAGNETISM]
+Section 1.2, [DOC HIGGS] Claim C7) and the pressure wave speed v_p = c
 (Section 3.1, GW170817). The acoustic relation rho = K/v_p^2 gives:
 
   rho_medium = 1/(eps_0*c^2) = mu_0 = 1.2566e-6 kg/m^3
   [EXACT, CODATA electric constants only, no cosmological model,
-   zero free parameters -- P.6b; doc_magnetism Section 2.1]
+   zero free parameters -- P.6b; [DOC MAGNETISM] Section 2.1]
 
 With rho_medium = mu_0:
 
@@ -492,7 +510,7 @@ NOTE ON K -- TWO REGIMES, NOT ONE VALUE (resolved 2026-09-04): this medium is
 a non-Newtonian fluid (Section 3.1 above): it flows freely (G -> 0) below the
 Maxwell-critical shear threshold, and JAMS into a near-incompressible elastic
 solid only where a wave actively shears it past that threshold. K = 1/eps_0
-(doc_magnetism Section 1.2) is the STATIC value: a non-propagating point
+([DOC MAGNETISM] Section 1.2) is the STATIC value: a non-propagating point
 charge never shears the medium, so it sees the unjammed FLUID ground state.
 The K above is the JAMMED value, relevant to the propagating pressure wave
 that this section's G, E, Z_p, Z_s already describe -- solved from the
@@ -502,7 +520,7 @@ each K reproduces v_p=c correctly ONLY in its own regime's formula, and
 clearly fails (by that same factor) if cross-applied to the other regime's
 formula -- consistent with these being two distinct mechanical properties of
 two distinct states of the same medium, not competing measurements of one
-quantity where one must be wrong. doc_magnetism's K=1/eps_0 is UNCHANGED and
+quantity where one must be wrong. [DOC MAGNETISM]'s K=1/eps_0 is UNCHANGED and
 correctly scoped to the static/Coulomb regime it actually describes; only
 this section's own headline (used for wave-propagation quantities) switches
 to the jammed value.
@@ -548,33 +566,56 @@ input it depended on is circular.
 4. JOBSON CELL DISCRETIZATION AND SCALE CORRECTIONS
 ------------------------------------------------------
 
-The 1.1% spread in the four-scale Rs cluster is not random noise. The
-deviation is directional and predicted by the Jobson cell regime:
+The four-scale Rs cluster is not random noise. With current PDG 2022 inputs,
+three of the four scales (nuclear, hadronic, flyby) already agree with Rs to
+better than 0.1%; the remaining spread is dominated by the galactic scale's
+known H0-dependence (Section 2.4), not by an unexplained cell-boundary effect:
 
-  Scale       N_J = R_load/L_J   Regime         Predicted deviation
-  Nuclear     441                     bulk (N>>1)    ~0%  (exact Rs)
-  Galactic    7.86e7                  deep bulk      ~0%  (H0 systematic)
-  Flyby       --                      macroscopic    ~0%  (geometry)
-  Hadronic    4.75                    boundary       +1.81% (near-cell effects)
+  Scale       N_J = R_load/L_J   Regime         Deviation (current PDG 2022)
+  Nuclear     441                     bulk (N>>1)    -0.09%  (exact Rs)
+  Galactic    7.86e7                  deep bulk      +2.98%  (H0 systematic)
+  Flyby       --                      macroscopic    -0.0001%  (geometry)
+  Hadronic    4.75                    boundary       +0.001%  (exact Rs)
 
-At the hadronic scale, the probe (quark/gluon interaction at R_load ~ 0.047 fm)
-samples fewer than 5 Jobson cells in its interaction radius. At this sub-grain
-scale, the discrete cell structure modifies the effective Rs through boundary
-scattering. The Channel A correction:
+[analysis/demos/torsion_doc.py Section 2]
 
-  Rs_eff_had = Rs * (1 + k_A * R_load / L_J)
+LEGACY NOTE -- why this was believed, and why it is now known wrong (not
+merely superseded): earlier versions of this document, using an older,
+less precise pre-PDG-2022 kappa = 0.900 GeV/fm (vs the current PDG 2022
+value 0.884 GeV/fm used above), found a +1.81% hadronic deviation and
+proposed a "Channel A" cell-boundary correction:
 
-with k_A = 12*alpha*(1-alpha*phi^2) = 0.085895 (essentially derived; -0.12% residual)
-reduces the hadronic deviation from +1.81% to +0.034%.
+  Rs_eff_had = Rs * (1 + k_A / N_J_had),   N_J_had = R_load_had / L_J
+  k_A = 12*alpha*(1-alpha*phi^2) = 0.085895
+  [analysis/rs_scale/rs_v3.py; earlier drafts showed R_load/L_J inverted
+   in this formula -- corrected here to match the actual computation]
 
-The nuclear scale (N_J ~ 441 >> 1) is deep in the bulk regime where
-cell boundary effects average to zero. The galactic scale (N_J ~ 10^7)
-is similarly bulk; its deviation is consistent with the H0 tension.
+This looked well-supported for two reasons, neither of which holds up:
+(1) k_A was fit to exactly cancel the old +1.81% gap (k_A = deviation /
+(L_J/R_load_had), by construction) -- a fit, not evidence of a real
+boundary effect by itself. (2) A closed form was then found matching
+that fitted value to -0.12%: 12 icosahedral vertices times the same
+alpha*phi^2 Fibonacci correction that appears independently in the R9
+vev result and the alpha vertex stiffness derivation [analysis/medium/
+demo/torsion_k_A_derivation.py]. That cross-framework pattern match made
+the fit look like more than coincidence.
 
-The direction and sign of the hadronic correction are predicted by the cell
-regime analysis (boundary effects increase Rs_eff relative to bulk).
-The magnitude parameter k_A = 12*alpha*(1-alpha*phi^2) = 0.085895; the 0.12%
-residual is at the framework precision limit.
+It is now known to be wrong, not merely unneeded: N_J_had depends only
+on m_b, alpha, phi, and r_p -- never on kappa. Channel A's own formula
+therefore predicts a fixed +1.81% hadronic excess that should appear at
+ANY kappa precision. But the current, more precise PDG 2022 kappa alone
+(no correction applied) drops the raw deviation to +0.001% (Section 2.3)
+-- the entire old +1.81% gap is accounted for by kappa's own 1.81%
+precision change (0.900 -> 0.884 GeV/fm), leaving nothing for a real
+boundary effect to explain. Applying Channel A's kappa-independent
+formula to today's best inputs still predicts +1.81%, which the
++0.001% measurement directly contradicts.
+
+k_A's closed form is retained here only as a numerically interesting
+coincidence -- a formula found to match an already-fitted number, built
+from a real, recurring Fibonacci pattern seen elsewhere in the framework
+-- not as a validated physical mechanism. It is no longer invoked to
+explain, predict, or bound any present-day hadronic deviation.
 
 
 5. MOND PREDICTION AND SPARC COMPARISON
@@ -595,13 +636,16 @@ No free parameters. The MOND acceleration is the product of the torsion
 wave speed and the Hubble expansion rate -- a resonance between the medium's
 shear mode and cosmic expansion.
 
-5.1a  MOND interpolation function from medium constitutive law  [N-3 CLOSED]
+5.1a  MOND interpolation function from medium constitutive law  [N-3]
 
 The torsion medium has two coupling channels:
   Bulk (pressure, stiffness K): Newtonian gravity, wave speed c
   Shear (stiffness G = K/30.25): low-acceleration coupling, wave speed Rs*c
 
-The interpolation function from two-channel quadrature (K and G in parallel):
+The interpolation function is obtained by combining the two channels in
+quadrature -- an ansatz chosen for its correct asymptotic limits (Newtonian
+at high a, shear-dominated at low a), not a first-principles derivation from
+a full elastic tensor calculation:
 
   mu(x) = x / sqrt(x^2 + G/K)  where x = a/a0, G/K = 1/30.25
 
@@ -613,27 +657,39 @@ Transition point: x_t = 1/sqrt(K/G) = 0.1818,  mu(x_t) = 1/sqrt(2) exactly.
 
 NEW PREDICTION: in the deep shear regime (a << a0/5.5 = 2.2e-11 m/s^2):
   v_flat = (G_N*M*a0)^(1/4) * (K/G)^(-1/8) = simple_MOND * (30.25)^(-1/8)
-  Velocity is 38% LOWER than simple MOND (mu(x) = x/sqrt(1+x^2)) predicts.
+  Velocity is 34.7% LOWER than simple MOND (mu(x) = x/sqrt(1+x^2)) predicts.
   Testable in ultra-diffuse galaxies (UDGs) and stellar streams at very low a.
 
-The torsionverse mu(x) is uniquely determined by K/G = 30.25 (T3.2):
-  no free parameters, no assumed interpolation.
+The torsionverse mu(x) shape follows from K/G = 30.25 (T3.2) once the
+quadrature ansatz above is granted; K/G itself has zero free parameters,
+but the quadrature combination rule is an assumed functional form, not a
+separately derived one.
 Script: analysis/gravity/mond_interpolation.py  (8/8 PASS, T5.3-T5.4)
 
 5.2  Comparison with McGaugh et al. 2016
 
 McGaugh, Lelli, and Schombert (2016) measured the Radial Acceleration Relation
-(RAR) for 153 SPARC galaxies. Their best-fit a0 = 1.20e-10 m/s^2
-(uncertainty ~10%).
+(RAR) for 153 SPARC galaxies. Their best-fit a0 = 1.20e-10 m/s^2, with a
+quoted 1-sigma uncertainty of 0.02e-10 m/s^2 (1.7%).
 
-  Predicted:  a0 = 1.165e-10 m/s^2
-  Measured:   a0 = 1.20e-10 m/s^2
-  Deviation:  -2.9%  (0.51 sigma at ~10% RAR uncertainty)
+Using an intermediate H0 = 70.0 km/s/Mpc (between the Planck 67.4 and local
+73.3 values used elsewhere in this document, and a common compromise value
+in the literature):
+
+  Predicted:  a0 = Rs*c*H0 = 1.2102e-10 m/s^2
+  Measured:   a0 = 1.2000e-10 m/s^2
+  Difference: +0.85%  (+0.51 sigma at the RAR's own quoted 1.7% uncertainty)
   Free parameters adjusted: zero
 
-The 0.51 sigma agreement across 153 independent galaxy rotation curves is
-strong evidence that the torsion medium shear speed directly sets the MOND
-scale. No interpolation function is assumed; a0 is the single derived parameter.
+[analysis/gravity/mond_rotation.py, Part A]
+
+At the Planck H0 = 67.4 value used in Section 5.1, the same comparison gives
+a0 = 1.165e-10 m/s^2, a larger -2.9% difference (1.7 sigma at the same 1.7%
+uncertainty) -- the H0 choice matters at this level of precision (see
+Section 2.4's discussion of the same H0-dependence at the galactic scale).
+The 0.51 sigma headline figure specifically uses H0 = 70.0, not Planck's 67.4.
+
+No interpolation function is assumed; a0 is the single derived parameter.
 
 5.3  Redshift evolution prediction
 
@@ -676,6 +732,12 @@ Not yet measured; testable at the Electron-Ion Collider or by lattice QCD
 B-meson form factor calculations. Current framework prediction:
 
   kappa_pred = Rs * m_b / r_p = 0.884 GeV/fm   (matches PDG to 0.0%)
+
+Note: kappa_pred above is the same kappa*r_p/m_b = Rs identity as Section
+2.3, algebraically solved for kappa instead of Rs -- it is a restatement,
+not an independent confirmation. The r_B prediction above it (using the
+B meson's own, distinct, not-yet-measured radius rather than r_p) is the
+genuinely new, independently testable claim of this subsection.
 
 6.3  Anisotropy of Rs/alpha
 
@@ -737,6 +799,7 @@ This is cross-scale corroboration, not independent evidence: the measurement
 precision (unc ~ 0.055) is insufficient to distinguish n=2 from n_exact.
 A 3x improvement in timing would resolve this. Both n=2 and n_exact are
 consistent with current data.
+[analysis/alpha/pulsar_double_spin.py]
 
 
 7.3  The Jobson-Higgs conjecture
@@ -793,8 +856,8 @@ Poisson ratio nu, not vertex geometry. The Higgs quartic self-coupling is:
 Derived from Rs alone via 1-nu = 1/(2*(1-Rs^2)). This gives:
   - lambda_SM (PDG 2022) = 0.12928: gap = 0.149% = 0.84 sigma. CONSISTENT.
   - vev: v = m_H / sqrt(2*lambda) = 246.185 GeV vs v_EW = 246.22 GeV  (-35 MeV = -0.014%).
-      With alpha^2*phi^2 two-loop correction: v* = 246.219 GeV (-0.306 MeV).
-  - Gamma_H = alpha * Rs * m_H / (4*pi^2) = 4.120 MeV (0.3 sigma from PDG 4.07).
+      With alpha^2*phi^2 two-loop correction: v* = 246.219 GeV (EW gap: -0.7 MeV).
+  - Gamma_H = alpha * Rs * m_H / (4*pi^2) = 4.114 MeV (+1.1% from PDG 4.07).
 
 The Gamma_H formula follows from the alpha self-consistency equation:
   Q*alpha = Rs (leading order)  =>  alpha/phi = Rs/CS
@@ -815,7 +878,7 @@ The Clebsch-Gordan decomposition T_1g x T_1g = A_g + T_1g + H_g in I_h
 (A_g appears exactly once by Schur's lemma) gives the unique Higgs-gauge
 Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 [DOC HIGGS]
 and extends m_H = E_cell*(1+alpha/pi+alpha^2*phi^2) = 125.106 GeV, closing the
-vev gap to -0.306 MeV (-0.0001%). H->WW (T_1g x T_1g -> A_g, CG=1) and H->bb
+vev gap to -0.7 MeV. H->WW (T_1g x T_1g -> A_g, CG=1) and H->bb
 (G_g x G_g -> A_g, CG=1) channels are structurally derived. Forbidden prediction:
 H -> T_1g + T_2g (T_1g x T_2g has no A_g component).
 
@@ -828,10 +891,10 @@ self-energy balance [DOC ALPHA, Section 4.5]:
 Same Fibonacci factor (1+alpha*phi^2) governs BOTH the alpha vertex renormalization
 and the Higgs vev correction alpha^2*phi^2.
 
-Full cell geometry reference: docs/doc_jobson_cell.txt (this series, Record 4).
+Full cell geometry reference: [DOC JOBSON CELL], https://doi.org/10.5281/zenodo.22032906.
 
 Script: torsion_doc.py  (Sec 7.3: Jobson-Higgs conjecture); detailed Higgs
-results in analysis/higgs/higgs_doc.py.
+results in analysis/demos/higgs_doc.py.
 
 7.4  L_J as QCD UV cutoff: asymptotic freedom from cell geometry
 
@@ -850,9 +913,11 @@ scale and the QCD UV cutoff are the same object: the Jobson cell energy.
 
 Lambda_QCD sits at N_J ~ 99 cells -- the deep bulk regime of the cell
 lattice (T2.5), where the medium scatters uniformly and confinement is the
-result. The hadronic Rs deviation (+1.81%) arises because hadronic probes
-(N_J ~ 4.75) are near the cell boundary. Deep-bulk probes (QCD, N_J ~
-99) see the full saturation Rs.
+result. An older, pre-PDG-2022 hadronic Rs deviation of +1.81% was once
+attributed to hadronic probes (N_J ~ 4.75) being near the cell boundary;
+with current PDG 2022 values the hadronic deviation is +0.001% (Section 4),
+so this specific number no longer illustrates a boundary effect -- the
+regime classification itself (bulk vs. near-boundary N_J) is unaffected.
 
 The cell geometry therefore explains three QCD phenomena from one object:
   1. Confinement (below E_cell, medium scatters)
@@ -880,19 +945,27 @@ QCD/EW beta function implications [DOC HIGGS]:
 -----------------------------
 
 [EMPIRICAL, zero free parameters, no cosmological model]:
-  - Rs at nuclear scale: 8/sigma_piN = 0.17778, deviation +0.08%
+  - Rs at nuclear scale: 8/sigma_piN = 0.17778, deviation -0.09%
   - Rs at flyby scale: c_torsion = Rs*c to 0.0001%
-  - a0 = Rs*c*H0 = 1.165e-10 m/s^2, 0.51 sigma from 153 SPARC galaxies
+  - Rs at hadronic scale: kappa*r_p/m_b = 0.17794, deviation +0.001% (PDG 2022)
+  - a0 = Rs*c*H0 = 1.165e-10 m/s^2 (Planck H0); 0.51 sigma from 153 SPARC
+    galaxies using H0=70.0 (Section 5.2, analysis/gravity/mond_rotation.py)
   - nu = 0.4837, K/G = 30.25, Z_s/Z_p = Rs  (from v_p, v_s only)
   - L_J = 9.93e-18 m, N_lock = 532.1  (from CODATA alpha, r_p)
   - Medium is a non-Newtonian (dilatant) liquid: jams under shear
 
-[ESSENTIALLY CLOSED, with Fibonacci correction]:
-  - Rs at hadronic scale: +1.81% deviation; correction direction/sign predicted;
-    k_A = 12*alpha*(1-alpha*phi^2) = 0.08590 (-0.12%); essentially derived.
+[LEGACY, contradicted by current PDG 2022 values, not merely superseded
+ (see Section 4 for the full reasoning)]:
+  - Rs at hadronic scale (pre-PDG-2022): +1.81% deviation; a "Channel A"
+    correction k_A = 12*alpha*(1-alpha*phi^2) = 0.08590 (-0.12%) was proposed.
+    Its N_J_had term depends only on m_b/alpha/phi/r_p, never on kappa, so
+    it predicts a fixed +1.81% excess at any kappa precision -- contradicted
+    by the current PDG 2022 kappa, which gives +0.001% directly, no
+    correction needed or supported.
 
 [EMPIRICAL, with H0 systematic]:
-  - Rs at galactic scale: -0.84% deviation consistent with H0 tension
+  - Rs at galactic scale: +2.98% deviation (Planck H0) / -5.31% (local H0),
+    consistent with the ~8% CMB-vs-local H0 tension (Section 2.4)
 
 [DERIVED (2026-08-22 update; corrected 2026-09-02, see Section 3.1)]:
   - v_p = c: A_g isotropic compression mode has C5 char = +1 (trivial, totally
@@ -916,7 +989,7 @@ QCD/EW beta function implications [DOC HIGGS]:
     mode); A_g = isotropic compression cone (the v_p/GW170817 branch).
   - Wave linger = entrainment force: see PHYSICAL MODEL section above.
   - Flex/jamming unified: geometric (3V-E=6) and elastic yield are the same
-    event at Maxwell criticality. [doc_jobson_cell.txt; jobson_cell_doc.py 47/47]
+    event at Maxwell criticality. [DOC JOBSON CELL; jobson_cell_doc.py 47/47]
 
 [DERIVED (2026-08-22 update -- crystal field projection)]:
   When Jobson cells (I_h medium) are embedded in a macroscopic crystal with lower
@@ -939,13 +1012,14 @@ What this paper does NOT claim:
     from four empirical coincidences plus GW170817 and Planck 2018)
   - That the MOND effect is fully explained (only a0 is derived; the
     interpolation function mu(x) = x/sqrt(x^2+G/K) is NOW derived
-    from K/G = 30.25 -- mond_interpolation.py 8/8 PASS, N-3 CLOSED)
+    from K/G = 30.25 -- mond_interpolation.py 8/8 PASS, N-3; the quadrature
+    combination rule itself is an ansatz, not separately derived)
   - That k_A = 12*alpha*(1-alpha*phi^2) is axiomatically proven. The formula
     matches to -0.12%; the physical argument (12 icosahedral vertices × alpha ×
     Fibonacci correction) is compelling but not yet a formal topological proof.
   - That the Jobson-Higgs mechanism constitutes an axiomatic mathematical proof.
     All core claims (m_H, v, lambda, Weinberg angle, SSB=jamming, Gamma_H) are
-    derived with zero free parameters and documented in doc_higgs. The derivation
+    derived with zero free parameters and documented in [DOC HIGGS]. The derivation
     is physics-level, not a formal axiom proof. The field identity -- whether the
     cell's Lagrangian L_HWW IS the SM Higgs Lagrangian -- remains interpretive.
 
@@ -954,11 +1028,11 @@ What this paper does NOT claim:
 --------------
 
 The ratio Rs = sqrt(5)/(4*pi) = 0.17794 appears at four independent
-experimental scales with a cluster mean deviation of -0.22% and 1.11% spread,
+experimental scales with a cluster mean deviation of +0.72% and 1.30% spread,
 with zero free parameters adjusted. The four appearances are:
-nuclear binding (0.08%), hadronic string tension (0.034% with regime correction),
-galactic MOND acceleration (0.84% with H0 systematic), and spacecraft flyby
-K-formula (0.0001%).
+nuclear binding (-0.09%), hadronic string tension (+0.001%, current PDG 2022),
+galactic MOND acceleration (+2.98% at Planck H0, -5.31% at local H0, tracking
+the known H0 tension), and spacecraft flyby K-formula (0.0001%).
 
 From two direct observational inputs (v_gw = c from GW170817; c_torsion = Rs*c
 from flyby anomaly) model-independent properties of the torsion medium are
@@ -974,7 +1048,7 @@ Three falsifiable predictions distinguish this framework from alternatives:
 
 Note on prediction (1): This assumes standard cosmological coupling -- H0 is
 the cosmic expansion rate and a0 = Rs*c*H(z) evolves with it. An alternative
-interpretation being investigated (doc_orbit_pressure.txt)
+interpretation being investigated ([DOC ORBIT PRESSURE])
 treats redshift as locally generated by stellar/planetary boson emission, in
 which case H would be approximately constant across z and a0 would be constant.
 The JWST measurement therefore distinguishes two interpretations simultaneously:
@@ -987,6 +1061,10 @@ the companion paper [DOC ALPHA].
 COMPANION SCRIPTS (reproducibility):
   analysis/demos/torsion_doc.py        -- MAIN: all key results, all sections  [STANDALONE -- no external deps]
   analysis/gravity/ih_lattice_phonon.py -- derived lattice: V/E/F, shells, n=18; 19/19 PASS
+  analysis/gravity/mond_rotation.py    -- 0.51 sigma RAR comparison (Section 5.2)
+  analysis/gravity/mond_interpolation.py -- MOND interpolation function (Section 5.1a)
+  analysis/alpha/pulsar_double_spin.py -- PSR B1828-11 corroboration (Section 7.2)
+  analysis/quantum/face_gluon_geometry.py -- FG5, T_2g shear amplitude (Section 3.1)
   Repository: https://doi.org/10.5281/zenodo.22016573
 
 
@@ -1042,8 +1120,24 @@ REFERENCES
      Constant from the (1,2) Hopf Fibration.
      https://doi.org/10.5281/zenodo.22013651
 
+[DOC HIGGS] Jobson, R. (2026). The Jobson-Higgs Connection.
+     https://doi.org/10.5281/zenodo.22032555
 
-Repository: https://doi.org/10.5281/zenodo.22105622
+[DOC JOBSON CELL] Jobson, R. (2026). The Jobson Cell: Icosahedral Unit Cell
+     of the Torsion Medium.
+     https://doi.org/10.5281/zenodo.22032906
+
+[DOC MAGNETISM] Jobson, R. (2026). Magnetism, Electricity and Torsion: Field
+     Phenomena as Pressure and Shear in the Torsion Medium.
+     https://doi.org/10.5281/zenodo.22036406
+
+[DOC ORBIT PRESSURE] Jobson, R. (2026). Orbit as Torsion Medium Pressure:
+     Scale Invariance from Hadronic to Planetary, with a First-Principles
+     Derivation of Newton's Constant G.
+     https://doi.org/10.5281/zenodo.22044378
+
+
+Repository: https://doi.org/10.5281/zenodo.22016573
 Code:        https://github.com/Destraag/torsionverse_public
 
 =============================================================================

@@ -18,7 +18,7 @@ ESTABLISHED INPUTS (all from prior scripts, no new assumptions):
   - V(r) = alpha*hbar_c/r  [Coulomb potential, doc_higgs C7]
 
 Run: python analysis/nuclear/proton_structure.py
-Reference: docs/nuclear_pressure.txt
+Reference: docs/series1/doc_nucleus.txt
 """
 
 import sys, os, math
@@ -237,7 +237,7 @@ print(f"  Total checks: {len(results)}   PASS: {passed}   FAIL: {failed}")
 if failed == 0:
     print()
     print("  ALL CHECKS PASSED.")
-    print("  Reference: docs/nuclear_pressure.txt")
+    print("  Reference: docs/series1/doc_nucleus.txt")
     print("  Key numbers for the proton structure section:")
     print(f"    N_J_p = {N_J_p:.2f}  (boundary, Maxwell critical)")
     print(f"    lambda_p = {lambda_p_fm:.4f} fm  (Compton wavelength = 21 cells)")

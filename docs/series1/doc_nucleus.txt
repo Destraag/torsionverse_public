@@ -401,7 +401,7 @@ derive quark irrep assignment (T_1u vs T_2u) from I_h mode geometry]
       The 3 quarks must form a color singlet (A_g from face 3-coloring, F-7).
       Only 3-quark (baryon) and 2-quark (meson) configurations are color-neutral.
       More quarks would require additional color singlets = higher energy states.
-      Formal proof: F-7 CLOSED 2026-08-23 [su3_from_faces.py 8/8 PASS].
+      Formal proof: F-7 CLOSED 2026-08-23 [su3_from_faces.py 11/11 PASS].
 
   (2) SEA QUARKS AS TRANSIENT NEXUS OCCUPANCY:
       Higher-mode windings (s, c quarks = edge and face windings) can transiently
@@ -682,7 +682,7 @@ ESSENTIALLY CLOSED:
 
 ESSENTIALLY CLOSED (g_p, added 2026-08-21):
   - Proton anomalous magnetic moment g_p = 2.7928 nuclear magnetons  [+0.23%]
-    Script: analysis/nuclear/proton_g_factor.py
+    Script: analysis/demos/nucleus_doc.py (N15-N17)
       mu_p = R_spin * mu_SU6 + mu_orbital + mu_Zone3
       R_spin = R_spin_Zone1 * (1 + 2*Rs^2)    [Zone 1 proxy * Maxwell jamming]
       = 0.6530 * 1.063326 = 0.6943
@@ -691,6 +691,12 @@ ESSENTIALLY CLOSED (g_p, added 2026-08-21):
       mu_Zone3 = 0.360 mu_N  (Zone 3 spinning shell, uniform pressure)
       TOTAL    = 2.0830 + 0.3559 + 0.3602 = 2.799 mu_N  (err +0.23%)
       Measured = 2.7928 mu_N
+      CROSS-CHECK: analysis/nuclear/proton_g_factor.py separately explores
+      simpler single-mechanism models (SU(6) alone, MIT bag alone, string
+      model alone, pressure-divergence alone) -- none reaches this precision
+      on its own (best is plain SU(6) at +7.4%); this confirms the combined
+      Zone-1-proxy + Zone-2-jam + orbital + Zone-3 picture above is needed,
+      not any single piece of it.
 
     PHYSICAL MECHANISM:
       The correction 2*Rs^2 = 2*G/K comes from the Jobson cell state at
@@ -755,7 +761,7 @@ ESSENTIALLY CLOSED (added 2026-08-21):
       The 1i_{13/2} intruder (dim=14) closes the gap.
       l=6 orbital -> A_g+T_1g+G_g+H_g [NG11]; T_2g absent from l=6.
       2I double group: j=13/2 = E+(2)+E-(2)+G32(4)+I52(6). No T_2g.
-      [ih_double_group.py DG7/DG10, 10/10 PASS -- doc '2*(T_2g+G_g)' corrected]
+      [ih_double_group.py DG7/DG10, 15/15 PASS -- doc '2*(T_2g+G_g)' corrected]
       G_g (dim=4) appears via G32 spinor. The G_g connection to magic 28/iron holds.
       Secondary proton magic: Z=126 (3p fill). Next: Z=136 (2g_{9/2}, dim=10=2*H_g).
 
@@ -791,11 +797,16 @@ ESSENTIALLY CLOSED (added 2026-08-21):
     NOTE ON EXACT N FOR ISLAND:
       Geometric prediction: N=184 from I_h shell closure (2*(G_g+G_g), NG13).
       Measured peak N=178-184 consistent with T_1g+G_g geometry and deformation
-      minimum at T_1g shell closure. [nuclear_geometry.py 15/15 PASS]
+      minimum at T_1g shell closure. [nuclear_geometry.py 19/19 PASS]
   - r_p / lambda_p = 4 formal derivation: CLOSED  [added 2026-08-21]
     4 = Hopf winding (2) x spin-1/2 factor (2); equivalently m_p * r_p = 4*hbar_c.
     Consequence: alpha_grav = (m_p/E_cell)^18 = (2*alpha*phi/pi)^18  [DERIVED]
-    G = 6.656e-11 m^3/(kg*s^2)  (-0.27%, 1.2-sigma from CODATA 6.674e-11)
+    G = 6.656e-11 m^3/(kg*s^2)  (-0.27%; 1.2-sigma against the r_p-propagated
+    +-4.1% theory-uncertainty band, NOT CODATA's own 22 ppm measurement
+    uncertainty, which this miss exceeds by ~120x -- G remains the least
+    precisely measured fundamental constant, so bounding against the
+    theory-side r_p uncertainty is defensible, but the two bands should
+    not be conflated)
     18 = 3*(3V-E) = 3D * Maxwell criterion  [script: alpha_grav_derivation.py]
   - Pion mass from torsion medium (sets nuclear force range r_0, needed to close a_C)
 
@@ -807,7 +818,7 @@ ESSENTIALLY CLOSED (added 2026-08-21):
 
   Additional geometric and double-group scripts:
     analysis/nuclear/nuclear_geometry.py   -- 19/19 PASS  [Zone radii, I_h orbital CG, N=184 basis, prolate pocket search]
-    analysis/nuclear/ih_double_group.py    -- 10/10 PASS  [2I character table, j=13/2, j=15/2]
+    analysis/nuclear/ih_double_group.py    -- 15/15 PASS  [2I character table, j=13/2, j=15/2]
     analysis/nuclear/ih_double_cg.py       -- 13/13 PASS  [full 2I CG table, H-1 closed]
     analysis/nuclear/magic82_softness.py   --  7/7  PASS  [T_2g bias at magic 82, N-8 closed]
 

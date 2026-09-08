@@ -20,8 +20,14 @@ CHECKS:
   KP4: Koide = 2/3 with exact values (expect essentially exact)
   KP5: Koide algebraic identity: 4(ab+bc+ca) = a^2+b^2+c^2 where a,b,c=sqrt(m_k)
   KP6: Tau Born balance structure with exact base_tau
-  KP7: Leading-order K0 above 2/3 (4442 ppm gap, determined by geometry)
+  KP7: Leading-order K0 above 2/3 (4442 ppm gap; eff_mu here is the KP1
+       PDG-mass inversion, NOT an independent geometric result -- see KP9)
   KP8: Geometric origin 2/3 = (dim T1g + dim T2g) / dim(T1g x T2g) = 6/9 exactly
+  KP9: Using the SETTLED bipyramid eff_mu=(9-sqrt5)/8 (doc_leptons.txt Section
+       4.3, muon_bipyramid_edge_condition.py BR1-BR3) instead of the KP1
+       inversion, Koide-required m_tau vs PDG
+  KP10: Required tau correction factor (m_tau_required/base_tau) vs simple
+       candidate closed forms
 
 Run: python analysis/quantum/koide_proof.py
 """
@@ -337,17 +343,105 @@ print(f"  they are algebraically FORCED by the same icosahedral geometry that")
 print(f"  produces the leading-order masses. The Euler formula V-E+F=2 constrains")
 print(f"  the correction structure to produce exactly the Koide shift.")
 print()
-print(f"  STATUS: The Born balance is DETERMINED (not free).")
-print(f"  The muon path = gluon edge channels with exactly 72-deg deflections,")
-print(f"  forced by C5 vertex geometry [FG9]. A fixed path has a unique Born")
-print(f"  balance, so eff_mu = 0.8563 is DETERMINED by the geometry -- we have")
-print(f"  found it by formula inversion; expressing it in closed algebraic form")
-print(f"  is the remaining step (not finding it). The Koide proof is essentially")
-print(f"  complete: all path geometries determined, 2/3 geometric origin proven (KP8).")
+print(f"  STATUS (CORRECTED 2026-09-08): eff_mu=0.8563 above is a NUMERICAL")
+print(f"  INVERSION against the PDG mass (doc_leptons.txt Section 4.3 candidate")
+print(f"  (2)), NOT an independent geometric derivation -- this script previously")
+print(f"  overclaimed that the uniform-72-deg path [FG9] 'determines' 0.8563.")
+print(f"  Direct computation on that exact path (muon_internal_force_check.py")
+print(f"  F1-F2) gives a TRIVIAL/degenerate Born-ratio of 1.0, not 0.8563 -- that")
+print(f"  path belongs to the STRUCTURAL G32 mode, not the free muon. The settled")
+print(f"  free-muon value is eff_mu=(9-sqrt5)/8=0.845492 (bipyramid, all-edges-")
+print(f"  equal condition, muon_bipyramid_edge_condition.py BR1-BR3) -- see Step 6")
+print(f"  below for the Koide back-out using THIS value.")
 
-check("KP7 Leading-order K0 is above 2/3 (4442 ppm(abs) gap -- Born values are DETERMINED)",
+check("KP7 Leading-order K0 is above 2/3 (4442 ppm(abs) gap)",
       K0 > 2/3,
-      f"K0={K0:.8f}; gap={K0-2/3:.6f}; eff_mu=0.8563 determined by C5/gluon path [FG9]")
+      f"K0={K0:.8f}; gap={K0-2/3:.6f}; eff_mu=0.8563 here is the KP1 mass-inversion, not a geometric derivation -- see KP9/Step 6")
+
+# ── Step 6: SETTLED (not inverted) eff_mu -- what does Koide require of tau? ──
+print()
+print(SEP)
+print("STEP 6: SETTLED (BIPYRAMID) eff_mu -- WHAT DOES KOIDE REQUIRE OF TAU?")
+print(SEP2)
+print()
+print("  Step 5's eff_mu=0.8563 is a numerical inversion against the PDG mass,")
+print("  not an independent geometric result (see corrected STATUS note above).")
+print("  The session that resolved the free muon's actual Born balance found")
+print("  eff_mu=(9-sqrt5)/8=0.845492 (bipyramid, all-edges-equal condition,")
+print("  doc_leptons.txt Section 4.3, muon_bipyramid_edge_condition.py BR1-BR3)")
+print("  is the settled, non-circular value. This step redoes the Koide back-out")
+print("  using THIS value instead, to see what it implies for the still-open tau.")
+print()
+
+eff_mu_settled = (9 - math.sqrt(5)) / 8
+m_mu_settled   = m_mu_from_eff(eff_mu_settled)
+m_e_settled    = m_e_pred   # eff_e=phi, unaffected by the muon correction
+
+print(f"  eff_mu (settled, bipyramid) = {eff_mu_settled:.10f}")
+print(f"  m_mu (settled)  = {m_mu_settled:.6f} MeV  (PDG {m_mu_pdg}, {((m_mu_settled-m_mu_pdg)/m_mu_pdg*100):+.4f}%)")
+print(f"  m_e  (settled)  = {m_e_settled:.6f} MeV  (PDG {m_e_pdg}, {((m_e_settled-m_e_pdg)/m_e_pdg*100):+.6f}%)")
+print()
+
+def koide_K(m_e_v, m_mu_v, m_tau_v):
+    aa, bb, cc = math.sqrt(m_e_v), math.sqrt(m_mu_v), math.sqrt(m_tau_v)
+    return (aa**2 + bb**2 + cc**2) / (aa + bb + cc)**2
+
+def m_tau_koide_solve(m_e_v, m_mu_v, lo=1000.0, hi=3000.0):
+    f = lambda mt: koide_K(m_e_v, m_mu_v, mt) - 2/3
+    if HAS_SCIPY:
+        return brentq(f, lo, hi, xtol=1e-10)
+    flo, fhi = f(lo), f(hi)
+    for _ in range(100):
+        mid = (lo + hi) / 2
+        fm = f(mid)
+        if (flo < 0) == (fm < 0):
+            lo, flo = mid, fm
+        else:
+            hi, fhi = mid, fm
+    return (lo + hi) / 2
+
+m_tau_required = m_tau_koide_solve(m_e_settled, m_mu_settled)
+err_vs_pdg  = (m_tau_required - m_tau_pdg) / m_tau_pdg * 100
+err_vs_lead = (m_tau_required - base_tau_corkscrew) / base_tau_corkscrew * 100
+print(f"  m_tau required by Koide (settled m_e, m_mu) = {m_tau_required:.6f} MeV")
+print(f"    vs PDG m_tau = {m_tau_pdg} MeV           (diff = {err_vs_pdg:+.4f}%)")
+print(f"    vs leading-order base_tau = {base_tau_corkscrew:.4f} MeV  (diff = {err_vs_lead:+.4f}%)")
+print()
+
+check("KP9 m_tau required by Koide (settled eff_mu) matches PDG within 0.1%",
+      abs(err_vs_pdg) < 0.1,
+      f"m_tau_required={m_tau_required:.4f} MeV vs PDG={m_tau_pdg} MeV, diff={err_vs_pdg:+.4f}%")
+
+corr_tau_required = m_tau_required / base_tau_corkscrew
+print(f"  Required tau correction factor (m_tau_required/base_tau) = {corr_tau_required:.8f}")
+print()
+
+corr_candidates = {
+    "1 (no correction)":               1.0,
+    "1 + Rs^2":                        1 + Rs2,
+    "1 - Rs^2":                        1 - Rs2,
+    "1 + 2*alpha":                     1 + 2*alpha,
+    "1 - 2*alpha":                     1 - 2*alpha,
+    "1 + Rs^2 + 2*alpha (corr_mu)":    corr_mu,
+    "1 / corr_mu":                     1 / corr_mu,
+    "1 - Rs^2 - 2*alpha":              1 - Rs2 - 2*alpha,
+    "(1-Rs^2)*(1-2*alpha)":            (1 - Rs2) * (1 - 2*alpha),
+    "1 - alpha":                       1 - alpha,
+    "1 + alpha":                       1 + alpha,
+}
+print(f"  Candidate closed forms for {corr_tau_required:.8f}:")
+best_name, best_err = None, 1e10
+for name, val in corr_candidates.items():
+    err = abs(corr_tau_required - val)
+    if err < best_err:
+        best_err, best_name = err, name
+    if err < 0.01:
+        print(f"    {name:35s} = {val:.8f}  delta = {err:+.4e}")
+print(f"  Closest candidate: {best_name} (delta={best_err:+.4e})")
+
+check("KP10 required tau correction factor matches a simple closed form within 1e-3",
+      best_err < 1e-3,
+      f"closest={best_name}, delta={best_err:+.4e} -- if FAIL, no clean match found yet (honest negative result)")
 
 # ── Section 6: Geometric origin of 2/3 (proven in face_gluon_geometry.py FG11) ──
 print()
@@ -407,6 +501,9 @@ print(f"  [Icosahedral angle closest: check above]")
 print()
 print(f"  Leading-order Koide K0 = {K0:.10f}  (2/3 = {2/3:.10f})")
 print(f"  K-shift from 2/3 (absolute, not relative ppm): {(K0-2/3)*1e6:.2f} ppm(abs)")
+print()
+print(f"  m_tau required by Koide (settled eff_mu) = {m_tau_required:.4f} MeV  (PDG {m_tau_pdg}, {err_vs_pdg:+.4f}%)")
+print(f"  Required tau correction factor            = {corr_tau_required:.8f}  (closest: {best_name})")
 print()
 print(f"  Total: {passed}/{len(results)}  ({passed} PASS, {failed} FAIL)")
 if failed == 0:

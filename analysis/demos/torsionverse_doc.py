@@ -169,7 +169,7 @@ check("SY4 gravitational dilation at surface = GM/(R_E*c^2) ~ 6.96e-10",
 # =============================================================================
 print()
 print(SEP2)
-print("SECTION 4: GPS dual Bernoulli correction  (+45.9 - 7.2 = +38.7 us/day)")
+print("SECTION 4: GPS dual Bernoulli correction  (+45.7 - 7.2 = +38.5 us/day)")
 print(SEP2)
 # GPS satellites experience BOTH Bernoulli effects simultaneously.
 # (1) Gravitational: stretched medium at altitude -> satellite clock FAST.

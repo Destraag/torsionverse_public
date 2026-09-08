@@ -1239,8 +1239,11 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
                                                      vertex EXACTLY 5x =      60 = 12x5 = gluon
                                                      gluon channel count).    count = muon visits.
                                                      FREE MUON (1 circuit,
-                                                     2 corpuscles) is the
-                                                     observable lepton.
+                                                     1 corpuscle) is the
+                                                     observable lepton --
+                                                     bilateral pairing is a
+                                                     resting-cell force-
+                                                     cancellation need only.
 
   Tau pair     2      3 face-    20 face centers    TWO corpuscle photons on  Bilateral: meet       tau
   (I52)       (fwd +  colors     r=0.756xL_J        unique Hamiltonian        every 10 nexuses      lepton
@@ -1281,7 +1284,9 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
           Using more circuits would constitute an excited structural state.
           [muon_orbit_count.py MO1-MO6: orbit structure proven, sizes 10+30+30=70]
         [60 = 12x5 = gluon count = muon vertex visits (10x6=60) -- exact match]
-        [Free muon (observable lepton): 2 photons, 1 circuit -- separate]
+        [Free muon (observable lepton): 1 photon, 1 circuit -- separate;
+         the structural mode's bilateral pairing is a force-cancellation
+         requirement that does not apply to a freely propagating circuit]
       tau pair (face corkscrew):          2 photons (1 bilateral Hamiltonian circuit)
     ALL 62 nexus forces = 0 proven: [jobson_cell_force_balance.py 19/19 PASS]
 

@@ -34,7 +34,68 @@ RESOLVED ITEMS: moved to docs/series1/judgment_calls_resolved.txt to keep
   sweep still need genuine author judgment and remain below: LP2-2,
   MG2-2. NC-J1 and LP2-6 (both new items found/resolved
   same-session, 2026-09-03), EL-J1 (resolved 2026-09-04), and MG2-1
-  (fully resolved 2026-09-04), also moved to the archive.
+  (fully resolved 2026-09-04), also moved to the archive. NC2-2 (resolved
+  2026-09-05, G's "1.2-sigma" framing clarified) and EC-1 (resolved
+  2026-09-05, Einstein-Cartan/Tier-4 softening confirmed correct after
+  exhaustive search; fluid-vs-jammed K regime distinction clarified in the
+  doc's shear-wave note) also moved to the archive. PG2-1's quark-flip/
+  beta-decay MECHANISM finding (resolved 2026-09-07: antipodal-vertex and
+  edge-hop mechanisms both retracted, CG selection rule stands) also moved
+  to the archive; PG2-1's BROADER multi-cell-gap scope remains open below
+  (short pointer entry), alongside a new N2-1 (doc_nucleus.txt mesh/grind
+  review, not yet started). LP2-2 (resolved 2026-09-07: which eff_mu
+  candidate to use, and why, is now settled and documented in
+  doc_leptons.txt Section 4.3; the underlying Born-balance derivation gap
+  remains open, tracked as L-MU-BORN in open_items.txt) also moved to the
+  archive.
+
+=============================================================================
+PLANNED WORK / NEXT SESSION PRIORITIES (recorded 2026-09-05)
+=============================================================================
+
+PLANNED AUDIT: GR/SR-reproduction vs. medium-specific-prediction sweep
+  MOTIVATION (found 2026-09-05): the GPS "dual Bernoulli" time-dilation
+  calc (analysis/demos/torsionverse_doc.py Section 4; doc_torsionverse.txt
+  Sections 7.2-7.4) uses ZERO medium-specific quantities in its actual
+  formulas -- no Rs, K, G (shear/bulk modulus), or rho anywhere -- it is
+  exactly the standard GR potential-difference term (delta_phi/c^2) plus
+  the standard SR term (v^2/2c^2), narrated as "medium stretch" and
+  "kinematic Bernoulli" after the fact. It is presented with the same
+  PASS/CLOSED formatting as genuine medium-specific predictions (e.g.
+  a_0=Rs*c*H0, K/G=30.25, n=18=3*(3V-E)) that DO use the medium's own
+  parameters and could have failed to match real data. Same reuse pattern
+  already present for the Shapiro delay formula (doc_orbit_pressure.txt
+  Section 4.2, verbatim GR formula). Mercury precession (Tier 2, same doc)
+  is the one place this is already self-flagged honestly ("Indirect: uses
+  GR as intermediate step, not torsion EOMs directly").
+  PROPOSED TASK: systematic sweep of series1 (then series2) for every
+  PROVEN/CLOSED/MATCH claim. For each, check whether the actual formula
+  contains at least one torsion-medium-specific quantity (Rs, K, G, rho,
+  L_J, E_cell, N_J, alpha, phi used non-trivially -- not just as a unit
+  conversion) that could in principle have caused a mismatch with real
+  data. Tag each as either MEDIUM-SPECIFIC PREDICTION (independent
+  evidence for the framework) or REPRODUCES KNOWN PHYSICS (compatibility
+  check only -- legitimate to keep, but must not be labeled/formatted
+  identically to an independent prediction). STATUS: PROPOSED, NOT
+  STARTED -- deferred until the items below are done.
+
+NEXT SESSION PRIORITIES (in order):
+  1. Finish the batch-2 critical-reader sweep: doc_qm.txt, doc_torsion.txt,
+     doc_torsionverse.txt (the 3 series1 docs not yet swept this round;
+     batch-1 covered doc_nucleus.txt, doc_orbit_pressure.txt,
+     doc_particle_generation.txt).
+  2. Resolve the remaining NEEDS-CALL items below (LP2-2, MG2-2, MG-J6,
+     MG-J7, PG2-1).
+  3. AUDIT PAST APPLIED CHANGES: author flagged concern (2026-09-05) that
+     across the volume of edits applied this session and prior sessions,
+     some previously-computed/verified result may have been altered,
+     softened, or dropped without being re-verified against its backing
+     script -- needs a dedicated pass re-checking recent commits/diffs
+     against the scripts they cite to confirm nothing calculated was lost
+     or silently changed. Not yet scoped in detail -- likely means
+     rereading recent git log / diffs against claims_audit.txt and rerunning
+     the cited companion scripts, not just re-reading doc prose.
+  4. THEN: the GR/SR-vs-medium-specific sweep above.
 
 =============================================================================
 DOC: doc_magnetism.txt
@@ -66,6 +127,57 @@ MG-J6 [NEEDS-CALL, MAJOR] T_2g vs H_g: which is the medium's actual elastic
   remaining question, and still points to the same doc_torsion.txt Section
   3.1/3.3 and doc_magnetism.txt Section 1.1 passages where the underlying
   4.22% figure originates.
+
+  AFFECTED PASSAGES (update all of these when MG-J6 resolves; light hedges
+  already added 2026-09-06 pending resolution, cross-referencing
+  doc_magnetism.txt Section 1.1 as the canonical "current state" pointer):
+    - doc_magnetism.txt Section 1.1 (home passage, unhedged -- states
+      v_s=Rs*c as the shear channel without qualification; the doc where
+      the eventual resolution's authoritative statement should live)
+    - doc_torsion.txt Section 3.1, Input 2 (hedged 2026-09-06)
+    - doc_torsion.txt "WHY 'TORSION MEDIUM'" naming rationale, item (2)
+      (hedged 2026-09-06)
+    - doc_torsionverse.txt Section 8b, Jobson cell mode-assignment table,
+      "T_2g (3): Face shear" row (hedged 2026-09-06)
+
+  NEW EVIDENCE (2026-09-05, analysis/medium/mg_j6_dynamical_matrix_irrep_check.py):
+  built the actual central-force dynamical matrix for a single Jobson cell
+  (identical construction to ih_lattice_phonon.py -- real 3D icosahedron
+  vertices, real nearest-neighbor bonds, unit spring constants), generated
+  the true 60-element icosahedral rotation group by closure, and computed
+  the character of the group action restricted to each degenerate
+  eigenspace to identify its I_h irrep directly (not just asked what
+  continuum elasticity ALLOWS, as icosahedral_elastic_isotropy_check.py
+  does). Result: the 30 non-zero eigenmodes decompose EXACTLY (residual
+  ~0 at every cluster) as A_g + T_1g + T_2g + 2*G_g + 3*H_g -- BOTH T_2g
+  (at eigenvalue 3-sqrt(5)=0.7639, multiplicity 1) AND H_g (at three
+  distinct eigenvalues 0.5858, 1.0, 3.4142, the lowest of which is the
+  LOWEST stiffness mode of the whole cell) appear as genuinely SEPARATE,
+  mechanically distinguishable eigenmodes at DIFFERENT stiffnesses, not
+  the same mode under two labels. This weighs against (a) (T_2g/H_g forced
+  to be the same channel) and toward (b) (T_2g is a genuinely separate
+  mode) -- at least at the single-cell level.
+  CAVEAT (why this doesn't fully close MG-J6): this is a single, ISOLATED
+  cell's own vibrational spectrum (unit spring constants, dimensionless
+  eigenvalues) -- not the coupled MANY-CELL bulk medium's phonon dispersion
+  at q->0, which is what v_s=Rs*c (the actual physical quantity MG-J6 is
+  about) requires. notes/research_notes.txt's own agenda item for closing
+  n=18 makes the same point ("true icosahedral symmetry is quasicrystalline;
+  use the closest periodic approximant, or treat the single-cell model with
+  periodic BCs") -- the natural next step to fully settle MG-J6 is the same
+  kind of bulk/periodic-lattice calculation, checking whether the LOWEST
+  non-zero branch at q->0 (the propagating acoustic/shear branch candidate
+  for v_s) is T_2g-symmetric or H_g-symmetric in the coupled lattice, not
+  just in one isolated cell.
+
+  DEAD END CHECKED (2026-09-05): tried testing T_2g vs H_g via the
+  "dim(channel)*6" exponent pattern from MG2-2's K=1/eps_0 finding --
+  predicted G (shear modulus) should show alpha^18 (T_2g) or alpha^30
+  (H_g) scaling; analysis/medium/archive/G_from_cell_scale_survey.py
+  finds NEITHER (best fits
+  are n=15 and n=7 for the two natural scales, nowhere near 18 or 30).
+  This route does not discriminate T_2g vs H_g -- see MG2-2 for the full
+  result. Don't retry this specific approach without new input.
 
 MG-J7 [NEEDS-CALL, MAJOR] Does the rho=mu_0 derivation itself mix the same
   two regimes (static vs jammed) that MG-J5 did? CONFIRMED (2026-09-04,
@@ -219,10 +331,243 @@ MG-J7 [NEEDS-CALL, MAJOR] Does the rho=mu_0 derivation itself mix the same
   did not) or a new experimental/observational input not yet considered.
   STATUS: this is the framework's single most load-bearing, most-cited
   result (used throughout every companion paper). NEEDS AUTHOR CALL:
-  (A), (B), or hold for further investigation of a third option -- no doc
-  text (doc_magnetism.txt, doc_torsion.txt, or any citing companion paper)
-  has been changed yet pending this decision.
+  (A), (B), or hold for further investigation of a third option.
 
+  AFFECTED PASSAGES (update all of these when MG-J7 resolves; light hedges
+  already added 2026-09-06 pending resolution, cross-referencing
+  doc_magnetism.txt Section 1.1 as the canonical "current state" pointer):
+    - doc_magnetism.txt Section 1.1 (home passage, unhedged for THIS issue
+      specifically -- it has an unrelated SI-definition caveat already, but
+      no hedge about the fluid/jammed regime conflation; the doc where the
+      eventual resolution's authoritative statement should live)
+    - doc_torsion.txt Abstract (hedged 2026-09-06, cross-refs Section 3.3)
+    - doc_torsion.txt Section 3.3 (already had its own hedge before
+      2026-09-06: "This reframing surfaces a further, separate question
+      worth its own scrutiny... Not resolved here")
+    - doc_torsionverse.txt Section 1.2, PRESSURE WAVE / rho=mu_0 line
+      (hedged 2026-09-06)
+
+  NOTE (2026-09-05): the new analysis/medium/mg_j6_dynamical_matrix_irrep_check.py
+  script (see MG-J6 above) does NOT bear on this item -- it uses unit
+  spring constants/masses (dimensionless mode-counting and irrep-labeling
+  only), same as ih_lattice_phonon.py, and supplies no absolute K, G, or
+  rho in physical units. It answers a different question (which IRREP a
+  mode transforms as) than this item (what sets the medium's absolute
+  stiffness SCALE).
+
+  VERDICT ON THE RECALLED "alpha^6 vs 6 Maxwell modes" LEAD (2026-09-05,
+  requested by author): analysis/medium/archive/mg_j5_exponent6_candidate_search.py
+  numerically checked alpha^6, 6*alpha, Rs^6, (K/G)^(+-1/6), phi^-6, and
+  several others against the exact 4.22% target (= 4/3*Rs^2). Closest were
+  6*alpha (4.38%) and (1-alpha)^6-1 (4.30%) -- both off by 2-6% relative,
+  not the sub-0.1%-or-exact precision this framework treats as a real
+  identity elsewhere (Rs, phi, K/G themselves match to many more digits).
+  PHYSICS-BASED VERDICT (not just the numerical near-miss): NO principled
+  link found between "6" (the Maxwell soft-mode COUNT, an I_h rigidity/
+  combinatorial fact used only for the n=18 gravity exponent, NC2-1 above)
+  and "4/3" (the coefficient in the 4.22% figure, which comes from the
+  GENERIC isotropic-elasticity P-wave formula v_p^2=(K+4G/3)/rho -- the
+  same "4/3" applies to steel, rock, or any isotropic solid, with no
+  icosahedral-specific origin at all). These two numbers come from
+  unconnected parts of the theory (a rigidity count vs. a textbook
+  elasticity coefficient); there is no known mechanism by which raising
+  alpha (or Rs) to the 6th power should reproduce a quantity built from
+  the 4/3 elasticity coefficient. CONCLUSION: the closeness of 6*alpha to
+  4.22% is most likely coincidental (same order of magnitude, not a
+  derived identity) -- NOT recommended as an explanation for the 4.22%
+  gap unless a specific derivational mechanism connecting the two is
+  identified (none found after this search).
+  AUTHOR INPUT ON THE THREE-WAY G FORK (2026-09-05): author's own call on
+  the (1)/(2)/(3) fork above -- G is NOT a fixed ambient property (rules
+  out (1)). G is transient, and the deciding factor for when it switches
+  on is STRAIN RATE, tied to the same Maxwell-criticality condition used
+  elsewhere in the framework (3V-E=6) -- a refinement of (3), effectively
+  absorbing (2)'s transience claim into a strain-rate-triggered version of
+  it. The original mental model (cells jamming by how they lock together
+  geometrically) has been superseded by this strain-rate criterion; not
+  yet reduced to an explicit formula/threshold. Author also flags G may
+  not be EXACTLY zero prior to the jam state, but suspects it is.
+  IMPLICATION (not yet verified or quantified): if G only exists where/
+  when an active disturbance is actually straining the medium fast enough,
+  the "FURTHER COMPLICATION" reading above (a compression wave passing
+  through a region NOT undergoing that active strain correctly sees G=0
+  and uses the simple v_p^2=K/rho relation without contradiction) becomes
+  the front-runner -- which would mean rho=mu_0 may not need to be
+  conflated with K at all in that case, a THIRD possible resolution
+  distinct from both (A) and (B) above. This is a direction, not a closed
+  result: the strain-rate threshold itself is still unquantified, and it
+  has not been checked against T_1g/light (the original tension raised
+  under fork (3): why light, also a genuine propagating wave, is not
+  jammed).
+  NEW LEAD, NOT YET EXPLORED (author, 2026-09-05): Bernoulli's principle
+  may be missing from this picture -- faster local medium flow lowers
+  local pressure, which would extend how much ADDITIONAL stress/strain
+  can be applied before the medium reaches the Maxwell-critical jamming
+  threshold (the "headroom" to criticality is measured from a lower
+  starting pressure). Not yet modeled at all: no script or derivation in
+  this repo currently connects Bernoulli flow-pressure to the jamming
+  threshold. Worth its own dedicated investigation before this item can
+  move past NEEDS-CALL.
+  STATUS: still NEEDS-CALL/OPEN -- the STOP SIGN above still applies (no
+  doc text change resolving A/B/neither pending an actual derivation of
+  the strain-rate threshold and its interaction with Bernoulli); this
+  entry records a substantive narrowing of direction, not a resolution.
+
+  CHECKED (2026-09-05, analysis/medium/bernoulli_vs_422_gap_check.py,
+  0/4 -- expected FAILs, a negative result): does Bernoulli ALSO explain
+  the specific 4.22% (=4/3*Rs^2) size of the K_fluid/K_jammed gap, not just
+  the separate jamming-threshold question above? NO, on two independent
+  grounds. STRUCTURAL: the "4/3" in v_p^2=(K+4G/3)/rho is a STATIC tensor-
+  decomposition fact (splitting a one-directional squeeze into volumetric
+  + deviatoric parts, i.e. the Lame relation c11=K+4G/3) -- no velocity,
+  no flow, nothing time-dependent in its derivation, unlike Bernoulli's
+  (1/2)*rho*v^2 (a dynamic, energy-conservation-along-a-streamline term).
+  NUMERICAL: (1/2)*rho*v_s^2/K_fluid = 0.5*Rs^2 = 1.58%, not 4.22% -- off
+  by a clean factor of 8/3; (1/2)*rho*v_p^2/K_fluid is a trivial 50% either
+  way. The speed that WOULD reproduce 4.22% exactly (1.633*v_s) is close
+  to phi=1.618 (~0.9% apart) but not equal, and no derivation connects
+  them -- treated as a coincidence, not a lead, per this repo's repeated
+  experience with near-misses of this kind (MG-J5's alpha^6 search, etc.).
+  IMPORTANT: this does NOT touch the separate, still-open question above
+  (Bernoulli extending the stress headroom before the Maxwell-critical
+  jamming THRESHOLD triggers) -- that is about WHEN jamming starts, this
+  checked only whether Bernoulli sets the SIZE of the gap once jammed.
+  That threshold question remains open and unquantified.
+
+  FOLLOW-UP (2026-09-05, author): isn't phi -- the framework's OWN existing
+  "vortex around a spinning body" coupling factor (doc_gyroscope.txt:
+  chi(T_1g,C5)=phi, chi(T_2g,C5)=-1/phi, applied to spinning/circulating
+  systems) -- the more natural candidate here than the bare Bernoulli speed
+  ratio sqrt(8/3)=1.633? And can this be checked against real Earth values?
+  CHECKED (analysis/medium/bernoulli_phi_vortex_earth_check.py, 1/7 PASS,
+  6 expected FAILs): (1) None of the framework's own phi-based coupling
+  factors (chi(T_1g)=phi, chi^2=phi^2=2.618, chi(T_2g)^2=1/phi^2=0.382,
+  each multiplying the same (1/2)*rho*v_s^2/K_fluid Bernoulli term) hit the
+  4.222% target exactly -- closest is (1/2)*phi^2*Rs^2=4.145%, 1.8%
+  relatively off, a near-miss not the clean multi-digit match this
+  framework treats as a real identity elsewhere. So even granting phi is
+  the right KIND of factor for spinning-body problems (it is, elsewhere in
+  this framework), it does not close this specific gap either. (2) Real-
+  Earth check: NOT available for this specific mechanism -- at Earth's own
+  rotation (v_rim=463 m/s, same value doc_orbit_pressure.txt already uses),
+  the predicted torsion-medium Bernoulli pressure is ~1.3e-1 Pa, about
+  10^5-10^6x smaller than atmospheric pressure or ordinary air drag --
+  this NUMERICALLY CONFIRMS doc_gyroscope.txt Section 1's own pre-existing
+  conclusion ("medium Bernoulli is negligible... standard mechanics
+  applies" at lab/Earth scale). The existing Earth equatorial-bulge match
+  (21.8 vs 21.4 km) uses ordinary centrifugal INERTIA, explicitly NOT this
+  torsion-medium mechanism (doc_orbit_pressure.txt says so directly). So:
+  no real Earth dataset can test this specific question -- the predicted
+  effect is real-but-undetectable at this scale by the framework's own
+  numbers, not merely untested. IMPORTANT CLARIFICATION on where phi
+  actually enters this framework's spinning-body physics: it is an
+  icosahedral GROUP CHARACTER value (a coupling-STRENGTH multiplier
+  applied on top of an otherwise-ordinary classical Bernoulli calculation),
+  not a velocity ratio -- structurally different from what would be needed
+  to explain the 1.633-vs-1.618 near-miss found in the prior check, which
+  was a ratio of two SPEEDS, not a coupling strength.
+
+  MAJOR LEAD (2026-09-06, author-prompted): re-examined docs/
+  doc_investigation_plasma_definition.txt (2026-08-27, never resolved --
+  its own "NEEDS RE-EXAMINATION IN SERIES 3" flag was never acted on,
+  confirmed via repo-wide search, zero hits in series3 or here before
+  today). It already states this medium is NOT classical (Cauchy) elastic
+  -- "cells roll freely... G_shear=rho*v_s^2... is ROTATIONAL contact
+  coupling, not translational shear modulus." This directly undercuts
+  the classical formula v_p^2=(K+4G/3)/rho used throughout MG-J5/6/7 --
+  that formula assumes G is an ORDINARY shear modulus contributing to the
+  LONGITUDINAL branch, which is only true in classical (Cauchy) elasticity.
+  CHECKED (analysis/medium/cosserat_micropolar_K_gap_check.py, 2/2 PASS)
+  against the real, referenced micropolar/Cosserat elasticity dispersion
+  relations (Nowacki 1986; Guarin-Zapata et al. 2020, verified via web
+  fetch): in micropolar theory, the LONGITUDINAL (P) wave is c1^2=
+  (lambda+2*mu)/rho -- CONFIRMED NON-DISPERSIVE and containing NO Cosserat
+  coupling term at all (this directly contradicts an initial hand-derived
+  guess that a coupling term enters v_p -- corrected after checking a
+  real reference, not asserted from memory). The TRANSVERSE (S) wave,
+  by contrast, DOES pick up an extra Cosserat coupling constant (alpha):
+  high-frequency limit c2^2=(mu+alpha)/rho, dispersive, unlike classical.
+  HYPOTHESIS TESTED: if the medium's TRUE classical shear modulus mu=0
+  (matching "cells roll freely" / doc_nucleus.txt "cells SPIN FREELY" --
+  i.e. no resistance to ordinary shape-shear) and the entire "G=rho*
+  (Rs*c)^2" this framework has computed all along is actually the
+  Cosserat coupling alpha (not an ordinary shear modulus), then: the P-wave
+  formula needs NO 4G/3 term at all (mu=0 kills it), so v_p=sqrt(K/rho)
+  with K=K_fluid=1/eps_0 reproduces c EXACTLY -- confirmed (CH1, exact to
+  float precision) -- with NO fluid/jammed K split needed. Separately,
+  alpha=G_apparent exactly reproduces the established v_s=Rs*c via
+  c2^2=(0+alpha)/rho (CH2, exact). Both checks pass; the hypothesis is
+  self-consistent.
+  READING: the entire "4.22% gap" (MG-J5/6/7's core puzzle) may be an
+  ARTIFACT of applying the classical 4G/3 longitudinal correction (valid
+  only if G is an ordinary shear modulus) to a medium whose real "G" is a
+  Cosserat rotational-coupling constant that, per the correctly-referenced
+  theory, should NOT enter the longitudinal branch at all. If so, K was
+  never split -- it is just K_fluid=1/eps_0, and the "K_jammed" number
+  computed throughout this session's prior work was a miscalculation from
+  using the wrong (classical) elasticity formula, not a real second
+  physical regime.
+  NOT YET RESOLVED (this is a promising, referenced-physics-backed lead,
+  NOT a closed result -- real follow-up work remains before adopting it):
+    (1) nu=0.4837 and K/G=30.25 are BOTH computed via classical formulas
+        that also assume v_s^2=mu/rho (ordinary shear) -- under mu=0 their
+        PHYSICAL MEANING changes (they would describe an alpha/K-type
+        ratio, not classical shear stiffness) even if their NUMERIC VALUES
+        may not, since v_s=Rs*c is used identically either way. Not yet
+        checked which parts of the framework (Higgs quartic coupling,
+        Weinberg angle connection [T3.2-dependent sections], MOND mu(x)
+        interpolation) would need re-deriving vs. which stay valid as-is.
+    (2) Real micropolar media generically have TWO more wave types
+        (longitudinal-rotational "corkscrew", transverse-rotational) plus
+        a cutoff frequency and a microinertia J -- none identified with
+        anything in this framework yet; J is a wholly new required input.
+    (3) Only the mu=0 special case was tested; a small nonzero mu would
+        partially reopen a (smaller) gap -- mu=0 is not yet PROVEN, only
+        shown self-consistent and better-motivated than the classical
+        picture given the framework's own "cells roll freely" language.
+  STOP SIGN still applies: no headline doc text (doc_torsion.txt Section
+  3.3's K/G=30.25, nu=0.4837, etc.) should change until (1)-(3) above are
+  worked through -- this is a substantive new direction, not yet a
+  resolution.
+
+  FOLLOW-UP (2026-09-06, author: "finish this lead, scope may mean a lot
+  of changes"): checked whether real, ALREADY-TESTED downstream results
+  actually favor 31.58 (Cosserat, K_fluid/alpha) over the classical 30.25
+  used throughout the repo -- i.e. does the scope turn out as large as
+  feared? CHECKED (analysis/medium/cosserat_KG_downstream_impact_check.py,
+  1/2 -- one expected FAIL, informative not a bug): (1) the 153-SPARC-
+  galaxy, 0.51-sigma a_0 fit (mond_rotation.py) does NOT depend on K/G at
+  all (zero references) -- it tests a_0=Rs*c*H0's absolute value only.
+  The K/G-dependent MOND deep-velocity prediction (34.7% for classical,
+  35.05% for Cosserat) is explicitly labeled by mond_interpolation.py's
+  own text as an untested, FUTURE falsifiable prediction, not something
+  already checked against real data -- so switching here contradicts
+  nothing already confirmed. (2) BUT the Weinberg-angle candidate
+  "7/(1+K/G)" (higgs_pressure_weinberg.py, doc_torsion.txt) IS already
+  compared to a real measured constant (sin^2(theta_W)=0.2231 from
+  m_W/m_Z): classical 30.25 gives 0.42% error; Cosserat 31.58 gives 3.69%
+  error -- WORSE, a real and concrete piece of evidence against a naive
+  "replace 30.25 with 31.58 everywhere" version of this hypothesis.
+  READING: this tempers the feared scope substantially. The "K/G=30.25"
+  computed throughout ~80+ files (grep count) is, in every case checked,
+  a purely GEOMETRIC quantity -- (1-4/3*Rs^2)/Rs^2, a function of Rs
+  alone, never independently referencing K_fluid or eps_0 in the ratio
+  itself. The Cosserat critique specifically targets the LONGITUDINAL
+  (v_p) formula's "4G/3" term; it does NOT automatically mean every other
+  place this same Rs-derived 30.25 number appears is measuring the wrong
+  thing -- the Weinberg-angle check above is direct evidence that at
+  least SOME of those uses are better matched by the classical number.
+  RECOMMENDATION: do NOT blanket-replace K/G=30.25 with 31.58 anywhere in
+  the repo. Keep the Cosserat finding scoped narrowly to what was actually
+  verified -- the v_p/K_fluid relation and the Einstein-Cartan/line485
+  note (already updated) -- and treat every OTHER K/G=30.25 usage as
+  needing its own individual regime-matching check (same lesson as the
+  earlier EC-1 G=Rs^2*K_fluid vs K_jammed/G=30.25 investigation) before
+  touching it, not as automatically affected. This significantly narrows
+  what "finishing this lead" requires: the scope is NOT "rederive 80
+  files" -- it is "confirm the v_p/K_fluid point stands on its own, and
+  leave everything else alone pending its own dedicated check if and when
+  it comes up."
 =============================================================================
 SUBSTANTIVE FINDINGS -- NOT YET DISCUSSED WITH AUTHOR
 -------------------------------------------------------
@@ -230,23 +575,47 @@ Legend as before (OPEN/PROPOSED/NEEDS-CALL). Severity tags (minor/moderate/
 major) are the subagents' own assessments, included as a starting point for
 triage, not a final verdict.
 
-DOC: doc_leptons.txt
----------------------
-LP2-2 [NEEDS-CALL, MAJOR] Section 4's muon mass eff_mu: the doc's wording is
-  now honest about the uncertainty (see judgment_calls_resolved.txt ROUND 3
-  for the citation/wording fix applied), but the underlying physics question
-  remains open: THREE distinct candidate values exist in the repo, none
-  derived from first principles without an external input -- (1)
-  eff_mu=0.845492 (bipyramid analogy, what's actually used in the mass
-  formula); (2) eff_mu=0.856308 (koide_proof.py KP1/KP2, numerical inversion
-  against the PDG-measured muon mass, ~1.3% higher than (1)); (3) eff_mu=1.0
-  (muon_internal_force_check.py F1-F3, recomputing the Born-ratio on the
-  doc's own corrected uniform-72-deg path -- the ratio trivially collapses
-  to 1, suggesting the Born-RATIO construction itself may not carry over
-  from the mixed-mode bipyramid model to the pure single-mode path). NEEDS
-  AUTHOR CALL: which candidate (if any) to adopt as the working value, or
-  whether this needs new derivation work before any of the three can be
-  trusted.
+DOC: doc_qm.txt
+-----------------
+QM2-1 (REMAINING) [NEEDS-CALL, MINOR] Full resolution history moved to
+  judgment_calls_resolved.txt. Two narrow statistics questions survive
+  after the main discreteness-mechanism question was resolved: (1)
+  Sections 4.2/4.2a's discreteness mechanism (short-range r_lock coupling
+  + topological indivisibility) is developed for which-path resolution at
+  a single slit -- not yet explicitly confirmed/written up for the more
+  iconic final-screen case (many pixels, one spot per particle, building
+  the full |psi|^2 pattern over repeated trials); plausibly generalizes
+  but is currently only this review's own extension, not doc text. (2)
+  Even granting discreteness, WHY the coupling location is distributed as
+  |psi(x)|^2 EXACTLY (not some other function of local field strength) is
+  asserted by analogy to energy density, not independently derived from
+  the r_lock mechanism itself -- QM9/QM10 checks (qm_from_medium.py) are a
+  hardcoded True and a bare r_lock>0 sanity check, neither verifies a
+  probability distribution. POSSIBLE LEAD for (2), not yet explored: a
+  competing-atoms/first-past-the-post threshold argument analogous to
+  Section 3's Schwinger pair-production nucleation mechanism. NEEDS
+  AUTHOR CALL: confirm/write up (1) if it holds, explore (2)'s lead or
+  another mechanism, or soften "no additional postulate" to scope
+  precisely to what's actually established (discreteness) vs. asserted by
+  analogy (the |psi|^2 weighting).
+
+QM2-2 [NEEDS-CALL, MINOR] Section 1.1's bulk-modulus/pressure-wave framing
+  ("The torsion medium has bulk modulus K=1/eps_0... The pressure wave
+  speed c=sqrt(K/rho)...") sits in tension with Section 3's own later note
+  ("light propagation = T_1g transverse vector wave... T_1g is transverse,
+  not the v_p compression branch, which is carried by A_g"). A bulk
+  modulus K, by definition in continuum elasticity, governs only the
+  compression/longitudinal (A_g) branch, not the transverse (T_1g)
+  branch -- but Section 1.1 derives the massless wave speed generically
+  via K/rho (an A_g-type derivation) for what turns out (Section 3) to be
+  a T_1g-carried massless mode with its own, separate (vertex-character-
+  based) derivation. The two speeds are numerically identical (both c),
+  so no numeric claim is wrong, but the document uses one derivation
+  route as if it generically underlies a wave that belongs to a
+  different mode. NEEDS AUTHOR CALL: either note explicitly that Section
+  1's K/rho template is mode-agnostic and only fixed to a specific
+  irrep later, or rename "pressure wave" to a mode-neutral term
+  throughout Section 1.
 
 DOC: doc_magnetism.txt
 -----------------------
@@ -280,4 +649,215 @@ MG2-2 [NEEDS-CALL, MAJOR] Sections 1.1/1.2/2.1's central "rho_medium=mu_0,
   independent check, softening the "NEW GROUND" framing accordingly, or (b)
   find/create a genuinely independent measurement route before calling it
   new ground.
+
+  FOLLOW-UP SEARCH (2026-09-04, analysis/medium/K_from_cell_scale_survey.py,
+  KC1-KC3, verified by rerunning: 2/3 PASS): systematically scanned whether
+  any ALREADY-ESTABLISHED torsionverse absolute scale (L_J, E_cell,
+  lambda_e, m_e, m_p) combined with integer powers of alpha (1-7) could
+  independently reproduce K=1/eps_0 = 1.1294e11 Pa (this item's actual
+  target), rather than leaving the independence question purely
+  qualitative. RESULT: every hadronic-scale candidate (L_J/E_cell,
+  anchored to r_p) misses by 13-31 orders of magnitude; every EM-scale
+  candidate (electron Compton wavelength lambda_e) is much closer, and
+  specifically (m_e*c^2/lambda_e^3)*alpha^6 = 2.147e11 Pa, only a FACTOR
+  OF 1.9 from K_target (log10 gap = 0.28) -- close enough that the
+  script's own KC3 check ("no power of alpha 1-7 brings any candidate
+  within 1 order of magnitude") literally FAILS, in tension with the
+  script's prose CONCLUSION describing everything as "far off"/
+  "genuinely missing" -- that prose undersells this one specific
+  candidate; be aware the printed conclusion and the check disagree.
+  IS EXPONENT 6 MOTIVATED, OR JUST THE BEST OF AN UNMOTIVATED SCAN?
+  Exponent 6 was found by brute-force scanning powers 1-7 (alpha^5 misses
+  by factor 260; alpha^7 OVERSHOOTS to factor 0.014 the other way) -- 6
+  was not chosen for a physics reason before the scan, only after.
+  CHECKED (2026-09-04) whether MG-J6's Sym^2(T_1g)=A_g+H_g result (a
+  dimension-1+5=6 decomposition) retroactively motivates exponent 6: NO --
+  that "6" is dim(Sym^2(any 3D vector rep)), a GENERIC fact true for any
+  point group (cubic, tetrahedral, etc.), not icosahedra-specific, so it
+  cannot explain why THIS medium in particular would show a clean alpha^6
+  scaling. A DIFFERENT, genuinely icosahedra-specific "6" already exists
+  in the framework (3V-E=6 Maxwell rigidity count = dim(T_1g)+dim(T_2g),
+  the same "6" underlying all three independent n=18 gravity-exponent
+  arguments, NC2-1 above) -- TESTED (2026-09-05, per author request,
+  analysis/medium/mg2_2_exponent6_maxwell_derivation_test.py, 3/3 PASS):
+  the established gravity formula n = dim(response channel's own irrep) *
+  dim(T_1g+T_2g) (= dim(T_1g)*6 = 3*6 = 18, ih_lattice_phonon.py IP8/
+  molien_n18.py's "Tesla 3-6-9" section) GENERALIZES to K's exponent
+  EXACTLY if K's own channel is A_g: n_K = dim(A_g)*dim(T_1g+T_2g) =
+  1*6 = 6 -- matching the brute-force-scan result precisely. This is NOT
+  circular: K=A_g is an identification made INDEPENDENTLY, for unrelated
+  reasons, in icosahedral_elastic_isotropy_check.py (Schur's lemma on
+  Sym^2(T_1g)=A_g+H_g: "K for the A_g block, G for the H_g block") --
+  before and unconnected to this exponent question. HONESTY CHECK
+  (same script): computed dim(irrep)*6 for all five I_h irreps -- only
+  A_g (->6, matches K) and T_1g/T_2g (->18, matches gravity, already
+  known) land on an already-meaningful framework number; G_g->24 and
+  H_g->30 do NOT match any other already-established exponent anywhere
+  in analysis/**/*.py (grepped directly, not just "none came to mind") --
+  so the pattern is falsifiable (it could have failed, or matched
+  everything and proven nothing) and it did not fail, but it also did
+  not "prove too much." CAVEAT (real limits of what this shows): this
+  validates the FORMULA'S EXPONENT STRUCTURE reproducing a NUMBER already
+  found by brute force -- it does NOT derive WHY K's magnitude should
+  take the form (EM energy density)*alpha^(dim(A_g)*6) in the first
+  place (only gravity's analogous formula has that deeper physical
+  picture worked out, in ih_lattice_phonon.py Section 3); and the
+  resulting K value is still only a FACTOR OF 1.9 from target, not exact.
+  Two confirmed data points (A_g->6, T_1g->18) is real but not
+  overwhelming support for treating "dim(channel)*6" as a general law.
+
+  FURTHER TEST, THIRD DATA POINT (2026-09-05, per author request to look
+  for more available checks): analysis/medium/archive/G_from_cell_scale_survey.py
+  applies the IDENTICAL brute-force method to G=rho*Rs^2*c^2=3.576e9 Pa
+  (the medium's OTHER elastic constant, the "established jammed-state G"
+  from analysis/medium/magnetic_jamming_energy_check.py), scanning alpha^n
+  for n=1..32 against both natural scales (hadronic E_cell/L_J^3, EM
+  m_e*c^2/lambda_e^3) to test the two live shear-channel candidates from
+  MG-J6: T_2g predicts n=dim(T_2g)*6=18; H_g predicts n=dim(H_g)*6=30.
+  RESULT: NEITHER PASSES. Hadronic-scale best fit is n=15 (0.9 orders of
+  magnitude off, not near 18 or 30); EM-scale best fit is n=7 (0.36 orders
+  of magnitude off -- notably one more than K's own best-fit n=6, but the
+  implied G/K~alpha^1=0.0073 does not match the real, independently
+  established K/G=30.25 ratio, i.e. G/K=0.033 -- off by ~4.5x, so this is
+  not a validated relation either, just a numerical coincidence of
+  consecutive integers). Both checks (G1, G2) FAIL explicitly (2/2 FAIL,
+  script exit confirms this, not glossed over).
+  REVISED VERDICT: "dim(channel)*6" does NOT generalize as a law -- it
+  reproduces the 2 data points it was built to explain (A_g->K, T_1g->
+  gravity) but fails cleanly for the third, genuinely new test (G, against
+  BOTH live shear-channel candidates). This tempers the earlier upgrade:
+  the A_g<->K match should be treated as an intriguing, well-explained-
+  after-the-fact 2-point coincidence (still real, still non-circular, per
+  the honesty check above), NOT evidence of a general "dim(channel)*6"
+  scaling law across all of this medium's elastic constants. It also does
+  NOT resolve MG-J6 (T_2g vs H_g): neither candidate's predicted exponent
+  matched G's own actual best-fit scaling, so this route is a dead end
+  for discriminating between them, not new evidence either way.
+  STATUS: MG2-2 itself (the K=1/eps_0 independence question) is unchanged
+  -- the A_g->6 match is on record as a real but limited, non-generalizing
+  coincidence. Also recorded in /memories/repo/open-numeric-leads.md.
+  (NOTE: this "6"/K/G thread is UNRELATED to the separate "alpha^6 vs
+  4.22%" question investigated under MG-J7 below on this same date --
+  that one checked a totally different target, the fluid-vs-jammed K
+  RATIO discrepancy 4/3*Rs^2=4.22%, not K or G's ABSOLUTE values in Pa.
+  Same "alpha^6" phrase, unrelated numerical questions -- do not conflate.)
+
+  CLARIFICATION ON WHAT "G_target" MEANS (2026-09-05, per author question
+  "torsionverse lens or standard-physics lens?"): 100% torsionverse-
+  internal -- there is no standard-physics/measured shear modulus
+  anywhere in the G-test above; that comparison would not even be
+  meaningful here (this "medium" is not a conventional material with a
+  lab-measured G). G_target=mu_0*(Rs*c)^2 uses rho=mu_0 (the framework's
+  own reidentification of the SI vacuum permeability constant's NUMBER as
+  a mass density, not a measured density) and v_s=Rs*c (Rs a torsionverse-
+  derived geometric constant). Critically, rho=mu_0 is NOT a settled fact
+  even within the framework -- it is exactly the disputed identification
+  at the center of MG-J7 below (its option B; option A would give
+  rho=1.044*mu_0 instead, +4.4% on G_target). So this G-test's negative
+  result is against the framework's CURRENT BEST-GUESS internal value,
+  not an independently-confirmed benchmark -- unlike K's test, where the
+  target at least numerically borrows a genuinely CODATA-measured
+  constant (eps_0), even though relabeling 1/eps_0 as "Pa" is the SAME
+  kind of unit-reinterpretation move (itself MG2-2's main open question,
+  not a new problem). A +4.4% shift in G_target (option A) would not
+  change which integer exponent is closest (15 vs 18, 7 vs 18/30), so
+  this does not rescue the failed test, but the target's provisional
+  status is worth stating explicitly rather than implying "established"
+  means empirically confirmed. v_s=Rs*c itself is claimed elsewhere in
+  the framework to have an external/empirical anchor (the flyby anomaly,
+  per MG-J6's own text) -- NOT re-verified in this session.
+
+=============================================================================
+DOC: doc_particle_generation.txt
+-----------------------------------------------------------------------------
+PG2-1 [MECHANISM RESOLVED 2026-09-07; BROADER SCOPE STILL OPEN] The
+  antipodal-vertex "u IS a d quark" argument for F-15's beta-decay
+  mechanism. Full resolution history (the original tautology/conjugacy-
+  class finding, the 2026-09-06 edge-hop replacement attempt, and why
+  that ALSO failed) moved to judgment_calls_resolved.txt.
+
+  RESOLVED (2026-09-07): the antipodal-vertex mechanism (and its edge-hop
+  replacement) are both RETRACTED -- no real multi-cell spatial packing
+  model for Zone 1/2 exists anywhere in this framework to support either.
+  The CG/character-table selection rule (T_2g x E+ -> I52 -> T_1g + E-)
+  is the current standing result. 4 ungrounded scripts archived
+  (weak_quark_edge_hop.py, beta_plus_edge_hop.py, skip_hop_diagram.py/.png,
+  quark_flip_path_search.py). 6 docs updated (doc_electron.txt,
+  doc_particle_generation.txt, doc_torsionverse.txt,
+  doc_hadron_manipulation.txt, claims_audit.txt, zenodo.txt) -- see each
+  doc's own revisions/ file for details. Forward-looking item for
+  reopening this (full multi-cell proton model, real spatial mechanism)
+  logged in open_items.txt for series 3 or later.
+
+  STILL OPEN (broader scope, NOT resolved by the above): whether the same
+  missing multi-cell geometry undermines OTHER claims that reference
+  cell-to-cell contact -- mesh/grind chirality mechanism (EM attraction/
+  repulsion) and cog_geometry.py's winding-number narrative. Full status
+  and the 5 remaining audit items (doc_electron.txt Section 5,
+  doc_nucleus.txt, doc_magnetism.txt, doc_hadron_manipulation.txt +
+  doc_cell_depletion.txt, cog_geometry.py) tracked in
+  docs/series1/pg2-1_multicell_gap.txt Section 4. See N2-1 below for the
+  doc_nucleus.txt portion specifically.
+
+=============================================================================
+DOC: doc_nucleus.txt
+-----------------------------------------------------------------------------
+N2-1 [OPEN, MAJOR, logged 2026-09-07] Nucleon-nucleon mesh/grind claims
+  (Section 6 and related) not yet audited for the same Category A
+  (statistical/symmetry, likely fine) vs Category B (trajectory, needs
+  real multi-cell geometry) distinction applied to the PG2-1 quark-flip
+  mechanism above. r_grind=2*lambda_p (Section 4.3's hard-core radius) is
+  ordinary sum-of-two-radii geometry, unaffected. NOT yet checked: whether
+  the causal MECHANISM text describing grinding/meshing (chirality-
+  matched cells dragged in opposing/complementary directions at contact)
+  implicitly depends on tracking specific, spatially-positioned cells
+  the way the retracted quark-flip mechanism did, or whether it is a
+  Category A bulk/statistical argument (comparable to the Coulomb-
+  isotropy Descartes-defect derivation, which uses one reference cell's
+  symmetry without needing real multi-cell positions). NEEDS: full read
+  of doc_nucleus.txt Section 6 in detail (not yet done), triage each
+  mesh/grind claim individually, same method as PG2-1's Section 2
+  Category A/B split (docs/series1/pg2-1_multicell_gap.txt).
+
+=============================================================================
+DOC: doc_leptons.txt (tau) -- cross-cutting with analysis/corpuscle/*
+-----------------------------------------------------------------------------
+GT-1 [NEEDS AUTHOR CALL, logged 2026-09-08] Two unreconciled gluon-per-face
+  counting conventions coexist in the repo, confirmed by reading actual
+  code (not just docstrings):
+    (a) 3 gluons/face (wave/amplitude picture): gluon_tau_helix.py GH0b
+        ("all three gluons of that face reach amplitude peak
+        simultaneously"), cited in PUBLISHED doc_leptons.txt's tau
+        description and in analysis/quantum/maxwell_nexus_connection.py.
+        One gluon per edge.
+    (b) 6 gluons/face (corpuscle billiard picture): analysis/corpuscle/
+        cell_cycle_billiard_v2.py ("3 edges x 2 corpuscles = 6 gluon + 1
+        tau = 7 corpuscles at fc nexus", hardcoded n_gluon_streams=30*2),
+        cell_cycle_corpuscle.py, gluon_corpuscle_geometry.py,
+        corpuscle_uniqueness_proof.py, face_surface_check.py, and
+        docs/series3/doc_uniqueness.txt (draft, unpublished). Two
+        corpuscles per edge (Va->fc->Vb and Vb->fc->Va), 3 edges x 2 = 6.
+  This changes the tau's nexus arity: 4-way (3 gluon+1 tau) or 5-way (3
+  gluon+2 tau, bilateral meeting) under (a); 7-way/8-way under (b).
+  tau_necessity_verify.py's TN4/TN5 and the extensive "tau trade"
+  exchange-angle work (arccos(phi/sqrt3)=20.91 deg, ~15 archived scripts
+  in analysis/corpuscle/archive/) all assume (b) throughout -- none of
+  that exchange-angle work has been rechecked against (a)'s lower count.
+  Author's own assessment (2026-09-08): (b) may have started from an
+  attempt to build "gluon flux against edge-peaking amplitude at the
+  center" and was "ultimately discarded for a vertex-fc-vertex model of 3
+  gluons per face" -- but no script actually shows a reduction from 6 to
+  3; search found the two pictures are separate, parallel modeling
+  efforts (wave-amplitude vs corpuscle-billiard) that were never
+  reconciled, not one script with a partial/incomplete edit. Whether the
+  tau exchange mechanism was ever checked under a 4-corpuscle count is
+  unknown -- not found in any script.
+  NOT YET RESOLVED -- explicitly flagged by the author as something to
+  decide LATER, with an acknowledged risk of introducing inconsistency if
+  settled carelessly now. Author-identified future work: reduce billiard
+  v2 to a single consistent count, re-verify the tau exchange mechanism
+  under it, then build v3 with actual force calculations.
+  BLOCKS: using "nexus corpuscle concentration" as a stand-in for the
+  still-open tau Hopf-fiber flux integral (open_items.txt L-TAU) -- do
+  NOT commit to 4/5-way or 7/8-way in that work until this is decided.
 

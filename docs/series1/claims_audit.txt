@@ -58,12 +58,14 @@ SPOT RE-VERIFICATION OF PRIOR FIXES (read directly from current file text)
   [leptons_doc.py LM6]." Matches doc_leptons.txt/leptons_doc.py exactly.
   The old erroneous 105.47 MeV value is gone.
 
-[CONFIRMED STILL FIXED] TV-9  (docs/series1/doc_torsionverse.txt)
+[UPDATED 2026-09-07, see PG2-1] TV-9  (docs/series1/doc_torsionverse.txt)
   GENUINELY OPEN section now lists exactly one item: the Boltzmann constant
   k_B numerical value (unit-convention gap, not a medium-physics gap).
-  No stray "(conjecture)" language found; weak interaction mechanism section
-  is fully split into DERIVED (bypass ratio, CG selectivity, G_F suppression)
-  and F-15 CLOSED (weak_decay_ibd.py 9/9, weak_quark_flip.py 9/9).
+  Weak interaction mechanism section is split into DERIVED (bypass ratio,
+  CG selectivity, G_F suppression, IBD threshold -- weak_decay_ibd.py 9/9)
+  and RETRACTED (the antipodal-vertex u->d quark-flip mechanism,
+  weak_quark_flip.py, archived). The CG selection rule (T_2g x E+ -> I52
+  -> T_1g + E-) is the current standing result.
 
 =============================================================================
 DOC: doc_alpha.txt
@@ -371,10 +373,12 @@ Script: analysis/demos/particle_generation_doc.py   Result: 14/14 PASS
 [VERIFIED] PG-5
   N_nu = 3 exact from I_h geometry (LEP: 2.984 +/- 0.0082, 1.95 sigma).
 
-[VERIFIED] PG-6/PG-7 (F-15, added since prior audit)
-  IBD threshold from SY9+LM1 within 0.5%; CG crossing T_1g x E- = I52 =
-  T_2g x E+ exact; antipodal Galois flip chi(T_1u,C5^2)=chi(T_2u,C5)=-1/phi
-  exact. F-15 fully closed.
+[UPDATED 2026-09-07, see PG2-1] PG-6/PG-7 (F-15)
+  IBD threshold from SY9+LM1 within 0.5%: CLOSED. CG crossing T_1g x E- =
+  I52 = T_2g x E+ exact: CLOSED (selection rule). The antipodal-vertex
+  u->d mechanism (chi(T_1u,C5^2)=chi(T_2u,C5)=-1/phi), weak_quark_flip.py,
+  is RETRACTED (archived). F-15 is PARTIALLY closed: kinematics and
+  selection rule stand, mechanism does not.
 
 [NOTE] PG-8
   Header "GENUINELY OPEN: 0 items" refers to core derivable numerical
@@ -467,15 +471,24 @@ Script: analysis/demos/torsionverse_doc.py   Result: 18/18 PASS
 [VERIFIED] TV-8
   g_n bound = -1.9268 mu_N (+0.72% PDG); proton Zone 3 shifts free -> bound.
 
-[RESOLVED, RE-CONFIRMED] TV-9
-  Weak interaction mechanism fully split into DERIVED (bypass ratio, CG
-  selectivity, G_F suppression) and F-15 CLOSED (weak_decay_ibd.py 9/9,
-  weak_quark_flip.py 9/9). GENUINELY OPEN now lists only k_B (unit
-  convention, not medium physics). See Spot Re-verification above.
+[UPDATED 2026-09-07, see PG2-1] TV-9
+  Weak interaction mechanism split into DERIVED (bypass ratio, CG
+  selectivity, G_F suppression, IBD threshold -- weak_decay_ibd.py 9/9)
+  and RETRACTED (the antipodal-vertex u->d quark-flip mechanism,
+  weak_quark_flip.py, archived). GENUINELY OPEN now lists only k_B (unit
+  convention). See Spot Re-verification above.
 
 [NOTE] TV-10
-  Algebraic proof of exponent n=18 (Molien series) remains a distinct open
-  item from the verified physical/dynamical-matrix argument.
+  Algebraic proof of exponent n=18: the physical/dynamical-matrix argument
+  (I_h spring network, exactly 6 zero eigenvalues, n=3D*6=18) IS the
+  algebraic proof -- grounded in a real, citable isostatic-lattice
+  elasticity result (Lubensky, Kane, Mao, Souslov & Sun, Rep. Prog. Phys.
+  78, 073901 (2015): elastic moduli of Maxwell-critical lattices vanish as
+  k^(n-2), n set by constraint count). A separate Molien-series/polynomial-
+  invariant-ring route was tried and explicitly ruled out (found the first
+  T_1g/T_2g-mixing invariant at degree 4, not 18 -- answers a different,
+  weaker question; notes/research_notes.txt, 2026-08-21) -- NOT a distinct
+  open item, a closed dead end. See doc_torsionverse.txt Section 3.3.
 
 [NOTE] TV-11
   lambda=(1-nu)/4=0.129 identified with Higgs quartic; gap to

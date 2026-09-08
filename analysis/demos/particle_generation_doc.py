@@ -282,9 +282,9 @@ check("PG11: N_nu = 3 exact from I_h geometry (< 2.5 sigma from LEP)",
       abs(sigma_nu) < 2.5,
       f"N_nu = {N_nu_model}  LEP = {N_nu_LEP} +/- {N_nu_err}  ({sigma_nu:.2f} sigma)")
 
-# ── Section 8: F-15 beta decay — IBD threshold and antipodal bounce ──────────
+# ── Section 8: F-15 beta decay — IBD threshold and CG selection rule ────────
 print()
-print("SECTION 8: F-15 BETA DECAY -- IBD THRESHOLD AND ANTIPODAL BOUNCE")
+print("SECTION 8: F-15 BETA DECAY -- IBD THRESHOLD AND CG SELECTION RULE")
 print("--------------------------------------------------------------------")
 import math as _math
 Rs_     = _math.sqrt(5) / (4 * _math.pi)
@@ -298,7 +298,6 @@ thresh_dev   = (thresh_der / thresh_exact - 1) * 100
 
 phi_ = phi
 chi_T1g_C5   =  phi_
-chi_T1g_C52  = -1.0/phi_
 chi_T2g_C5   = -1.0/phi_
 chi_Eminus_C5 = -1.0/phi_
 chi_Eplus_C5  =  phi_
@@ -310,20 +309,19 @@ product_p_e  = chi_T2g_C5 * chi_Eplus_C5    # T_2g x E+
 print(f"  IBD: nu_bar_e + p -> n + e+ (reactor/stellar)")
 print(f"  Threshold = m_e + (m_n-m_p) = {m_e_:.4f} + {delta_:.4f} = {thresh_der:.4f} MeV")
 print(f"  Exact kinematics: {thresh_exact:.4f} MeV   dev = {thresh_dev:+.4f}%")
-print(f"  CG: chi(T_1g x E-, C5) = {product_nu_n:+.6f} = chi(I52) = chi(T_2g x E+)")
-print(f"  Antipodal: chi(T_1u, C5^2) = -1/phi = chi(T_2u, C5)  [u IS d from antipodal vertex]")
+print(f"  CG selection rule: chi(T_1g x E-, C5) = {product_nu_n:+.6f} = chi(I52) = chi(T_2g x E+)")
+print(f"  [representation theory permits this transition; no specific spatial")
+print(f"   hop/contact mechanism for u->d is currently established]")
 
 check("PG12: IBD threshold = m_e + (m_n-m_p) within 0.5% of exact kinematics (SY9+LM1)",
       abs(thresh_dev) < 0.5,
       f"derived={thresh_der:.4f} MeV  exact={thresh_exact:.4f} MeV  dev={thresh_dev:+.4f}%")
 
-check("PG13: CG crossing T_1g x E- = I52 = T_2g x E+ (exact, Galois chain)",
+check("PG13: CG crossing T_1g x E- = I52 = T_2g x E+ (exact, Galois chain) -- "
+      "a selection rule (transition is representation-theory-consistent), "
+      "not a derivation of a specific spatial u->d mechanism",
       abs(product_nu_n - chi_I52_C5) < 1e-10 and abs(product_p_e - chi_I52_C5) < 1e-10,
       f"chi(nu+n)={product_nu_n:+.6f}  chi(p+e)={product_p_e:+.6f}  chi(I52)={chi_I52_C5:+.6f}")
-
-check("PG14: Antipodal Galois flip: chi(T_1u, C5^2) = -1/phi = chi(T_2u, C5) (u->d exact)",
-      abs(chi_T1g_C52 - chi_T2g_C5) < 1e-10,
-      f"chi(T_1u,C5^2)={chi_T1g_C52:+.6f}  chi(T_2u,C5)={chi_T2g_C5:+.6f}  diff={abs(chi_T1g_C52-chi_T2g_C5):.2e}")
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 print()

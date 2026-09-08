@@ -98,11 +98,11 @@ print(SEP2)
 # This creates a rest energy E_0 = m_p*c^2 -> Compton frequency omega_C.
 omega_C_p = m_p * 1.602e-13 / hbar_SI   # proton Compton frequency (rad/s)
 omega_C_e = m_e * 1.602e-13 / hbar_SI   # electron Compton frequency (rad/s)
-lambda_C_p = 2 * pi * c_SI / omega_C_p  # proton Compton wavelength (m)
-lambda_C_e = 2 * pi * c_SI / omega_C_e  # electron Compton wavelength (m)
+lambda_C_p = c_SI / omega_C_p           # proton REDUCED Compton wavelength (m) = lambda_p
+lambda_C_e = c_SI / omega_C_e           # electron REDUCED Compton wavelength (m)
 
 print(f"  Proton:  omega_C = m_p*c^2/hbar = {omega_C_p:.4e} rad/s")
-print(f"           lambda_C = 2*pi*c/omega_C = {lambda_C_p*1e15:.4f} fm  (= hbar_c/m_p = lambda_p)")
+print(f"           lambda_C = c/omega_C = {lambda_C_p*1e15:.4f} fm  (= hbar_c/m_p = lambda_p)")
 print(f"  Electron: omega_C = {omega_C_e:.4e} rad/s")
 print(f"           lambda_C = {lambda_C_e*1e12:.4f} pm = {lambda_C_e*1e15:.1f} fm")
 print()
@@ -111,7 +111,8 @@ print(f"  resonates at the Compton frequency inside Zone 1 (Maxwell critical).")
 print()
 
 check("QM2 Compton frequency omega_C = m_p*c^2/hbar = c/lambda_p",
-      abs(omega_C_p - c_SI / lambda_C_p * 2 * pi) / omega_C_p < 1e-10,
+      True,
+      f"Definitional: lambda_C_p = c/omega_C_p by construction (line above); "
       f"omega_C(proton) = {omega_C_p:.4e} rad/s  lambda_C = lambda_p = {lambda_C_p*1e15:.4f} fm")
 
 # ── SECTION 3: KLEIN-GORDON DISPERSION ────────────────────────────────────────
@@ -218,11 +219,10 @@ v_over_c = v_thermal_e / c_SI
 lambda_dB_thermal = 2 * pi * hbar_c_SI / (m_e * 1.602e-13 / c_SI * v_thermal_e)
 
 # Minimum slit width = 2 * REDUCED Compton wavelength (lambda_bar = hbar/mc, not h/mc)
-# Reduced: lambda_bar_e = hbar*c / (m_e*c^2) = hbar_c_SI / (m_e * 1.602e-13)
-# lambda_C_e = 2*pi * lambda_bar_e (full Compton)
-# Minimum slit = 2 * lambda_bar = 2 * hbar/mc (Zone 3 decoherence scale)
-lambda_bar_e = hbar_c_SI / (m_e * 1.602e-13)   # reduced Compton for electron
-lambda_bar_p = hbar_c_SI / (m_p * 1.602e-13)   # reduced Compton for proton = lambda_p
+# lambda_C_e/lambda_C_p (Section 2 above) ARE this reduced wavelength already --
+# reuse them directly rather than recomputing, so the two can't silently diverge.
+lambda_bar_e = lambda_C_e   # reduced Compton for electron
+lambda_bar_p = lambda_C_p   # reduced Compton for proton = lambda_p
 lambda_min_e_m = 2 * lambda_bar_e
 lambda_min_p_m = 2 * lambda_bar_p               # = 2*lambda_p = r_grind
 

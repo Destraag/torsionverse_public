@@ -115,7 +115,7 @@ nuclear_levels = [
     (2, 3, 2.5,  6,  False, 'f_{5/2}'),
     (3, 1, 1.5,  4,  False, 'p_{3/2}'),
     (3, 1, 0.5,  2,  False, 'p_{1/2}'),
-    # MAJOR GAP at 126 -- i_{13/2} intruder (dim = 14 = 2*7 = 2*(T_2g+G_g))
+    # MAJOR GAP at 126 -- i_{13/2} intruder (dim = 14 = E+(2)+E-(2)+G32(4)+I52(6), no T_2g -- ih_double_group.py DG7/DG10)
     (1, 6, 6.5, 14,  True,  'i_{13/2} [INTRUDER: dim=14=2*7, MAGIC 126]'),
 ]
 
@@ -140,7 +140,7 @@ print(f"""
     f_{{7/2}}: dim =  8 = 2 * dim(G_g) = 2 * 4   -> magic gap at N=28
     g_{{9/2}}: dim = 10 = 2 * dim(H_g) = 2 * 5   -> magic gap at N=50
     h_{{11/2}}: dim= 12 = 2 * 6                   -> magic gap at N=82
-    i_{{13/2}}: dim= 14 = 2 * 7 = 2*(T_2g+G_g)   -> magic gap at N=126
+    i_{{13/2}}: dim= 14 = E+(2)+E-(2)+G32(4)+I52(6), no T_2g   -> magic gap at N=126
 
   The factor of 2 is spin (each orbital mode holds spin-up and spin-down).
 

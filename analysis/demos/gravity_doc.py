@@ -153,10 +153,13 @@ check("G8 F_rad/F_grav = 1.64e-14  [radiation << gravity for main-sequence stars
       abs(F_rad/F_grav - 1.64e-14)/1.64e-14 < 0.05,
       f"F_rad={F_rad:.2e}N  F_grav={F_grav:.2e}N  ratio={F_rad/F_grav:.2e}")
 
-# G9: Equatorial bulge from Bernoulli/centrifugal exclusion of medium
+# G9: Equatorial bulge from centrifugal inertia (solid-body rotation --
+# NOT a medium/Bernoulli effect: the formula below uses only omega, R, g,
+# no rho or medium quantity anywhere; verified against the actual code,
+# not just prior doc prose, 2026-09-05)
 print()
 print(SEP)
-print("SECTION 5: Equatorial bulge from medium exclusion (Mechanism 3)")
+print("SECTION 5: Equatorial bulge from centrifugal inertia")
 print(SEP2)
 R_earth = 6.371e6   # m
 omega   = 7.27e-5   # rad/s  (Earth rotation)
@@ -172,7 +175,7 @@ print(f"  ratio         = {ratio_bulge:.5f} = {ratio_bulge*100:.3f}%")
 print(f"  Predicted bulge = {bulge_pred_km:.2f} km")
 print(f"  Measured bulge  = {bulge_meas_km:.3f} km")
 print()
-check("G9 Equatorial bulge = Bernoulli/centrifugal from medium exclusion (2% accuracy)",
+check("G9 Equatorial bulge = centrifugal inertia, omega^2*R/g (2% accuracy)",
       abs(bulge_pred_km - bulge_meas_km)/bulge_meas_km < 0.03,
       f"predicted={bulge_pred_km:.2f}km  measured={bulge_meas_km:.3f}km  err={(bulge_pred_km-bulge_meas_km)/bulge_meas_km*100:+.1f}%")
 

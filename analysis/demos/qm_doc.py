@@ -50,11 +50,13 @@ omega_C_p = m_p * 1.602e-13 / hbar_SI
 omega_C_e = m_e * 1.602e-13 / hbar_SI
 
 check("QM1 Free wave omega = c*k  (massless pressure wave in Jobson medium)",
-      abs(c_SI * 1e12 - c_SI * 1e12) < 1, "omega = c*k exact")
+      True, "Definitional: the non-dispersive wave equation d^2u/dt^2=c^2*grad^2*u "
+      "gives omega=c*k directly; not an independent check (see "
+      "analysis/quantum/lattice_dwell_time_bridge.py for the underlying derivation)")
 
 check("QM2 Compton frequency = m_p*c^2/hbar = c/lambda_p  (Zone 1 boundary)",
-      abs(omega_C_p - c_SI / (2*pi*c_SI/omega_C_p) * 2*pi) / omega_C_p < 1e-10,
-      f"omega_C = {omega_C_p:.4e} rad/s  lambda_C = lambda_p = {2*pi*c_SI/omega_C_p*1e15:.4f} fm")
+      abs(c_SI/omega_C_p - lambda_p_m) / lambda_p_m < 1e-3,
+      f"omega_C = {omega_C_p:.4e} rad/s  lambda_C = c/omega_C = {c_SI/omega_C_p*1e15:.4f} fm = lambda_p")
 
 check("QM3 Klein-Gordon: omega(k=0)=omega_C; omega(k>>kC)->ck",
       abs(math.sqrt(omega_C_p**2) - omega_C_p) < 1 and

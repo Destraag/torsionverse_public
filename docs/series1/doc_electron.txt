@@ -438,10 +438,13 @@ geometrically; the orbit has no solution.
   fails geometrically -- the winding can no longer close. The corpuscle has
   no valid path and impacts Zone 2 from outside. Zone 2 cells are locked in
   the proton's chirality; the impact is a kinetic energy transfer through
-  the jammed cells to the Zone 1 boundary. There, the u-quark winding
-  absorbs the energy and executes the antipodal vertex bounce:
-    u-quark (T_1u at vertex v) -> d-quark (T_2u at antipodal vertex -v)
-  because chi(T_1u, C5^4) = -1/phi = chi(T_2u, C5) -- exact, geometric.
+  the jammed cells to the Zone 1 boundary, where the proton's diquark
+  configuration (T_2g) transitions toward the neutron's (T_1g). The CG
+  algebra permits exactly this:
+    T_2g x E+ -> I52 -> T_1g + E-  [WI1, WI2 exact]
+  An earlier antipodal-vertex bounce mechanism proposed for the underlying
+  u->d quark transition has been RETRACTED. The CG selection rule above is
+  the current standing result.
   Proton (uud) becomes neutron (udd). The corpuscle exits Zone 2 as a freed
   winding. Zone 2's proton chirality acts as a chirality mirror: the
   incoming E+ winding exits as E- -- a distinct 2I irrep, not the
@@ -450,10 +453,8 @@ geometrically; the orbit has no solution.
   interacts only weakly -- it propagates without orbital structure, which
   is the defining property of a neutrino mode. The formal irrep assignment
   of the electron neutrino is in [doc_leptons].
-  The CG algebra requires exactly this:
-    T_2g x E+ -> I52 -> T_1g + E-  [WI1, WI2 exact]
   The electron never enters Zone 1 or Zone 2. The whole event is kinetic.
-  [weak_quark_flip.py: antipodal vertex bounce; weak_interaction_cg.py WI1, WI2]
+  [weak_interaction_cg.py WI1, WI2]
   Z_crit = 1/alpha emerges from the corpuscle circuit geometry -- derived
   from the same icosahedral vertex structure that produces alpha, not
   assumed from the Dirac equation.
@@ -644,7 +645,6 @@ COMPANION SCRIPTS (reproducibility):
   analysis/quantum/cell_rotation_propagation.py  -- [RP1-RP4; Section 3.3]
   analysis/demos/entanglement_doc.py -- [EP1-EP2; Sections 3.3, 8]
   analysis/nuclear/atomic_shells.py  -- [AS1-AS7; Section 3.4]
-  analysis/quantum/weak_quark_flip.py -- [Section 6.1]
   analysis/quantum/weak_interaction_cg.py -- [WI1, WI2; Section 6.1]
   analysis/atomic/inner_shell_screening.py -- [IS1-IS9; Section 8, inner-shell screening]
   analysis/atomic/orbital_penetration_2s1s.py -- [OP1-OP7; Section 8, orbital penetration]

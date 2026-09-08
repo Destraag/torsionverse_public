@@ -217,7 +217,7 @@ if failed == 0:
     print(f"  ISLAND OF STABILITY:")
     print(f"    Nuclear: Z=114 (proton closed shell), N=184 (neutron magic)")
     print(f"    Z=114: 82 + 32 = 82 + 2n^2(n=4) from 1i_{{13/2}} intruder")
-    print(f"    dim(1i_{{13/2}}) = 14 = 2*(T_2g+G_g) = 2*D^3  [same G_g as Z=28 gap]")
+    print(f"    dim(1i_{{13/2}}) = 14 = E+(2)+E-(2)+G32(4)+I52(6), no T_2g  [ih_double_group.py DG7/DG10]")
     print(f"    Secondary proton magic: Z=126  (next full fill)")
     print(f"    Both below Z_crit = 1/alpha = {Z_crit:.1f}: normal electron chemistry")
     print()

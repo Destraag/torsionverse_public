@@ -1,0 +1,57 @@
+JUDGMENT CALLS AUDIT — SERIES 2 CRITICAL-READER SWEEPS
+=============================================================================
+Date: 2026-09-07
+Purpose: track substantive (non-mechanical) issues found in series-2 docs
+  (docs/series2/*.txt) that need author judgment before editing -- so they
+  are not lost. Mirrors docs/series1/judgment_calls.txt's format and status
+  legend; created because the first genuinely series-2-only item (GY-1)
+  appeared once its series-1 half (doc_orbit_pressure.txt) was resolved
+  directly. INTERNAL TRACKING FILE -- NOT a published doc; do not cite from
+  any docs/series1/*.txt or docs/series2/*.txt paper.
+=============================================================================
+
+STATUS LEGEND
+  OPEN        : no resolving script/text found after search; needs new work
+                (a script) or honest softening in the doc.
+  PROPOSED    : a resolution is well-supported by existing scripts/docs;
+                needs author confirmation before the doc text is changed.
+  NEEDS-CALL  : a genuine either-way judgment on physics framing/tone/content
+                that a search cannot resolve by itself.
+
+=============================================================================
+DOC: doc_gyroscope.txt
+-----------------------------------------------------------------------------
+GY-1 [NEEDS-CALL, deep-dive deferred by author, 2026-09-07] doc_gyroscope.txt's
+  Abstract and Section 1 present Bernoulli medium drag as THE mechanism for
+  gyroscope precession generally ("Gyroscope precession arises because...
+  The restoring mechanism is BERNOULLI"), but Section 1's OWN numbers show
+  this is negligible at lab/Earth scale: Bernoulli pressure reduction
+  delta_P_medium ~ 1e-5 Pa vs air drag ~1500 Pa -- roughly 10^8 times too
+  small to matter -- and its own text concludes "For lab gyroscopes: medium
+  Bernoulli is negligible; standard mechanics applies." Ordinary classical
+  mechanics (torque = dL/dt, precession rate omega_p = tau/L) already fully
+  and correctly explains every real, testable gyroscope (tops, gyrocompasses,
+  Earth's own axial precession) with no gap for a medium effect to fill.
+
+  The document's own escape clause -- "At Zone 2 scale (molecular/nuclear):
+  rho_eff ~ P_bond/v_s^2 >> rho_medium -> For atomic rotors, NMR, pulsars:
+  medium Bernoulli IS the mechanism" -- is a different, much more exotic
+  regime claim, and has NOT been separately verified here.
+
+  RESOLVED ELSEWHERE (2026-09-07): the parallel claim in
+  docs/series1/doc_orbit_pressure.txt Section 2.5 ("GYROSCOPIC PRECESSION =
+  BERNOULLI") has been REMOVED (both the main bullet and an orphaned
+  duplicate paragraph, plus the STATUS SUMMARY line citing it) -- that doc's
+  topic is orbital mechanics, and the claim served no purpose there once its
+  own negligibility was established. This item (GY-1) is the remaining,
+  purely series-2 question: whether doc_gyroscope.txt's Abstract/Section 1
+  framing (and the unverified Zone-2/atomic-rotor escape clause) need the
+  same treatment, deferred by the author for a later deep-dive.
+
+  STATUS: flagged for deep-dive later, not investigated further this
+  session. NEXT: (a) decide whether the Abstract/Section 1 framing should be
+  reworded to lead with "standard mechanics applies at lab/Earth scale" and
+  demote Bernoulli to the Zone-2/exotic-scale case only; (b) independently
+  verify the Zone-2 (atomic rotors, NMR, pulsars) claim before treating it as
+  established -- it has not been checked, only asserted.
+=============================================================================

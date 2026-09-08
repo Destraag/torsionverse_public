@@ -9,12 +9,17 @@ Status: WORKING DOCUMENT
         Section 3 (winding angle) DERIVED: new result, 0 free parameters.
         Section 4 (rate) ESSENTIALLY DERIVED; prefactor requires t in MeV.
         F-14 ESSENTIALLY DERIVED: phi^3/sqrt5 = 1 + 2/sqrt5 [LM17]; 0.035% residual.
-        F-15 CLOSED (2026-08-23): beta decay mechanism derived.
+        F-15: G_F/cross-section chain PARTIALLY CLOSED (2026-08-23; quark-
+          flip mechanism reopened 2026-09-07).
           weak_decay_ibd.py 9/9 PASS: IBD threshold 1.806 MeV, CG crossing,
-            regime map, IceCube E_cell crossover prediction.
-          weak_quark_flip.py 9/9 PASS: antipodal vertex bounce u->d,
-            Maxwell criticality zero barrier, exact Galois flip.
-        GENUINELY OPEN: 0 items.
+            regime map, IceCube E_cell crossover prediction. CLOSED.
+          The antipodal-vertex bounce u->d mechanism has been RETRACTED. The
+            CG selection rule (T_2g x E+ -> I52 -> T_1g + E-) is the
+            current standing result.
+          Mass-hierarchy MECHANISM reopened 2026-09-03 (see Section 7 OPEN note).
+        GENUINELY OPEN: several items -- see Section 4.3 and Section 7
+          (mass-hierarchy persistence assumption; b quark single-cell
+          restoration mechanism).
 =============================================================================
 
 ABSTRACT
@@ -32,11 +37,14 @@ nucleation thresholds, and their place in the medium. Key results:
       winding modes (T_1u/T_2u, Galois conjugate pair) -- the first generation
       is closed. Strange (G_u, edge) and charm (H_u, face) complete the second.
 
-  (2) PROTON MASS PUZZLE SOLVED:
+  (2) PROTON MASS PUZZLE REFRAMED (not a numerical derivation of 938 MeV):
       Quarks add zero displacement mass (Zone 1 is already excluded). The
       proton mass = Zone 1 displacement energy entirely. Current quark masses
       (u: 2.3 MeV, d: 4.8 MeV) are ~0 in the displacement picture -- consistent
-      with observation. The 938 MeV comes from the Hopf winding, not the quarks.
+      with observation. This reallocates WHERE the 938 MeV resides (Hopf
+      winding, not quark rest mass) -- m_p itself remains an external
+      (measured) input throughout this framework, not derived from alpha,
+      phi, or any more basic quantity.
 
   (3) TAU-CHARM RELATIONSHIP (REVISED 2026-08-23):
       Charm = tau winding confined in Zone 1 (same face mode, different zone).
@@ -59,7 +67,8 @@ nucleation thresholds, and their place in the medium. Key results:
   (6) WINDING ANGLE (derived, zero free parameters):
       theta(m) = arcsin(8*alpha*phi*m/m_p). For proton: 5.420 deg = torus knot
       pitch angle (1.4 arcmin agreement). m_crit = m_p/(8*alpha*phi) = 9.933 GeV;
-      N_J at m_crit = 2.000 EXACTLY. Above m_crit: EW coupling required (W, Z,
+      N_J at m_crit = 2.000 in the idealized limit (1.9996 using the measured
+  r_p, PG4). Above m_crit: EW coupling required (W, Z,
       Higgs, top). Rate prefactor mass-independent: m^2 cancellation confirmed.
 
 THE PHOTON IS THE GROUND STATE:
@@ -67,7 +76,7 @@ THE PHOTON IS THE GROUND STATE:
   All matter requires theta > 0. The universe nucleates particles in mass order.
 
 Companion scripts:
-  analysis/demos/particle_generation_doc.py  -- 14/14 PASS
+  analysis/demos/particle_generation_doc.py  -- 15/15 PASS
 
 
 1. FRAMEWORK: PAIR PRODUCTION AS WINDING NUCLEATION
@@ -184,7 +193,8 @@ CROSS-CHECK (torus knot pitch angle):
 
   CRITICAL MASS: m_crit = m_p / (8*alpha*phi) = 9933 MeV = 9.933 GeV
   Above m_crit: sin(theta) > 1 -- photon cannot directly nucleate the winding.
-  N_J at m_crit = 2.000 EXACTLY (corresponds to N_J = 2 Jobson cells).
+  N_J at m_crit = 2.000 in the idealized limit (1.9996 using the measured
+  r_p, PG4; corresponds to N_J = 2 Jobson cells).
 
   Particle     Irrep          Mass (MeV)   theta (deg)  sin(theta)  Regime
   ----------   -----------    ----------   -----------  ----------  ----------
@@ -444,7 +454,11 @@ TWO-SCALE PRINCIPLE (F-14, verified meson_masses.py F14a+F14b):
     E_cell/m_tau = pi*sqrt(5)/(2*alpha*phi^4) = 70.22  [meson_masses.py F14a,b]
     Winding: m_tau = phi^3/sqrt5 * m_p = 1777.5 MeV
     Phonon:  E_cell = pi*m_p/(2*alpha*phi) = 124.8 GeV
-  WHY this ratio: ESSENTIALLY DERIVED via LM17 (phi^3/sqrt5 = 1 + 2/sqrt5; see below).
+  WHY this ratio: essentially derived GIVEN E_cell's own established formula
+  and LM17's m_tau identity (the ratio is then pure algebra) -- but
+  meson_masses.py itself still labels the ratio's ultimate 'why' as OPEN,
+  since that combines two separately-derived facts rather than explaining
+  70.22 directly. See LM17 below for the m_tau piece.
 
 7.0  DISAMBIGUATION: MODES WITH MULTIPLE ROLES
 
@@ -502,7 +516,8 @@ ESSENTIALLY DERIVED (LM17, 2026-08-23):
 
       LM17: "The tau winding contains the muon spiral. The tau corkscrew IS the
              proton vertex contact (1) plus the muon face-winding factor (2/sqrt5)."
-      [lepton_mass.py LM17; doc_leptons.txt line 358, 556; doc_jobson_cell.txt line 1022]
+      [lepton_mass.py LM17; doc_leptons.txt's tau corkscrew/LM17 discussion;
+       doc_jobson_cell.txt's muon/gluon Schur's-lemma coupling discussion]
 
     REMAINING GAP (small):
       The 0.035% residual vs PDG (LM16 result). Closes to +0.004% via Koide.
@@ -551,18 +566,13 @@ MECHANISM reopened 2026-09-03 (see OPEN note below):
           -- the Zone 2 lock is what stabilizes the proton; breaking it costs ~delta_E_lock
           -- this is why the energy threshold is tiny (1.8 MeV) even though W mass is 80 GeV:
              the lock-breaking cost is small; kinematic threshold = mass difference only
-      (3) The u quark (T_1u) in contact with the impact site bounces to the
-          antipodal icosahedral vertex (-v). Maxwell criticality (3V-E=6) gives
-          zero potential barrier at the midpoint; any nonzero energy deposit
-          enables the bounce. [weak_quark_flip.py QF7-QF8 PASS]
-          At the antipodal vertex, C5 appears as C5^2 (rotation sense flips):
-          chi(T_1u, C5^2) = -1/phi = chi(T_2u, C5) -- the u IS a d quark from
-          the antipodal frame. [QF3-QF4 PASS: exact]
-          Exactly 1 antipodal site exists per vertex; capture is certain once
-          the winding amplitude crosses the midpoint. [QF9 PASS]
-      (4) The vacated T_1u slot is filled by the nearest d quark: udd -> uud.
-          Zone 2 re-locks T_1g -> T_2g (CG: WI1+WI2). Electron and antineutrino
-          carry off the energy balance (IBD threshold = 1.806 MeV, WD1).
+      (3) RETRACTED: an antipodal-vertex bounce mechanism previously proposed
+          for the u->d quark transition (matching chi(T_1u,C5^2) = -1/phi
+          = chi(T_2u,C5)) has been retracted.
+      (4) The net transition udd -> uud is representation-theory-consistent:
+          Zone 2 re-locks T_1g -> T_2g (CG: WI1+WI2 exact). Electron and
+          antineutrino carry off the energy balance (IBD threshold = 1.806
+          MeV, WD1) -- this is the current standing result.
       (5) Zone 2 re-locks in the new diquark configuration T_1g (neutron)
           The T_1g lock mode IS the virtual W boson (T_1g = directed transverse
           oscillation = W, not compression -- see doc_torsion Section 3.1)
@@ -573,24 +583,27 @@ MECHANISM reopened 2026-09-03 (see OPEN note below):
     is the energy of the T_1g phonon mode, not the lock-breaking energy itself.
     Range constraint: freed lepton must couple to Zone 1 vertex nexus energy scale.
 
-  - Single-cell restoration after b quark escape: energy accounting closes
-    (released 4.18 GeV > m_b). Cell we observe IS the new formation. No
-    separate derivation needed.
+  - Single-cell restoration after b quark escape: energy accounting is
+    consistent (released 4.18 GeV > m_b) and the cell we observe IS the new
+    formation, but per b_quark_geometry.py's own conclusion the single-cell
+    restoration MECHANISM remains OPEN -- only ensemble/statistical
+    equilibrium across many cells is argued, not a direct single-cell
+    derivation.
 
 CLOSED THIS SESSION (2026-08-23):
   - b quark mass DERIVED: m_b = m_p*sqrt(3)/(4*pi*alpha*phi^3) = 4182.8 MeV (+0.07%) [BQ9,BQ10]
   - b quark = lambda_3 specifically (not lambda_8; R=G=7 -> zero restoring force) [BQ11,BQ12]
-  - Gluon C3 Born coupling: g_s_bare ~ alpha (no phi enhancement) [gluon_c3_born.py 5/5]
+  - Gluon C3 Born coupling: g_s_bare ~ alpha (no phi enhancement) [gluon_c3_born.py 9/9]
   - Gluon amplitude A = L_J*sqrt(3)/6 DERIVED from face geometry [GH0b,GH0c]
   - Tau geometric path: ALL 20 steps = 72 deg (C5), step = 2*phi/3 [GH2-GH5]
   - Gluon strip counts: 12 (A<->B) + 9 + 9 = 30, not 10+10+10 [SU3-1 + calculation]
   - F-14 algebraic ratio verified: pi*sqrt5/(2*alpha*phi^4) = 70.22 [F14a,b]
   - Gluon spindle shape: 2 counter-rotating windings = permanent spindle form [doc_jobson_cell]
 
-7. COMPANION SCRIPTS
+8. COMPANION SCRIPTS
 ---------------------
 
-  analysis/demos/particle_generation_doc.py   -- 14/14 PASS  (STANDALONE; winding angle, F-14/LM17, D meson, CG, G_F, N_nu=3, F-15 IBD+antipodal)
+  analysis/demos/particle_generation_doc.py   -- 14/14 PASS  (STANDALONE; winding angle, F-14/LM17, D meson, CG, G_F, N_nu=3, F-15 IBD threshold + CG selection rule)
   Repository: https://doi.org/10.5281/zenodo.22068557
 
 ACKNOWLEDGMENT

@@ -41,8 +41,15 @@ where E_cell = 124.8 GeV is the Jobson cell snapback energy and the exponent
 18 = 3 * (3V-E) = spatial dimensions * Maxwell jamming criterion. Physically:
 18 is how far the disturbance propagates before the medium's net fully tightens
 -- the cell's 6 Maxwell constraint modes must all engage in all 3 dimensions
-simultaneously. This gives G = 6.656e-11 m^3/(kg*s^2), -0.27% from CODATA
-(1.2-sigma; G is the least precisely known constant, uncertainty 2200 ppm).
+simultaneously. This gives G = 6.656e-11 m^3/(kg*s^2), -0.27% from CODATA --
+measured against the r_p-propagated +-4.1% theory-uncertainty band (not
+directly against CODATA's own 22 ppm combined measurement uncertainty,
+which this miss exceeds by roughly two orders of magnitude), this is
+1.2-sigma. G remains the least precisely measured fundamental constant --
+individual measurements have historically disagreed by far more than their
+own quoted uncertainties -- so bounding against the theory-side r_p
+uncertainty is a defensible choice, but the two bands should not be
+conflated.
 
 The electromagnetic force arises from a different mechanism: the proton's
 (1,2) Hopf spin rolls adjacent cells, expanding and thinning them, reducing
@@ -63,8 +70,10 @@ the coupling strength differs. The hierarchy alpha_em/alpha_grav = 1.24e36
 is the power difference: EM couples topologically (1 Hopf winding constraint),
 gravity couples volumetrically (all 18 Maxwell-critical cell dimensions). Black
 holes are regions where the Jobson cell density has collapsed to zero. Galaxy
-rotation curves require no dark matter: they are the shear-entrainment regime below
-the medium's MOND threshold a_0 = Rs*c*H0 (Rs from I_h geometry, H0 cosmological).
+rotation curves are consistent with no additional dark matter component: they
+are the shear-entrainment regime below the medium's MOND threshold a_0 =
+Rs*c*H0 (Rs from I_h geometry; H0 an external cosmological input -- see
+Section 4.2).
 
 Newton's constant G is derived with no free parameters. The scale invariance is
 exact: the same medium, the same formula, from the Bohr atom to the solar system.
@@ -121,16 +130,21 @@ protons:
 The hierarchy problem reduces to: why is alpha_grav/alpha_em = 8.1e-37?
   In the torsion framework this is the power difference between two distinct
   coupling channels in the same medium:
-    alpha_em   = (m_p/E_cell)^1   [topological: 1 Hopf winding constraint]
+    alpha_em   = (m_p/E_cell)^1   [topological: 1 Hopf winding constraint;
+                                   this E_cell-based route alone is only
+                                   ~3% precise -- alpha_em's actual high-
+                                   precision value comes from the separate
+                                   Hopf-topology derivation in doc_alpha.txt]
     alpha_grav = (m_p/E_cell)^18  [volumetric: all 18 Maxwell cell dimensions]
   The hierarchy is the exponent difference 18 - 1 = 17, not a puzzle.
 STATUS: Coulomb derivation PROVEN (C7 of doc_higgs). Gravitational coupling
-identified as alpha_grav (ESTABLISHED, nuclear_pressure.txt P.6c).
+identified as alpha_grav (FRAMEWORK-level identification, nuclear_pressure.txt P.6c --
+not independently derived from a measurement distinct from G itself).
 G is derived: alpha_grav = (m_p/E_cell)^18, G = 6.656e-11 (-0.27%, within ±4.1% r_p band).
 See Section 5 for the full derivation.
 
 NOTE on torsion wave contamination: The Cavendish lab measurement of G
-operates at a ~ 6.7e-9 m/s^2, which is 55x ABOVE the MOND threshold
+operates at a ~ 6.7e-9 m/s^2, which is 56x ABOVE the MOND threshold
 a_0 = 1.2e-10 m/s^2. Torsion shear wave contributions are negligible at
 Cavendish scales. G_measured = G_pressure: no torsion wave correction needed.
 
@@ -468,10 +482,18 @@ NOTE ON LENSE-THIRRING / EINSTEIN-CARTAN:
     medium with it; the medium is pulled along by the rotation. Distinct
     from exclusion: frame dragging requires spin; exclusion requires only
     that the mass occupies volume.
-  Einstein-Cartan (torsion gravity) = our framework with shear wave (G = Rs^2*K)
+  Einstein-Cartan (torsion gravity) = our framework with shear wave:
+    G = Rs^2*K exactly, using this document's own K=1/eps_0 (Section 1.1)
+    -- an exact identity (K=rho*c^2, G=rho*Rs^2*c^2=Rs^2*K), not an
+    approximation. [analysis/gravity/line485_G_eq_Rs2_K_check.py, LC1 PASS]
   These are the same physics viewed differently.
-  Our framework IS Einstein-Cartan with the torsion identified as the
-  shear wave of the Jobson cell medium.
+  Our framework IDENTIFIES WITH Einstein-Cartan, with the torsion identified as
+  the shear wave of the Jobson cell medium -- an assumed identification used
+  as an intermediate step (see Tier 4 below), not itself derived from torsion
+  medium equations of motion. A post-Newtonian derivation would require
+  expanding those equations of motion to higher order (analogous to GR's
+  PPN formalism), which has not yet been done for this medium -- the
+  identification remains an assumption, not a derivation.
 
 
   Earth's mass jams the medium at its surface. Jammed medium cannot flow inward.
@@ -490,15 +512,22 @@ NOTE ON LENSE-THIRRING / EINSTEIN-CARTAN:
     Predicted equatorial bulge = 0.343% * R_earth = 21.8 km
     Measured equatorial bulge:                     21.4 km  [MATCH to 2%]
 
-  The equatorial bulge IS the Bernoulli/centrifugal effect from medium exclusion.
+  The equatorial bulge itself is the CENTRIFUGAL-INERTIA effect (ordinary
+  solid-body rotation, Sec 2.5) -- verified against the companion script's
+  actual formula (omega^2*R/g), which uses no medium/density quantity at
+  all. Bernoulli/medium exclusion is the separate mechanism responsible
+  for the ecliptic plane selection described above, not this bulge number.
   The 2% discrepancy is from Earth's non-uniform internal density distribution.
 
 SUMMARY OF THREE MECHANISMS:
   1. Direct displacement (N nucleons x V_p each) -> snapback tension -> Newton
      gravity (derived: alpha_grav = (m_p/E_cell)^18, Sec 5.1)
   2. Candy wrapper (jamming wave at v_s = Rs*c) -> gravity STRUCTURE propagation
-  3. Bernoulli from jamming exclusion -> equatorial bulge (21.8 vs 21.4 km, 2%)
-  Key: mechanisms 2 and 3 are not independent -- jamming causes both.
+  3. Centrifugal inertia (solid-body rotation) -> equatorial bulge (21.8 vs
+     21.4 km, 2%) -- ordinary mechanics, not itself a medium/jamming effect
+  Key: mechanism 2 is a genuine medium effect; mechanism 3 (bulge) is
+  ordinary solid-body inertia -- see Sec 2.5 for the corrected mechanism
+  split (bulge = inertia, ecliptic = Bernoulli).
 
 
 
@@ -521,11 +550,6 @@ PLANE OF THE ECLIPTIC (Bernoulli IS needed -- essentially closed):
   Orbiting bodies ride the low-pressure zone = equatorial plane = ecliptic.
   This is a new mechanism not captured by pure inertia.
   [ESSENTIALLY CLOSED: mechanism derived; quantitative rate open]
-
-GYROSCOPIC PRECESSION = BERNOULLI:
-  A spinning gyroscope drags medium fast at its equator -> lower equatorial
-  pressure -> the equatorial plane is stickier. Tipping creates restoring
-  precession. [Quantitative derivation of precession rate: open]
 
 WHY PLANETS SPIN -- PRESSURE GRADIENT ASYMMETRY (NEW DERIVATION):
   If a body is always moving toward the nearest low-pressure zone (the Sun's
@@ -580,21 +604,10 @@ SOLAR ROTATION FROM GALACTIC PRESSURE GRADIENT [LEAD]:
       Physical basis: angular momentum flux scales as v_wind (at constant
       magnetic coupling); rotation period scales as accumulated L loss ~ sqrt(v).
       Latitude correction (G10b): Ulysses measured at 80.2° heliographic lat.
-      Snodgrass: T(80.2°) = 33.64 d; ratio = 1.325 vs predicted 1.323 (0.13%).
+      Snodgrass: T(80.2°) = 33.64 d; ratio = 1.325 vs predicted 1.323 (-0.20%).
       The 2.4% raw error is a measurement latitude mismatch, not a physics residual.
       [STATUS: Formula derived; angular momentum exponent n=0.5 confirmed by latitude
        correction; absolute solar wind speed not yet derived from torsion medium -- OPEN]
-
-
-
-
-  A spinning gyroscope drags medium fast at its equator.
-  Lower equatorial pressure = the equatorial plane is "stickier" (attractive).
-  Tipping the gyroscope lifts part of the equatorial ring into a higher-pressure
-  region, creating a restoring force that manifests as precession, not tipping.
-  Precession rate omega_p = L_tilt / I_gyro is the balance of medium pressure
-  gradient against the angular momentum -- same formula, new derivation.
-  [OPEN: quantitative derivation of precession rate from medium drag + Bernoulli]
 
 2.6  Solar radiation and the stellar pressure balance
 
@@ -684,7 +697,7 @@ THE THREE GRAVITY MECHANISMS (named for clarity):
     coherently with the medium's shear response. The force law changes regime.
     [doc_torsion T3.1/T3.2 PASS; a_0 confirmed 153 SPARC galaxies, 0.51 sigma]
     Interpolation (N-3 CLOSED): mu(x) = x/sqrt(x^2+G/K), transition at x=0.18.
-    Deep-MOND prediction: v_flat 38% lower than simple MOND at a << a_0/5.5.
+    Deep-MOND prediction: v_flat 34.7% lower than simple MOND at a << a_0/5.5.
     [analysis/gravity/mond_interpolation.py 8/8 PASS]
     This is not a correction to Newtonian gravity -- it is a different
     mechanism, operating at a different scale.
@@ -726,13 +739,16 @@ MECHANISMS 2 AND 3 ACT ON THE SAME PROPERTY:
       Only possible if they are coherently entrained in the medium's shear
       isobars -- not independently orbiting. 153 SPARC galaxies confirm.
 
-  OPEN -- TIER 4:  [CLOSED 2026-08-21, script: analysis/gravity/pressure_isobar_orbit.py]
-    PROVED: The Keplerian orbit is the pressure-minimum variational path.
-    EOM: m*d^2r/dt^2 = -N_t*V_p*grad(P_well) = -G*M*m/r^2  (Newton, exact).
-    Circular orbit = isobar r = const (P = -1/r isobar is a sphere).
-    Scale invariance: same EOM gives Bohr radius (alpha_em) and Earth orbit
-    (alpha_grav) with alpha_em/alpha_grav = 1.24e36 as the coupling ratio.
-    PO1-PO9: 9/9 PASS.
+  TIER 4 -- Newtonian-order DERIVED, post-Newtonian OPEN: [Newtonian 1/r^2 form
+  CLOSED 2026-08-21, script: analysis/gravity/pressure_isobar_orbit.py]
+    PROVED (Newtonian order only): The Keplerian orbit is the pressure-minimum
+    variational path. EOM: m*d^2r/dt^2 = -N_t*V_p*grad(P_well) = -G*M*m/r^2
+    (Newton, exact). Circular orbit = isobar r = const (P = -1/r isobar is a
+    sphere). Scale invariance: same EOM gives Bohr radius (alpha_em) and Earth
+    orbit (alpha_grav) with alpha_em/alpha_grav = 1.24e36 as the coupling ratio.
+    PO1-PO9: 9/9 PASS. STILL OPEN: the post-Newtonian expansion of the torsion
+    medium's own equations of motion (needed to derive precession-order effects
+    like Mercury's, Tier 2, directly rather than borrowing the GR formula).
 
 4.1  Why "dark matter" is the wrong question
 
@@ -875,7 +891,7 @@ STATUS: CLOSED (2026-08-21, alpha_grav_derivation.py, 5/5 PASS):
     immediately. Gravity requires 18 -- it "catches" only after the full
     Maxwell geometry of the cell has been activated in all directions.
     Formal proof: CONFIRMED by I_h dynamical matrix at q=0 -- 6 zero eigenvalues
-    (3V-E=6), n=18 from 3D x 6. [ih_lattice_phonon.py 12/12 PASS, IP4/IP6]
+    (3V-E=6), n=18 from 3D x 6. [ih_lattice_phonon.py 19/19 PASS, IP4/IP6]
 
 
 6. STATUS SUMMARY
@@ -900,13 +916,12 @@ PROVEN:
 
 ESSENTIALLY CLOSED:
   - Scale invariance of orbital mechanics (same 1/r^2, different alpha)
-  - Gravity = Coulomb with alpha_grav (established, nuclear_pressure P.6c)
+  - Gravity = Coulomb with alpha_grav (FRAMEWORK-level identification, nuclear_pressure P.6c)
   - Black holes as cell-collapsed regions (physical picture complete)
   - Schwarzschild radius r_S = 2GM/c^2 from pressure cell collapse  [PO8]
   - Plane of the ecliptic = solar Bernoulli equatorial low-pressure belt
   - Equatorial orbits naturally preferred (Bernoulli: fast drag = low pressure)
-  - Gyroscopic precession = Bernoulli: equatorial stickiness resists tipping
-  - Solar differential rotation: T_pole/T_eq = sqrt(v_pole/v_eq) = 1.323 vs 1.325 (0.13%)
+  - Solar differential rotation: T_pole/T_eq = sqrt(v_pole/v_eq) = 1.323 vs 1.325 (-0.20%)
   - Galaxy rotation curves = shear-entrainment regime; ~6x Newtonian mass predicted (G11)
   - Nuclear structure proven in doc_nucleus (proton = negative well, 4-zone)  [CLOSED]
   - Proton mass displacement: excluded V_p -> Newton 1/r^2 form  [CLOSED, PO6-PO7]
@@ -914,12 +929,12 @@ ESSENTIALLY CLOSED:
 CONFIRMED (moved from open, 2026-08-21):
   - n=18 algebraic proof: I_h dynamical matrix gives exactly 6 zero modes;
     n = 3D x 6 = 18. Debye model with omega_D = E_cell/hbar gives correct
-    Stefan-Boltzmann (3*pi^4/5). [analysis/gravity/ih_lattice_phonon.py 12/12 PASS]
+    Stefan-Boltzmann (3*pi^4/5). [analysis/gravity/ih_lattice_phonon.py 19/19 PASS]
 
 GENUINELY OPEN (one item):
   - k_B numerical value: Planck SHAPE confirmed (Debye, T^4, 3*pi^4/5 exactly,
     zero free parameters beyond E_cell). k_B itself is a unit convention.
-    [ih_lattice_phonon.py 12/12 PASS confirms shape; value = SI definition]
+    [ih_lattice_phonon.py 19/19 PASS confirms shape; value = SI definition]
   - Planetary orbital initial conditions (G derived; initial conditions cosmological)
 
 
@@ -928,7 +943,17 @@ GENUINELY OPEN (one item):
 --------------------
 
   analysis/demos/orbit_doc.py  -- 16/16 PASS  [STANDALONE -- no external deps]
-  analysis/gravity/ih_lattice_phonon.py  -- 12/12 PASS  [n=18 + Planck/Debye]
+  analysis/gravity/ih_lattice_phonon.py  -- 19/19 PASS  [n=18 + Planck/Debye]
+
+  Additional scripts cited by name in the body (not standalone summaries):
+    analysis/demos/magnetism_doc.py            [E=mc^2 medium identities, Sec 1.1]
+    analysis/gravity/bohr_radius_pressure_balance.py  -- 8/8 PASS  [Bohr radius]
+    analysis/demos/nucleus_doc.py               -- 31/31 PASS  [proton 4-zone structure]
+    analysis/gravity/mond_interpolation.py      -- 8/8 PASS  [MOND interpolation]
+    analysis/gravity/mercury_precession.py      -- 1/1 PASS  [perihelion precession]
+    analysis/gravity/pressure_isobar_orbit.py   -- 9/9 PASS  [Newtonian EOM, Schwarzschild r_S]
+    analysis/demos/gravity_doc.py               -- 12/12 PASS  [Cavendish, bulge, differential rotation, missing mass]
+    analysis/gravity/alpha_grav_derivation.py   -- 5/5 PASS  [G from alpha_grav]
 
   All five topics verified in a single run:
     OD1-OD3:   E=mc^2, alpha_grav, Bohr radius (derived m_e)

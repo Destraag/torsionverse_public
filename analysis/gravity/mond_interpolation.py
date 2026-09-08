@@ -47,25 +47,21 @@ INTERPOLATION DERIVATION:
   The correct MOND regime gives mu(x) -> x/sqrt(G/K) = x * sqrt(K/G) = x*sqrt(30.25).
 
   RESOLUTION: The medium interpolation gives a MODIFIED MOND with:
-    a = sqrt(a_Newton * a_0 * sqrt(K/G)) = sqrt(a_Newton * a_0 * 5.5)
-  for the deep shear regime. The factor sqrt(K/G) = sqrt(30.25) = 5.5 represents
-  the amplification of the MOND effect by the bulk/shear stiffness ratio.
-
-  This predicts a MOND acceleration scale:
-    a_0_eff = a_0 * sqrt(K/G) = Rs*c*H_0 * sqrt(30.25)
-
-  Numerically: a_0_eff = 1.165e-10 * 5.5 = 6.4e-10 m/s^2
-
-  But the OBSERVED a_0 = 1.2e-10 m/s^2. Discrepancy factor = 5.5.
+    a = sqrt(a_Newton * a_0 / sqrt(K/G))
+  for the deep shear regime -- the sqrt(K/G)=5.5 slope amplification in mu(x)
+  appears in the DENOMINATOR of the true acceleration a (a fixed baryonic
+  a_Newton is reached at a SMALLER a), so it REDUCES v_flat, not increases it
+  (see Section 4 / MO7 below for the verified (K/G)^(-1/8) velocity factor).
 
   INTERPRETATION: The empirical a_0 = Rs*c*H_0 is the TRANSITION acceleration
   (where the channels have equal coupling), not the deep-MOND asymptote.
   The interpolation function from the medium is:
     mu(x) = x / sqrt(x^2 + 1/30.25)
 
-  For x << 1 this gives mu -> x*5.5, meaning the deep MOND amplification factor
-  is sqrt(K/G) = 5.5. This is a NEW PREDICTION: galaxy rotation curves should
-  show a slightly steeper velocity profile than standard MOND at very low accelerations.
+  For x << 1 this gives mu -> x*5.5 (MO3), which -- via the velocity factor
+  (K/G)^(-1/8) derived in Section 4/MO7 -- is a NEW PREDICTION: galaxy rotation
+  curves should show a slightly LOWER velocity profile than standard MOND at
+  very low accelerations, not higher.
 
 Checks:
   MO1  K/G = 30.25 from medium (T3.2 in torsion_doc.py)
@@ -198,8 +194,8 @@ print(f"    Simple: transition at x=1, deep-MOND slope = 1")
 print(f"    Torsionverse: transition at x={x_transition:.4f}, deep-MOND slope = sqrt(K/G) = {math.sqrt(KG):.3f}")
 print()
 print(f"  PREDICTION: In the deep MOND regime (a << a_0/sqrt(K/G) = a_0/{math.sqrt(KG):.1f}):")
-print(f"    v_flat = (G_N * M * a_0 * sqrt(K/G))^(1/4) = (G_N * M * a_0 * {math.sqrt(KG):.2f})^(1/4)")
-print(f"    This is {math.sqrt(KG):.2f}x larger than standard MOND prediction.")
+print(f"    the mu(x)->x*sqrt(K/G) slope (MO3) predicts a LOWER v_flat than simple")
+print(f"    MOND, not higher -- see Section 4's (K/G)^(-1/8) velocity factor (MO7).")
 print(f"    Observable at very low accelerations (dwarf galaxies, outer disk).")
 print()
 print(f"  NOTE: The standard a_0 = Rs*c*H_0 is the EQUAL-CHANNEL transition point,")
@@ -214,27 +210,28 @@ check("MO6 mu_torsion != mu_simple in deep MOND (diverge for x << 1)",
       abs(mu_torsion(0.01)/0.01 - 1.0) > 0.1,
       f"mu_t(0.01)/0.01 = {mu_torsion(0.01)/0.01:.3f}  (simple would give 1.0)")
 
-# ── Section 4: Deep MOND amplification ────────────────────────────────────────
+# ── Section 4: Deep MOND velocity factor ──────────────────────────────────────
 print()
 print(SEP)
-print("SECTION 4: DEEP MOND AMPLIFICATION FACTOR sqrt(K/G)")
+print("SECTION 4: DEEP MOND VELOCITY FACTOR (K/G)^(-1/8)")
 print(SEP2)
 
+# Deep MOND: mu(x)->x*sqrt(K/G), so a^2*sqrt(K/G)/a_0 = a_Newton (fixed baryonic
+# a_Newton needs a SMALLER true a to match it, since mu is amplified at fixed x)
+# => v_flat = (G_N*M*a_0)^(1/4) * (K/G)^(-1/8)  [LOWER than simple MOND, confirmed by MO7]
 sqrt_KG = math.sqrt(KG)
-print(f"  sqrt(K/G) = sqrt({KG:.2f}) = {sqrt_KG:.4f}")
-print(f"  This is the amplification of the deep MOND velocity prediction:")
+vel_factor = KG**(-1/8)
+print(f"  sqrt(K/G) = sqrt({KG:.2f}) = {sqrt_KG:.4f}  (deep-shear slope amplification, MO3)")
+print(f"  This slope amplification REDUCES the deep-MOND velocity prediction (the same")
+print(f"  baryonic a_Newton is reached at a smaller true acceleration a, hence lower v):")
 print(f"    Standard MOND: v_flat = (G_N*M*a_0)^(1/4)")
-print(f"    Torsionverse:  v_flat = (G_N*M*a_0*{sqrt_KG:.2f})^(1/4) = standard * {sqrt_KG:.4f}^(1/4)")
-print(f"    Velocity amplification: {sqrt_KG**(1/4):.4f}x = {(sqrt_KG**(1/4)-1)*100:.1f}% higher")
+print(f"    Torsionverse:  v_flat = (G_N*M*a_0)^(1/4) * (K/G)^(-1/8) = standard * {vel_factor:.4f}")
+print(f"    Velocity factor: {vel_factor:.4f}x = {(1-vel_factor)*100:.1f}% lower")
 print()
 print(f"  FALSIFIABLE: Very-low-acceleration systems (a << 3e-11 m/s^2) should show")
-print(f"    {(sqrt_KG**(1/4)-1)*100:.1f}% higher rotation velocities than simple MOND predicts.")
+print(f"    {(1-vel_factor)*100:.1f}% LOWER rotation velocities than simple MOND predicts.")
 print(f"    This is testable with ultra-diffuse galaxies (UDGs) and stellar streams.")
 print()
-
-# Deep MOND: mu(x)->x*sqrt(K/G), so a²*sqrt(K/G)/a_0 = a_Newton
-# v_flat = (G_N*M*a_0)^(1/4) * (K/G)^(-1/8)  [LOWER than simple MOND]
-vel_factor = KG**(-1/8)
 check("MO7 Deep-MOND velocity = simple_MOND / (K/G)^(1/8) (derived from K/G)",
       abs(vel_factor - KG**(-1.0/8)) < 0.001,
       f"v_torsion/v_MOND = (K/G)^(-1/8) = {vel_factor:.4f}  ({(1-vel_factor)*100:.1f}% lower than simple MOND)")
@@ -252,7 +249,7 @@ print(f"  mu(x) = x / sqrt(x^2 + G/K)  where G/K = 1/30.25 from medium")
 print(f"  Derived from: K and G channels in quadrature, K/G = 30.25 [T3.2]")
 print(f"  Limits: mu -> 1 (Newton), mu -> x*sqrt(K/G) (deep shear)")
 print(f"  Agrees with standard MOND at x=1 to <2%")
-print(f"  NEW PREDICTION: deep-MOND amplification sqrt(K/G)^(1/4) = {KG**(1/4):.4f}x")
+print(f"  NEW PREDICTION: deep-MOND velocity factor (K/G)^(-1/8) = {vel_factor:.4f}x ({(1-vel_factor)*100:.1f}% lower)")
 print(f"    Testable in ultra-diffuse galaxies and stellar streams (a << a_0/5.5)")
 print(f"  The torsionverse mu(x) is the UNIQUE interpolation with G/K = Rs^2/(1-4/3*Rs^2).")
 

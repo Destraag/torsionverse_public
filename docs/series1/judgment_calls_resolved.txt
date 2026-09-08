@@ -10,8 +10,217 @@ Purpose: full resolution history for items originally logged in
 =============================================================================
 
 =============================================================================
+DOC: doc_orbit_pressure.txt
+=============================================================================
+
+EC-1 [RESOLVED 2026-09-05, CORRECTED same day] Tier 4 / Einstein-Cartan
+  softening ("IDENTIFIES WITH", not "IS") -- author asked to double check
+  no script/derivation supports the original firmer "IS Einstein-Cartan"
+  wording before leaving it softened, since a firm result should not be
+  walked back if it exists.
+  EXHAUSTIVE SEARCH (repo-wide "Einstein-Cartan" grep, 49 matches/13 files):
+  every source is consistent with "assumed identification, not derived" --
+  mercury_precession.py's own docstring states twice, explicitly, that the
+  post-Newtonian derivation from torsion medium EOMs is OPEN; doc_torsion.txt's
+  "WHY 'TORSION MEDIUM'" section presents the connection as NAMING
+  motivation/analogy, not a field-equation derivation; notes/research_notes.txt
+  is informal brainstorming (where the identification was first proposed),
+  not a committed derivation. No contradicting source found anywhere.
+  FOLLOW-UP CHECK (author's specific suggestion): does the doc's own
+  "G = Rs^2*K" formula (Lense-Thirring/Einstein-Cartan note) supply the
+  missing derivation? Verified directly (analysis/gravity/
+  line485_G_eq_Rs2_K_check.py): NO -- but the FIRST attempt to check this,
+  same session, made a real error, caught and corrected after the author
+  asked "doc_orbit_pressure came after doc_torsion -- do we think the
+  formula from torsion is more precise, and why would we take it over the
+  zeroth order?". That question prompted rereading doc_torsion.txt Section
+  3.3 ("NOTE ON K -- TWO REGIMES, NOT ONE VALUE", 2026-09-04) and the
+  already-committed analysis/medium/fluid_vs_jammed_K_resolution.py
+  (FJ1-FJ6), which the first pass had missed:
+    ERROR (first pass): called "G=Rs^2*K" a "stale zeroth-order
+    approximation" of doc_torsion's "precise" K/G=30.25, as if one relation
+    were a less-precise version of the other.
+    CORRECTION: this medium has TWO distinct, both-EXACT bulk moduli, not
+    one true value and one approximation -- K_fluid=1/eps_0 (static/
+    Coulomb, unjammed state) and K_jammed=rho*(v_p^2-4/3*v_s^2) (jammed/
+    wave-propagation state; K_jammed/G=30.25, doc_torsion T3.2). Verified
+    numerically (LC1-LC3, 3/3 PASS): G=Rs^2*K_fluid holds to float
+    precision (exact, not approximate); K_jammed/G=30.25 also holds exactly
+    (for the OTHER K); K_fluid != K_jammed by the already-established 4.22%
+    gap (4/3*Rs^2), confirming these are two distinct relations, not one
+    relation at two precisions.
+    REMAINING QUESTION (regime-matching, not precision): which K pairs
+    correctly with G in a shear-WAVE/Einstein-Cartan context? G is a
+    jammed-only quantity (zero in the fluid state, doc_torsion Section
+    3.1), so "G=Rs^2*K_fluid" -- though exact -- cross-pairs a jammed
+    quantity with a fluid-only K that never co-occurs with it in the same
+    physical state. K_jammed and G are BOTH jammed/wave-state quantities
+    (doc_torsion Section 3.3 lists them together, solved from the same
+    v_p=c, v_s=Rs*c inputs), so K_jammed/G=30.25 is the same-regime,
+    physically apt relation for a shear-wave discussion -- not because
+    G=Rs^2*K_fluid is imprecise, but because it mixes regimes. Doc fixed
+    to explain both relations and why 30.25 is the apt one here, rather
+    than wrongly asserting one relation as "the precise version" of the
+    other.
+  Separately (UNCHANGED by the correction above): even the correctly-
+  paired K_jammed/G=30.25 relation is a STATIC ratio between two LINEAR
+  elastic constants (same category as any ordinary Hookean solid's
+  bulk/shear ratio) -- it has no dynamical or nonlinear content, so it
+  cannot supply a post-Newtonian expansion (which needs something
+  analogous to GR's PPN formalism: higher-order/nonlinear terms in the
+  medium's equations of motion, not yet derived anywhere in this repo).
+  CONCLUSION: per the author's own stated criterion ("if not [enough info
+  to close/calculate the derivation], it stays softened") -- confirmed
+  insufficient, softened wording stays. Applied: corrected the doc's
+  Einstein-Cartan note to explain the fluid/jammed K distinction properly
+  (not "G=Rs^2*K is stale", but "two exact relations, 30.25 is the
+  regime-apt one for shear waves"); added a brief note in the doc itself
+  recording that the K/G relation (either version) was checked and does
+  not close Tier 4, so a future pass does not have to re-derive this same
+  negative result from scratch.
+  LESSON: caught and fixed within the same session because the author
+  asked a specific, skeptical follow-up rather than accepting the first
+  "fix" at face value -- the first pass's error (treating two deliberately
+  distinct quantities as one imprecise/precise pair) is exactly the kind
+  of mistake the repo's own fluid_vs_jammed_K_resolution.py was written to
+  guard against, and citing that script from the start would have caught
+  it immediately.
+  FURTHER CORRECTION, SAME DAY: the "K_jammed/G=30.25 is the physically
+  apt pairing" conclusion above itself turned out to be overconfident --
+  it silently assumes MG-J7's option B (rho=mu_0 held fixed, K splits into
+  K_fluid/K_jammed), which MG-J7 (still NEEDS-CALL/MAJOR/OPEN, see the
+  active file) explicitly does NOT resolve in favor of over option A (K
+  held fixed, rho shifts instead) -- if anything MG-J7's own text calls A
+  "the more standard expectation." Author also pointed out the doc-side
+  presentation problem directly: the detailed "CHECKED (date): script X
+  says Y" audit-trail language (including the K_fluid/K_jammed exposition
+  above) does not belong in doc_orbit_pressure.txt, a PUBLISHED paper --
+  that level of investigative narrative belongs here instead. REMOVED from
+  the doc; the doc's Einstein-Cartan note now states only the well-
+  established, uncontested part (assumed identification, not derived; a
+  post-Newtonian derivation needs a higher-order EOM expansion that does
+  not yet exist) without taking a side on the K-vs-rho question. The
+  K_fluid/K_jammed technical material above stays here as investigation
+  history, not as a settled physical claim -- see MG-J7 for the current,
+  still-open state of that question and 2026-09-05 author input on it.
+
+  RESTORED, 2026-09-06 (author: "I could have sworn we were already using
+  the 31.58 number... its possible existing calculations took this into
+  account that may not have been considered"): checked git history
+  directly (git log -S"G = Rs^2*K") -- the doc's ORIGINAL, long-standing
+  text (stable since the earliest commits, 074dfeb/c79ea1e) stated with
+  full confidence "G = Rs^2*K", using THIS document's own K=1/eps_0
+  (Section 1.1). That formula is algebraically EXACT (analysis/gravity/
+  line485_G_eq_Rs2_K_check.py, check LC1, PASS, re-verified 2026-09-06:
+  K_fluid=rho*c^2 identically, so G=rho*Rs^2*c^2=Rs^2*K_fluid, no
+  approximation). The FIRST EC-1 pass wrongly called this "stale" and
+  pushed toward doc_torsion's different K_jammed/30.25; the SELF-
+  CORRECTION above fixed the wrong direction but left the doc VAGUE
+  (dropped the formula and the specific K entirely) instead of restoring
+  the original, confident, and -- per the 2026-09-06 Cosserat/micropolar
+  finding (MG-J7: K may simply BE K_fluid, no fluid/jammed split needed
+  at all) -- probably-correct original formula. RESTORED "G = Rs^2*K
+  exactly, using this document's own K=1/eps_0" with the doc_torsion
+  Section 3.3 cross-reference removed (it pointed at the OTHER K and was
+  the original source of confusion, not a needed citation). LESSON: when
+  "correcting" a formula because it disagrees with a DIFFERENT document's
+  number, check whether the original document's own internally-consistent
+  definition was actually right before assuming the other document's
+  number is the more authoritative one -- confirmed here by git history,
+  not assumed.
+
+=============================================================================
 DOC: doc_nucleus.txt
 =============================================================================
+
+NC2-1 [RESOLVED 2026-09-05, RESCOPED after author pushback] Originally
+  logged as "exponent n=18 not rigorously derived, circular." CORRECTED
+  after an exhaustive search (grepped "Maxwell criticality|3V-E" across
+  the whole repo: 401 matches in 84 files, not just the 2 scripts first
+  checked) -- the author was right to push back. Maxwell criticality
+  itself (3V-E=6) is NOT in question: it is an algebraic identity forced
+  by I_h symmetry (itself forced by the (1,2) Hopf topology -> phi -> I_h
+  chain, proven in analysis/alpha/alpha_maxwell_critical.py, which closed
+  "OPEN-A" on 2026-08-20 per notes/alpha_theory.txt -- V=12 and 5-fold
+  coordination E=5V/2=30 are forced, so 3V-E=6 follows necessarily, not
+  fit), AND it is independently CONFIRMED numerically:
+  analysis/gravity/ih_lattice_phonon.py builds the ACTUAL 3D icosahedral
+  vertex coordinates and nearest-neighbor central-force spring network,
+  constructs its real 3Nx3N dynamical matrix, and diagonalizes it
+  (np.linalg.eigvalsh) to verify EXACTLY 6 zero eigenvalues out of 36
+  (IP4, confirmed, not assumed) -- this rules out any "hidden" extra
+  floppy modes the combinatorial count alone couldn't. This is real
+  rigidity-theory physics (Maxwell-Calladine counting, verified by actual
+  matrix rank), not "Euler's formula restated" as originally (wrongly)
+  characterized -- that comparison was a mistake, made without reading
+  ih_lattice_phonon.py's actual linear algebra, only its summary print
+  lines.
+  The "18 = 3*6" step also has real, convergent support, not a single
+  numerology fit: (a) 3 spatial dimensions x 6 Maxwell modes engaging
+  simultaneously (ih_lattice_phonon.py IP6); (b) equivalently dim(T_1g) x
+  dim(T_1g+T_2g) = 3 x 6 = 18 via the I_h character table, where 3V-E=6
+  and dim(T_1g)+dim(T_2g)=6 are independently shown to be the SAME number
+  for a non-coincidental reason (IP8/IP9); (c) an independent vertex-edge-
+  balance combinatorial count (2 active muon-path edges + 3 passive face-
+  tension edges per vertex, from the separately-established muon geometry,
+  not backfit to 18) x 12 vertices / 2 = 18 (IP10). Three convergent, only
+  partly-overlapping routes to the same number is real evidence, not
+  circularity.
+  ADDITIONAL SEARCH (per author request to check exhaustively for an
+  existing ring-theory calculation): notes/research_notes.txt's own
+  agenda note for this exact question records that a polynomial
+  invariant-ring/Molien-series attempt WAS already made and computed (the
+  same calculation molien_n18.py Section 2 performs: M_extra, the first
+  non-separable T_1g/T_2g-mixing invariant) -- it finds the first such
+  invariant at DEGREE 4, not 18. The framework's own recorded conclusion:
+  "Polynomial invariant ring approach tried and ruled out (n_min=4 for
+  Molien series, wrong framework). Rigidity theory is the correct
+  framework." Degree 4 answers a WEAKER question (does any invariant mix
+  T_1g and T_2g at all) than the one gravity's coupling needs (does an
+  invariant engage ALL SIX soft-mode directions simultaneously) --
+  molien_n18.py's own interpretation text makes the same distinction, and
+  is not a contradiction: the two calculations answer different questions.
+  DEAD END, CORRECTLY CLOSED (author pushback, 2026-09-06): an earlier
+  version of this entry kept a "GAP/Magma computational-algebra proof of
+  degree-18 minimality" open as a residual low-priority gap. Author
+  correctly pointed out the framework's own words already close this:
+  ring theory was tried for exactly this question and explicitly ruled
+  out as "the wrong framework" for it -- rigidity theory (Maxwell-
+  Calladine counting, independently confirmed by actual matrix
+  diagonalization, plus three convergent derivations of 18=3*6) is the
+  adopted, sufficient, and correct derivation route, not a placeholder
+  pending a ring-theory cross-check. A GAP/Magma proof of the ring-theory
+  version was never needed for the claim as the docs actually make it,
+  and its absence is not a gap in the existing derivation -- it would
+  only be an optional, independent confirmation via a different branch of
+  math, not a missing piece. NC2-1 is fully closed; no stub kept in
+  judgment_calls.txt. Don't retry the ring-theory route for this question
+  without new input (matches MG-J6's identical convention for closed dead
+  ends).
+
+NC2-2 [RESOLVED 2026-09-05] Sections 6's "-0.27%, 1.2-sigma from CODATA"
+  headline for G used the wrong error bar: alpha_grav_derivation.py itself
+  prints "CODATA G: 22 ppm; pred. uncertainty: +-4.1%" side by side, but
+  the "1.2-sigma" figure is computed against the +-4.1% r_p-propagated
+  theory band (18 x r_p's ~0.23% measurement uncertainty), not against
+  CODATA's actual 22 ppm measurement uncertainty on G itself (against
+  which the miss is ~120x larger). Author's call: since G is genuinely
+  the least precisely (and most disputedly) measured fundamental constant
+  -- individual lab measurements have historically disagreed by far more
+  than their own quoted uncertainties -- bounding the prediction against
+  the theory-side r_p uncertainty band is a defensible, justified framing,
+  not a sleight of hand; the fix needed is simply to NAME which band the
+  sigma is measured against so the two aren't conflated by a reader.
+  APPLIED: reworded both doc_nucleus.txt Section 6 and doc_orbit_pressure.txt
+  Section 1.2's parallel passage to state explicitly that "1.2-sigma" is
+  against the r_p-propagated +-4.1% band, not CODATA's 22 ppm, and to note
+  the ~120x gap between the two bands plus the general "G is poorly
+  measured" context. doc_orbit_pressure.txt separately cited a stale/
+  unverifiable "uncertainty 2200 ppm" figure (100x the script's own 22 ppm)
+  -- removed rather than replaced with an unverified specific number;
+  reworded to the same qualitative "least precisely measured" framing
+  already used in doc_nucleus.txt, without asserting a new unverified ppm
+  figure.
 
 NC-J1 [RESOLVED 2026-09-03] Section 5.1-5.2's proton=T_2g/neutron=T_1g
   diquark irrep assignment. Three-stage investigation:
@@ -1336,3 +1545,414 @@ EL-J1 [RESOLVED 2026-09-04] doc_electron.txt (Abstract, Sections 2.1, 4.2,
   No scripts were edited (electron_doc.py, beta_plus_strip.py,
   weak_interaction_cg.py were already correct) -- doc-text-only fix, no
   PASS counts to reverify.
+
+=============================================================================
+DOC: doc_qm.txt
+=============================================================================
+
+QM2-1 [RESOLVED 2026-09-06, multi-stage] Section on Born rule ("This is
+  the Born rule. It requires no additional postulate: detection = energy
+  absorption from the medium wave, and energy density is proportional to
+  amplitude squared.") originally flagged as glossing over a known hard
+  step -- the doc's corpuscle framing is structurally similar to pilot-
+  wave/de Broglie-Bohm theory, where going from "wave energy density ~
+  |psi|^2" to "detection PROBABILITY = |psi(x)|^2" needs a separate
+  "quantum equilibrium hypothesis" postulate; the abstract's "NEW GROUND"
+  paragraph claims superiority over dBB on this point, so "no additional
+  postulate" was doing real unacknowledged work.
+  VERIFIED (author-requested check): no script anywhere backs the claim --
+  both qm_doc.py and qm_from_medium.py's "QM6" check is a hardcoded
+  `check("QM6 Born rule...", True, ...)`, not a computed condition. The
+  "energy density u(x) ~ |psi(x)|^2" part is ordinary, uncontroversial
+  wave physics needing no special derivation.
+  DISCUSSED WITH AUTHOR, reassessment: the abstract's actual "NEW GROUND"
+  text does NOT specifically claim to solve dBB's quantum-equilibrium
+  problem -- it claims (more modestly) that no other QM interpretation
+  derives the formalism from a medium with INDEPENDENTLY FIXED MECHANICAL
+  PROPERTIES. The dBB comparison was this review's own characterization
+  of what the corpuscle model structurally resembles, not a claim the doc
+  itself makes.
+  CORRECTION (author caught an error): a first-pass "sharper diagnosis"
+  wrongly claimed the doc gives NO mechanism for why detection is a
+  single, localized event rather than continuous smeared absorption.
+  Re-read on author's prompt: Sections 4.2/4.2a DO give a real, physical
+  mechanism for this, specifically for which-path detection. The winding
+  is spread out (spans both slits), but detector atoms are themselves
+  discrete, localized objects at specific points in space, and Zone 3
+  coupling to them only occurs within the short r_lock(T) threshold
+  (340 fm at 300K) -- an all-or-nothing, short-range condition, not a
+  smooth/continuous one. Once coupling occurs with a specific atom, the
+  winding -- a single, topologically-conserved (indivisible) object, not
+  a classical field that can fractionally split -- resolves AS A WHOLE at
+  that location. This is a genuine, non-trivial answer to "why one
+  discrete localized event, not continuous smearing," distinct from (and
+  not needing) a dBB/GRW-style add-on collapse postulate -- under-credited
+  on first read, corrected.
+  SEPARATE WORDING ISSUE, FOUND AND FIXED (author-prompted): Section 4.1's
+  "The winding CANNOT be 'at slit A' or slit B... a topological
+  configuration of the medium, defined globally" conflated the CORPUSCLE
+  (always at one definite location) with its Zone 3 FIELD (which
+  genuinely spans both slits) under the single word "winding". SEARCHED
+  FIRST (per author's request): docs/series3/doc_uniqueness.txt Section 0
+  already has the exact right distinction, independently established
+  ("The corpuscle = the real particle, always at a definite location";
+  "psi(x) = density of corpuscle paths passing through x"). COMPUTED (per
+  author's request): wrote analysis/quantum/double_slit_field_
+  interference.py -- standard Fraunhofer double-slit optics using the
+  doc's own lambda_dB formula, confirms the corpuscle-definite/field-
+  spans-both-slits picture reproduces the correct fringe pattern and
+  spacing (DS1, DS5, 6/6 PASS). Also computed the "detector stops the
+  wave" distinction: literally BLOCKING one slit's field (case B) and
+  marking which-path WITHOUT blocking (case C, closer to what Section
+  4.2's actual r_lock mechanism describes) both kill fringes, but are NOT
+  the same case -- identical normalized shape (DS4a), differing only in
+  total intensity (C carries ~2x B's, DS4b) -- a genuine, checkable
+  distinction (first attempt used the wrong model and wrongly predicted a
+  shape difference; caught and corrected by rerunning with corrected
+  geometry). APPLIED: rewrote Section 4.1 to distinguish corpuscle
+  (always one definite slit) from Zone 3 field (spans both, is what
+  interferes), and to explain single-click discreteness via "a corpuscle
+  in transit is not directly observable -- it registers only at a nexus"
+  (restated in doc_qm.txt's own words rather than cited, per the
+  series-1-must-not-depend-on-series-3 policy).
+  OVER-REACH, CAUGHT AND CORRECTED (author): a follow-up investigation
+  into whether "sneakily turning off the detector" involves the medium's
+  tau_relax relaxation/depletion physics (Maxwell viscoelastic model, cell
+  depletion, gyroscope precession) was OVER-REACH -- an incorrect
+  association between unrelated mechanisms. Author confirmed directly:
+  the which-path/"sneakily turning off" scenario is NOT a depletion
+  event, and Section 4.2/4.2a's EXISTING explanation ("detector atoms are
+  still physically present within r_lock, so Zone 3 coupling still
+  occurs -- 'off' means nothing until the atoms are physically removed")
+  is correct and needed no change. tau_relax/depletion physics simply
+  does not apply here; searching for a connection was the mistake.
+  RESOLVED (author): the deeper per-trial-resolution puzzle (does r_lock
+  coupling require the specific corpuscle to pass near the detector,
+  which would only decohere ~50% of trials and predict partial fringe
+  visibility, contradicting real experiments showing FULL loss of
+  interference?) was reframed correctly by the author: it is not about
+  the CORPUSCLE being near the detector, it is about the FIELD being
+  disrupted. Section 4.1 already establishes the field passes through
+  BOTH openings on EVERY trial, regardless of which slit the corpuscle
+  itself takes -- that is the actual interference-generating mechanism. A
+  detector sitting at one slit therefore couples to THAT SLIT'S OWN local
+  field amplitude on every trial (the field is always there), not to the
+  corpuscle's instantaneous position (only near the monitored slit on
+  ~half of trials). This resolves the puzzle cleanly: decoherence is a
+  field-detector interaction happening every trial, not a corpuscle-
+  detector proximity event happening on half of them -- matching real
+  experiments (full loss of interference, not ~50% visibility). APPLIED:
+  rewrote Section 4.2's opening paragraph to state this precisely
+  (previously "within r_lock(T) of the beam" was ambiguous between
+  corpuscle-position and field-at-the-slit readings).
+  NOT RESOLVED, SPUN OFF: two narrower statistics questions (screen-case
+  generalization of the discreteness mechanism to an extended final
+  screen; the specific |psi(x)|^2 statistical weighting, not just
+  discreteness) were left open -- tracked as a short stub in
+  judgment_calls.txt (QM2-1 REMAINING) rather than dropped.
+
+
+OP-1 [RESOLVED, 2026-09-07 -- moved to docs/series2/judgment_calls.txt GY-1]
+  Originally: doc_orbit_pressure.txt Section 2.5's "GYROSCOPIC PRECESSION =
+  BERNOULLI" claim, and the shared claim in docs/series2/doc_gyroscope.txt.
+  The doc_orbit_pressure.txt (series 1) half is now CLOSED: the claim was
+  removed outright (main bullet, an orphaned duplicate paragraph, and the
+  STATUS SUMMARY line citing it) -- ordinary mechanics already explains
+  gyroscope precession with no gap, so the claim served no purpose in an
+  orbital-mechanics doc. The remaining question is purely about
+  docs/series2/doc_gyroscope.txt's own Abstract/Section 1 framing and its
+  unverified Zone-2/atomic-rotor escape clause -- tracked as GY-1 in the new
+  docs/series2/judgment_calls.txt (created this session, first entry).
+
+=============================================================================
+DOC: doc_particle_generation.txt
+-----------------------------------------------------------------------------
+PG2-1 [MECHANISM RESOLVED 2026-09-07 -- broader multi-cell scope remains
+  open, see judgment_calls.txt PG2-1 pointer entry] The antipodal-vertex
+  "u IS a d quark" argument for F-15's beta-decay mechanism
+  (doc_particle_generation.txt Section 7 body; scripts
+  analysis/quantum/weak_quark_flip.py QF4/QF5 and
+  analysis/demos/particle_generation_doc.py PG14).
+
+  ORIGINAL FINDING (still accurate as a narrow code/math observation --
+  see RESCOPE below for why this is likely not the core issue):
+  (a) TAUTOLOGY, CONFIRMED BY READING THE CODE: both scripts hardcode
+  `chi_T1g_C52 = -1.0/phi` and `chi_T2g_C5 = -1.0/phi` as two SEPARATE
+  literals (not computed from a rotation matrix or character-table
+  lookup), then check `abs(chi_T1g_C52 - chi_T2g_C5) < 1e-10` --
+  guaranteed to pass regardless of physical correctness. weak_quark_flip.py's
+  QF5 is a pure self-comparison: `abs(chi_T1g_C52 - chi_T1g_C52) < 1e-10`.
+  (b) THE UNDERLYING GROUP-THEORY STEP APPEARS BACKWARDS (independently
+  verified, stands regardless of the rescope below): the scripts' comment
+  reasons "C5 -> C5^4 = C5^(-1) [at the antipodal vertex]; chi(C5^4) =
+  chi(C5^2) [real chars]" to conclude chi(T_1u at antipodal, C5) =
+  chi(T_1u,C5^2) = -1/phi = chi(T_2u,C5) (u reads as d from the antipodal
+  frame). But C5^4 is in the SAME conjugacy class as C5 (standard
+  icosahedral-group class structure; chi(g)=chi(g^-1) for real
+  characters), so chi(C5^4)=chi(C5)=+phi, NOT chi(C5^2)=-1/phi. The
+  antipodal-vertex character equals the ORIGINAL (unflipped) T_1u value
+  as written -- this specific argument does not establish the u->d flip
+  it's used to justify.
+
+  RESCOPE (2026-09-06, author-prompted, CORRECTED same day after further
+  author pushback -- see below): "tautology" is accurate at the code
+  level but MYOPIC as the central issue -- it targets whether the CHECK
+  verifies anything, not whether the MECHANISM is even the right kind of
+  argument. Two things learned this session bear on that larger question:
+  (1) doc_nucleus.txt already has a much richer, established Zone 1
+      geometric/dynamical model that any u<->d flip mechanism needs to
+      sit inside, not something separate from it: proton Zone 1 is an
+      ORDERED u-u-d string with the u's rigidly locked to (and co-rotating
+      with) Zone 2 ("frozen rollers... they ARE the Zone 2 shell") and the
+      d quark alone at the CENTER as the one non-locked, traversing degree
+      of freedom; neutron Zone 1 is d-u-d, with the two d's actively
+      orbiting in a triangle (r_grind=0.421 fm, extending into Zone 3) and
+      the centrally-positioned u transversely displaced by the orbital
+      balance. The antipodal-vertex mechanism (a single winding bouncing
+      to a point diametrically opposite on the icosahedron) does not
+      obviously connect to or use this established center/shell structure
+      at all. This is a GEOMETRIC consistency question (does the bounce
+      even use the right spatial setup), not an ontological-view one.
+  (2) Author confirmed (2026-09-06): electric charge is NOT a primitive,
+      individual-quark-level property in this framework -- it is an
+      emergent pressure/chirality effect at the composite level (proton,
+      electron), and the u/d quark distinction itself is fundamentally a
+      WINDING CHIRALITY difference (opposite-chirality Hopf (1,2)
+      windings, structurally analogous to electron/positron, "grouped in
+      sets"), not a fractional-charge distinction. Checking the antipodal
+      mechanism against Standard-Model-style fractional quark charges (as
+      this reviewer mistakenly tried mid-session) is ALSO the wrong kind
+      of check -- whatever the right check turns out to be, it needs to
+      work entirely in winding-chirality/character terms, consistent
+      with (1).
+  CORRECTION (2026-09-06, author pushback): an earlier version of this
+  rescope also framed part of the concern as "this mechanism may predate
+  the framework's later embrace of a corpuscle ontology over an earlier
+  quantum-wave one, and may need reconciling with it." Author correctly
+  pushed back: character-table/group-theory arguments are timeless and
+  view-independent -- they don't inherently need "reconciling" with
+  corpuscle vs. wave framing just because the surrounding doc predates a
+  later ontological emphasis. That framing was overstated and is
+  retracted; the (b) conjugacy-class error above stands on its own as a
+  plain group-theory fact, independent of any interpretational question.
+  The one piece of that thread still open (unconfirmed, not an ontology
+  question either): whether beta_plus_strip.py's current Trigger B text
+  (a strange-quark fluctuation converting a d-winding to "u-like")
+  matches the author's recollection of the ORIGINAL concept (a tau
+  corpuscle becoming a strange quark upon entering Zone 1) -- a plain
+  textual/factual matching question against the author's memory, nothing
+  deeper.
+  ENHANCEMENT PATH FOR (a), CONFIRMED AVAILABLE (2026-09-06,
+  author-prompted): analysis/nuclear/ih_double_group.py already derives
+  I_h/2I character values from a real formula (chi_j(theta) =
+  sin((j+0.5)*theta)/sin(theta/2), the actual rotation angle -- not
+  hardcoded per-irrep literals) for a 9-irrep table including T1(3) and
+  T2(3), almost certainly the same vector irreps u/d quarks are labeled
+  with elsewhere in the repo (already the cited source-of-truth for
+  chi(E+,C5)=phi-type values throughout: electron_doc.py, qm_doc.py,
+  qm_dirac_pauli.py, maxwell_nexus_connection.py, weak_interaction_cg.py).
+  weak_quark_flip.py's and particle_generation_doc.py's hardcoded
+  chi_T1g_C52/chi_T2g_C5 literals can very likely be replaced by
+  importing/deriving from this already-established, non-tautological
+  source instead -- concretely resolving concern (a) (the check would
+  then verify something real, not compare two typed-in numbers to each
+  other).
+
+  (b) DEFINITIVELY CONFIRMED (2026-09-06, via ih_double_group.py's OWN
+  construction, not just outside textbook knowledge as originally noted):
+  read the script's lift_from_I() function directly -- for INTEGER-SPIN
+  irreps (which includes T1/T2, the exact vector-irrep category u/d
+  quarks are labeled with), its own explicit comment and code state
+  "C5^4=C5, C5^3=C5^2... for integer spin" and return the character
+  vector accordingly. Confirmed 2I is ambivalent for these irreps by
+  running the script directly: 15/15 PASS, no failures. Computed exact
+  values from the script's own I_char_table (T1=[E,C5,C5^2,C3,C2] =
+  [3,phi,-1/phi,0,-1]; T2=[3,-1/phi,phi,0,-1]):
+    chi(T1, C5^4) = chi(T1, C5) = +phi = +1.618034  (correct lift)
+    chi(T2, C5)                 = -1/phi = -0.618034
+    These are NOT equal -- the "u reads as d from the antipodal vertex"
+    conclusion FAILS under the framework's own correctly-lifted
+    character values.
+    By contrast, chi(T1, C5^2) = -1/phi = -0.618034 DOES equal
+    chi(T2, C5) = -0.618034 -- this is exactly why the current hardcoded
+    check passes: it substitutes C5^2 for C5^4, and that substitution
+    (confirmed backwards above) is the ONLY reason the numbers match.
+  IMPORTANT IMPLICATION FOR (a): this means enhancing the scripts to
+  import ih_double_group.py's real character values is NOT a safe,
+  risk-free mechanical citation update -- doing it correctly would flip
+  QF4/QF5 (and PG14) from PASS to FAIL, directly contradicting F-15's
+  antipodal-vertex "u IS a d quark" mechanism as currently argued in
+  doc_particle_generation.txt Section 7. This is now a confirmed finding,
+  not a hypothesis: the mechanism's character-table argument does not
+  hold up once evaluated with correctly-lifted (not hardcoded) values.
+
+  NEEDS AUTHOR CALL (updated scope, (b) now resolved): (a) decide how to
+  handle enhancing weak_quark_flip.py/particle_generation_doc.py given
+  that a correct derivation makes the check FAIL, not pass -- options
+  include: retiring/rewriting the antipodal-vertex mechanism, softening
+  F-15's status pending a replacement mechanism, or leaving the scripts
+  hardcoded (as-is) with an explicit doc note that the character-table
+  argument is now known not to hold under correct math; (b) RESOLVED --
+  see above; (c) determine whether ANY antipodal-vertex-style mechanism
+  could geometrically fit the established Zone 1 center/shell model
+  (doc_nucleus.txt), independent of the now-confirmed character-table
+  failure, or whether a replacement mechanism needs to be grounded
+  directly in that geometry instead; (d) confirm/correct
+  beta_plus_strip.py's Trigger B text against the recalled original
+  tau->strange concept. No doc or script text changed yet pending this
+  call -- (a)'s options in particular affect a published headline
+  mechanism (F-15) and should not be applied unilaterally.
+
+  RESCOPED AGAIN (2026-09-07, MAJOR, MUCH BROADER): full status, root
+  cause, complete accounting of every affected doc and every new script
+  from this segment, and resolution options are now tracked in a
+  dedicated file -- docs/series1/pg2-1_multicell_gap.txt -- rather than
+  here, given the size this has grown to. Summary: the antipodal-vertex
+  mechanism's replacement (weak_quark_edge_hop.py, built 2026-09-06) was
+  ALSO found to rest on a wrong geometric model (Zone 1 treated as one
+  icosahedron's 12 vertices; the established correct picture is a
+  three-across quark string meshing with Zone 2's cog teeth,
+  cog_geometry.py) -- and chasing THAT down further surfaced a much
+  bigger finding: no script anywhere in this repo builds a real multi-
+  cell spatial packing model, for any zone, for any particle. N_J (21
+  for the proton, and every other particle's N_J) is used everywhere as
+  a scalar density/regime number, never as a count of positioned
+  objects. This blocks beta decay / any quark-flip mechanism entirely
+  until resolved (see pg2-1_multicell_gap.txt Section 6 for options),
+  and raises an open question (NOT yet resolved either way) about
+  whether OTHER claims across the repo that reference cell-to-cell
+  contact (mesh/grind chirality mechanism for EM attraction/repulsion,
+  cog_geometry.py's winding-number narrative) are similarly affected --
+  audit in progress, see pg2-1_multicell_gap.txt Sections 2 and 6.
+
+  RESOLVED (2026-09-07, session 27): both proposed mechanisms (antipodal-
+  vertex bounce, and its edge-hop replacement) are RETRACTED -- neither
+  can be established without a real multi-cell Zone 1/2 packing model,
+  which does not exist. The CG/character-table selection rule (T_2g x
+  E+ -> I52 -> T_1g + E-) is kept as the current standing result: it is
+  representation-theory-consistent and does not depend on the retracted
+  spatial claim. Actions taken: archived 4 scripts built on the invalid
+  single-icosahedron model (analysis/quantum/weak_quark_edge_hop.py,
+  analysis/nuclear/beta_plus_edge_hop.py, analysis/quantum/
+  skip_hop_diagram.py/.png, analysis/quantum/quark_flip_path_search.py --
+  joining weak_quark_flip.py and beta_plus_strip.py archived 2026-09-06);
+  updated doc_electron.txt (Section 6.1), doc_particle_generation.txt
+  (status header + Section 7 + particle_generation_doc.py Section 8, PG14
+  removed, PG12/PG13 kept), doc_torsionverse.txt (QUARK FLIP block; NOTE:
+  doc_torsionverse.tex, the actual published-PDF source, was found even
+  MORE stale -- still citing the original weak_quark_flip.py, never
+  updated in the 2026-09-06 revision at all -- .tex fix deferred per
+  author instruction, tracked as an open TODO, NOT yet done), 
+  doc_hadron_manipulation.txt (Section 5.3a rewritten; also fixed two
+  unrelated pre-existing policy violations found in the same passage: a
+  direct judgment_calls.txt filename citation and a leaked /memories/repo/
+  path, neither of which should ever appear in a published doc),
+  claims_audit.txt (TV-9 x2, PG-6/PG-7), and zenodo.txt (Doc Electron
+  summary, Record 18) -- terminology settled as "RETRACTED" (standard
+  scientific-publication term for withdrawing a claim), not "revoked"
+  (too legal/administrative) or "superseded" (implies a replacement,
+  which does not exist here). All companion scripts re-verified after
+  changes: hadron_manipulation.py 36/36, electron_doc.py 19/19,
+  particle_generation_doc.py 14/14 (was 15/15 -- PG14 removed by design),
+  torsionverse_doc.py 23/23. Forward-looking item (revisit if/when a real
+  multi-cell proton model is built) logged in open_items.txt for series 3
+  or later. Revision notes appended to all 4 affected docs' own
+  revisions/ files (doc_electron.txt, doc_particle_generation.txt,
+  doc_torsionverse.txt in series1/revisions/; doc_hadron_manipulation.txt
+  in series2/revisions/).
+  NOT part of this resolution (still open, see judgment_calls.txt PG2-1
+  pointer entry and N2-1): whether the same missing multi-cell geometry
+  undermines OTHER cell-to-cell-contact claims (mesh/grind mechanism,
+  cog_geometry.py winding number) -- 5 audit items remain, tracked in
+  pg2-1_multicell_gap.txt Section 4.
+
+=============================================================================
+DOC: doc_leptons.txt
+-----------------------------------------------------------------------------
+LP2-2 [RESOLVED 2026-09-07 -- see below; underlying derivation gap tracked
+  as L-MU-BORN in open_items.txt] Section 4's muon mass eff_mu: the doc's
+  wording is now honest about the uncertainty (see ROUND 3 above for the
+  citation/wording fix applied), but the underlying physics question
+  remains open: FOUR distinct candidate values exist in the repo (the
+  original triage found three; a fourth, muon_medium_plus_area_combined.py's
+  additive derivation, was already in the doc but not yet folded into this
+  entry), none derived from first principles without an external input:
+  (1) eff_mu=0.845492 (bipyramid analogy, what's actually used in the mass
+  formula); (2) eff_mu=0.856308 (koide_proof.py KP1/KP2, numerical inversion
+  against the PDG-measured muon mass, ~1.3% higher than (1)); (3) eff_mu=1.0
+  (muon_internal_force_check.py F1-F3, recomputing the Born-ratio on the
+  doc's own corrected uniform-72-deg path -- the ratio trivially collapses
+  to 1, suggesting the Born-RATIO construction itself may not carry over
+  from the mixed-mode bipyramid model to the pure single-mode path); (4)
+  eff_mu = 1/phi + alpha*(m_mu/m_e)^(2/3) = 0.873199
+  (muon_medium_plus_area_combined.py, additive combination of the G32|D5
+  sub-resonant root 1/phi with a medium-density-style correction of order
+  alpha scaled by the mass ratio to the 2/3 power -- gives +0.0046%,
+  comparable to but not better than (1); a robustness scan,
+  muon_combined_robustness_scan.py, shows this sits in a smooth,
+  non-fragile region of parameter space, not an isolated fitted point,
+  but the exponent/coefficient were selected by testing a small number of
+  options, not independently derived).
+
+  RESOLUTION METHODOLOGY (author, 2026-09-07): resolve the same way other
+  "different values for the same thing" cases in this repo have been
+  resolved -- (1) label where each value comes from (done above), (2)
+  decide whether there's a reason to prefer one value over another,
+  defaulting to the external/measured value (PDG here) for comparison as
+  a reality check, and showing both where the comparison itself is
+  informative (already done in doc_leptons.txt Section 8's comparison
+  table). Checked for a CODATA-2018-vs-2022 vintage discrepancy in the
+  muon mass specifically (raised as a general caution, since this pattern
+  bit other quantities earlier this session, e.g. kappa/QCD string
+  tension) -- found NONE: 105.6583755 MeV is used consistently across
+  ~30 scripts referencing the muon mass, and doc_leptons.txt's rounded
+  "105.658 MeV" matches exactly.
+
+  RESOLVED (2026-09-07): (1) is confirmed and documented (doc_leptons.txt
+  Section 4.3) as the working value used in the mass formula -- it is the
+  closest match to the measured mass among the non-circular, non-degenerate
+  candidates: (2) is defined by inversion from the measured mass itself
+  (not an independent prediction), (3) is a degenerate null result (not a
+  competing derivation), and (4) is comparable but not better (+0.0046% vs
+  (1)'s -0.003%). This resolves the JUDGMENT (which value, and why) but
+  NOT the underlying PHYSICS gap: no first-principles Born-balance
+  derivation exists yet for eff_mu on the muon's own single-mode path
+  (rather than borrowed by analogy from the two-mode bipyramid model).
+  That gap is real and structurally similar to gaps worked through before
+  the alpha derivation closed (doc_alpha.txt Section 4.5: Born amplitude +
+  one-loop EM self-energy balance) -- tracked as its own forward-looking
+  item, L-MU-BORN, in docs/open_items.txt Section 4, for future
+  investigation rather than left implicit in this now-closed judgment call.
+
+  FOLLOW-UP (2026-09-07, same session): sharpened the justification for
+  (1) beyond "closest PDG match." The free muon is a solo corpuscle, not
+  the bilateral (fwd+bwd), multi-circuit STRUCTURAL G32 mode that the
+  resting cell's own force balance requires (doc_jobson_cell.txt Section
+  7.5, "fwd+bwd cancel at every vertex nexus") -- that bilateral
+  requirement exists to hold the unperturbed CELL in force equilibrium,
+  and there is no independent argument that a freed, propagating muon
+  needs to retain it. Candidate (3)'s degenerate uniform-72-deg path
+  belongs to that structural mode specifically, not to the free muon --
+  it was never actually competing on equal footing with (1). The free,
+  solo muon correctly reverts to the bipyramid form. Updated
+  doc_leptons.txt Sections 2.3 and 4.3 to state this reasoning explicitly
+  (previously only the weaker "closest match, not settled" framing was
+  given). Still open, now more precisely scoped: WHY the bipyramid
+  geometry (a non-icosahedral Johnson solid) is the physically correct
+  form for a solo free corpuscle -- one live possibility, not yet
+  explored, is that the bipyramid's mixed apex+equatorial structure
+  accidentally encodes real multi-cell/extended-path physics, analogous
+  to the PG2-1 pattern. Refined in open_items.txt L-MU-BORN accordingly.
+
+  FOLLOW-UP 2 (2026-09-08): the height-ratio half of that question is now
+  resolved -- muon_bipyramid_edge_condition.py (BR1-BR3, 6/6 PASS) shows
+  h_t/r_e=1/phi is exactly the all-edges-equal condition for the
+  bipyramid's two-apex/one-ring path, solved independent of phi and
+  confirmed not to be a disguised mass fit (best-fit x=0.5792 differs
+  measurably from 1/phi=0.6180). The remaining open question is narrower:
+  why the free muon's path takes this simpler one-ring topology at all
+  rather than the icosahedron's own two-ring (antiprism) topology -- see
+  open_items.txt L-MU-BORN for the current framing, including the
+  writhe_min.py/hopf_stability.py energy-relaxation precedent as the
+  most promising unexplored next step.
+

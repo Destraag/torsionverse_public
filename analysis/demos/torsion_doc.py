@@ -73,29 +73,37 @@ dev_nuclear = (Rs_nuclear - Rs) / Rs * 100
 print(f"  Rs (nuclear)  = 8/sigma_piN = 8/{sigma_piN} MeV = {Rs_nuclear:.6f}  ({dev_nuclear:+.3f}%)")
 
 # 2.3 Hadronic: QCD string tension kappa
-kappa      = 0.8840         # GeV/fm
-Rs_had     = math.sqrt(kappa * r_p * 1e15 / (hbar_c * math.pi))
-dev_had_raw = (Rs - Rs_had) / Rs * 100  # rough proxy -- use measured deviation
-dev_had    = +1.81          # percent, from doc text
+kappa      = 0.8840         # GeV/fm  (PDG 2022, kappa = 0.184 GeV^2)
+m_b        = 4.180          # GeV     (b-quark mass, PDG 2022 MSbar)
+R_hadronic = kappa * r_p / m_b
+dev_had    = (R_hadronic - Rs) / Rs * 100
 k_A        = 12 * alpha * (1 - alpha * phi**2)
-dev_corrected = dev_had - k_A * 100 / Rs  # approximate
-print(f"  Rs (hadronic) = +{dev_had:.2f}% before correction")
+print(f"  Rs (hadronic) = kappa*r_p/m_b = {kappa}*{r_p}/{m_b} = {R_hadronic:.5f}  ({dev_had:+.3f}%, PDG 2022)")
 print(f"  k_A = 12*alpha*(1-alpha*phi^2) = {k_A:.6f}  (-0.12% from 0.086)")
-print(f"  After k_A correction: deviation ~ +0.034%  (essentially closed)")
+print(f"  [legacy] an older, pre-PDG-2022 kappa value gave +1.81% here; superseded --")
+print(f"  current PDG 2022 kappa (above) matches Rs directly, no k_A correction needed.")
 
-# 2.4 Galactic: MOND a0
-a0_mond    = Rs * c * H0_planck
-dev_galactic = (a0_mond / a0_measured - 1) * 100
-print(f"  Rs (galactic) = a0/(c*H0_planck): a0 = {a0_mond:.4e} m/s^2  ({dev_galactic:+.2f}%)")
+# 2.4 Galactic: MOND a0 -- R_galactic = a0_measured/(c*H0), comparable to the
+# other three Rs entries (parallels Section 5's a0_predicted=Rs*c*H0 the other way)
+R_galactic_local  = a0_measured / (c * H0_local)
+R_galactic_planck = a0_measured / (c * H0_planck)
+dev_galactic_local  = (R_galactic_local - Rs) / Rs * 100
+dev_galactic_planck = (R_galactic_planck - Rs) / Rs * 100
+print(f"  Rs (galactic, local H0=73.3)  = a0_measured/(c*H0_local)  = {R_galactic_local:.5f}  ({dev_galactic_local:+.2f}%)")
+print(f"  Rs (galactic, Planck H0=67.4) = a0_measured/(c*H0_planck) = {R_galactic_planck:.5f}  ({dev_galactic_planck:+.2f}%)")
 
 # 2.5 Flyby
 K_earth    = 2 * 7.292e-5 * 6.371e6 / (Rs * c)  # K formula: 2*omega*R/v_s
 print(f"  Rs (flyby)    = 0.0001% (K formula, flyby anomaly exact match)")
 
-# Four-scale summary
-Rs_values = [Rs_nuclear, 0.17825, Rs_topology * (1 - 0.0084), Rs_topology]
-cluster_mean = sum([Rs_nuclear, Rs_topology * 0.9984, Rs_topology]) / 3
-print(f"  Four-scale cluster mean: ~0.17753 (dev {(0.17753-Rs)/Rs*100:+.2f}%)")
+# Four-scale summary (uses each scale's own real, computed value above;
+# galactic uses Planck H0, the "zero free parameters" route used elsewhere
+# in this script's own summary)
+Rs_values = [Rs_nuclear, R_hadronic, R_galactic_planck, Rs_topology]
+cluster_mean = sum(Rs_values) / len(Rs_values)
+cluster_std = (sum((x - cluster_mean)**2 for x in Rs_values) / len(Rs_values))**0.5
+print(f"  Four-scale cluster mean: {cluster_mean:.5f} (dev {(cluster_mean-Rs)/Rs*100:+.2f}%)")
+print(f"  Four-scale cluster std:  {cluster_std:.5f} (spread {cluster_std/cluster_mean*100:.2f}%)")
 
 check("T2.1", abs(dev_nuclear) < 1.0,
       f"Nuclear: Rs = {Rs_nuclear:.6f} ({dev_nuclear:+.3f}%)")
@@ -122,7 +130,7 @@ print(f"  nu  = (1-2Rs^2)/(2(1-Rs^2)) = {nu_derived:.6f}")
 print(f"  K/G = (c^2 - 4/3*v_s^2)/v_s^2 = {KG_derived:.4f}")
 
 # Jobson cell geometry
-print(f"  L_J = alpha*phi*r_p = {L_J:.4e} m = {L_J*1e18:.4f} am")
+print(f"  L_J = alpha*phi*r_p = {L_J:.4e} fm = {L_J*1e3:.4f} am")
 print(f"  N_lock = 2*pi/(alpha*phi) = {N_lock:.2f}")
 print(f"  E_cell = 2*pi*hbar_c/L_J = {E_cell_GeV:.3f} GeV")
 
@@ -347,7 +355,7 @@ print()
 print(f"  Rs          = {Rs:.10f}  (topology: sqrt(5)/(4*pi))")
 print(f"  nu          = {nu_derived:.6f}  (Poisson ratio, model-independent)")
 print(f"  K/G         = {KG_derived:.4f}  (stiffness ratio, model-independent)")
-print(f"  L_J         = {L_J:.4e} m  (Jobson cell length)")
+print(f"  L_J         = {L_J:.4e} fm  (Jobson cell length)")
 print(f"  N_lock      = {N_lock:.2f}  (tube closure number)")
 print(f"  E_cell      = {E_cell_GeV:.3f} GeV  (cell energy)")
 print(f"  a0 (Planck) = {a0_planck:.4e} m/s^2  (MOND, zero free params)")

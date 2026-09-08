@@ -45,7 +45,6 @@ All four fundamental ingredients -- alpha, m_p, m_pi, r_0 -- are derived from
 the torsion medium with zero free parameters.
 
 Companion script: analysis/nuclear/hadron_manipulation.py  (36/36 PASS)
-             analysis/nuclear/beta_plus_strip.py      ( 7/ 7 PASS)
 
 TORSIONVERSE vs EXTERNAL — KEY QUANTITIES USED IN THIS DOCUMENT
   Quantity                    Torsionverse derived          External reference
@@ -429,49 +428,44 @@ coupling rate (W boson Zone 3 field -- T_1g irrep from doc_higgs). The coupling
 strength is sin^2(theta_W) = 0.22290 [derived: doc_jobson_cell J28, C11; residual
 vs PDG 0.22290000 is 4.6e-6 -- essentially exact].
 
-5.3a  The d-winding strip: microscopic mechanism of beta+ positron emission
+5.3a  Beta+ positron emission: antipodal-vertex mechanism RETRACTED, selection
+      rule DERIVED
 
-When Hg-197 decays, a d quark (T_2u, Zone 1) is stripped from the proton,
-spirals outward along the Hopf fiber conical geodesic, and stabilizes as a
-positron in Zone 3. The three key results: [beta_plus_strip.py CA26a-f, 7/7 PASS]
+When Hg-197 decays, a proton converts to a neutron with a positron emitted.
+An earlier antipodal-vertex bounce mechanism proposed for the underlying
+u->d quark transition has been retracted. What stands as the current result:
+the Galois-conjugate character relation chi(T_2u) = -1/phi = chi(E+) shows
+this transition is representation-theory-consistent (a selection rule),
+and baryon number bookkeeping is unaffected either way -- the same 3
+confined quarks are present before and after the decay.
 
-TRIGGER (two equivalent routes):
-  Route A -- virtual photon: chi(T_1g,C5) x chi(T_2u,C5) = -1 = chi(I52,C5).
-    A virtual photon (T_1g) hitting the d quark (T_2u) produces the I52 (tau)
-    resonance intermediate -- the SAME intermediate as WI1 and WI2 (the weak
-    decay CG crossing). The photon trigger IS the weak-decay channel.
-  Route B -- strange quark fluctuation: chi(G_u,C5) x chi(T_2u,C5) = +1/phi.
-    The constituent strange mass (474 MeV) is within 1.1% of m_p/2 (469 MeV),
-    so strange quark (G_u) fluctuations are the natural Zone 1 noise floor.
-    A transient G_u mode intercepts the d winding and converts it to a u-like
-    mode via the Galois flip (same mechanism as weak_quark_flip.py QF3-QF4).
-  Both routes produce the same Zone 2 T_2g -> T_1g Galois flip.
+TRIGGER: what physically initiates the u->d change at the quark level is
+not established beyond the selection-rule consistency above.
 
-WHY POSITRON, NOT ELECTRON ('wrong spin'):
-  chi(T_1u, C5) = +phi = chi(E+, C5):  u quark freed from Zone 1 -> ELECTRON
-  chi(T_2u, C5) = -1/phi = Galois conjugate of chi(E+, C5):
-    d quark freed from Zone 1 -> GALOIS-CONJUGATE E+ orbit = POSITRON
-  The positron is the E+ mode with reversed Hopf winding chirality.
-  The winding 'arrives with the wrong handedness' because T_2u is the Galois
-  conjugate (C_5/C_5^2 character swap, SY15) of T_1u.
+WHY POSITRON, NOT ELECTRON (SCOPE NOTE):
+  chi(T_1g,C5) = chi(E+,C5) = +phi confirms the escaping particle has
+  ELECTRON-FAMILY coupling strength (not chi(E-)=-1/phi, the neutrino
+  value) -- this does NOT by itself distinguish positron from electron,
+  since BOTH share chi(C5)=+phi (positron = anti-E+, same chi, chirality/
+  roll reversed only -- a DIFFERENT DOF invisible to chi). The positron
+  identity here is ANCHORED by matching the externally-confirmed reaction
+  direction (p -> n pairs with e+, not e-) -- NOT independently re-derived
+  from a torsionverse-native chirality argument. That derivation remains OPEN.
 
-CONTINUOUS SPECTRUM ORIGIN:
-  The d winding oscillates at frequency omega_d in Zone 1. The strip occurs
-  at a random phase phi_0 uniformly distributed in [0, 2*pi). The positron
-  kinetic energy scales as sin^2(phi_0) * Q_beta+, giving a uniform
-  distribution from 0 to Q_beta+ = Q_EC - 2*m_e = 1.225 MeV
-  (Q_EC = 2.247 MeV [NNDC, external]; 2*m_e = 1.022 MeV [TV: exact from LM1]).
-  Standard QM obtains the same flat spectrum from 3-body phase space; the torsionverse
-  gives the microscopic reason: the winding cycle phase at the moment of strip.
-  Average positron energy: <E_e+> = Q_beta+/2 = 0.613 MeV.
+CONTINUOUS SPECTRUM ORIGIN (kinematics DERIVED, microscopic origin OPEN):
+  The positron kinetic energy spectrum is flat from 0 to Q_beta+ = Q_EC -
+  2*m_e = 1.225 MeV (Q_EC = 2.247 MeV [NNDC, external]; 2*m_e = 1.022 MeV
+  [TV: exact from LM1]), matching the standard 3-body phase-space result.
+  A proposed microscopic origin (winding-cycle phase at the moment of the
+  quark transition) depends on the same retracted mechanism above and
+  is not independently established. Average positron energy: <E_e+> =
+  Q_beta+/2 = 0.613 MeV.
 
-ANNIHILATION:
+ANNIHILATION (DERIVED, independent of the open mechanism above):
   The positron stabilises in Zone 3 near the nucleus. The nearest electron
   provides an E+ (electron) + anti-E+ (positron) pair -- together they form
   a zero-winding state that decays to two photons (T_1g modes):
   E_annihilation = 2*m_e = 1.022 MeV  ->  two 511.0 keV gammas  [EXACT]
-
-  [Checks: CA26a-CA26f in analysis/nuclear/beta_plus_strip.py, 7/7 PASS]
 
 5.4  Direct Pb -> Au: is stepwise transmutation practical?
 
@@ -514,10 +508,11 @@ Estimated enhancement from torsionverse resonance [DERIVED]:
   - Hg-197 beta decay: Fermi constant K from torsionverse G_F (-0.18% from tree-level PDG)
     and Q_n from SY9+LM1 (+0.28%). Neutron t_1/2 = 624 s (tree-level, -29%; nuclear
     corrections account for residual). [CA24a, CA24b, CA25]
-  - Beta+ d-winding strip mechanism: trigger = T_1g x T_2u = I52 (same as WI1+WI2);
+  - Beta+ decay: selection rule trigger = T_1g x T_2u = I52 (same as WI1+WI2);
     strange fluctuation route: G_u x T_2u = +1/phi (Galois flip, same as QF3-QF4);
-    positron from Galois-conjugate chi of T_2u; continuous spectrum from strip phase;
-    annihilation = 2*m_e = 1.022 MeV (exact). [CA26a-f, beta_plus_strip.py 7/7]
+    positron identity from Galois-conjugate chi of T_2u (selection rule, not a
+    derived spatial mechanism -- see Section 5.3a); annihilation = 2*m_e =
+    1.022 MeV (exact, independent of the retracted mechanism).
 
   GENUINELY OPEN:
   - T_2g photon coupling enhancement vs isotropic gamma (Zone 2 photocoupling)
@@ -760,7 +755,6 @@ GENUINELY OPEN:
 --------------------
 
   analysis/nuclear/hadron_manipulation.py  -- 31/31 PASS
-  analysis/nuclear/beta_plus_strip.py      --  7/ 7 PASS
 
   CA1-CA4:   Coulomb barrier and Gamow tunneling (crystal vs nuclear scales)
   CA5-CA8:   Muon-catalysed assembly (muon as G_u boundary-regime mode)

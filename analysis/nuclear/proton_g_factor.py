@@ -143,9 +143,6 @@ print()
 check("GP0 Pressure divergence (r_d=0) gives mu_p in right direction and magnitude",
       abs(mu_total_r0 - mu_p_measured)/mu_p_measured < 0.15,
       f"divergence+Z3 = {mu_total_r0:.4f}  measured = {mu_p_measured:.4f}  err = {100*(mu_total_r0-mu_p_measured)/mu_p_measured:+.1f}%")
-check("GP0b Pressure divergence is closer to measured than SU(6) = 3.000",
-      abs(mu_total_r0 - mu_p_measured) < abs(mu_SU6 - mu_p_measured),
-      f"divergence err = {abs(mu_total_r0-mu_p_measured):.4f}  SU6 err = {abs(mu_SU6-mu_p_measured):.4f}")
 
 print()
 print(SEP)
@@ -169,6 +166,9 @@ print()
 check("GP1 SU(6) gives mu_p = 3.000 mu_N",
       abs(mu_SU6 - 3.000) < 0.001,
       f"SU(6) = {mu_SU6:.4f}")
+check("GP0b Pressure divergence (Section 0) is closer to measured than SU(6) baseline",
+      abs(mu_total_r0 - mu_p_measured) < abs(mu_SU6 - mu_p_measured),
+      f"divergence err = {abs(mu_total_r0-mu_p_measured):.4f}  SU6 err = {abs(mu_SU6-mu_p_measured):.4f}")
 
 # ── SECTION 2: MIT bag spin reduction ─────────────────────────────────────────
 print()

@@ -226,12 +226,17 @@ modes mixed in the bipyramid path, not the pure muon balance. The -0.003% residu
 is partly from using this approximate mixed-mode eff instead of the exact
 single-mode balance.
 
-GEOMETRIC CORRECTION (verified in lepton_mass.py LM4b):
+GEOMETRIC CORRECTION (verified in lepton_mass.py LM4b): this correction
+  applies to the STRUCTURAL G32 mode, not the free muon -- see Section 4.3.
   The actual icosahedral zig-zag path (following real icosahedral edges) has
   ALL 5 deflections = cos(72 deg) = 1/(2*phi). The equatorial deflection in
   the regular bipyramid (a non-icosahedral Johnson solid) does NOT appear on
   the actual icosahedral edge path. The equatorial -1/sqrt5 belongs purely to
-  the TAU face mode, not the muon edge mode.
+  the TAU face mode, not the muon edge mode. This uniform-72-deg path is the
+  structural G32 mode's own path (bilateral, multi-circuit, part of the
+  resting cell's force balance -- doc_jobson_cell.txt Section 7.5); the FREE
+  muon is a solo corpuscle, not bound by that bilateral requirement, and
+  correctly reverts to the bipyramid form for its own Born balance (Section 4.3).
 
 
 3. ELECTRON (VERTEX MODE)
@@ -313,7 +318,32 @@ The pentagon polygon normalization uses N=5 (the symmetry order of the zig-zag):
   point, but the specific exponent 2/3 and coefficient (delta=alpha exactly)
   were selected by testing a small number of options, not independently
   derived). Which of these (if any) is the physically correct input is not
-  settled.]
+  settled. (1) is retained as the working value used below, now for a
+  clearer reason than "closest PDG match": the FREE muon is a solo
+  corpuscle (not the bilateral, multi-circuit STRUCTURAL G32 mode that
+  the resting cell's own force balance requires -- doc_jobson_cell.txt
+  Section 7.5), so it is not bound by the uniform-72-deg path's bilateral
+  coverage requirement and correctly reverts to the bipyramid form. (2) is
+  defined by inversion from the measured mass itself, not an independent
+  prediction; (3)'s degenerate result came from applying the STRUCTURAL
+  mode's single-mode path to what is actually a solo-corpuscle question --
+  not a competing derivation for the free muon; (4) is comparable but not
+  better (+0.0046% vs (1)'s -0.003%).
+  WHY h_t/r_e=1/phi SPECIFICALLY (muon_bipyramid_edge_condition.py BR1-BR3):
+  the bipyramid's height/radius ratio is not an independent free choice --
+  it is exactly the ALL-EDGES-EQUAL condition (apex-to-equator edge length
+  = equator-to-equator edge length) for this two-apex/one-ring path,
+  solved with no reference to phi anywhere in the setup [BR3]. This is the
+  SAME uniform-edge-length property every icosahedral edge already has
+  elsewhere in this framework (all edges = L_J), carried over as the one
+  surviving constraint once the free muon is no longer pinned to the
+  resting cell's exact lattice vertex positions. Independently confirmed
+  NOT to be a disguised mass fit: the x that actually minimizes the
+  predicted mass error (0.5792) is measurably different from 1/phi
+  (0.6180) [BR2]. Still open: a first-principles derivation of why the
+  free muon's path relaxes to this SIMPLER two-apex/one-ring topology at
+  all, rather than the icosahedron's own two-apex/two-ring (antiprism-
+  twisted) topology used by the structural mode -- left for future work.]
 
   L3_mu = (eff_mu^3 + log5^3) / (eff_mu^2 + log5^2)  = 1.4442
   k_mu  = alpha * eff_mu * (1 - 3/4*alpha^2) / (1 + x_mu + x_mu^2)  = 0.006137
@@ -433,6 +463,14 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
   the tau traverses T_2g faces, but the coupling mechanism differs from the
   edge-mode Maxwell jamming. The exact tau correction requires the Hopf face
   flux integral. Koide is the best current constraint on the corrected result.
+  SHARPENED (2026-09-08, koide_proof.py KP9-KP10): using the now-settled,
+  non-circular muon Born balance (eff_mu=(9-sqrt5)/8, Section 4.3) together
+  with the electron's own formula, Koide implies the required tau correction
+  factor (relative to base_tau below) is within 0.03% of 1 -- consistent
+  with, and quantifying, the "no alpha, no 2*pi" expectation above: the
+  tau's correction is much smaller than the muon's ~4.6%, not merely
+  differently structured. This is a numerical constraint on the still-
+  missing flux integral, not a replacement for deriving it.
 
   WINDING FACTOR -- corkscrew p-component:
     Electron winding: 2*pi * alpha^2 * phi^1   (circulation × 2 Born contacts)
@@ -520,7 +558,7 @@ GEOMETRIC ORIGIN (new -- face_gluon_geometry.py FG11):
   with leptons being outside the color sector. The muon rides gluon edge
   channels geometrically via C3=+1 coupling, not via direct vertex coupling.
 
-NUMERICAL STATUS (koide_proof.py, 8/8 PASS):
+NUMERICAL STATUS (koide_proof.py, 10/10 PASS):
   The leading-order mass formulas give K0 = 0.67111 (4442 ppm(abs) above 2/3 --
   an absolute shift in K, not the normalized relative-ppm convention used
   elsewhere in this paper for final precision claims, e.g. the 9.2 ppm(rel)
@@ -530,8 +568,16 @@ NUMERICAL STATUS (koide_proof.py, 8/8 PASS):
   geometric 2/3 ratio (field/field-strength) on the lepton Born balances.
 
 WHAT THE FORMAL PROOF STILL REQUIRES:
-  (1) Exact Born balance eff_mu for the 5-bounce uniform-72-deg icosahedral path
-  (2) Hopf fiber flux integral over one icosahedral face (exact base_tau)
+  (1) [RESOLVED, 2026-09-08] eff_mu is now settled at (9-sqrt5)/8 -- the
+      earlier target here ("the 5-bounce uniform-72-deg icosahedral path")
+      was actually the STRUCTURAL G32 mode, not the free muon; that path's
+      own Born-ratio trivially degenerates to 1.0 and was never the right
+      target (Section 4.3, muon_bipyramid_edge_condition.py BR1-BR3).
+  (2) Hopf fiber flux integral over one icosahedral face (exact base_tau) --
+      STILL OPEN, but now numerically constrained: using the settled e/mu
+      formulas, Koide implies the tau's own correction factor must be within
+      0.03% of 1 -- much smaller than the muon's own ~4.6% (koide_proof.py
+      KP9-KP10) -- a concrete target for this calculation, not a substitute.
   (3) Show the three exact mass expressions satisfy 4(ab+bc+ca) = a^2+b^2+c^2
   The geometric origin (FG11) is proven; the algebraic connection to the Born
   balance correction terms is the remaining open step.
@@ -609,10 +655,13 @@ DERIVED (zero free parameters, all verified by companion scripts):
   - Electron = VERTEX, muon = EDGE, tau = FACE (icosahedral element mapping)  [LM12-LM13]
   - Bipyramid was superposition of muon (apex) and tau (equatorial) modes  [Section 2.3]
   - m_e  = 0.510999 MeV (+0.000065%)  J26 formula  [LM1]
-  - m_mu = 105.655 MeV  (-0.003%)     pentagon Born balance, using the
-    bipyramid-approximation eff_mu -- known to be ~1.3% from the numerically-
-    inverted value, and the Born-ratio construction itself is not yet settled
-    (three unreconciled candidates; see Section 4.3 caveat)  [LM6-LM8]
+  - m_mu = 105.655 MeV  (-0.003%)     bipyramid Born balance, eff_mu=(9-sqrt5)/8
+    now SETTLED (not a fitted approximation) -- the free muon is a solo
+    corpuscle correctly reverting to the bipyramid form, with the height
+    ratio h_t/r_e=1/phi proven to be the all-edges-equal condition
+    independent of any mass fit (Section 4.3, muon_bipyramid_edge_condition.py
+    BR1-BR3). The numerically-inverted value 0.8563 (koide_proof.py KP1) is
+    a PDG-mass fit only, not a competing geometric target.  [LM6-LM8]
   - m_tau = 1776.92 MeV (+0.004%)     Koide from derived m_e, m_mu  [LM10]
   - Tau has a nexus with the gluon at each face boundary (20 per circuit) [LM14]
     Born balance deflection = arccos(-1/sqrt5); actual face-face dihedral 138.19 deg [JC5]
@@ -645,9 +694,10 @@ ESSENTIALLY CLOSED:
   - Muon color-neutrality: G32 x G has no A component (color-neutral by group theory)  [DG15]
 
 OPEN:
-  - Exact muon Born balance for uniform-72-deg icosahedral path (eff_mu=0.8563 numerical)
   - Exact Hopf fiber flux integral through one icosahedral face (closes tau +0.035%)
-  - Tau correction structure (no Born vertex contact -- differs from muon's Rs^2+2*alpha)
+  - Tau correction structure (no Born vertex contact -- differs from muon's
+    Rs^2+2*alpha; now numerically constrained to within 0.03% of 1, much
+    smaller than the muon's ~4.6% -- koide_proof.py KP9-KP10)
   - Born balance algebraic closure: show 4442 ppm correction enforces 6/9 ratio  [KP7]
   - Near-critical tau correction (N_J~11, Maxwell critical ~21)
   - Tau meeting-nexus mechanism at hop 0/10: what the two photons actually do
