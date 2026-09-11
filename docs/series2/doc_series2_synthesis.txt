@@ -72,7 +72,11 @@ Reference papers (Series 1 DOIs in Section 7).
   (d) Shell pressure signature: enhanced X-ray/UV emission at the jet base
       from maximum-density cell compression at the boundary
 
-  OPEN: compute the shell reflection geometry quantitatively.
+  OPEN: compute the shell reflection geometry quantitatively -- including
+  whether grazing-incidence reflection (rather than direct back-reflection)
+  produces a torsionverse analog of the GR photon sphere (light trapped in
+  quasi-orbit at the shell perimeter rather than bounced radially outward
+  or absorbed). Not yet analyzed either way.
   Reference: Cendes et al. 2022, ApJ 924, 65 (AT2018hyz)
 
 1.2  Long-lived atmospheric vortices and torsion medium stabilization

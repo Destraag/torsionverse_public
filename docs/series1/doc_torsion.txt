@@ -532,6 +532,38 @@ framework's single most load-bearing result, cited throughout this and every
 companion paper, and deserves dedicated scrutiny before any change is made,
 not a conclusion reached as a side effect of this section's K fix.
 
+That scrutiny surfaces a further fork: the K_jammed value above assumes
+rho=mu_0 is the quantity held fixed between the static and jammed regimes.
+Holding K=1/eps_0 fixed instead and letting rho float gives rho=1.312e-6
+kg/m^3 (1.04408*mu_0, +4.408%) -- an equally self-consistent alternative.
+K/G is EXACTLY 30.25 under both readings (it reduces to (1-4/3*Rs^2)/Rs^2,
+a function of Rs alone, independent of which absolute quantity is held
+fixed) -- so no ratio-only check can distinguish them.
+
+A third, micropolar/Cosserat reading (the jammed medium's true shear
+modulus is zero; today's G is instead a rotational coupling constant
+alpha) is a genuinely DIFFERENT formula, not just a third value of the
+same ratio: with no ordinary shear modulus, the classical 4G/3 correction
+drops out of the longitudinal wave speed entirely, so K stays at the
+static value K=1/eps_0 with no jammed reduction, and its own analogous
+ratio is K/alpha = 1/Rs^2 = 31.58 (not 30.25). This offers a real, but
+modest, piece of evidence against Cosserat: the Weinberg-angle candidate
+7/(1+K/G) gives 0.42% error using 30.25 above vs 3.69% using 31.58. That
+comparison alone tests an isolated component, though -- this framework's
+own best-precision Weinberg-angle result blends this K/G-dependent
+"pressure" term with a separate, K/G-independent "vertex" term derived
+from (1,2) Hopf topology (weighted 1/3 pressure + 2/3 vertex); repeating
+the comparison on that full blend still favors 30.25 over 31.58 (0.012%
+vs 1.36% error), but the margin narrows sharply once the K/G-independent
+2/3 is included, and the pressure term itself is one candidate among
+roughly 20 tried in an exploratory scan, not independently established as
+the correct mechanism. Treat this as real, direction-consistent, but not
+decisive evidence. Whether the classical solid-elasticity formula used
+throughout this section applies at all to a granular, contact-jammed
+medium, rather than requiring a different constitutive law such as this
+one, remains unresolved either way. The value above is kept as the
+best-evidenced working default, not a settled derivation.
+
 LEGACY, CONTAMINATED -- NOT PART OF THE DERIVED RESULT (reference only):
 The version of this section as originally published (2026-08-19) used the
 working hypothesis rho = rho_Lambda = 5.84e-27 kg/m^3, the Planck 2018

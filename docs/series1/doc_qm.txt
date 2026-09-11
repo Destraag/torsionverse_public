@@ -57,7 +57,7 @@ medium. The derivation chain has zero free parameters beyond m_p (the
 framework's one external input, as in the companion papers):
 
   1. Torsion medium: K = 1/eps_0, rho = mu_0, c = sqrt(K/rho)  [PROVEN]
-  2. Free pressure wave: omega = c*k  (massless) [QM1]
+  2. Free massless wave: omega = c*k  (mode-neutral template) [QM1]
   3. Hopf winding rest energy = m_p*c^2 -> Compton frequency omega_C = m_p*c^2/hbar
      [QM2; the Compton wavelength IS lambda_p = hbar_c/m_p = Zone 1 boundary]
   4. Winding dispersion: omega^2 = c^2*k^2 + omega_C^2  [Klein-Gordon, QM3]
@@ -101,10 +101,22 @@ Companion script: analysis/demos/qm_doc.py  (21/21 PASS)
 1. MEDIUM WAVE EQUATION AND KLEIN-GORDON
 ------------------------------------------
 
-1.1  Free pressure waves
+1.1  Free waves in the medium
 
-The torsion medium has bulk modulus K = 1/epsilon_0 and density rho = mu_0.
-The pressure wave speed c = sqrt(K/rho) = 1/sqrt(epsilon_0*mu_0) (exact by SI).
+The torsion medium's universal massless-wave speed is c = sqrt(K/rho) =
+1/sqrt(epsilon_0*mu_0) (exact by SI), using K = 1/eps_0 and rho = mu_0 as
+established elsewhere (doc_torsion Section 3.3, doc_magnetism Section
+2.1). This is the SAME speed shared by every linear, massless excitation
+of the medium -- both the A_g bulk-compression channel and the T_1g
+transverse channel propagate at c (doc_torsion Section 3.1) -- so citing
+K/rho here fixes c's numeric value without claiming the field below is
+itself a compression/pressure oscillation. "phi" in this section is a
+mode-neutral placeholder: Section 1.2 gives it a mass term to become the
+electron/proton's own Hopf-winding matter wave (not shown to be A_g
+specifically, nor any other single irrep), and Section 3 separately
+identifies light as the T_1g mode. Neither identification is being made
+here -- only the shared speed c is used.
+
 Free waves satisfy:
 
   (d^2/dt^2 - c^2 * nabla^2) phi = 0
@@ -198,6 +210,14 @@ absorption from the medium wave, and energy density is proportional to amplitude
 
 [QM6 PASS: Born rule from medium energy density]
 
+(This formula uses K, the compression/A_g-type elastic constant
+specifically; whether a shear-type wave should instead use G, or a
+mode-neutral form, is not yet settled -- nor is whether a classical
+elastic-potential-energy formula like this applies cleanly to this
+medium's real micromechanics, which may be closer to a granular contact
+system than a continuum Hookean solid. Neither open question changes the
+qualitative Born-rule argument above.)
+
 Note on wave identity: Light propagation = T_1g transverse vector wave in the
 torsion medium (Klein-Gordon with m=0 -> Maxwell equations; see doc_torsion
 Section 3.1 -- T_1g is transverse, not the v_p compression branch, which is
@@ -221,7 +241,7 @@ means the winding displaces Zone 1 and acquires rest energy m*c^2.
 Formula: theta(m) = arcsin(8*alpha*phi*m/m_p). All matter requires theta > 0.
 [doc_particle_generation.txt; analysis/quantum/winding_angle.py WA1-WA2]
 
-Pair production: when a photon's pressure wave amplitude exceeds the threshold
+Pair production: when a photon's wave amplitude exceeds the threshold
 for nucleating a new Hopf winding (E >= 2*m_e*c^2 for e+e- pair), the medium
 forces a new topological winding into existence. This is the Schwinger
 mechanism: field amplitude > winding nucleation threshold.
@@ -251,12 +271,12 @@ approaches a barrier with two slits:
       extend everywhere; they are not confined to one opening).
   (b) The medium pressure field passes through BOTH slit openings
       simultaneously, whichever slit the corpuscle used.
-  (c) At the screen, the pressure wave contributions from both slits
+  (c) At the screen, the wave contributions from both slits
       superpose: constructive where path difference = n*lambda_dB,
       destructive otherwise. This superposition is a property of the FIELD;
       it is not a claim that the corpuscle itself was in two places.
   (d) Interference pattern = standard Huygens-Fresnel diffraction for the medium
-      pressure wave. Fringe spacing = lambda_dB / d where d is slit separation.
+      wave. Fringe spacing = lambda_dB / d where d is slit separation.
       lambda_dB = 2*pi*hbar / (m*v) = de Broglie wavelength (from KG dispersion).
 
 The corpuscle's subsequent path to the screen is drawn from the resulting
@@ -329,6 +349,63 @@ the particle's winding and detector atoms, NOT by whether a human reads the outp
   their sub-ensemble shows interference in coincidence counts. The "recovery" of
   the pattern is not retroactive: those pairs were never decohered to begin with.
 
+4.2b  Generalization to the final screen (many trials, full |psi|^2 pattern)
+
+  Sections 4.2/4.2a describe a which-path DETECTOR at a slit; the more iconic
+  double-slit case is the FINAL SCREEN itself -- many trials, one localized
+  spot per particle, building up the full interference pattern over repeated
+  runs. The same mechanism applies without a new postulate: screen atoms are
+  Zone-3-active matter exactly like detector atoms, so a corpuscle's
+  traveling field resolves (couples to) whichever screen atom it first comes
+  within r_lock(T) of -- exactly one atom per trial, one spot per particle,
+  never a smeared hit, by the identical physical mechanism as Section 4.2's
+  slit case. Repeated over many trials, the coupling PROBABILITY at each
+  screen location is set by the medium wave energy density there (Section 3's
+  Born rule, QM6) -- so the accumulated histogram of single-particle spots
+  reproduces the |psi(x)|^2 interference pattern exactly, without requiring
+  the corpuscle itself to be smeared. This is Section 4.2's mechanism applied
+  at the screen instead of a slit, not a separate postulate.
+
+4.2c  The historical "light microscope" version (a different physical route)
+
+  Sections 4.2/4.2a use stationary Zone 3-active matter (detector atoms)
+  parked at a slit. The more commonly told version of this thought
+  experiment (Feynman, The Feynman Lectures on Physics, Vol. III, Chapter 1,
+  "Watching the Electrons") instead shines light near the slits and looks
+  for a scattered flash to tell which slit the particle used. This is a
+  DIFFERENT physical mechanism from Sections 4.2/4.2a's Zone 3 phase-lock,
+  not the same one restated: a photon carries no persistent Hopf winding of
+  its own (theta=0, Section 3), so it has no Zone 3 field to phase-lock with
+  anything -- it decoheres the particle by directly scattering off it
+  (ordinary photon-corpuscle EM scattering, the same T_1g Born-vertex
+  coupling of strength alpha derived in [DOC ALPHA] and used everywhere else
+  in this framework), not by parking a second winding nearby.
+
+  Resolving which of two slits (separation d) was used needs a photon
+  wavelength lambda_gamma <~ d (ordinary diffraction-limited resolution). By
+  p_gamma = 2*pi*hbar/lambda_gamma, such a photon transfers a recoil kick of
+  order 2*pi*hbar/d to the particle when it scatters. The interference
+  fringes are themselves separated by exactly this same momentum scale: a
+  particle of momentum p = 2*pi*hbar/lambda_dB spread over the angular
+  fringe spacing lambda_dB/d (Section 4.1) has a transverse-momentum fringe
+  splitting of p*(lambda_dB/d) = 2*pi*hbar/d -- identical in order of
+  magnitude to the recoil kick above, by construction (both trace back to
+  the same slit separation d). A photon able to resolve which slit therefore
+  ALWAYS kicks the particle by about one full fringe spacing at random,
+  washing out the pattern. Using longer-wavelength light (lambda_gamma >> d)
+  instead fails to resolve which slit at all -- and correspondingly imparts
+  a much smaller kick, well under the fringe scale -- so interference
+  survives, exactly as observed.
+
+  This is the standard uncertainty-principle argument (Delta_x ~ d implies
+  Delta_p >= hbar/d), not a new torsionverse postulate. What the framework
+  adds is the identity of the scattering agent (photon = T_1g corpuscle,
+  Section 3 FRAMING NOTE) and the coupling it uses (the same alpha vertex
+  coupling as everywhere else, not a separate ad hoc interaction) -- and, as
+  in 4.2a, the same underlying lesson: decoherence is a physical
+  interaction, not an act of observation. A scattered photon carries away
+  which-path information whether or not anyone ever looks at where it went.
+
 4.3  New prediction: minimum slit width
 
 Below 2*lambda_bar (reduced Compton wavelength), the slit-edge Zone 3 fields
@@ -386,6 +463,9 @@ PROVEN (from existing medium derivations + this document):
 ESSENTIALLY DERIVED (borrowed from entanglement_doc):
   - Which-path decoherence at r < r_lock(T)  [entanglement_doc EP3; essentially
     derived -- t in MeV open; QM10 check is r_lock>0 sanity only]
+  - Which-path via light scattering (a distinct route: ordinary photon-EM
+    recoil, not Zone 3 phase-lock) [Section 4.2c; standard uncertainty-
+    principle argument, no new postulate]
 
 NEW PREDICTIONS (physical argument from Zone 3 geometry; not yet experimentally tested):
   - Minimum electron slit width 2*hbar_c/m_e = 772 fm  [QM7 -- script check

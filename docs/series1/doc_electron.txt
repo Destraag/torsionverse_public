@@ -532,7 +532,12 @@ sets the window in which stable atoms can exist.
     Annihil: Positron + electron → A_g (photons, 511 keV each, matches
              rest mass) [CLOSED, Section 5.3.2; the corpuscles' own
              post-annihilation structural fate is a separate, open question]
-             Antiproton + proton → Zone 1 gluons released as pions (messy) [doc_nucleus]
+             Antiproton + proton → messy, multi-pion final state (well known
+             experimentally). Unlike e+/e-, both particles have their own
+             Zone 1 -- the two cores must be forced together against their
+             mutual outward pressure before quark/antiquark windings can
+             cancel. The force mechanism itself is still being derived, not
+             yet closed.
 
   THE ROLL ANSWER:
     The electron must roll the way it does relative to the proton because its

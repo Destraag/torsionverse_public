@@ -560,8 +560,8 @@ invariant engage all six soft-mode directions simultaneously). Molien-
 series/invariant-ring degree-counting is NOT the correct mathematical
 framework for this specific quantity; the isostatic-lattice elasticity
 mechanism above is. Do not retry the ring-theory route for this question
-without a genuinely new angle -- see molien_n18.py and
-judgment_calls_resolved.txt (NC2-1) for the full investigation.
+without a genuinely new angle -- see molien_n18.py for the full
+investigation.
 [Physical proof: torsionverse_doc.py SY1-SY2; dynamical-matrix confirmation:
 ih_lattice_phonon.py IP4/IP6, 19/19 PASS]
 

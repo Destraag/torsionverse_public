@@ -462,10 +462,14 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
 
   The Jobson cell is an icosahedral unit of medium that is elastic at high
   frequency (omega*tau_relax >> 1; Maxwell viscoelastic -- see doc_torsion
-  Section 3.3). Multiple wave
-  patterns exist simultaneously within it -- each one a distinct resonant mode
-  of the same elastic material. They do not change each other's frequency
-  (linear medium); they coexist and only interact at nonlinear Born couplings.
+  Section 3.3). (Whether "Maxwell viscoelastic"/Hookean spring-network
+  language is the right description at all, versus a granular contact-
+  rolling medium, is a separate open question -- the combinatorial facts
+  below do not depend on which picture is correct, but tau_relax's specific
+  derivation may.) Multiple wave patterns exist simultaneously within it --
+  each one a distinct resonant mode of the same elastic material. They do
+  not change each other's frequency (linear medium); they coexist and only
+  interact at nonlinear Born couplings.
 
   ISOTROPIC BULK MODE (A_g, Higgs field):
     A_g is the K (bulk modulus) channel of the elastic medium -- the totally
@@ -1179,9 +1183,12 @@ ESSENTIALLY CLOSED ASSIGNMENTS (2026-08-22 update):
 
   CONCLUSION:
     Near-incompressibility is a COLLECTIVE property of the cell lattice, not a
-    single-cell property. The 18.15x enhancement of K/G comes from inter-cell
-    coupling through shared vertex nexuses: shearing the medium requires coordinated
-    rotation of coupled cells, costing far more than shearing one cell in isolation.
+    single-cell property, though the precise inter-cell mechanism producing
+    the 18.15x enhancement (plausibly related to coordinated rotation costs
+    at shared vertex contacts) has not yet been derived from real cell-to-
+    cell geometry -- the 18.15x number itself is exact (from the two
+    independently-derived wave speeds), but the microscopic reason it
+    exceeds the single-cell Cauchy ratio remains open.
     The individual Jobson cell has K/G = 5/3 (soft, central-force Cauchy).
     The assembled torsion medium has K/G = 30.25 (near-incompressible, collective).
     There is no mismatch with the gluon amplitude -- the gluon amplitude

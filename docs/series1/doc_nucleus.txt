@@ -651,13 +651,18 @@ ESSENTIALLY CLOSED:
     4 = Hopf winding (2) x spin-1/2 factor (2). The bag is oversized by 4x
     relative to the true jamming scale lambda_p; r_p is the Zone 3 outer edge.
     4*lambda_p = 0.84124 fm vs r_p_CODATA = 0.84141 +/- 0.0019 fm.
-  - Nuclear hard core radius from same-chirality grinding  [ESSENTIALLY CLOSED]
+  - Nuclear hard core radius from same-chirality grinding  [RADIUS ESSENTIALLY
+    CLOSED; CELL-LEVEL MECHANISM BELOW STILL OPEN]
     When two protons approach, their Zone 2 (Maxwell-critical jammed) boundaries
     first touch at r = 2*lambda_p = 0.421 fm. Below this, cells between them are
     dragged in opposing directions by each proton's spin -> grinding -> extra
     repulsion. Observed nuclear hard core: 0.4-0.6 fm. Prediction: 0.421 fm [MATCH]
     Opposite-charge pairs (proton-electron): cells MESH rather than grind;
     electron has no Zone 2 (N_J = 38,870, bulk) -> no hard core on attraction side.
+    (The r=2*lambda_p radius itself is solid sum-of-radii geometry. The
+    "dragged... grinding/mesh" cell-level picture is a plausible, not yet
+    independently verified, kinematic account -- no script anywhere builds
+    the real multi-cell packing geometry needed to confirm it.)
   - Three-across quark string model gives mode ratio = 2.000 EXACTLY  [HCC3]
     MIT bag's 1.87 error = wrong geometry (spherical vs linear string).
     String tension G = Rs^2*K, string speed v_s = Rs*c (torsion shear wave).
