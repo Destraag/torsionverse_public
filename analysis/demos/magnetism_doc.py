@@ -21,6 +21,8 @@ alpha = 7.2973525693e-3
 mu_0  = 4 * pi * 1e-7           # T·m/A  (defined exactly in SI)
 eps_0 = 8.8541878128e-12        # F/m    (from c and mu_0)
 c_SI  = 299792458.0             # m/s    (defined exactly in SI)
+e_C   = 1.602176634e-19         # C      (elementary charge, defined exactly in SI)
+hbar_SI = 1.054571817e-34       # J*s
 
 SEP  = "=" * 65
 SEP2 = "-" * 65
@@ -63,6 +65,17 @@ check("M2 c = sqrt(K/rho) = sqrt(1/(eps_0*mu_0))  [acoustic + Coulomb]",
 check("M3 K = rho*c^2  [rest energy relation: E=mc^2 from K and rho]",
       abs(K_em - rho_medium * c_SI**2) / K_em < 1e-9,
       f"K={K_em:.6e}  rho*c^2={rho_medium*c_SI**2:.6e}  (equal = E=mc^2 derived)")
+
+# Coulomb potential energy from the pressure Green's function (Section 1.2):
+# V(r) = Q*K/(4*pi*r) with Q = e^2 (interaction energy of two unit charges),
+# K = 1/eps_0 -- must equal alpha*hbar*c/r exactly (independent SI identity,
+# not previously checked numerically -- doc text asserted this without a
+# backing check).
+V_r_times_r = e_C**2 * K_em / (4 * pi)       # J*m,  = e^2/(4*pi*eps_0)
+target_times_r = alpha * hbar_SI * c_SI      # J*m,  = alpha*hbar*c
+check("M3b V(r)*r = e^2*K/(4*pi) = e^2/(4*pi*eps_0) = alpha*hbar*c  [Coulomb Green's function, C7]",
+      abs(V_r_times_r - target_times_r) / target_times_r < 1e-6,
+      f"e^2*K/(4*pi) = {V_r_times_r:.6e} J*m   alpha*hbar*c = {target_times_r:.6e} J*m")
 
 # =============================================================================
 print()

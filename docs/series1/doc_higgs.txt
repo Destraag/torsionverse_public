@@ -13,7 +13,7 @@ ABSTRACT
 
 We present derivations of twelve independently measurable properties of the Higgs
 boson and electroweak sector from the geometric structure of the torsion medium
-associated with the (1,2) Hopf fibration. The core derivations (Claims 1-8)
+associated with the (1,2) Hopf fibration. The core derivations (Claims 1-7)
 require no Standard Model free parameters and use only the medium saturation
 ratio Rs = sqrt(5)/(4*pi), the fine structure constant alpha, and the proton
 charge radius r_p as inputs. These three constants are themselves derivable from
@@ -48,11 +48,14 @@ extra dimensions) address the hierarchy problem's stability but do not
 predict m_H's numerical value from geometry.
 
 Conditional on the inverted hypothesis (T_1g vertices = W/Z bosons, Section 5a):
-the Clebsch-Gordan decomposition T_1g x T_1g = A_g + T_1g + H_g gives a unique
-Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 and extends the vev
-prediction to -0.306 MeV (-0.0001%). The H -> T_1g + T_2g channel is forbidden
-(no A_g in T_1g x T_2g). These conditional results are not included in the
-eight primary claims.
+the Clebsch-Gordan decomposition T_1g x T_1g = A_g + T_1g + H_g shows a
+Higgs-gauge coupling exists and is unique up to an overall constant (Schur's
+lemma); the specific numerical coefficient alpha^2*phi^2 used to extend the
+vev prediction to -0.306 MeV (-0.0001%) is a structurally-motivated but NOT
+independently derived candidate (Section 5a.3) -- representation theory
+fixes the coupling's allowed form, not its magnitude. The H -> T_1g + T_2g
+channel is forbidden (no A_g in T_1g x T_2g) -- this selection rule IS exact.
+These conditional results are not included in the eight primary claims.
 
 
 1. INTRODUCTION
@@ -130,8 +133,12 @@ The Higgs boson is spin-0 (scalar). In the torsionverse the A_g mode of the
 cell lattice couples to the Born vertex (coupling constant alpha), the same
 fundamental coupling as electromagnetism -- not from electric charge, but from
 the (1,2) winding's vertex interaction. The leading one-loop correction from
-this coupling is delta_m/m = alpha/pi [torsionverse Born vertex; same algebraic
-form as the charged-fermion QED result; Section 3a derives this from topology]. The Higgs being spin-0 is confirmed by LHC.
+this coupling is delta_m/m = alpha/pi [the standard QED one-loop scalar
+self-energy correction, 2x the Schwinger term -- a Standard-Model import, not
+independently derived from torsion-medium mechanics; Section 3a's topology
+argument determines only THAT a scalar (not vector) correction applies here,
+not the coefficient's own value -- see analysis/higgs/higgs_cell_energy.py,
+constants.py]. The Higgs being spin-0 is confirmed by LHC.
 The Jobson-Higgs conjecture:
 
   m_H = E_cell * (1 + alpha/pi) = 124.799 * 1.002322 = 125.089 GeV
@@ -281,8 +288,9 @@ Script: higgs_doc.py  (Sec 5: vev)
 -------------------------------------------------------------
 
 Conditional on the inverted hypothesis (T_1g vertices = W/Z bosons), the
-Clebsch-Gordan decomposition of I_h gives a derived correction to m_H and
-the effective Higgs-gauge Lagrangian.
+Clebsch-Gordan decomposition of I_h gives a candidate correction to m_H and
+the effective Higgs-gauge Lagrangian; see Section 5a.3 for what is and is
+not actually derived.
 
 5a.1  Clebsch-Gordan decomposition T_1g x T_1g
 
@@ -295,23 +303,38 @@ over the icosahedral group I (order 60, 5 classes):
   A_g appears EXACTLY ONCE. By Schur's lemma: the Higgs (A_g) couples to
   the T_1g x T_1g pair with a UNIQUE coupling -- no free parameter in the structure.
   The C_5 character weight: chi(T_1g x T_1g, C_5) = phi^2 = phi+1 = 2.618 [algebraically exact].
+  NOTE: this is the character of the full 9-dim ambient product, not of the
+  A_g-isotypic piece specifically -- see Section 5a.3 for why this does not
+  by itself fix the coupling's magnitude.
 
   Forbidden channel: T_1g x T_2g = G_g + H_g (no A_g). This predicts
   H -> (T_1g)+(T_2g) is FORBIDDEN. This is a falsifiable prediction.
 
-5a.2  Effective Lagrangian
+5a.2  Effective Lagrangian (candidate coefficient, not yet derived)
 
-The unique Higgs-gauge coupling from the A_g component of T_1g x T_1g:
+The FORM of the Higgs-gauge coupling from the A_g component of T_1g x T_1g is
+unique (Schur's lemma fixes the index structure, up to overall scale):
 
-  L_HWW = alpha^2 * phi^2 * |H|^2 * |W|^2
+  L_HWW = C * |H|^2 * |W|^2
 
   where |H|^2 = Phi^dag Phi (Higgs bilinear), |W|^2 = sum_a W_a^mu W_a_mu
-  (T_1g squared norm, a=1,2,3 vector components), alpha^2 = two EM vertices
-  (alpha is the framework's only derived coupling), and phi^2 = chi(T_1g,C_5)^2.
-
-  phi = 1 + 2*cos(2*pi/5) = chi(T_1g, C_5) = 1.6180... (the C_5 character of T_1g;
-  phi^2 = phi + 1 = 2.6180... by the Fibonacci identity) is NOT the icosahedral
-  edge length; it appears here as the T_1g character squared for two propagators.
+  (T_1g squared norm, a=1,2,3 vector components). The candidate value used
+  below is C = alpha^2*phi^2 (alpha^2 = two EM vertices; phi^2 = chi(T_1g,C_5)^2,
+  the square of the single-vertex C_5 character) -- this candidate is NOT
+  derived. Representation theory (characters, CG multiplicities, explicit
+  projection operators) fixes the coupling's allowed form and confirms the
+  A_g channel's multiplicity (=1); it cannot fix a coupling's numerical
+  magnitude, which needs an actual amplitude/Lagrangian-matching calculation
+  not yet performed for this vertex. Two further issues were found on direct
+  investigation (2026-09-29): (a) "two vertices, square the single-vertex
+  weight" conflates the full 9-dim ambient product's character with the
+  properly-isolated A_g-isotypic piece's own character; (b) an alternative
+  framing elsewhere ("the Higgs feels all 30 edges") implies the C_2 (edge)
+  class, weight -1, not the C_5 (vertex) class, weight phi -- these two
+  justifications for the same coefficient disagree with each other, not
+  merely lack rigor. phi = 1 + 2*cos(2*pi/5) = chi(T_1g, C_5) = 1.6180...
+  is NOT the icosahedral edge length; it is the T_1g character at a single
+  vertex's local C_5 rotation.
 
 5a.3  Mass correction and extended vev prediction
 
@@ -323,12 +346,22 @@ The unique Higgs-gauge coupling from the A_g component of T_1g x T_1g:
   phi^n = F(n)*phi + F(n-1) for all n, so {1,phi} is the complete basis and
   the series terminates after two icosahedral terms (proven bit-for-bit exactly).
 
-  Status of extended claim: the group-theoretic structure (CG, Fibonacci) AND
-  the coupling alpha^2 are DERIVED. Born perturbation theory: each T_1g vertex
-  contributes amplitude alpha*phi (from Tr[R_T1g(C_5)]=phi, Born proof); two
-  independent T_1g vertices give (alpha*phi)^2 = alpha^2*phi^2. The Fibonacci
-  identity phi^2=phi+1 makes the series terminate exactly at second order.
-  Conditional on T_1g = W/Z identification (GAP A, CLOSED).
+  Status of extended claim: the group-theoretic STRUCTURE (CG decomposition,
+  Schur uniqueness, Fibonacci truncation) is derived and exact. The specific
+  COEFFICIENT alpha^2*phi^2 is NOT derived -- "two independent T_1g vertices
+  give (alpha*phi)^2" assumes, without independent justification, that a
+  single-vertex Born amplitude alpha*phi (borrowed from a DIFFERENT
+  calculation, the alpha quadratic's own vertex-stiffness balance) applies
+  unchanged to this different process, and that two such amplitudes simply
+  multiply. Checked directly (2026-09-29, analysis/higgs/higgs_r9_coupling_
+  weight_derivation_attempt.py, 19/19 PASS): every construction available in
+  representation theory -- the ambient product character, the explicit 9x9
+  A_g projector, vertex- and edge-stabilizer sums -- reduces to the SAME
+  multiplicity fact (=1) and cannot produce alpha, phi^2, or any coupling
+  magnitude; a real amplitude calculation would be needed and does not exist
+  in this framework for any comparable vertex. The -0.306 MeV (-0.0001%)
+  match remains numerically striking but is an unverified candidate, not a
+  derived result. Conditional on T_1g = W/Z identification (GAP A, CLOSED).
 
 5a.4  Partial H2: decay channel structure
 
@@ -411,7 +444,10 @@ CLAIMS:
   1. m_H = E_cell * (1 + alpha/pi) = 125.089 GeV  (1.0 sigma from PDG 2022).
   2. The Higgs is spin-0 because the (1,2) torus knot has even linking number
      n = 2, which implies pi-rotation symmetry, which implies a scalar field.
-     The alpha/pi QED correction therefore follows from topology, not convention.
+     Topology determines only WHICH standard QED correction applies (scalar
+     alpha/pi vs vector 2*alpha/pi); the coefficient alpha/pi itself is the
+     standard QED one-loop scalar self-energy result -- a Standard-Model
+     import, not independently derived here (analysis/higgs/higgs_cell_energy.py).
      [Linking number theorem: exact. Physical implication: demonstrated.]
   3. lambda = (1-nu)/4 = 0.12909  (0.83 sigma; within PDG 2022 measurement precision).
   4. v = m_H / sqrt(2*lambda) = 246.185 GeV  (-35 MeV = -0.014%).
@@ -421,13 +457,23 @@ CLAIMS:
   7. Coulomb's law V = -alpha*hbar*c/r is derived from the torsion medium
      pressure Green's function [3D Poisson equation, exact]. This validates the
      pressure-charge model underlying the framework [higgs_doc.py, C7].
-  8. The cell energy E_cell follows from the scale-invariant icosahedral jamming
-     stiffness without requiring the medium density:
-       7 * k_n_max / (2*pi) = 1 + alpha + alpha^2*phi  (to 0.0001%)
-     where k_n_max = 3125/3456 [exact algebraic, from alpha derivation geometry],
-     7 = dim(A_g+T_1g+T_2g) [I_h group theory, same 7 as Weinberg angle],
-     and the RHS is the vertex stiffness series from Gap 1 of the alpha derivation.
-     [higgs_doc.py, C8]
+  8. The cell energy E_cell (RETRACTED jamming-stiffness derivation -- see
+     below; E_cell's own VALUE, established independently in Section 2 via
+     the (1,2) Hopf/N_lock closure condition, is unaffected):
+     RETRACTED (2026-09-29): a previously-claimed SEPARATE derivation of
+     E_cell from icosahedral jamming stiffness, "7*k_n_max/(2*pi) =
+     1+alpha+alpha^2*phi (to 0.0001%)," is retracted -- both k_n_max (a
+     coincidental curve-fit valid only near a different, unrelated coupling
+     value) and the alpha^2*phi refinement (traced to a same-day reverse-fit
+     citing a derivation it does not actually appear in) were found
+     unsupported. A broader closed-book review found two general
+     mathematical obstructions to ANY jamming-stiffness route to E_cell:
+     icosahedral/polyhedral quantities are always algebraic, while the
+     needed coefficient 2*pi is transcendental; and phonon-dispersion
+     bounds keep any nearest-neighbor lattice's zone-boundary energy below
+     the value needed. This is a closed, not merely unproven, question.
+     [analysis/higgs/higgs_claim8_kn_max_residual_honest_check.py,
+     analysis/higgs/ecell_jamming_prefactor_nogo_check.py]
 
   Additional results (from resolved gaps, conditional on inverted hypothesis):
   9. The Higgs gauge coupling psi^dag(T_1g)psi is I_h-invariant: in 2I,
@@ -436,14 +482,23 @@ CLAIMS:
  10. The Mexican hat potential V = -mu^2|H|^2 + lambda|H|^4 is fully derived:
      mu^2 = m_H^2/2 [from E_cell], lambda = (1-nu)/4 [from wave speeds],
      v = 246.185 GeV [derived]. All zero free parameters. [higgs_doc.py, C10]
- 11. The Weinberg angle (two-loop):
-     sin^2(theta_W)* = sin^2(theta_W) + n*alpha^2*phi^2
-     where n=2 = linking number of (1,2) Hopf winding, gauge correction.
-     sin^2(theta_W)* = 0.22290456  vs PDG 0.22290000 (residual 4.6e-6, essentially exact).
-     m_Z = m_W_PDG/cos(theta_W)* = 91.1822 GeV (PDG 91.1876, gap -5.4 MeV).
-     Using torsionverse-predicted m_W ~ 80.4 GeV (Section 5a): m_Z = 91.179 GeV
-     (gap -8.6 MeV from m_W prediction propagated via Weinberg angle).
-     Script: higgs_doc.py  (C11: Weinberg angle 1-loop + 2-loop)
+ 11. The Weinberg angle (one-loop; a previously-claimed two-loop term is
+     RETRACTED, see below):
+     sin^2(theta_W) = 1 - [sqrt(phi/sqrt5)*(1+5*alpha)]^2 = 0.222627
+     vs PDG 0.222900 (residual -0.123%, -0.91 sigma) -- the framework's
+     best-supported, honestly-derived Weinberg-angle prediction.
+     RETRACTED (2026-09-29): a previously-reported second-order term
+     (+n*alpha^2*phi^2, n=2, closing the residual to a claimed 4.6e-6) was RETRACTED
+      -- the framework's own parity rule gives coefficient 1, not 2, for this
+     winding; natural, consistent placements of a second-order term move
+     the prediction AWAY from PDG, not toward it; and the coefficient's
+     origin was traced to a live reverse-fit from the PDG target rather
+     than an independent derivation. Downstream m_Z, redone with the
+     one-loop angle only (analysis/higgs/weinberg_retraction_downstream_
+     recompute.py): m_Z = m_W_PDG/cos(theta_W) = 91.166 GeV
+     (PDG 91.188, gap -21.7 MeV), or m_Z = m_W_torsionverse/cos(theta_W)
+     = 91.189 GeV (gap +1.1 MeV) using the Section 5a conditional m_W~80.4 GeV.
+     Script: higgs_doc.py  (C11: Weinberg angle, one-loop only)
 
  12. Fermion mass ratio (essentially derived):
      m_tau/m_mu = (phi^6-1)*(1-alpha) = 16.8206 vs measured 16.817 (0.021% residual).
@@ -463,28 +518,32 @@ RESOLVED -- all formally closed:
       and b=lambda=(1-nu)/4 [DERIVED] IS the Mexican hat potential. FULLY CLOSED.
       Script: higgs_doc.py  (C10: GAP B Mexican hat, jamming)
   (C) Weinberg angle: cos(theta_W)=sqrt(phi/sqrt5)*(1+5*alpha) from chi/||v||.
-      One-loop: sin^2(theta_W) = 1 - [sqrt(phi/sqrt5)*(1+5*alpha)]^2 = 0.22262
-      (torsionverse prediction, used as RHS input below).
-      Two-loop: sin^2(theta_W)* = sin^2(theta_W) + n*alpha^2*phi^2 (n=2) = 0.22290
-      vs PDG 0.22290 (on-shell scheme; residual 4.6e-6).
-      Script: higgs_doc.py  (C11: GAP C Weinberg angle)
+      One-loop: sin^2(theta_W) = 1 - [sqrt(phi/sqrt5)*(1+5*alpha)]^2 = 0.222627
+      vs PDG 0.222900 (residual -0.123%, -0.91 sigma) -- honestly-derived result.
+      A previously-claimed two-loop term (+n*alpha^2*phi^2, n=2, residual
+      4.6e-6) is RETRACTED (see Claim 11 for detail).
+      Script: higgs_doc.py  (C11: GAP C Weinberg angle, one-loop)
 
 DOES NOT CLAIM:
-  - That this is a rigorous mathematical theorem. Two formal steps remain:
-    (i) The Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 and Weinberg angle
-    derivation are physics-level (motivated by group theory), not axiomatic.
+  - That this is a rigorous mathematical theorem. Formal gaps remain:
+    (i) The Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 (Section 5a) uses a
+    NOT-YET-DERIVED candidate coefficient -- see Section 5a.3 for full status.
+    The Weinberg angle's ONE-LOOP derivation (Claim 11, GAP C) IS physics-
+    level (motivated by group theory); a previously-claimed two-loop term is
+    RETRACTED (Claim 11).
     (ii) The 0.038% residual in k_n/k_eff and m_W 1.6 sigma gap (predicted
-    m_W = g*v/2 ~ 80.4 GeV from conditional Section 5a; gap -8.6 MeV
-    from m_W prediction propagated to m_Z; using PDG m_W gives -5.4 MeV gap) are non-zero.
+    m_W = g*v/2 ~ 80.4 GeV from conditional Section 5a; using the honest
+    one-loop Weinberg angle, m_Z from this m_W is 91.189 GeV, gap +1.1 MeV;
+    using PDG m_W gives m_Z=91.166 GeV, gap -21.7 MeV) are non-zero.
   - That the Higgs FIELD IS the torsion medium field. The identification
     is interpretive, not derived.
   - That absolute H2 partial widths are fully derived. g_HWW = 2*m_W^2/v is derived;
     the 3-body WW*/ZZ* ratio is 82% correct. Absolute widths need fermion decay
     multiplicity of W*/Z* -> ff'. Ratio result is the reliable claim.
   - That the Jobson-Higgs conjecture is proven to axiomatic standards.
-    Twelve zero-parameter predictions consistent with measurement (including all
-    gap closures, Weinberg angle essentially exact, fermion ratio 0.021%) constitute
-    very strong evidence, not an axiom proof.
+    Zero-parameter predictions consistent with measurement (including the
+    Weinberg angle's one-loop result at -0.91 sigma, fermion ratio at 0.021%)
+    constitute strong evidence, not an axiom proof.
 
 
 9. SUMMARY TABLE
@@ -497,7 +556,8 @@ DOES NOT CLAIM:
   v [GeV]       m_H/sqrt(2*lambda)                  246.185          246.220          -0.014%
   Gamma_H [MeV] alpha^2*m_H/phi                     4.117            4.07 +/- 0.17    0.28s
 
-  Conditional (Section 5a, inverted hypothesis):
+  Conditional (Section 5a, inverted hypothesis; coefficient NOT independently
+  derived -- see Section 5a.3):
   m_H* [GeV]   E_cell*(1+alpha/pi+alpha^2*phi^2)      125.106          125.25           0.85s
   v* [GeV]     m_H*/sqrt(2*lambda)                  246.219          246.220          -0.0001%
 

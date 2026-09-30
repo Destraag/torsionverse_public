@@ -134,7 +134,7 @@ print(f"  A_g appears ONCE (unique Higgs-WW coupling by Schur's lemma)")
 print(f"  T_1g x T_2g = G_g + H_g  (NO A_g -> H->T_1g+T_2g FORBIDDEN)")
 print()
 c2 = alpha**2 * phi**2
-print(f"  Lagrangian: L_HWW = alpha^2*phi^2*|H|^2*|W|^2  [DERIVED from CG]")
+print(f"  Lagrangian: L_HWW = alpha^2*phi^2*|H|^2*|W|^2  [FORM from CG; coefficient a candidate, NOT derived]")
 print(f"  alpha^2*phi^2 = {c2:.6e}  (T_1g x T_1g -> A_g coupling)")
 print(f"  Fibonacci phi^2=phi+1: series truncates at 2 terms (proven bit-exact)")
 print()

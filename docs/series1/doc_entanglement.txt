@@ -10,7 +10,8 @@ Status: PREPRINT
         Section 4: G32 alignment chain derived; t closed (two routes):
           entanglement t = m_mu/sqrt(3) = 61.0 MeV; Delta = 44.7 MeV [EH1-EH6];
           medium phonon t_cell = E_cell/(2pi) = 19862 MeV [EH7-EH9].
-          Bell violation: CHSH S = -2*sqrt(2) from A_g geometry [ET1-ET8].
+          Bell violation: CHSH S = -2*sqrt(2) (standard QM singlet result,
+          correctly reproduced -- see Section 5(d)) [ET1-ET8].
         All physics derivations are closed (zero free parameters).
         This document supersedes Zenodo version 1 (doi:10.5281/zenodo.22052350)
         which overstated the non-locality derivation.
@@ -37,11 +38,11 @@ These are the same CG tables that predict the deuteron spin-1 ground state
 Cooper pairs (T_1u x T_1u has A_g). All are zero-free-parameter retrodicts.
 The Tsirelson bound |S| = 2*sqrt(2) follows from chi(A_g)=1 for all group elements;
 the geometry selects the negative extremum S = -2*sqrt(2) (anticorrelated singlet),
-so |S| = 2*sqrt(2) throughout this paper.
-This paper additionally obtains the exact quantum-mechanical Bell/CHSH maximum
-from a finite discrete symmetry group's character table -- not from the standard
-Hilbert-space operator-norm argument [Cirelson1980]. No prior derivation of this
-bound comes from a lattice symmetry group acting on a physical medium. Furthermore,
+so |S| = 2*sqrt(2) throughout this paper. This is the standard Cirel'son (1980)
+result for a rotationally-invariant singlet: the A_g-multiplicity-1 mechanism
+is generic to any group with a suitable 3D irrep, including the continuous
+parent group SO(3) itself, not a distinctively discrete/I_h-specific
+derivation -- see Section 5(d) for the corrected framing. Furthermore,
 standard QM postulates that any two particles CAN be entangled but gives no
 mechanistic criterion for WHY certain pairs become entangled while others cannot.
 This paper provides the first such criterion: entanglement requires A_g in the CG
@@ -534,13 +535,28 @@ FALSIFIABLE PREDICTIONS:
       entangled states decohere faster when the environment contains particles
       of the opposite Galois conjugate type.
 
-  (d) TSIRELSON BOUND FROM A_g GEOMETRY: 2*sqrt(2) follows from:
+  (d) TSIRELSON BOUND, REPRODUCED FROM A_g GEOMETRY: 2*sqrt(2) follows from:
       1. chi_{A_g}(g) = 1 for all g (trivial rep, isotropic).
       2. A_g appears exactly once in T_1g x T_1g (unique scalar projector).
       3. The unique A_g scalar from two unit vectors is a.b = cos(theta).
       4. Singlet normalisation E(a,a)=-1 gives E(a,b) = -cos(theta).
       5. CHSH at optimal angles (0, pi/2; pi/4, 3*pi/4) gives S = -2*sqrt(2).
-      CLOSED: entanglement_tsirelson.py 8/8 PASS  [ET1-ET8]
+      CORRECTED STATUS (2026-09-30): steps 1-5 are individually correct,
+      but the mechanism is not I_h-specific -- step 2's multiplicity-1
+      fact holds for any group with a suitable 3D irrep (verified
+      directly for the tetrahedral and octahedral groups, and inherited
+      from the parent continuous group SO(3)), and step 3's "M(a)=a.L"
+      measurement ansatz is identical in form to the standard continuous-
+      SO(3) spin-operator convention. This is the standard Cirel'son
+      (1980) bound, correctly reproduced here, not a distinctively
+      discrete-lattice derivation. A closed-book, 5-model review found
+      the only route to a genuinely I_h-specific correction requires 4
+      new, currently-unestablished assumptions (a nonlinear direction-to-
+      operator coupling, a free coupling strength with no derived scale,
+      macroscopic coherent lattice-frame orientation across the
+      experiment, and fine-tuning below existing null Bell-test bounds)
+      -- not derivable from this framework as it stands.
+      entanglement_tsirelson.py 8/8 PASS  [ET1-ET8]
 
   (e) 2I DOUBLE GROUP CONFIRMS SELECTIVITY:
       ih_double_cg.py (13/13 PASS) verifies at spinor level:
@@ -551,7 +567,11 @@ FALSIFIABLE PREDICTIONS:
       (Galois completeness). No other j in range 7/2..15/2 has this.
 
 GENUINELY OPEN (physics claims of this paper):
-  None. Bell derivation CLOSED via entanglement_tsirelson.py 8/8 PASS (ET1-ET8).
+  None. Bell/CHSH math is fully closed (standard Cirel'son result,
+  correctly reproduced -- see Section 5(d) for the corrected I_h-
+  specificity framing); entanglement SELECTIVITY (which pairs can form
+  an A_g singlet) is independently closed via entanglement_tsirelson.py
+  8/8 PASS (ET1-ET8) and the CG tables.
   (Note: face_coloring.py FC3 is a geometric detail in a supplementary script;
   it does not affect any claim in this paper.)
   Note: "wavefunction collapse" = resolution of A_g global winding under local medium
@@ -563,7 +583,9 @@ GENUINELY OPEN (physics claims of this paper):
 
 DERIVED (zero free parameters):
   - Singlet selectivity, deuteron J=1, di-neutron, Cooper pair, no-FTL  [EQ1-EQ8]
-  - Bell violation: CHSH S = -2*sqrt(2), classical bound, Tsirelson = A_g geometry  [entanglement_tsirelson.py 8/8]
+  - Bell violation: CHSH S = -2*sqrt(2) (standard QM singlet result,
+    correctly reproduced -- not I_h-specific, see Section 5(d)), classical
+    bound  [entanglement_tsirelson.py 8/8]
   - d-wave gap (cuprates) = H_g/B1g in D4h crystal field  [crystal_field_projection.py 9/9]
   - G32 alignment chain: traverses 3 gluon edges, energy = -phi*t (golden ratio EXACT)  [muon_slip_derivation.py 5/5]
   - Activation = (sqrt3-1)*t = 42.3%; chain forms spontaneously at L_J scale  [entanglement_hopping_t.py ET4]

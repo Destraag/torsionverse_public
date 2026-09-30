@@ -28,6 +28,22 @@ CHECKS:
        inversion, Koide-required m_tau vs PDG
   KP10: Required tau correction factor (m_tau_required/base_tau) vs simple
        candidate closed forms
+  KP11: Speculative combined muon+tau free-spin-style corrections applied
+       together (not adopted, informational only)
+  KP12-14: chi(G32,C5) and chi(I52,C5) group-character cross-check against
+       the FREE and STRUCTURAL eff_mu/eff_tau values (2026-09-19) --
+       chi(G32,C5)=+1 matches structural eff_mu=1.0 exactly (independent
+       confirmation via a different method); chi(I52,C5) does NOT match
+       tau's structural eff estimate (honest negative, pattern doesn't
+       generalize to tau)
+  KP15: Honest, non-tautological Koide check -- FREE and STRUCTURAL masses
+       each computed fully independently (none solved-for), both land
+       closer to 2/3 than raw PDG masses
+  KP16: Measurement-precision reality check -- tau's own PDG mass
+       uncertainty (+/-0.12 MeV) propagates to +/-10 ppm (1-sigma) on
+       Koide's K, meaning every ppm-level comparison here (KP15 included)
+       is finer than current experimental resolution and mutually
+       indistinguishable from exact 2/3
 
 Run: python analysis/quantum/koide_proof.py
 """
@@ -443,6 +459,84 @@ check("KP10 required tau correction factor matches a simple closed form within 1
       best_err < 1e-3,
       f"closest={best_name}, delta={best_err:+.4e} -- if FAIL, no clean match found yet (honest negative result)")
 
+# ── Step 7: SPECULATIVE combined-correction test (2026-09-17) ─────────────────
+print()
+print(SEP)
+print("STEP 7 (SPECULATIVE, NOT ADOPTED): BOTH free-spin-style corrections")
+print("applied together -- muon's (1+(3/4)*alpha^2), tau's alpha-power-drop")
+print(SEP2)
+print("""
+  NOT a derivation -- formalizing a same-session exploratory test so it is
+  a checkable artifact rather than a one-off terminal computation (which is
+  how it was first run; that first attempt also had a sign error, caught
+  and fixed before this version). BOTH pieces are UNCONFIRMED:
+    - muon: (1+(3/4)*alpha^2) is electron's OWN term, reused on muon despite
+      doc_leptons.txt Section 1.2's claim that it cancels for muon (T1=T2 in
+      equal CG multiplicity) -- that cancellation's SIGN/magnitude argument
+      was found only half-derived (see notes/koide_investigation_history.txt
+      Part 2), not that
+      reuse on muon is independently justified.
+    - tau: base_tau*(1 - (Rs^2+2*alpha)*alpha) extends the vertex->edge->face
+      alpha-power-drop pattern one level deeper (Section 8 table). Author's
+      physical motivation for this (2026-09-17, see
+      notes/koide_investigation_history.txt Part 3 for the full note): (1) contact DIMENSION -- vertex=0D(point),
+      edge=1D(line), face=2D(triangle) -- alpha dilutes by one more power
+      per added dimension, motivating the extra suppression; (2) "2*alpha"
+      is the "free spin, 2 transverse channels" mechanism (Section 4.4),
+      DISTINCT from "Born vertex/edge contact" (which governs the LEADING
+      term's alpha power and which tau genuinely lacks) -- tau can still
+      need the free-spin piece without having Born contact, since these
+      are two different physical effects, not the same count twice. This
+      is real physical motivation for the candidate's STRUCTURE, not a
+      first-principles derivation of its exact form -- a ~6% relative
+      miss remains and is NOT explained by either argument.
+  Applying BOTH together is not "confirming" either -- it is reporting what
+  the combination does, honestly, including the fact that a first (wrong-
+  sign) attempt made it look worse rather than better.
+""")
+
+fs_correction = (3/4)*alpha**2
+tau_alpha_power_corr = (Rs2 + 2*alpha) * alpha
+
+m_mu_speculative = m_mu_settled * (1 + fs_correction)
+m_tau_speculative = base_tau_corkscrew * (1 - tau_alpha_power_corr)
+
+print(f"  m_mu speculative  = {m_mu_speculative:.6f} MeV  "
+      f"(PDG {m_mu_pdg}, {(m_mu_speculative-m_mu_pdg)/m_mu_pdg*100:+.6f}%; "
+      f"settled alone: {(m_mu_settled-m_mu_pdg)/m_mu_pdg*100:+.6f}%)")
+print(f"  m_tau speculative = {m_tau_speculative:.6f} MeV  "
+      f"(PDG {m_tau_pdg}, {(m_tau_speculative-m_tau_pdg)/m_tau_pdg*100:+.6f}%; "
+      f"base_tau alone: {(base_tau_corkscrew-m_tau_pdg)/m_tau_pdg*100:+.6f}%)")
+
+m_tau_required_given_new_mu = m_tau_koide_solve(m_e_settled, m_mu_speculative)
+new_gap = (m_tau_speculative - m_tau_required_given_new_mu) / m_tau_required_given_new_mu * 100
+print(f"\n  m_tau required by Koide (given speculative m_mu) = "
+      f"{m_tau_required_given_new_mu:.6f} MeV")
+print(f"  New disagreement (m_tau speculative vs this required value) = "
+      f"{new_gap:+.6f}%  (original: {corr_tau_required*0 + (1-corr_tau_required)*-100:+.6f}%)")
+
+K_speculative = koide_K(m_e_settled, m_mu_speculative, m_tau_speculative)
+K_none = koide_K(m_e_settled, m_mu_settled, base_tau_corkscrew)
+print(f"\n  Koide K with BOTH speculative corrections = {K_speculative:.10f}  "
+      f"dev = {(K_speculative-2/3)/(2/3)*1e6:+.2f} ppm")
+print(f"  Koide K with NEITHER (settled formulas alone) = {K_none:.10f}  "
+      f"dev = {(K_none-2/3)/(2/3)*1e6:+.2f} ppm")
+print(f"  For reference, Koide K with real PDG masses = {K_pdg:.10f}  "
+      f"dev = {(K_pdg-2/3)/(2/3)*1e6:+.2f} ppm")
+print(f"\n  The speculative-combination deviation is numerically close to (and")
+print(f"  slightly smaller in magnitude than) the real-PDG-mass deviation --")
+print(f"  NOT treated as evidence either correction is correct: both involved")
+print(f"  some candidate selection (see caveats above), and 2 adjustable")
+print(f"  corrections landing near a single target this small is easily")
+print(f"  coincidence, not confirmation. Recorded for the record, not adopted.")
+
+check("KP11 speculative combined test is closer to Koide's 2/3 than applying "
+      "neither correction (informational only, NOT a confirmation of either "
+      "correction)",
+      abs(K_speculative-2/3) < abs(K_none-2/3),
+      f"|dev| speculative={abs((K_speculative-2/3)/(2/3)*1e6):.2f} ppm vs "
+      f"neither={abs((K_none-2/3)/(2/3)*1e6):.2f} ppm")
+
 # ── Section 6: Geometric origin of 2/3 (proven in face_gluon_geometry.py FG11) ──
 print()
 print(SEP)
@@ -481,6 +575,169 @@ check("KP8 Koide 2/3 = (dim T1g + dim T2g) / dim(T1g x T2g) = 6/9 EXACTLY",
       abs(koide_geom - 2/3) < 1e-14,
       f"({dim_T1g}+{dim_T2g})/{dim_T1g_x_T2g} = {koide_geom:.15f} = 2/3 = {2/3:.15f}")
 
+# ── Section 7 (2026-09-19): FREE vs STRUCTURAL group-character cross-check, ───
+# honest multi-formula Koide comparison, measurement-precision reality check.
+# Reuses dn_from_eff/polygon_pi/koide_K/base_mu0 defined above -- no new mass
+# mechanism, only new eff/N/correction-term inputs, each independently
+# motivated below.
+print()
+print(SEP)
+print("SECTION 7: FREE vs STRUCTURAL -- GROUP CHARACTER CROSS-CHECK (2026-09-19)")
+print(SEP2)
+
+
+def chi_j(j, theta):
+    """SU(2) spin-j character at rotation angle theta -- copied verbatim
+    from ih_double_group.py, not re-derived."""
+    if abs(math.sin(theta / 2)) < 1e-12:
+        return 2 * j + 1
+    return math.sin((j + 0.5) * theta) / math.sin(theta / 2)
+
+
+# G32 (muon, j=3/2) and I52 (tau, j=5/2) each have FOUR distinct order-5
+# classes in 2I (C5=72deg, C5^2=144deg, C5^3=216deg, C5^4=288deg) -- chi(G32)
+# = +1 at C5/C5^3, -1 at C5^2/C5^4 (both shown below); WHICH class a specific
+# D5 subgroup embedding's own generator maps to is NOT resolved here -- this
+# is reported as an open cross-check, not a settled derivation.
+chi_G32_C5 = chi_j(1.5, 2 * pi / 5)
+chi_I52_C5 = chi_j(2.5, 2 * pi / 5)
+print(f"  chi(G32,C5=72deg)  = {chi_G32_C5:.6f}   chi(G32,C5^2=144deg) = {chi_j(1.5, 4*pi/5):.6f}")
+print(f"  chi(I52,C5=72deg)  = {chi_I52_C5:.6f}   chi(I52,C5^4=288deg) = {chi_j(2.5, 8*pi/5):.6f}")
+
+check("KP12 chi(G32,C5)=+1 at the 72-degree class (matches muon's own path "
+      "deflection angle, Section 4.2) -- ambiguous vs C5^2's -1, class "
+      "identification not resolved",
+      abs(chi_G32_C5 - 1.0) < 1e-10, f"chi(G32,C5)={chi_G32_C5:.10f}")
+
+# STRUCTURAL muon eff (already independently established, muon_internal_
+# force_check.py F1-F3: the uniform-72-deg structural path's Born-ratio
+# trivially collapses to 1, since it has only ONE deflection type unlike
+# the free bipyramid's two) EXACTLY equals chi(G32,C5) above -- two
+# unrelated methods (geometric deflection-ratio vs SU(2) character) landing
+# on the same number. Does NOT change any adopted mass value (structural
+# eff_mu was already 1.0); provides a second, independent point in its
+# favor. Does NOT extend to the FREE muon's own eff=(9-sqrt5)/8=0.845,
+# which matches neither chi value above.
+eff_mu_structural = 1.0
+check("KP13 chi(G32,C5) exactly matches the independently-established "
+      "structural eff_mu=1.0 (muon_internal_force_check.py F1-F3)",
+      abs(chi_G32_C5 - eff_mu_structural) < 1e-10)
+
+# Tau's own structural eff (Section 5.2, eff_tau=(1+1/sqrt5)/2, explicitly
+# labeled an ESTIMATE) does NOT match chi(I52,C5) at all -- tested as the
+# natural analog of KP13, comes back negative:
+check("KP14 chi(I52,C5) does NOT match the eff_tau=(1+1/sqrt5)/2 estimate "
+      "(unlike muon's case) -- the electron/muon 'eff=own character' "
+      "pattern does not extend to tau",
+      abs(chi_I52_C5 - eff_tau) > 0.5, f"chi(I52,C5)={chi_I52_C5:.6f}, eff_tau={eff_tau:.6f}")
+
+print()
+print(SEP2)
+print("STRUCTURAL-MODE mass formulas (bilateral, cell-bound path -- distinct")
+print("from the FREE/solo-corpuscle formulas above; a different physical")
+print("object, not expected to match free-mode precision, Section 4.3)")
+print(SEP2)
+
+
+def m_mu_structural_from_eff(eff, N=6):
+    """N=6: structural muon's own real hexagonal-loop bounce count (distinct
+    from the FREE muon's N=5 bipyramid count -- both correct, different
+    objects, confirmed by archive/muon_path_topology_check.py's full
+    wraparound check). NO free-spin (2*alpha) term: 'free spin' describes an
+    unconstrained solo corpuscle; the structural mode is bilateral/paired
+    (forward+backward corpuscles force-cancel), so this channel does not
+    apply (doc_jobson_cell.txt Section 7.5). Rs^2 (T_2g shear) IS kept --
+    a medium-coupling term unrelated to the free-spin channel.
+    CAVEAT (not fully closed): N=6 is geometrically well-motivated (the
+    real closed hexagonal loop), but the value Koide would actually require
+    here is N=6.4458, not a clean integer 6 -- a real, still-open fractional
+    discrepancy, not an exact hit (notes/koide_investigation_history.txt
+    Part 4)."""
+    dn = dn_from_eff(eff)
+    return base_mu0 * (1 + dn / polygon_pi(N)) * (1 + Rs2)
+
+
+def m_tau_structural_from_eff(eff, N=10):
+    """N=10: per-photon bounce count on the bilateral 20-face circuit (each
+    of the two corpuscle photons traverses 10 nexuses between meetings,
+    Section 5.1) -- the same per-corpuscle convention as the structural
+    muon's N=6, not the full 20-hop combined count.
+    Sign mechanism (author, 2026-09-18): structural tau touches face-center
+    nexuses FROM THE INTERIOR (Section 5.1: 'arrives at each one from the
+    interior'); the free corkscrew touches the same nexus type from far
+    OUTSIDE the local cell scale (R=lambda_p vs the structural inradius,
+    ~28x larger) -- same physical contact type, opposite approach
+    direction, motivating a DIRECT (unsuppressed) -2*alpha term here,
+    unlike the free tau's own alpha-SUPPRESSED KP11 piece below. Rs^2 is
+    also direct (not alpha-suppressed) for the same reason."""
+    dn = dn_from_eff(eff)
+    return base_tau_corkscrew * (1 + dn / polygon_pi(N)) * (1 - Rs2 * alpha - 2 * alpha)
+
+
+# NOTE ON A SEPARATELY-FOUND, EXPLICITLY UNMOTIVATED EXTRA TERM (deliberately
+# NOT used in any formula here): a wide numerical search (2026-09-18) found
+# that adding -alpha^2*(2/sqrt5)^3 to the structural tau correction above
+# tightens the resulting Koide residual substantially (from +5.7 ppm to
+# -0.08 ppm). This term has NO independent physical motivation -- found by
+# scanning candidate forms until one matched, the definition of numerology
+# this framework otherwise avoids -- and is NOT included in
+# m_tau_structural_from_eff above. Recorded here only so it is not silently
+# rediscovered and mistaken for a new result later.
+
+m_mu_struct = m_mu_structural_from_eff(eff_mu_structural)
+m_tau_struct = m_tau_structural_from_eff(eff_tau)
+print(f"  m_mu (structural, eff=1=chi(G32,C5), N=6) = {m_mu_struct:.4f} MeV")
+print(f"  m_tau (structural, inside/outside, N=10)   = {m_tau_struct:.4f} MeV")
+
+print()
+print(SEP2)
+print("HONEST, NON-TAUTOLOGICAL KOIDE CHECK: all three masses computed")
+print("INDEPENDENTLY (none solved-for to force agreement), free vs structural")
+print(SEP2)
+m_tau_KP11 = base_tau_corkscrew * (1 - (Rs2 + 2 * alpha) * alpha)
+K_free_all_independent = koide_K(m_e_settled, m_mu_settled, m_tau_KP11)
+K_structural_all = koide_K(m_e_settled, m_mu_struct, m_tau_struct)
+resid_free = (K_free_all_independent - 2 / 3) / (2 / 3) * 1e6
+resid_struct = (K_structural_all - 2 / 3) / (2 / 3) * 1e6
+resid_pdg = (K_pdg - 2 / 3) / (2 / 3) * 1e6
+print(f"  FREE       (e_settled, mu_settled, tau=KP11):  K={K_free_all_independent:.10f}  resid={resid_free:+.4f} ppm")
+print(f"  STRUCTURAL (e_settled, mu_struct, tau_struct): K={K_structural_all:.10f}  resid={resid_struct:+.4f} ppm")
+print(f"  (For reference, raw PDG masses give:            resid={resid_pdg:+.4f} ppm)")
+
+check("KP15 BOTH free and structural (independently-motivated formulas, no "
+      "unmotivated extra term) land closer to 2/3 than raw PDG masses do",
+      abs(resid_free) < abs(resid_pdg) and abs(resid_struct) < abs(resid_pdg),
+      f"free={resid_free:+.4f} ppm, structural={resid_struct:+.4f} ppm, PDG={resid_pdg:+.4f} ppm")
+
+print()
+print(SEP2)
+print("MEASUREMENT-PRECISION REALITY CHECK: what does this ppm-level")
+print("comparison actually mean given real mass-measurement uncertainty?")
+print(SEP2)
+# PDG/CODATA 1-sigma uncertainties (2026-09-19): m_e=0.51099895069(16) MeV,
+# m_mu=105.6583755(23) MeV, m_tau=1776.86(12) MeV -- full derivation in
+# archive/koide_measurement_precision_propagation_check.py (electron/muon
+# contributions are negligible in comparison, shown there; archived since
+# this file's own KP16 below reproduces the tau-dominant result directly).
+sig_tau = 0.12
+K_tau_hi = koide_K(m_e_pdg, m_mu_pdg, m_tau_pdg + sig_tau)
+K_tau_lo = koide_K(m_e_pdg, m_mu_pdg, m_tau_pdg - sig_tau)
+tau_1sigma_ppm = abs((K_tau_hi - K_tau_lo) / 2 / (2 / 3) * 1e6)
+pull_sigma = abs(resid_pdg) / tau_1sigma_ppm
+print(f"  Tau's own PDG mass uncertainty (+/-0.12 MeV) alone propagates to")
+print(f"  +/-{tau_1sigma_ppm:.2f} ppm (1-sigma) on Koide's K -- electron's and muon's")
+print(f"  own uncertainties are negligible by comparison (companion script).")
+print(f"  Real central-PDG-mass residual ({resid_pdg:+.2f} ppm) is only "
+      f"{pull_sigma:.2f} sigma from exactly 2/3: fully consistent with data,")
+print(f"  not excluded -- but NOT proven to the ppm level either. Every ppm-level")
+print(f"  comparison above (free vs structural, KP15) is finer than this")
+print(f"  measurement floor and cannot currently be experimentally distinguished")
+print(f"  from each other, or from exact 2/3.")
+
+check("KP16 exact 2/3 is within 2-sigma of the real central PDG value, given "
+      "tau's own measurement uncertainty (consistent with data, not proof)",
+      pull_sigma < 2.0, f"pull={pull_sigma:.4f} sigma")
+
 # ── Summary ───────────────────────────────────────────────────────────────────
 print()
 print(SEP)
@@ -511,4 +768,4 @@ if failed == 0:
 else:
     for name, s, d in results:
         if s == "FAIL": print(f"  FAILED: {name}")
-print(f"  Reference: docs/doc_leptons.txt Section 6.2, docs/open_items.txt F-9")
+print(f"  Reference: docs/series1/doc_leptons.txt Section 6.2, notes/koide_investigation_history.txt")

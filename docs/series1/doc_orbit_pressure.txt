@@ -29,7 +29,7 @@ program (Kaluza-Klein, string compactifications, grand unified theories)
 achieves force unification from a single measured input with no adjustable
 parameters and a directly testable numerical prediction at this precision.
 
-Gravity arises from the medium's elastic snapback tension. Each nucleus
+Gravity arises from the medium's restoring pressure. Each nucleus
 (N_J = 21, Maxwell-critical, jammed) displaces the medium by V_p = 2.50e-45 m^3.
 The medium tries to refill this excluded volume; the restoring pressure
 propagates as 1/r (3D Laplace Green's function), giving Newton's 1/r^2 force.
@@ -37,7 +37,7 @@ The gravitational coupling is:
 
   alpha_grav = (m_p / E_cell)^18
 
-where E_cell = 124.8 GeV is the Jobson cell snapback energy and the exponent
+where E_cell = 124.8 GeV is the Jobson cell restoration energy and the exponent
 18 = 3 * (3V-E) = spatial dimensions * Maxwell jamming criterion. Physically:
 18 is how far the disturbance propagates before the medium's net fully tightens
 -- the cell's 6 Maxwell constraint modes must all engage in all 3 dimensions
@@ -63,7 +63,7 @@ The equivalence principle is automatic: inertial mass and gravitational mass
 both count the same quantity -- nuclear excluded volume N * V_p. The electron
 cloud does not displace the medium volumetrically (N_J = 38,870, bulk;
 its displacement is topological -- Hopf winding 2, which generates alpha_em,
-not gravitational snapback). Nuclear excluded volumes dominate gravity.
+not gravitational restoring pressure). Nuclear excluded volumes dominate gravity.
 
 Both EM and gravitational orbits follow identical equations of motion; only
 the coupling strength differs. The hierarchy alpha_em/alpha_grav = 1.24e36
@@ -185,9 +185,9 @@ Pressure is the medium-level summary of dwell-time averages: sparse vertices
 But the wave does not measure pressure. It only experiences impact intervals.
 
 GRAVITY:
-  A nucleus excludes medium (volume V_p), depleting cells inward.
-  Vertex spacing widens toward the excluded zone.
-  Every wave mode accumulates longer dwell times heading inward.
+  A nucleus has spinning protons which thin the medium. 
+  rolling cells require more space. Vertex spacing widens.
+  Every wave mode accumulates longer dwell times toward the less dense cells.
   Net drift: inward. Gravitational attraction.
   1/r^2 falloff: the depletion spreads over 4*pi*r^2, so dwell-time
   asymmetry falls as 1/r^2. Force falls as 1/r^2.
@@ -318,8 +318,8 @@ The labels alpha_em and alpha_grav name the exponent, not a different force.
         P_disp(r) = K * V_p / (4*pi*r)  [positive, falls off as 1/r]
       For N nucleons: N * P_disp sums -> the gravitational pressure field.
       FORM of Newton's 1/r^2 is DERIVED from 3D Green's function. [PO6, PO7]
-    NET EFFECT: mass = number of excluded volumes; gravity = collective snapback
-      tension from displaced medium. Mass and gravitational susceptibility are
+    NET EFFECT: mass = number of excluded volumes; gravity = collective restoring
+      pressure from displaced medium. Mass and gravitational susceptibility are
       the same thing -- both count excluded cell volumes N * V_p.
       G is fully derived: alpha_grav = (m_p/E_cell)^18 [Sec 5.1].
 
@@ -341,7 +341,7 @@ in a 1/r well (gradient orbit) -- differing only in source and scale:
 Differences:
   1. Coupling mechanism AND scale:
        EM:   topological (Hopf winding 2), alpha_em = (m_p/E_cell)^1
-       Grav: volumetric exclusion (snapback), alpha_grav = (m_p/E_cell)^18
+       Grav: volumetric exclusion (restoring pressure), alpha_grav = (m_p/E_cell)^18
        Same 1/r^2 force law shape; different generating mechanisms; ratio 1.24e36
   2. Well source: charge topology (proton) vs. nucleon accumulation (Sun)
   3. Orbiting body type: complementary (electron = positive source) vs.
@@ -366,13 +366,13 @@ exponential spacing) might reflect a semi-classical analog of this structure.
 The gravitational experience ON a planet surface has three distinct mechanisms
 in the torsion medium framework. These are different from orbital gravity.
 
-MECHANISM 1: Elastic snapback tension on excluded nuclear volumes (Newton)
+MECHANISM 1: Restoring pressure on excluded nuclear volumes (Newton)
   Each nucleon jams the medium out of its nuclear volume V_p = 2.50e-45 m^3.
-  The medium applies elastic restoring tension (snapback pressure) to refill
+  The medium applies restoring pressure to refill
   all excluded volumes simultaneously.
 
   SOURCE: N_s nucleons displace N_s * V_p of medium.
-    Snapback pressure field: P(r) = K_eff * N_s * V_p / (4*pi*r)  [monopole]
+    Restoring pressure field: P(r) = K_eff * N_s * V_p / (4*pi*r)  [monopole]
     Gradient gives force: |grad P| = K_eff * N_s * V_p / (4*pi*r^2)
 
   TEST BODY: N_t nucleons each carry their own excluded volume V_p.
@@ -441,12 +441,12 @@ OBSERVATIONAL (universe/orbital scale):
   conveyor belt. The mechanism is alpha_grav * N_nucleons = well depth.
 
 EXPERIENTIAL (surface scale -- what we feel as weight):
-  The mechanism is the medium's elastic restoring pressure.
+  The mechanism is the medium's restoring pressure.
 
   1. Each nucleus JAMS the medium out of its nuclear volume (N_J_p = 21,
      boundary regime). The electron cloud does NOT exclude the medium
      (N_J_e = 38,870, bulk -- electron displaces topologically via Hopf
-     winding 2, generating alpha_em, not gravitational snapback tension).
+     winding 2, generating alpha_em, not gravitational restoring pressure).
      Only the nucleus displaces the medium. Gravity = nuclear displacement.
 
   2. The excluded nuclear volumes create a pressure DEFICIT: the medium
@@ -473,6 +473,24 @@ EXPERIENTIAL (surface scale -- what we feel as weight):
   proven via Coulomb + alpha_grav). V_p = 2.50e-45 m^3 per nucleon [PO7].
   FORM of Newton's 1/r^2 DERIVED from 3D Laplace Green's function [PO6]:
     K * V_p / (4*pi*r) -> force ∝ 1/r^2. Proven geometrically.
+
+  A source-free (grad^2 P = 0) treatment applies only outside the
+  excluded volume, at r > r_p -- exactly where gravity is tested
+  (solar-system scales). The maximum principle for harmonic functions
+  makes its solution strictly monotonic within that domain, matching the
+  observed clean 1/r^2 falloff with no reversal shell. This does not
+  extend to r < r_p, a different domain the equation is never applied
+  to, and where real compensating structure already exists in this
+  framework's own Zone 1-3 (doc_nucleus.txt): in Zone 1, the confined
+  u/d quarks' own kinetic pressure supplies the counter-pressure to Zone
+  2's confining medium (an MIT-bag-style balance, doc_nucleus.txt Section
+  6, and how quark energy is measured); Zone 2 sits exactly at the
+  Maxwell-critical jamming point (N_J=21, 3V-E=6); Zone 3's cells
+  co-rotate under Zone 2's frame-dragging, requiring more room and
+  thinning the medium locally (the same mechanism as the EM/chirality
+  section above). This existing Zone structure is the answer to where
+  the displaced medium goes, not a new equation applied at some larger
+  radius.
   Numerical G = K_grav * V_p^2 / (4*pi * m_p^2): DERIVED (see Section 5.1).
   alpha_grav = (m_p/E_cell)^18, consistent with CODATA (within ±4.1% prediction band from r_p).
 
@@ -494,6 +512,19 @@ NOTE ON LENSE-THIRRING / EINSTEIN-CARTAN:
   expanding those equations of motion to higher order (analogous to GR's
   PPN formalism), which has not yet been done for this medium -- the
   identification remains an assumption, not a derivation.
+
+  This identification's classic historical objection (Stokes, 1845:
+  dragging the medium along with rotating matter predicts LESS stellar
+  aberration than observed -- the failure mode of 19th-century drag-based
+  aether theories) is quantitatively negligible here: using Earth's own
+  real mass, spin, and radius, the frame-dragging rate Omega_LT works out
+  to ~3.36e-14 rad/s at the surface, an entrainment speed of ~2.14e-7 m/s
+  -- a contribution to diurnal stellar aberration of order 4.6e-10 of the
+  observed 0.320" effect [analysis/cosmo/lense_thirring_aberration_
+  estimate.py]. Stokes' problem does not arise here because the predicted
+  drag itself is negligible, not because of any special cancellation --
+  consistent with, but not an independent test of, the identification
+  above, which remains an assumption rather than a derivation.
 
 
   Earth's mass jams the medium at its surface. Jammed medium cannot flow inward.
@@ -520,7 +551,7 @@ NOTE ON LENSE-THIRRING / EINSTEIN-CARTAN:
   The 2% discrepancy is from Earth's non-uniform internal density distribution.
 
 SUMMARY OF THREE MECHANISMS:
-  1. Direct displacement (N nucleons x V_p each) -> snapback tension -> Newton
+  1. Direct displacement (N nucleons x V_p each) -> restoring pressure -> Newton
      gravity (derived: alpha_grav = (m_p/E_cell)^18, Sec 5.1)
   2. Candy wrapper (jamming wave at v_s = Rs*c) -> gravity STRUCTURE propagation
   3. Centrifugal inertia (solid-body rotation) -> equatorial bulge (21.8 vs
@@ -668,9 +699,9 @@ If black holes are cell-collapsed regions:
 THE THREE GRAVITY MECHANISMS (named for clarity):
 
   MECHANISM 1 -- Exclusion gravity (surface/experiential):
-    Medium's elastic snapback tension acts on excluded nuclear volumes.
+    Medium's restoring pressure acts on excluded nuclear volumes.
     Gravitational force = how much medium YOU displace (N * V_p) in the
-    snapback pressure gradient of the source. Inertia = same excluded volume.
+    restoring pressure gradient of the source. Inertia = same excluded volume.
     What we physically feel as weight. Operates at body-surface scale.
 
   MECHANISM 2 -- Gradient orbit (solar system/orbital):
@@ -825,14 +856,31 @@ with separations > 7 kAU, orbital accelerations can drop below a_0 -- anomalous
 accelerations consistent with the shear-entrainment transition have been observed.
 [OPEN: quantitative wide-binary check]
 
-NOTE ON READING MEDIUM PRESSURE FROM EM TRAVEL TIME  [ESSENTIALLY CLOSED]:
-  Near a gravitating body, the medium is stretched (pulled inward by snapback
-  tension -- more medium per coordinate distance). Light still travels at c
-  locally, but traverses more actual medium per coordinate unit. From far away,
-  signals take longer: the Shapiro delay is a PATH LENGTH effect in the
-  stretched medium, not a local c reduction.
+NOTE ON READING MEDIUM PRESSURE FROM EM TRAVEL TIME  [REPRODUCES GR, LOCAL SCALE]:
+  Near a gravitating body, spinning nuclear volume thins the surrounding
+  medium near the source. (Section 2.4's restoring-
+  pressure DEFICIT, and Section 2.4's own note for the full mechanism --
+  Zone 1's quark counter-pressure, Zone 3's active rotation -- not a single, simple picture).
+  The formula below matches the
+  standard GR Shapiro delay coefficient exactly -- G, M, c are each
+  independently established in this framework (G via Section 5.1's
+  alpha_grav derivation, not an external import).  Light still travels at c locally, 
+  but if the thinning picture is eventually shown to produce this coefficient, 
+  each coordinate unit
+  would span a thinner, more widely-spaced medium, so a photon would take
+  more actual propagation steps to cross it -- the Shapiro delay would be
+  a PATH LENGTH effect in this thinned medium, not a local c reduction.
   Observed: delta_t = 2*G*M/c^3 * ln(r/r_perihelion)  [Cassini: 0.002%]
-  EM travel time directly maps medium stretch = medium pressure field.
+  EM travel time directly maps the medium's thinning = its pressure-deficit field.
+  STATUS (same as Mercury precession, Tier 2 above): indirect. G, M, c are
+  each independently established quantities in this framework -- but the
+  specific coefficient combining them here has not been independently
+  derived from the medium's own equations of motion (only shown to match
+  GR's own Shapiro formula by direct substitution). Matching Cassini here
+  matches what standard GR already matches, under a different narrative --
+  it does not by itself distinguish this framework from GR. The genuinely
+  distinguishing, medium-specific prediction is the GALACTIC-scale anomaly
+  below.
   GALACTIC: Mechanism 3 pressure should cause Shapiro anomalies above M2 at
   galactic scales. Testable with pulsar timing arrays.  [OPEN: quantitative]
 
@@ -851,7 +899,7 @@ The hierarchy problem asks: why is gravity so much weaker than EM?
 
 In the torsion framework:
 alpha_em arises from the (1,2) winding topology [DERIVED, doc_alpha].
-  alpha_grav is the medium's elastic snapback tension from nuclear volume
+  alpha_grav is the medium's restoring pressure from nuclear volume
   exclusion -- NOT a topological coupling. Each nucleus (N_J=21, jammed)
   excludes V_p from the medium; the restoring pressure propagates as 1/r;
   the gradient gives 1/r^2. The coupling strength is:

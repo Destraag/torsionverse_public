@@ -4,7 +4,8 @@ muon_bipyramid_edge_condition.py
 
 Follow-up to muon_internal_force_check.py (F1-F3) and the "free muon
 reverts to bipyramid" conclusion (doc_leptons.txt Sections 2.3, 4.3;
-docs/open_items.txt L-MU-BORN): the bipyramid used for eff_mu is stated
+notes/koide_investigation_history.txt Part 1): the bipyramid used for
+eff_mu is stated
 to be the Johnson solid J13, defined by ALL EDGES EQUAL, which forces
 h_t/r_e = 1/phi. This script checks that claim directly instead of just
 asserting it.
@@ -45,7 +46,7 @@ INTERPRETATION (context for why BR3 matters, not itself a numeric check):
   does NOT resolve why that simpler (4-vertex) topology is preferred over
   the icosahedron's own 2-apex/2-ring (6-vertex, antiprism-twisted)
   topology used by the structural G32 mode -- that remains open (see
-  docs/open_items.txt L-MU-BORN).
+  notes/koide_investigation_history.txt Part 1).
 
 Reference: analysis/quantum/muon_internal_force_check.py (F1-F3),
            analysis/quantum/lepton_mass.py (LM4b, mass formula).
@@ -210,11 +211,12 @@ print("""
        framework) carried over as the one surviving constraint once the
        free muon is no longer pinned to exact lattice vertex positions.
 
-  STILL OPEN (see docs/open_items.txt L-MU-BORN): WHY the free muon's
-  path relaxes to this SIMPLER 2-apex/1-ring (4-vertex) topology at all,
-  rather than the icosahedron's own 2-apex/2-ring (6-vertex, antiprism-
-  twisted) topology used by the structural G32 mode. This script assumes
-  the bipyramid topology and only tests the height ratio within it.
+  STILL OPEN (see notes/koide_investigation_history.txt Part 1): WHY the
+  free muon's path relaxes to this SIMPLER 2-apex/1-ring (4-vertex)
+  topology at all, rather than the icosahedron's own 2-apex/2-ring
+  (6-vertex, antiprism-twisted) topology used by the structural G32 mode.
+  This script assumes the bipyramid topology and only tests the height
+  ratio within it.
 """)
 
 print(SEP)

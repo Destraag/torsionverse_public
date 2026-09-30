@@ -242,7 +242,7 @@ print(f"  Quartic coupl:   lambda = 2*pi^2/(16*pi^2-5) = {lam_val:.8f}  [DERIVED
 print(f"  K/G ratio:       (48*pi^2-20)/15 = {K_o_G:.8f}  [DERIVED]")
 print(f"  Vertices:        12  (T_1g x 4 assignments)")
 print(f"  CG:              T_1g x T_1g = A_g + T_1g + H_g  [DERIVED]")
-print(f"  Lagrangian:      L_HWW = alpha^2*phi^2*|H|^2*|W|^2  [DERIVED from CG]")
+print(f"  Lagrangian:      L_HWW = alpha^2*phi^2*|H|^2*|W|^2  [FORM from CG; coefficient a candidate, NOT derived]")
 print(f"  Forbidden:       H -> T_1g + T_2g  [DERIVED]")
 print()
 print(f"  Source documents: doc_alpha (L_J, N_lock), doc_torsion (nu, E_cell),")

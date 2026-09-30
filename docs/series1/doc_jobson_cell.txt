@@ -159,9 +159,11 @@ Quartic coupling (sub-cell regime, N_J < 1):
 The Weinberg angle structural (pressure) approximation, using K/G derived above:
   sin^2(theta_W) = 7*G/(K+G) = 105/(48*pi^2-5) = 0.22402
   (structural approximation, 0.5% from PDG; full pressure-formula derivation in
-   electroweak_predictions.py and higgs_weinberg_unified.py. Precise formula
-   achieves 4.6e-6:
-   sin^2(theta_W)* = sin^2(theta_W)_GAP-C + 2*alpha^2*phi^2 = 0.22290456)
+   electroweak_predictions.py and higgs_weinberg_unified.py. The one-loop GAP-C
+   formula achieves -0.123% (-0.91 sigma):
+   sin^2(theta_W) = 1 - [sqrt(phi/sqrt5)*(1+5*alpha)]^2 = 0.222626 vs PDG
+   0.222900. A previously-claimed second-order term (+2*alpha^2*phi^2,
+   residual 4.6e-6) is RETRACTED (2026-09-29)
   [jobson_cell_doc.py, J19]
 
 
@@ -201,16 +203,17 @@ Specific values:
   (Note: N_lock = 2*pi/(alpha*phi) = 532 is the cells-per-loop count,
    a separate quantity from N_J_e)
 
-4.4  Scale-invariant jamming (Claim 8 of doc_higgs)
+4.4  Scale-invariant jamming (RETRACTED)
 
-  7 * k_n_max / (2*pi) = 1 + alpha + alpha^2*phi  (to 0.0001%)
-
-where k_n_max = 3125/3456 = 0.9042 (exact algebraic, from (1,2) Hopf geometry),
-7 = dim(A_g+T_1g+T_2g) = 1+3+3 (I_h EM-coupled sector), and the RHS is the
-vertex stiffness series at orders 0, 1, 2 (from the alpha derivation, Gap 1).
-
-This result shows E_cell is determined by the EM-coupled sector dimension (7)
-and the maximum jamming stiffness (k_n_max) without requiring the medium density.
+  A previously-claimed closure of the cell binding energy via
+  7*k_n_max/(2*pi)=1+alpha+alpha^2*phi (Claim 8 of doc_higgs) is RETRACTED
+  (2026-09-29) -- both k_n_max and the alpha^2*phi refinement were found
+  unsupported, and a broader closed-book review found general mathematical
+  obstructions to any jamming-stiffness route to E_cell (icosahedral/
+  polyhedral quantities are always algebraic; the needed coefficient 2*pi
+  is transcendental). See [doc_higgs] Section 8 for full detail. E_cell's
+  own value, established independently via the Hopf/N_lock closure
+  condition, is unaffected.
 
 
 5. THE ICOSAHEDRAL GROUP I_h
@@ -283,8 +286,11 @@ Selection rules for H -> X + Y decay (by Schur's lemma):
 
 For each allowed channel, A_g appears exactly ONCE (unique coupling, no freedom).
 The T_1g x T_1g -> A_g channel specifically gives the isotropic coupling
-W_x^2+W_y^2+W_z^2=|W|^2, exact from the A_g projection -- this is the
-Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 (Abstract).
+W_x^2+W_y^2+W_z^2=|W|^2, exact from the A_g projection -- this FORM is derived.
+The candidate Higgs-gauge Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2
+(Abstract) uses this form with a coefficient (alpha^2*phi^2) that is NOT
+independently derived -- representation theory fixes multiplicity and form,
+not magnitude; see doc_higgs.txt Section 5a.3 for the full status.
 
 GALOIS CONJUGATE STRUCTURE OF T_1g AND T_2g:
   T_1g and T_2g are Galois conjugates under the C_5/C_5^2 character map:
@@ -313,6 +319,9 @@ GALOIS CONJUGATE STRUCTURE OF T_1g AND T_2g:
 
 C_5 character of T_1g x T_1g:
   chi(T_1g x T_1g, C_5) = phi^2 = phi+1 = 2.618  [algebraically exact, phi^2=phi+1]
+  (this is the AMBIENT 9-dim product's character, not the A_g-isotypic piece's
+  own character -- see doc_higgs.txt Section 5a.3 for why this distinction
+  matters for the coupling-magnitude question)
 
 Fibonacci truncation (proven bit-for-bit exact):
   phi^n = F(n)*phi + F(n-1)  for all n  [Fibonacci decomposition]
@@ -405,11 +414,14 @@ WHY THE W/Z ARE NOT T_1g AT E_cell:
     v = 246.185 GeV, not from the cell energy E_cell directly. The coupling
     g is PARTIAL CLOSURE, not the flat "not derivable" status this section
     previously gave it: combining two quantities the cell ALREADY derives --
-    alpha (Born balance, Section 8) and sin^2(theta_W)* (GAP-C + 2*alpha^2*phi^2,
+    alpha (Born balance, Section 8) and sin^2(theta_W) (GAP-C one-loop,
     Section 3.2, J19) -- via the standard (external, not I_h-specific) relation
-    g = sqrt(4*pi*alpha)/sin(theta_W) gives g = 0.6414 vs measured g = 2*m_W/v
-    = 0.6529 (-1.76%); using the RG-run alpha_em(m_Z) instead gives g = 0.6638
-    (+1.67%). The true value brackets between the two; the residual size
+    g = sqrt(4*pi*alpha)/sin(theta_W) gives g = 0.6418 vs measured g = 2*m_W/v
+    = 0.6529 (-1.70%); using the RG-run alpha_em(m_Z) instead gives g = 0.6642
+    (+1.73%). (Recomputed 2026-09-29 with the honest one-loop sin(theta_W)
+    after the two-loop Weinberg term's retraction -- see Section 3.2; the
+    change from the previous 0.6414/0.6638 figures is small since sin(theta_W)
+    barely shifts between the one- and two-loop values.) The true value brackets between the two; the residual size
     matches the well-known Standard Model Delta-r radiative correction (top/
     Higgs loop corrections to the rho parameter), which torsionverse does not
     currently derive. So g follows to ~1.7% from already-closed cell
@@ -1888,7 +1900,7 @@ THE ONE FREE PARAMETER: m_p
 ---------------------
 
   MAIN DEMO (standalone, no deps):
-    analysis/demos/jobson_cell_doc.py          47/47 PASS  -- all cell quantities, J-numbered checks
+    analysis/demos/jobson_cell_doc.py          48/48 PASS  -- all cell quantities, J-numbered checks
     Repository: https://doi.org/10.5281/zenodo.22032906
 
   CELL STRUCTURE AND MECHANICS:

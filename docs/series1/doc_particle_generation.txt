@@ -76,7 +76,7 @@ THE PHOTON IS THE GROUND STATE:
   All matter requires theta > 0. The universe nucleates particles in mass order.
 
 Companion scripts:
-  analysis/demos/particle_generation_doc.py  -- 15/15 PASS
+  analysis/demos/particle_generation_doc.py  -- 14/14 PASS
 
 
 1. FRAMEWORK: PAIR PRODUCTION AS WINDING NUCLEATION

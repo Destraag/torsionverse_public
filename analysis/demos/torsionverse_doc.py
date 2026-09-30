@@ -152,13 +152,18 @@ print(f"               tau_0 = L_J/c = {tau_0:.4e} s  (one cell cycle)")
 print(f"               f_cell = {c/L_J:.4e} Hz")
 print()
 
-# Gravitational time dilation: near mass M, medium stretches.
-# L_J_local = L_J * (1 + GM/(r*c^2))  =>  tau_local = tau_0 * (1 + GM/(r*c^2))
+# Gravitational time dilation: GM/(r*c^2) is the standard GR weak-field term,
+# imported directly -- NOT derived from medium mechanics. An attempt to derive
+# it from excluded-volume/pressure (using established V_p, K) missed by ~8
+# orders of magnitude, independent of which modulus or orbital scale was used.
+# L_J_local (if this picture is ever confirmed) would mean local cell SPACING
+# (L_J_local ~ n_cells^(-1/3), doc_redshift.txt's relation), NOT the fixed
+# cell edge length L_J -- no work supports an individual cell changing size.
 GM_E        = G_N * M_E
 dil_surface = GM_E / (R_E * c**2)
 dil_gps     = GM_E / ((R_E + GPS_alt) * c**2)
 
-print(f"  Gravitational time dilation (medium stretch factor GM/rc^2):")
+print(f"  Gravitational time dilation (standard GR term GM/rc^2, imported):")
 print(f"    Earth surface: {dil_surface:.4e}  (~6.96e-10)")
 print(f"    GPS altitude:  {dil_gps:.4e}")
 
@@ -172,7 +177,7 @@ print(SEP2)
 print("SECTION 4: GPS dual Bernoulli correction  (+45.7 - 7.2 = +38.5 us/day)")
 print(SEP2)
 # GPS satellites experience BOTH Bernoulli effects simultaneously.
-# (1) Gravitational: stretched medium at altitude -> satellite clock FAST.
+# (1) Gravitational: standard GR term GM/(r*c^2), imported -> satellite clock FAST.
 # (2) Kinematic: fast orbital speed -> Bernoulli low-pressure zone -> clock SLOW.
 
 # Gravitational component: potential difference between surface and GPS altitude

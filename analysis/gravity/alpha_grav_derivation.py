@@ -8,7 +8,7 @@ RESULT:
 
   where:
     m_p    = proton mass (from PS4: m_p*r_p = 4*hbar_c, r_p empirical)
-    E_cell = 2*pi*hbar_c / L_J  (Jobson cell snapback energy, from doc_higgs)
+    E_cell = 2*pi*hbar_c / L_J  (Jobson cell restoration energy, from doc_higgs)
     18     = 3 * (3V - E) = spatial dimensions * Maxwell jamming criterion
 
   Since m_p/E_cell = 2*alpha*phi/pi (from PS4 + L_J definition):
@@ -24,7 +24,7 @@ RESULT:
 
 PHYSICAL PICTURE:
   E_cell is the energy the torsion medium stores per Jobson cell (the
-  "snapback energy" -- how much energy is released when the medium restores
+  "restoration energy" -- how much energy is released when the medium restores
   one excluded cell volume). Each proton occupies ~133 cell energies (1/ratio).
 
   The gravitational coupling is suppressed by (m_p/E_cell)^18 because:
@@ -71,7 +71,7 @@ alpha_grav_meas = G_N * m_p_kg**2 / (hbar_SI * c_SI)
 
 # ── SECTION 1: The two input quantities ───────────────────────────────────────
 print(SEP)
-print("SECTION 1: m_p / E_cell  (proton mass / Jobson cell snapback energy)")
+print("SECTION 1: m_p / E_cell  (proton mass / Jobson cell restoration energy)")
 print(SEP2)
 
 # E_cell from Jobson cell geometry (doc_higgs)
@@ -194,6 +194,6 @@ print()
 print(f"  G = (m_p/E_cell)^18 * hbar*c/m_p^2 = {G_pred:.4e} m^3/(kg*s^2)")
 print(f"  CODATA: {G_N:.4e}  error: {err_G:+.3f}%  (CODATA G: 22 ppm; pred. uncertainty: +-4.1%)")
 print(f"  alpha_grav/alpha_em = 8.1e-37 is NOT a free parameter --")
-print(f"  it follows from the snapback energy ratio (m_p/E_cell) to the 18th power.")
+print(f"  it follows from the restoration energy ratio (m_p/E_cell) to the 18th power.")
 print(f"  Formula is exact from scale invariance; -0.27% residual is within +-4.1% r_p band.")
 print(SEP)

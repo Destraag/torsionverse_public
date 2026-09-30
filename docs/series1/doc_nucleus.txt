@@ -662,7 +662,15 @@ ESSENTIALLY CLOSED:
     (The r=2*lambda_p radius itself is solid sum-of-radii geometry. The
     "dragged... grinding/mesh" cell-level picture is a plausible, not yet
     independently verified, kinematic account -- no script anywhere builds
-    the real multi-cell packing geometry needed to confirm it.)
+    the real multi-cell packing geometry needed to confirm it. The
+    AGGREGATE behavior -- same-chirality Zone-2 boundaries never reaching
+    real rigid contact, opposite-chirality boundaries reaching it at
+    shorter range -- is confirmed by rigid-body simulation across 20
+    independent random relative orientations (0/20 same-chirality contact,
+    19/20 opposite-chirality contact; analysis/nuclear/mesh_grind/pybullet/
+    mesh_grind_pybullet_two_driver_orientation_sweep_test.py); the
+    individual free-cell "dragged" kinematic narrative itself remains
+    unconfirmed.)
   - Three-across quark string model gives mode ratio = 2.000 EXACTLY  [HCC3]
     MIT bag's 1.87 error = wrong geometry (spherical vs linear string).
     String tension G = Rs^2*K, string speed v_s = Rs*c (torsion shear wave).

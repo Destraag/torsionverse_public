@@ -122,7 +122,7 @@ print("    j=1:  T1")
 print("    j=2:  H")
 print("    j=3:  T2 + G")
 print("    j=4:  G + H")
-print("    j=5:  A + T1 + H")
+print("    j=5:  T1 + T2 + H")
 print("  (Clebsch-Gordan for I, standard reference)")
 print()
 

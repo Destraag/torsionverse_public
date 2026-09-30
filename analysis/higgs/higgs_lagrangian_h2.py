@@ -5,10 +5,13 @@ Derives the Higgs-gauge Lagrangian and partial H2 (branching ratio structure)
 from the CG decomposition T_1g x T_1g = A_g + T_1g + H_g in I_h.
 
 WHAT IS DERIVED (no free parameters):
-  - The Higgs-WW Lagrangian: L_HWW = alpha^2*phi^2 * |H|^2 * |W|^2
+  - The Higgs-WW coupling FORM: L_HWW = C * |H|^2 * |W|^2 (index structure only)
   - Coupling appears ONCE (unique by Schur's lemma, no freedom)
   - The T_1g x T_1g -> A_g channel: fully described
   - Partial H2: structure of all T_1g x T_1g -> A_g decays
+  NOTE: the specific coefficient C = alpha^2*phi^2 used below is a candidate,
+  NOT derived -- see the CAUTION notes further down and doc_higgs.txt
+  Section 5a.3.
 
 WHAT IS NOT YET DERIVED:
   - The W/Z split within T_1g (requires I_h -> SU(2)xU(1) breaking = GAP C)
@@ -229,11 +232,21 @@ print("  CELL VISUALIZATION:")
 print("    Higgs (A_g) = center of icosahedral cell (scalar breathing mode)")
 print("    W/Z (T_1g) = vertices of icosahedron (3 vector modes x 4 orientations = 12)")
 print("    WW/ZZ coupling = edge interaction (two adjacent vertices)")
-print("    The Higgs 'feels' ALL 30 edges simultaneously (phi^2 weight from C_5 character)")
 print()
-print("  NOTE: The phi^2 = 2.618 is NOT the edge length.")
-print("  It is chi(T_1g, C_5) = 1 + 2*cos(2*pi/5) = 1 + 2*cos(72 deg) = phi.")
-print("  Squaring for TWO T_1g propagators: phi x phi = phi^2.")
+print("  CAUTION (found 2026-09-29, analysis/higgs/higgs_r9_coupling_weight_")
+print("  derivation_attempt.py): the icosahedron's 30 edges are the orbit of")
+print("  the C_2 class (class size 15 = 30/2 axes), NOT the C_5 class (class")
+print("  size 12 = the 12 vertices). chi(T_1g,C_2)=-1, not phi. Framing this")
+print("  coupling as 'the Higgs feels all 30 edges, phi^2 weight from C_5")
+print("  character' conflates two different geometric pictures that actually")
+print("  disagree (-1 vs phi), not merely lack rigor. The phi^2 factor used")
+print("  below is NOT independently derived -- see doc_higgs.txt Section 5a.3.")
+print()
+print("  NOTE: phi^2 = 2.618 is NOT the icosahedral edge length.")
+print("  It is chi(T_1g, C_5) = 1 + 2*cos(2*pi/5) = 1 + 2*cos(72 deg) = phi,")
+print("  the character of a SINGLE vertex's local C_5 rotation, squared by an")
+print("  UNVERIFIED 'two vertices, square the amplitude' assumption -- not a")
+print("  derived edge-orbit sum.")
 print(f"  Numerically: 1 + 2*cos(2*pi/5) = {1 + 2*math.cos(2*pi/5):.8f} = phi = {phi:.8f}")
 
 # ── SUMMARY ───────────────────────────────────────────────────────────────────
@@ -241,7 +254,7 @@ print()
 print(SEP)
 print("SUMMARY")
 print(SEP2)
-print(f"  Lagrangian: L_HWW = alpha^2*phi^2 * |H|^2 * |W|^2  (DERIVED from CG + alpha)")
+print(f"  Lagrangian: L_HWW = alpha^2*phi^2 * |H|^2 * |W|^2  (FORM from CG; coefficient a candidate, NOT derived)")
 print(f"  Mass shift: delta_m_H = alpha^2*phi^2 * E_cell = {delta_mH*1000:.2f} MeV")
 print(f"  Vev gap:    -0.306 MeV  (vs -34.5 MeV baseline)")
 print()

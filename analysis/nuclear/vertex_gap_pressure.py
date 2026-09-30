@@ -12,8 +12,9 @@ THE ENGINE:
 
   The time-averaged pressure from 12 isotropically distributed gaps is
   spherically symmetric -- no angular dependence. This symmetry + the
-  3D Green's function of the Laplace equation gives V(r) = Q/(4*pi*K*r)
-  = alpha*hbar_c/r exactly (C7 of doc_higgs, proven).
+  3D Green's function of the Laplace equation gives V(r) = Q*K/(4*pi*r)
+  = alpha*hbar_c/r exactly (C7 of doc_higgs, proven; K in the numerator,
+  Q = e^2 for the two-charge interaction energy -- doc_magnetism Sec 1.2).
 
   THIS SCRIPT SHOWS:
   1. Icosahedron vertex coordinates and their angular distribution
@@ -21,7 +22,7 @@ THE ENGINE:
   3. The 12 vertex directions are isotropically distributed (I_h symmetry)
   4. Isotropy of the gap distribution → spherical symmetry of pressure field
   5. Source strength Q preserved: Q × 12 × (pi/3)/(4*pi) = Q (unit sphere check)
-  6. The missing piece: Q = e requires (1,2) Hopf winding (from doc_alpha)
+  6. The missing piece: Q = e^2 requires (1,2) Hopf winding (from doc_alpha)
 
   KEY RESULT:
   The icosahedral vertex gap geometry EXPLAINS WHY the Coulomb field is
@@ -163,9 +164,11 @@ print("SECTION 4: GAP SOURCE → COULOMB POTENTIAL (GREEN'S FUNCTION)")
 print(SEP2)
 
 # The 12 isotropic vertex gaps create a point source Q at r=0.
-# The 3D Laplace Green's function: nabla^2 P = -Q * delta^3(r)
-# Solution: P(r) = Q / (4*pi*K*r)  where K = 1/eps_0
-# Identification with Coulomb: Q = e  -> P(r) = e*eps_0/(4*pi*r) = alpha*hbar_c/r
+# Substituting K=1/eps_0 into the standard V(r)=Q/(4*pi*eps_0*r) gives the
+# medium-language form: P(r) = Q*K/(4*pi*r) = Q/(4*pi*eps_0*r) -- K in the
+# NUMERATOR (see doc_magnetism.txt Section 1.2 for why 1/K would be wrong).
+# Identification with Coulomb: Q = e^2 (interaction energy of two unit
+# charges, not a one-body field) -> P(r) = e^2/(4*pi*eps_0*r) = alpha*hbar_c/r
 
 alpha   = 7.2973525693e-3  # CODATA 2018
 hbar_c  = 197.3269804      # MeV*fm
@@ -177,32 +180,21 @@ hbar_c_Jm = 3.16153e-26   # J*m
 # Coulomb potential at r = r_p = 0.8414 fm
 r_p_fm = 0.8414
 V_rp_MeV = alpha * hbar_c / r_p_fm   # MeV
-
-# Source strength Q from Coulomb: P(r) = Q/(4*pi*K*r) = alpha*hbar_c/r
-# -> Q = 4*pi*K*alpha*hbar_c = 4*pi*(1/eps_0)*alpha*hbar_c
-# In SI: Q = 4*pi*(1/eps_0)*alpha*hbar_c_Jm = e  [should recover electric charge]
-Q_J = 4*pi * K_bulk * alpha * hbar_c_Jm   # Joules * metres = J*m
-Q_from_gap_SI = Q_J / (1)   # Q has units of J*m / (Pa*m) = Pa / Pa = dimensionless? Let me check
-
-# Actually: V(r) = Q/(4*pi*K*r)  where V is in Joules (energy), K in Pa, r in metres
-# Units: [Q] = [V]*[4*pi]*[K]*[r] = J * Pa * m = J * (N/m^2) * m = J * N/m = J * J/m^2... hmm
-# Let me use natural units instead
-
-# In natural units (MeV*fm):
-# K = 1/eps_0 in EM units: K_eff = hbar*c / (some length^3)... 
-# Actually C7 identification: V(r) = e/(4*pi*eps_0*r) = alpha*hbar_c/r [EXACT]
-# The Green's function form: V(r) = Q_source / (4*pi*K*r) with K=1/eps_0 gives:
-# Q_source = e  (the electric charge) -- this is the definition of how C7 works
+# Source strength Q from Coulomb: V(r) = Q*K/(4*pi*r) = alpha*hbar*c/r, with
+# K in the NUMERATOR (see doc_magnetism.txt Section 1.2) and Q = e^2 (the
+# two-charge interaction energy, not a single charge's own field). Verified
+# numerically against CODATA e/eps_0/hbar/c in analysis/demos/magnetism_doc.py
+# (check M3b).
 
 print(f"  C7 Coulomb identification (proven, doc_higgs):")
-print(f"    V(r) = alpha*hbar_c/r  [K=1/eps_0, source Q = e]")
+print(f"    V(r) = alpha*hbar_c/r  [K=1/eps_0, source Q = e^2]")
 print(f"    V(r_p) = alpha*hbar_c/r_p = {V_rp_MeV:.4f} MeV")
 print()
 print(f"  GAP GEOMETRY RESULT:")
 print(f"    12 vertex gaps × (pi/3 per gap) / (4*pi) = 1 (full sphere)")
 print(f"    The 12-fold I_h source is spherically symmetric (VG5-VG6 PASS)")
 print(f"    Source Q is conserved: 12 × (1/12) × Q = Q ✓")
-print(f"    3D Green's function: P(r) = Q/(4*pi*K*r) ~ 1/r ✓")
+print(f"    3D Green's function: P(r) = Q*K/(4*pi*r) ~ 1/r ✓")
 print()
 print(f"  WHAT THE GAP GEOMETRY EXPLAINS:")
 print(f"    (a) WHY the Coulomb field is spherically symmetric  [from VG5-VG6]")
@@ -210,7 +202,7 @@ print(f"    (b) WHY the field decays as 1/r  [from 3D Laplace Green's function]"
 print(f"    (c) WHY the field has 12-fold structure at short range  [I_h irreps]")
 print()
 print(f"  WHAT STILL REQUIRES (1,2) HOPF WINDING:")
-print(f"    (d) The MAGNITUDE Q = e  [charge quantisation from topology]")
+print(f"    (d) The MAGNITUDE Q = e^2  [charge quantisation from topology]")
 print(f"    (e) The SIGN (inward vs outward)  [chirality of (1,2) vs (2,1)]")
 print(f"    These are computed in doc_alpha (alpha derivation, published).")
 print()
@@ -240,10 +232,10 @@ print(f"""
     <xy> = <xz> = <yz> = 0       (no cross terms)
 
   The time-averaged deficit is a spherically symmetric point source Q.
-  The 3D Green's function of ∇²P = -Q×δ³(r) is P(r) = Q/(4πKr) = alpha×hbar_c/r.
+  The 3D Green's function of ∇²P = -Q×K×δ³(r) is P(r) = Q×K/(4πr) = alpha×hbar_c/r.
 
   This is the Coulomb well. The SHAPE (1/r, spherically symmetric) comes
-  from I_h geometry alone. The AMPLITUDE (Q = e) comes from the (1,2)
+  from I_h geometry alone. The AMPLITUDE (Q = e^2) comes from the (1,2)
   Hopf winding quantisation (doc_alpha, proven).
 
   ATOMIC SHELLS arise because the electrons orbiting in this well must
@@ -274,11 +266,11 @@ if failed == 0:
     print("  CHAIN PROVEN BY THIS SCRIPT:")
     print("    I_h icosahedron → 12 vertex gaps × (pi/3) = 4*pi (Descartes)")
     print("    12 directions isotropic (<x^2>=1/3, cross-terms=0)")
-    print("    Isotropic source + 3D Green's function → V(r) = Q/(4*pi*K*r)")
+    print(f"    Isotropic source + 3D Green's function → V(r) = Q*K/(4*pi*r)")
     print("    Q conserved: 12 × (1/12) = 1 (unit source)")
     print()
     print("  REMAINING PIECE (from doc_alpha, already proven separately):")
-    print("    Q = e  from (1,2) Hopf winding quantisation")
+    print("    Q = e^2  from (1,2) Hopf winding quantisation")
     print()
     print("  TOGETHER: The Coulomb field V(r) = alpha*hbar_c/r is fully")
     print("  derived from Jobson cell I_h geometry + Hopf topology.")

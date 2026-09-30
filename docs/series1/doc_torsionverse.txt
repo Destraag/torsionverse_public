@@ -53,14 +53,22 @@ Seven independently verified results define the framework:
 NEW RESULTS IN THIS DOCUMENT:
   (8) UNIFIED COUPLING: alpha = (m_p/E_cell)^n covers all four forces:
       n=1 (EM, topological), n=18 (gravity, volumetric). Weak force:
-      Weinberg angle sin^2(theta_W) = 0.2229, matching PDG to a gap of
-      4.6e-6, from I_h geometry [C11].
+      Weinberg angle sin^2(theta_W) = 0.222627 (one-loop, -0.91 sigma from
+      PDG), from I_h geometry [C11]; a previously-claimed two-loop term
+      closing this to 4.6e-6 is RETRACTED (2026-09-29, no independent
+      derivation found to support it).
       Strong force: sub-cell Poisson coupling lambda=(1-nu)/4=0.129 [J6].
       All four forces have torsion medium origin.
 
-  (9) LOCAL TIME: tau_local = L_J_local/c. Where medium is stretched
-      (gravitational well), L_J increases, clock slows. Gravitational
-      time dilation = same physics as Shapiro path-length effect.
+  (9) LOCAL TIME: tau_local = L_J_local/c, where L_J_local is the local
+      cell SPACING (varies with local packing density n_cells,
+      L_J_local ~ n_cells^(-1/3). Gravitational time dilation currently
+      combines torsionverse's own independently-derived G (Sec 6.1) with
+      the standard M and r into the same coefficient GR uses
+      (GM/(r*c^2)) -- but that specific coefficient has not itself been
+      produced from an actual n_cells(r) profile near a mass. Shapiro
+      path-length effect uses the same not-yet-independently-derived
+      coefficient.
 
   (10) HEAT: thermal energy = kinetic energy of WAVE MODES whose propagation
        directions cannot sum to a net bulk velocity. Two wave modes travelling
@@ -379,26 +387,33 @@ The dwell-time description -- wider nexus spacing in lower-pressure regions
 giving longer dwell times toward the source -- is the wave-level account of
 the same gradient. Both are correct; pressure is the quantitative derivation.
 
-For gravity: any Hopf winding excludes volume V_p from the medium — the
-cells that would occupy that space are displaced outward by the winding to
-form Zone 1. The spinning of the winding then causes the remaining cells
-in the surrounding medium to thin and stretch, reducing their local density
-and creating a low-pressure well. The surrounding medium, which IS under
-background pressure, is stretched to fill toward the void left by the
-displaced cells.
-This stretch creates a restoring pressure gradient pointing inward toward the
-excluded volume: the medium wants to return to its undisplaced state.
+For gravity: any nucleus has a fixed excluded volume V_p (Section 6.1) --
+already settled by its own Zone structure and Coulomb radius r_p. Zone 3's
+active co-rotation (frame-dragged by Zone 2, same mechanism as the EM/
+chirality mechanism above) mechanically pushes cells outward -- a
+kinematic consequence of rotation requiring more room, not a special
+inward attraction -- thinning the medium locally (lower local packing
+density). The full mechanism, including Zone 1's quark counter-pressure,
+is covered in doc_orbit_pressure.txt Section 2.4 -- this existing Zone
+1-3 structure, not a new equation, is where the displaced medium goes;
+the force-law result below depends only on the near-field gradient.
+This creates a pressure gradient pointing inward toward the excluded
+volume (shorter dwell times farther out, longer dwell times close to it).
 
 This inward pressure gradient obeys the Laplace equation (1/r field, same as
 Coulomb). In the lower-pressure region near the source, cells are slightly
 less compressed and vertex spacing widens. The winding accumulates longer
 dwell times going toward the source and drifts inward -- producing a
-centripetal dk/dt inward.
+centripetal dk/dt inward. Gravity is not a separate pulling force: a
+winding drifts toward longer dwell times by the same dk/dt mechanism as
+inertia (Section 1.4 above; PREVENTING ORBIT = INERTIA below) -- the
+excluded volume only sets up where the dwell times are longer, it does
+not itself do the pulling.
 
-ALL DISPLACEMENT STRETCHES THE MEDIUM in the same way:
-  EM source:   Zone 3 co-rotation stretches cells tangentially (chirality-specific).
-  Gravity:     Zone 1 void stretches cells radially inward (chirality-neutral).
-  Both create restoring pressure gradients. Source geometry sets the coupling.
+NEAR-FIELD DISPLACEMENT THINS THE MEDIUM (lowers local packing density) close to the source, in both cases:
+  EM source:   Zone 3 co-rotation thins cells tangentially (chirality-specific).
+  Gravity:     excluded nuclear volume (V_p) thins cells radially inward (chirality-neutral).
+  Both create restoring pressure gradients near the source. Source geometry sets the coupling.
 
 PREVENTING ORBIT = INERTIA (same mechanism):
   A body in free fall is following the pressure gradient: no dk/dt imposed on
@@ -520,8 +535,9 @@ All four fundamental forces have a torsion medium origin:
 
   n = 1:   EM -- topological (Hopf winding, 1 constraint)     alpha ~ 7e-3
   n = 18:  Gravity -- volumetric (18 Maxwell constraints)     alpha ~ 6e-39
-  Weak:    Weinberg angle from I_h geometry: sin^2(theta_W) = 0.2229,
-           gap 4.6e-6 from PDG
+  Weak:    Weinberg angle from I_h geometry: sin^2(theta_W) = 0.222627
+           (one-loop, -0.91 sigma from PDG; a previously-claimed two-loop
+           term closing this to 4.6e-6 is RETRACTED)
            W/Z bosons = T_1g irrep mode; masses derived [C11, 12/12 PASS]
   Strong:  Sub-cell Poisson coupling (N_J < 1, Zone 1):
            lambda = (1-nu)/4 = 0.12909  [J6; PDG alpha_s(m_Z) = 0.118, 9% gap]
@@ -758,7 +774,7 @@ WHY EACH WINDING INTERACTS ONLY WITH ITS OWN GEOMETRY (TOPOLOGICAL):
 6. GRAVITY, G, AND THE ORBITAL FORMULA
 ----------------------------------------
 
-6.1  G from nuclear snapback tension
+6.1  G from nuclear restoring pressure
 
 Each nucleus jams V_p = (4/3)*pi*r_p^3 = 2.50e-45 m^3 from the medium.
 The medium tries to refill this excluded volume; restoring pressure
@@ -809,22 +825,31 @@ configuration.
 At background (no gravity): tau = L_J/c = 3.31e-26 s  (one cell period)
 Local time = the count of these local oscillations.
 
-7.2  Gravitational time dilation from stretched medium
-
-Near a gravitating body, the medium is stretched (pulled inward by
-snapback tension -- more medium per coordinate distance). Therefore:
+7.2  Gravitational time dilation -- coefficient matches GR, not yet independently derived
 
   L_J_local = L_J * (1 + GM/(r*c^2))
   tau_local  = tau * (1 + GM/(r*c^2))
 
-Local clock runs SLOW by factor GM/(r*c^2). This is gravitational time
-dilation -- the same result as GR, derived from the medium's stretch.
+The ingredients here are NOT imported: G is independently derived within
+this framework (Sec 6.1, alpha_grav=(m_p/E_cell)^18), M is the standard
+nucleon count, and r is a plain coordinate distance. What is not yet
+independently derived is that they combine into EXACTLY this coefficient
+(the "1" multiplying GM/(r*c^2), to leading order) for a length/time
+dilation ratio specifically -- that assembly currently matches GR's own
+weak-field expansion by direct substitution, not by an independent medium
+derivation. L_J_local here means the LOCAL CELL SPACING
+(L_J_local ~ n_cells^(-1/3), Section 1.4 above uses this same picture for
+gravity's own pressure-deficit region), not the cell's own fixed edge
+length L_J -- but what n_cells(r) actually is near a mass, and whether it
+reproduces this specific coefficient, is not yet derived.
 
-  At Earth surface: GM/(r*c^2) = 6.96e-10  [GPS correction: ~7e-10, MATCH]
+  At Earth surface: GM/(r*c^2) = 6.96e-10  [GPS correction: ~7e-10, MATCH --
+  every quantity here (G, M, r, c) is independently established in this
+  framework; what's unverified is only that this exact combination governs
+  the dilation ratio, not a different medium-derived coefficient]
 
-This is the SAME physics as the Shapiro delay (doc_orbit_pressure, Sec 4):
-the medium is stretched -> more medium per coordinate -> longer path ->
-slower clock. One mechanism, two observations.
+This is the SAME coefficient as the Shapiro delay (doc_orbit_pressure,
+Sec 4).
 
 7.3  Special relativistic time dilation
 
@@ -840,8 +865,10 @@ dilation, emerging from the same Bernoulli mechanism as gravitational dilation.
 
 GPS satellites experience BOTH Bernoulli effects simultaneously:
 
-  (1) GRAVITATIONAL (stretched medium at altitude, less medium per coordinate):
-      L_J_local > L_J_surface -> satellite clock runs FAST
+  (1) GRAVITATIONAL (GM/(r*c^2) -- G, M, r each independently established
+      in this framework, Sec 6.1; the specific coefficient combining them
+      for time dilation is not yet independently derived, see Section
+      7.2's status note):
       Predicted: +45.7 us/day
 
   (2) KINEMATIC (satellite at 3.87 km/s through medium):
@@ -852,6 +879,20 @@ GPS satellites experience BOTH Bernoulli effects simultaneously:
   NET: +45.7 - 7.2 = +38.5 us/day
   GPS measured: +38.4 us/day  [+0.3% agreement]
   [torsionverse_doc.py Section 4, SY5]
+
+  STATUS: indirect, same as Mercury precession (doc_orbit_pressure.txt
+  Section 4, Tier 2) and the Shapiro delay note (doc_orbit_pressure.txt
+  Section 4). Both GM/(r*c^2) and v^2/(2*c^2) use the standard GR/SR
+  formulas' own coefficient -- G, M, r, v, c are each independently
+  established in this framework (G via Sec 6.1's alpha_grav derivation,
+  not an external import), but the specific COEFFICIENT combining them
+  into a dilation ratio has not itself been independently derived from
+  the medium's own equations of motion; it is reinterpreted here as a
+  medium-thinning/Bernoulli mechanism, matching GR's coefficient by direct
+  substitution rather than an independent derivation. Matching the
+  measured GPS correction to 0.3% shows the reinterpretation is
+  internally consistent, but is not by itself independent evidence for
+  the torsion-medium mechanism over GR/SR.
 
 Both special relativistic time dilation and gravitational time dilation are
 the same Bernoulli effect in the torsion medium, operating in opposite
@@ -1119,7 +1160,9 @@ PROVEN FROM FIRST PRINCIPLES (no free parameters):
     Whether two particles CAN entangle is determined by whether A_g appears in
     the CG product of their I_h irreps. T_1g x T_2g -> no A_g -> deuteron J=1
     (retrodict); T_1u x T_1u -> A_g -> Cooper pair (retrodict). Tsirelson bound
-    2*sqrt(2) derived from chi_{A_g}=1 everywhere (isotropy). Phase-locking
+    2*sqrt(2) correctly reproduced from chi_{A_g}=1 everywhere (isotropy) --
+    the standard Cirel'son result, not I_h-specific (doc_entanglement Sec 5(d)).
+    Phase-locking
     r_lock = (alpha*hbar_c*r_p^2/k_B*T)^(1/3). sigma_break = pi*(2*lambda_p)^2
     from G_g+H_g cog-grinding channel. Bell violation structural: medium winding
     is globally non-local by topology.

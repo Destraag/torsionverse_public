@@ -865,12 +865,15 @@ characteristic energy E_cell = 124.8 GeV happens to match m_H to within
 the scalar QED radiative correction alpha/pi. This conjecture has since been
 substantially strengthened [DOC HIGGS]: the SSB mechanism is derived
 (jamming = spontaneous symmetry breaking); the gauge coupling T_1g = W/Z is
-derived; the Weinberg angle is essentially exact. The remaining open question
-is the field identity -- whether L_HWW = alpha^2*phi^2*|H|^2*|W|^2 derived
-from the cell IS the SM Higgs Lagrangian, or whether the cell is the geometric
-origin of the SM Higgs field without being identical to it. The mass, coupling
-structure, and SSB mechanism are all derived; the field identification is
-interpretive, not axiomatic.
+derived; the Weinberg angle's one-loop result is well-supported (-0.91
+sigma; a previously-claimed two-loop term is RETRACTED -- see [doc_higgs]
+Claim 11 for the full status). The remaining open question is the field
+identity -- whether L_HWW = alpha^2*phi^2*|H|^2*|W|^2 (its FORM derived
+from the cell, its coefficient NOT yet independently derived -- see
+[doc_higgs] Section 5a.3) IS the SM Higgs Lagrangian, or whether the cell
+is the geometric origin of the SM Higgs field without being identical to
+it. The mass, coupling structure, and SSB mechanism are derived; the field
+identification is interpretive, not axiomatic.
 
 The core direction-independent relation:
 
@@ -888,7 +891,8 @@ Poisson ratio nu, not vertex geometry. The Higgs quartic self-coupling is:
 Derived from Rs alone via 1-nu = 1/(2*(1-Rs^2)). This gives:
   - lambda_SM (PDG 2022) = 0.12928: gap = 0.149% = 0.84 sigma. CONSISTENT.
   - vev: v = m_H / sqrt(2*lambda) = 246.185 GeV vs v_EW = 246.22 GeV  (-35 MeV = -0.014%).
-      With alpha^2*phi^2 two-loop correction: v* = 246.219 GeV (EW gap: -0.7 MeV).
+      With a candidate alpha^2*phi^2 term (coefficient NOT independently
+      derived, see [doc_higgs] Section 5a.3): v* = 246.219 GeV (EW gap: -0.7 MeV).
   - Gamma_H = alpha * Rs * m_H / (4*pi^2) = 4.114 MeV (+1.1% from PDG 4.07).
 
 The Gamma_H formula follows from the alpha self-consistency equation:
@@ -899,20 +903,22 @@ Fermion masses (essentially derived): m_e closed (0.000069%); m_mu/m_tau
 essentially derived via R=(phi^6-1)*(1-alpha)+Koide (0.18% residual).
 Full Yukawa hierarchy (heavier generations) deferred to fermion mass paper.
 
-The cell binding energy equals E_cell without requiring medium density,
-via the scale-invariant jamming formula [DOC HIGGS]:
-  7 * k_n_max / (2*pi) = 1 + alpha + alpha^2*phi  (0.0001%)
-where 7 = dim(A_g+T_1g+T_2g), k_n_max from Gap 1 vertex geometry, and the
-RHS is the vertex stiffness expansion from [DOC ALPHA]. This closes the
-Jobson-Higgs conjecture to high precision.
+A previously-claimed closure of the cell binding energy via jamming
+stiffness [DOC HIGGS, Claim 8] -- 7*k_n_max/(2*pi)=1+alpha+alpha^2*phi --
+is RETRACTED (2026-09-29); both k_n_max and the alpha^2*phi term were
+found unsupported, and a broader closed-book review found general
+mathematical obstructions to any such route. E_cell's own value is
+unaffected -- see [DOC HIGGS] Section 8 and [DOC ALPHA] for full detail.
 
 The Clebsch-Gordan decomposition T_1g x T_1g = A_g + T_1g + H_g in I_h
-(A_g appears exactly once by Schur's lemma) gives the unique Higgs-gauge
-Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 [DOC HIGGS]
-and extends m_H = E_cell*(1+alpha/pi+alpha^2*phi^2) = 125.106 GeV, closing the
-vev gap to -0.7 MeV. H->WW (T_1g x T_1g -> A_g, CG=1) and H->bb
-(G_g x G_g -> A_g, CG=1) channels are structurally derived. Forbidden prediction:
-H -> T_1g + T_2g (T_1g x T_2g has no A_g component).
+(A_g appears exactly once by Schur's lemma) gives a unique Higgs-gauge
+coupling FORM [DOC HIGGS]; the candidate coefficient L_HWW =
+alpha^2*phi^2*|H|^2*|W|^2 is NOT independently derived (see [doc_higgs]
+Section 5a.3) and extends m_H = E_cell*(1+alpha/pi+alpha^2*phi^2) =
+125.106 GeV as an unverified candidate, numerically closing the vev gap to
+-0.7 MeV. H->WW (T_1g x T_1g -> A_g, CG=1) and H->bb (G_g x G_g -> A_g,
+CG=1) selection rules are structurally derived (multiplicity/form only).
+Forbidden prediction: H -> T_1g + T_2g (T_1g x T_2g has no A_g component).
 
 The vertex stiffness ratio is derived from the Born amplitude + one-loop EM
 self-energy balance [DOC ALPHA, Section 4.5]:

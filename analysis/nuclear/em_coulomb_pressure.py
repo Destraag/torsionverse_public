@@ -36,9 +36,7 @@ import math, sys, os
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # Get the path to the project root and add higgs analysis to path
-higgs_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'analysis', 'higgs')
-if higgs_path not in sys.path:
-    sys.path.insert(0, higgs_path)
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'higgs'))
 from constants import alpha, L_J, hbar_c, r_p, E_cell_GeV, phi
 
 pi  = math.pi
@@ -62,7 +60,7 @@ print()
 print("TORSION MEDIUM PROPERTIES:")
 print(f"  nu = {nu:.6f}  (Poisson ratio, nearly incompressible)")
 print(f"  K/G = {K_over_G:.4f}  (bulk/shear modulus ratio)")
-print(f"  L_J = {L_J*1e15:.6f} fm  (cell edge)")
+print(f"  L_J = {L_J:.6f} fm  (cell edge)")
 print()
 
 # ── Derivation: pressure Green's function ────────────────────────────────────
@@ -121,7 +119,7 @@ print()
 # In standard coordinates: (0, ±1, ±phi) and permutations, edge = 2
 # Scaled to edge = L_J: distances are (L_J/2) * integer_multiples
 
-L_J_fm = L_J * 1e15  # femtometers
+L_J_fm = L_J  # already femtometers (constants.py)
 edge = L_J_fm
 circum = math.sqrt(1 + phi**2) * L_J_fm    # circumradius
 cos_adj = 1/math.sqrt(5)                    # cos of angle between adjacent vertices

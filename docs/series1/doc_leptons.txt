@@ -121,7 +121,8 @@ The lepton generations are assigned by spinor rank (half-integer j):
 The dimensions form the arithmetic sequence 2, 4, 6 -- all half-integer spinors
 in 2I, exhausting the sequence at j=5/2 (I52 is the highest spinor irrep in 2I).
 
-1.2  Second-order Born corrections (why no alpha^2 for muon or tau)
+1.2  Second-order Born corrections from CG decomposition (why THIS MECHANISM
+     gives no alpha^2 for muon or tau)
 
 From 2I CG decompositions [ih_double_cg.py DC2, DC6, DC7 -- actual computed
 products, not just multiplicities]:
@@ -135,12 +136,21 @@ but T2 is ABSENT for E+ (only A+T1 appear, no T2 term at all) -- this
 asymmetry is why the electron alone gets a nonzero alpha^2 correction, with
 coefficient = dim(T1)/dim(E+xE+) = 3/(1+3) = 3/4 directly (no separate "NET"
 subtraction step is needed or used).
+This cancellation is specific to THIS mechanism (the CG-decomposition
+second-order Born correction); it does not preclude an alpha^2 term from a
+DIFFERENT mechanism. Section 5.3's adopted candidate tau correction,
+base_tau*(1-(Rs^2+2*alpha)*alpha), expands to include a -2*alpha^2 term via
+a separate, later contact-dimension argument (dated 2026-09-17, after this
+section) -- the two are independent effects, not a contradiction of this
+mechanism's own scope.
 The muon's -0.003% and the tau's +0.004% are each individually-computed
-residuals from the current (approximate) Born-balance inputs; whether they
-"close simultaneously when the exact Born balance is applied to all paths"
-is the still-open calculation listed in Section 9 (exact muon Born balance,
-eff_mu=0.8563 numerical) -- not yet shown, despite the more confident
-phrasing this sentence previously had.
+residuals from the current Born-balance inputs (muon: the settled
+bipyramid eff_mu=(9-sqrt5)/8, Section 4.3; tau: the candidate correction,
+Section 5.3). Whether they close simultaneously under an exact,
+first-principles Born balance for both paths remains open -- eff_mu's own
+numerical value is settled (not a live search), but the geometric
+derivation of its INPUTS, and tau's own correction structure, are not yet
+complete (see Sections 4.3 and 5.3 for the current state of each).
 
 
 2. THE ICOSAHEDRAL ELEMENT MAPPING
@@ -308,7 +318,14 @@ The pentagon polygon normalization uses N=5 (the symmetry order of the zig-zag):
   72-deg path, Section 4.2 -- the ratio trivially collapses to 1 since the real
   path has only one deflection type, suggesting the Born-RATIO construction
   itself may not carry over cleanly from the mixed-mode bipyramid model to the
-  pure single-mode path); (4) eff_mu = 1/phi + alpha*(m_mu/m_e)^(2/3) = 0.873199
+  pure single-mode path -- independently, this same value 1.0 is matched
+  exactly by chi(G32,C5), the SU(2) character of the muon's own G32
+  representation at the icosahedral C5 rotation (koide_proof.py KP12-KP13),
+  a second, unrelated method landing on the same number; the analogous
+  test for tau's own structural eff (chi(I52,C5) vs Section 5.2's estimate)
+  does NOT match (KP14), so this is not yet understood as a general
+  principle, only confirmed in this one case; see Section 6.1); (4) eff_mu
+  = 1/phi + alpha*(m_mu/m_e)^(2/3) = 0.873199
   (muon_medium_plus_area_combined.py, additive combination of the G32|D5
   sub-resonant root 1/phi, Section 4.1, with a medium-density-style correction
   of order alpha scaled by the muon/electron mass ratio to the 2/3 power --
@@ -438,7 +455,16 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
 5.2  Born balance
 
   eff_tau = (1 + |cos_dihedral|)/2 = (1 + 1/sqrt5)/2 = 0.7236
-  [Estimate; exact Born balance on 20-face graph is open]
+  [Estimate; exact Born balance on 20-face graph is open. Unlike the muon's
+  structural eff (Section 4.3), this estimate is NOT matched by tau's own
+  SU(2) character chi(I52,C5) (koide_proof.py KP14) -- the electron/muon
+  pattern of eff equalling the lepton's own group character does not
+  extend to tau; no replacement derivation is available. NOTE: this
+  eff_tau is NOT used in the currently-adopted tau mass formula (Section
+  5.3's base_tau*(1-(Rs^2+2*alpha)*alpha) has zero eff_tau dependence) --
+  it defines the STRUCTURAL Born-balance parameter for the cell-bound
+  mode described in this section, a separate quantity from the free
+  tau's own leading-order formula.]
 
   Comparison of eff values:
     eff_e   = phi              = 1.618  (vertex, positive C5 -- constructive)
@@ -471,6 +497,28 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
   tau's correction is much smaller than the muon's ~4.6%, not merely
   differently structured. This is a numerical constraint on the still-
   missing flux integral, not a replacement for deriving it.
+
+  CANDIDATE CORRECTION, PHYSICALLY MOTIVATED BUT NOT EXACT (2026-09-17,
+  koide_proof.py KP11, tau_geometric_alpha_power_correction.py):
+  base_tau*(1 - (Rs^2+2*alpha)*alpha) gives m_tau = 1776.89 MeV (PDG
+  1776.86, +0.0016% -- a ~22x tighter match than base_tau alone), by
+  extending muon's own OWN correction (Rs^2+2*alpha) with one further
+  alpha suppression. Two independent physical arguments motivate this
+  specific extra suppression, not just curve-fitting: (1) CONTACT
+  DIMENSION -- vertex=0D(point), edge=1D(line), face=2D(triangle); alpha
+  is a coupling strength per unit contact, and dilutes by one more power
+  as the contact spreads across one more dimension, the same logic
+  already used for the LEADING terms' alpha^2->alpha^1->alpha^0 ladder
+  above, extended one level deeper to the correction term. (2) the
+  "2*alpha" piece surviving despite tau's own zero Born contact is not a
+  contradiction: "free spin, 2 transverse channels" (Section 4.4) is a
+  mechanism distinct from Born vertex/edge contact (which governs the
+  LEADING term's alpha power only) -- tau can need the free-spin coupling
+  without having Born contact, since these are independent physical
+  effects. NOT a first-principles derivation: checked precisely against
+  what Koide itself requires (not just PDG), this candidate's own
+  correction factor misses by ~6% relative -- real progress on the mass
+  gap, not a closure.
 
   WINDING FACTOR -- corkscrew p-component:
     Electron winding: 2*pi * alpha^2 * phi^1   (circulation × 2 Born contacts)
@@ -510,6 +558,23 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
 6. KOIDE FORMULA
 ------------------
 
+STATUS AT A GLANCE: the GEOMETRIC origin of Koide's 2/3 (why three lepton
+masses should satisfy this relation AT ALL) is PROVEN and settled (Section
+6.2, FG11: (dim T1g+dim T2g)/dim(T1g x T2g) = 6/9 = 2/3, exact group
+theory). The MASS-SIDE closure is NOT proven -- no algebraic derivation
+shows the three Born-balance mass formulas must satisfy Koide's specific
+quadratic relation exactly. What IS shown (Section 6.1) is that the three
+INDEPENDENTLY-derived formulas -- none solved for the others -- land
+closer to 2/3 than the raw measured masses do, on both the free
+(solo-corpuscle) and structural (cell-bound) lepton pictures (Section 4.3).
+This is real, non-trivial consistency with Koide, not proof of it.
+Separately (Section 6.3), tau's own mass measurement is not yet precise
+enough to test any of this below about 10 ppm, so the specific ppm-level
+comparisons below cannot currently be distinguished from each other, or
+from exact 2/3, by experiment. The honest status: geometrically motivated
+and numerically consistent within known measurement and derivation
+limits, not algebraically proven.
+
 6.1  Numerical result
 
   (m_e + m_mu + m_tau) / (sqrt(m_e) + sqrt(m_mu) + sqrt(m_tau))^2 = 2/3
@@ -524,8 +589,35 @@ But it belongs to the TAU (face mode), not the muon (edge mode).
   obtained by algebraically SOLVING the Koide equation for m_tau given the
   derived m_e/m_mu (LM10), so verifying that result satisfies Koide (LM11) is
   guaranteed by construction. It does not, by itself, show the muon/tau
-  residuals "close" under an independently exact Born balance -- that remains
-  the open item in Section 9.
+  residuals "close" under an independently exact Born balance.
+
+  A SEPARATE, NON-TAUTOLOGICAL CHECK combines all three lepton masses as
+  independently computed formulas, with none solved for the others
+  (koide_proof.py KP15). The free-lepton set (electron Section 3; muon
+  Section 4.4; tau's candidate correction, Section 5.3) gives:
+
+    Koide (free, independent formulas) = 0.6666647651  (deviation = -2.85 ppm)
+
+  A STRUCTURAL-mode analogue exists alongside this free-lepton picture,
+  using the bilateral, cell-bound muon (N=6 hexagonal loop -- the real
+  closed 6-bounce circuit on the icosahedron lattice, distinct from the
+  free muon's own 5-bounce bipyramid path; geometrically well-motivated,
+  though the value Koide itself would require is N=6.4458, not a clean
+  integer 6 -- a real, still-open fractional discrepancy, not an exact
+  hit; eff_mu=1.0, Section 4.3 candidate (3)) and tau (per-photon N=10,
+  inside-facing nexus contact reversing the free-spin term's sign
+  relative to the free tau
+  formula, motivated by Section 5.1's interior-contact description):
+
+    Koide (structural, independent formulas) = 0.6666704928  (deviation = +5.74 ppm)
+
+  Both the free and structural combinations land closer to 2/3 than the
+  raw PDG masses -- consistency on two genuinely different physical
+  derivations, not just one. They are not expected to agree with each
+  other in sign or magnitude, since they describe different physical
+  objects (Section 4.3); neither is proof that Koide must hold exactly,
+  and the difference between them is well within the measurement floor
+  described in Section 6.3.
 
 6.2  Why Koide should be exact -- geometric origin and proof requirements
 
@@ -558,7 +650,7 @@ GEOMETRIC ORIGIN (new -- face_gluon_geometry.py FG11):
   with leptons being outside the color sector. The muon rides gluon edge
   channels geometrically via C3=+1 coupling, not via direct vertex coupling.
 
-NUMERICAL STATUS (koide_proof.py, 10/10 PASS):
+NUMERICAL STATUS (koide_proof.py, 16/16 PASS):
   The leading-order mass formulas give K0 = 0.67111 (4442 ppm(abs) above 2/3 --
   an absolute shift in K, not the normalized relative-ppm convention used
   elsewhere in this paper for final precision claims, e.g. the 9.2 ppm(rel)
@@ -581,6 +673,27 @@ WHAT THE FORMAL PROOF STILL REQUIRES:
   (3) Show the three exact mass expressions satisfy 4(ab+bc+ca) = a^2+b^2+c^2
   The geometric origin (FG11) is proven; the algebraic connection to the Born
   balance correction terms is the remaining open step.
+
+6.3  Measurement-precision limits on this comparison
+
+  Every ppm-level figure in this section (Section 6.1's -2.85 ppm and
+  +5.74 ppm, and the raw-PDG -9.2 ppm) is finer than what tau's own mass
+  measurement can currently resolve. PDG's tau mass, 1776.86 +/- 0.12 MeV,
+  has a relative uncertainty of 6.75e-5 -- thousands of times larger than
+  the muon's (2.2e-8) and millions of times larger than the electron's
+  (3.1e-10). Propagated into Koide's ratio, tau's own uncertainty alone
+  gives K = 2/3 +/- 10 ppm (1-sigma) -- the real central-PDG-mass
+  deviation (-9.2 ppm) is therefore only about 0.9 standard deviations
+  from exactly 2/3: fully consistent with data, not excluded, but not
+  proven to the ppm level either (koide_proof.py KP16).
+
+  Two distinct questions follow, and should not be conflated: (1) does
+  this framework's geometry and Born-balance algebra imply Koide exactly,
+  independent of any measurement -- a pure-mathematics question, not yet
+  answered (Section 6.2); (2) does nature's actual tau mass satisfy Koide
+  exactly -- an empirical question that cannot currently be tested below
+  about 10 ppm, and will remain untestable at that precision until tau's
+  mass is measured roughly 1000x more precisely than today.
 
 
 7. COLOR COUPLING AND F-7
@@ -634,7 +747,8 @@ coupling). The electron's C3=-1 singlet character is why it does not couple to c
   eff parameter      phi = 1.618             (9-sqrt5)/8 = 0.845     (1+1/sqrt5)/2 = 0.724
   Alpha power        alpha^2                 alpha^1                 alpha^0 (no Born contact)
   phi power          phi^1                   phi^2                   phi^3
-  Free-spin corr     3/4 * alpha^2           Rs^2 + 2*alpha          Rs^2 + 2*alpha (+ near-crit?)
+  Free-spin corr     3/4 * alpha^2           Rs^2 + 2*alpha          (Rs^2+2*alpha)*alpha [candidate,
+                                                                       ~6% off exact, 2026-09-17]
   T2 cancellation    no (T2 absent)          yes (T1=T2 in G32xG32)  yes (T1=T2 in I52xI52)
   Color role         SINGLET (intersection)  BOUNDARY (edge)         NEUTRAL (face=T_2g surface)
   Mass derived       0.510999 MeV (+0.00007%) 105.655 MeV (-0.003%)  1776.92 MeV (+0.004%)
@@ -676,17 +790,24 @@ DERIVED (zero free parameters, all verified by companion scripts):
   - Muon rides gluon edge channels; 72-deg = gluon flux bending at C5 vertex  [FG9]
   - G32 x G = G32 + 2*I52 (no A): muon is color-neutral in gluon sector  [DG15]
   - KOIDE 2/3 geometric origin: dim(T1g+T2g)/dim(T1gxT2g) = 6/9 = 2/3  [FG11]
+  - Koide holds to 9.2 ppm for raw PDG masses [LM9]; the derived-mass check
+    solving Koide for m_tau given m_e/m_mu [LM10-LM11] is TAUTOLOGICAL, not
+    independent confirmation. A separate, non-tautological check combining
+    all three INDEPENDENTLY-derived formulas (none solved for the others)
+    gives -2.85 ppm (free-lepton) and +5.74 ppm (structural-mode) deviation
+    from 2/3 -- both closer than the raw-PDG figure, on two different
+    physical derivations (Section 6.1). This is consistency with Koide,
+    not algebraic proof of it; tau's own mass measurement (+/-0.12 MeV)
+    limits any such comparison to about 10 ppm resolution (Section 6.3).
   - F-7: SU(3) from icosahedral face 3-coloring [CLOSED 2026-08-23,
     su3_from_faces.py 11/11]
 
 ESSENTIALLY CLOSED:
-  - Koide 9.2 ppm from measured masses [LM9, independent -- uses PDG masses
-    directly]; Koide EXACTLY 2/3 from derived masses [LM10-LM11] -- this
-    second check is TAUTOLOGICAL, not independent: m_tau here is obtained by
-    algebraically SOLVING the Koide equation for m_tau given derived m_e/m_mu,
-    so it satisfying Koide is guaranteed by construction, not a confirmation
-    comparable in kind to LM9's PDG-mass agreement.
-  - No alpha^2 correction for muon or tau (T1=T2 in G32xG32, I52xI52)  [Section 1.2]
+  - No alpha^2 correction FROM THE CG-DECOMPOSITION MECHANISM for muon or tau
+    (T1=T2 in G32xG32, I52xI52)  [Section 1.2] -- a separate, later mechanism
+    (Section 5.3's candidate tau correction) does introduce an alpha^2 term
+    via a different, independent argument; this does not contradict THIS
+    mechanism's own scope.
   - Color coupling from C3 characters (E+=-1, G32=+1, I52=0)  [Section 7]
   - Euler V-E+F=2 and Maxwell 3V-E=6 constrain all three path geometries  [LM12-LM13]
   - Lepton generations exhaust 2I spinors (3 independent spinor irreps)
@@ -697,7 +818,12 @@ OPEN:
   - Exact Hopf fiber flux integral through one icosahedral face (closes tau +0.035%)
   - Tau correction structure (no Born vertex contact -- differs from muon's
     Rs^2+2*alpha; now numerically constrained to within 0.03% of 1, much
-    smaller than the muon's ~4.6% -- koide_proof.py KP9-KP10)
+    smaller than the muon's ~4.6% -- koide_proof.py KP9-KP10). CANDIDATE
+    (2026-09-17, koide_proof.py KP11): (Rs^2+2*alpha)*alpha, physically
+    motivated by the vertex/edge/face contact-dimension ladder and the
+    free-spin/Born-contact distinction (Section 5.3) -- gives m_tau within
+    +0.0016% of PDG but still ~6% off Koide's own exact requirement, not
+    yet a full derivation.
   - Born balance algebraic closure: show 4442 ppm correction enforces 6/9 ratio  [KP7]
   - Near-critical tau correction (N_J~11, Maxwell critical ~21)
   - Tau meeting-nexus mechanism at hop 0/10: what the two photons actually do
@@ -708,6 +834,15 @@ OPEN:
     meeting mechanism (undisclosed tau-backward shortcut in the wider sim,
     inconsistent gluon-per-face count); needs a full force-vector
     resimulation (planned billiard v3) before any claim here is derived.
+  - Section 4.1's G32|D5=E1+E2 branching (C5 character sum = -1) and
+    Section 4.3/6.1's chi(G32,C5)=+1 cross-check are both individually
+    correct computations, evaluated at DIFFERENT classes of 2I's four
+    order-5 conjugacy classes (chi(G32) is +1 at C5/C5^3, -1 at C5^2/C5^4
+    -- all four are genuine values of the same character formula). Which
+    class the D5 subgroup's own generator actually corresponds to once
+    embedded in 2I has not been traced through the explicit geometric
+    embedding; until it is, the two results should be read as complementary
+    data points, not as a resolved contradiction in either direction.
 
 WHY THREE GENERATIONS (no more, no fewer):
   The 2I double group has exactly 4 spinor irreps: E+(2), E-(2), G32(4), I52(6).
@@ -732,7 +867,11 @@ WHY THREE GENERATIONS (no more, no fewer):
   analysis/demos/leptons_doc.py         -- 18/18 PASS  [STANDALONE -- no project imports; uses numpy for vector geometry]
   analysis/quantum/lepton_mass.py       -- 18/18 PASS  (main: all three leptons, exact formulas)
   analysis/quantum/face_gluon_geometry.py -- 14/14 PASS (T_2g, 2G, H_g, Koide origin, lattice geometry)
-  analysis/quantum/koide_proof.py            -- 8/8 PASS  (Koide gap, eff_mu inversion, geometric origin 2/3=6/9 KP1-KP8)
+  analysis/quantum/koide_proof.py            -- 16/16 PASS (Koide gap, eff_mu inversion, geometric origin
+                                                 2/3=6/9 KP1-KP8; settled-eff_mu tau constraint KP9-KP10;
+                                                 candidate tau correction, speculative, KP11; chi(G32,C5)/
+                                                 chi(I52,C5) cross-checks KP12-14; non-tautological free
+                                                 vs structural check KP15; measurement-precision KP16)
   analysis/nuclear/ih_double_group.py   -- 15/15 PASS (2I character table, spinor irreps, G32xG=G32+2*I52 DG15)
   analysis/quantum/gluon_tau_helix.py    -- 10/10 PASS (tau path geometry, GH0-GH0c, GH6-GH7)
   analysis/quantum/tau_pair_configuration.py -- 11/11 PASS (TPC1-TPC6: tau circuit uniqueness, two-photon
@@ -771,6 +910,16 @@ WHY THREE GENERATIONS (no more, no fewer):
   KP6:     Koide texture angle theta = 132.73 deg; m_e reconstruction to 0.001%
   KP7:     Leading-order K0 = 4442 ppm above 2/3 (proof needs exact Born balances)
   KP8:     Geometric origin: 2/3 = (dim T1g+T2g)/dim(T1g x T2g) = 6/9 exactly [FG11]
+  KP9-10:  Settled eff_mu -> required tau correction factor within 0.03% of 1
+  KP11:    Candidate tau correction (Rs^2+2*alpha)*alpha [speculative, ~6% off]
+           combined with muon's own analogous test; both physically motivated,
+           neither confirmed -- see Section 5.3
+  KP12-14: chi(G32,C5)/chi(I52,C5) group-character cross-check vs the free
+           and structural eff_mu/eff_tau values -- see Section 4.3, 5.2
+  KP15:    Non-tautological Koide check, free and structural masses each
+           independently computed -- see Section 6.1
+  KP16:    Measurement-precision propagation (tau's own PDG uncertainty
+           limits any Koide comparison to ~10 ppm) -- see Section 6.3
 
 
 REFERENCES

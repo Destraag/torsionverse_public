@@ -433,7 +433,9 @@ E_Coulomb_shell = E_coulomb(r_0, Z_Hg197, 1)  # proton barrier at pion range
 print(f"  Hg-197: Z=80, N=117 (one neutron below N=118 in valley for Z=79)")
 print(f"  Pressure valley minimum: Z=79 (Au-197) -- nucleus rolls to minimum")
 print(f"  Mechanism: Zone 3 weak coupling (T_1g, W boson) mediates p -> n + e+ + nu")
-print(f"  sin^2(theta_W) = 4.6e-6 from I_h C_5 geometry sets the decay rate")
+print(f"  sin^2(theta_W) = 0.222627 (one-loop) from I_h C_5 geometry sets the decay rate")
+print(f"  -0.91 sigma from PDG; a previously-claimed two-loop term to 4.6e-6 is")
+print(f"  RETRACTED -- see notes/open_items/false_positive_scan_series1.txt [JC-WEINBERG-TUNED]")
 print()
 
 # Photon wavelength at S_p for Pb-208 vs pion wavelength:

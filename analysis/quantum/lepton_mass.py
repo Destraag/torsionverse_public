@@ -471,5 +471,5 @@ if failed == 0:
 else:
     for name, s, d in results:
         if s == "FAIL": print(f"  FAILED: {name}")
-print(f"  Reference: docs/open_items.txt F-9, docs/doc_leptons.txt")
+print(f"  Reference: docs/series1/doc_leptons.txt")
 print(SEP)

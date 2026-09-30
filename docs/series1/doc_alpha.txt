@@ -470,13 +470,13 @@ vertex stiffness parameter (delta_f = +/- 0.01193). The L3 formula is
 therefore confirmed to within measurement precision. Both original open steps
 (jamming criticality and Chern-Weil scaling) are now closed; see Section 6.
 
-Cross-connection: the vertex stiffness geometry also gives
-  7 * k_n_max / (2*pi) = 1 + alpha + alpha^2*phi  (to 0.0001%)
-where k_n_max = 3125/3456 (exact algebraic from this section's geometry),
-7 = dim(A_g+T_1g+T_2g) from I_h group theory, and the RHS is the vertex
-stiffness expansion of this paper at orders 0, 1, and 2. This closes the
-Jobson cell binding energy in [doc_higgs] (Claim 8) without requiring the
-medium density. See analysis/higgs/higgs_cell_jamming_scaling.py.
+Cross-connection: a previously-claimed closure of the Jobson cell binding
+energy via 7*k_n_max/(2*pi)=1+alpha+alpha^2*phi (doc_higgs Claim 8) is
+RETRACTED (2026-09-29) -- both k_n_max and the alpha^2*phi term were found
+unsupported, and a broader closed-book review found general mathematical
+obstructions to any such jamming-stiffness route to E_cell. See [doc_higgs]
+Section 8 for full detail. E_cell's own value (this paper's own Section 2
+closure condition) is unaffected.
 
 4.5  Vertex stiffness ratio from I_h geometry
 
@@ -692,9 +692,11 @@ What this paper does NOT claim:
     coincides with m_H. With gaps A (gauge coupling), B (SSB=jamming), and C
     (Weinberg angle) now essentially closed, the Jobson-Higgs conjecture is
     extensively supported by derived results -- it is no longer merely a
-    coincidence but a framework with derived mechanism. The effective Higgs-gauge
-    Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2 is derived from the CG
-    decomposition T_1g x T_1g = A_g + T_1g + H_g ([doc_higgs] Section 5a).
+    coincidence but a framework with derived mechanism. The Clebsch-Gordan
+    decomposition T_1g x T_1g = A_g + T_1g + H_g gives a unique Higgs-gauge
+    coupling FORM ([doc_higgs] Section 5a); the candidate coefficient in
+    L_HWW = alpha^2*phi^2*|H|^2*|W|^2 is NOT independently derived (see
+    [doc_higgs] Section 5a.3 for the full status).
     Remaining: formal identification of L_HWW as the SM Higgs Lagrangian
     (currently consistent with but not proven identical to it) and full
     axiomatization of the SM beyond EW (Yukawa hierarchy, QCD sector).
@@ -854,10 +856,15 @@ spinor dimension sum 2+4+6=12, E=30 from C5 coordination, F=20 by the Euler
 relation (V-E+F=2 gives F=20; see also [doc_jobson_cell]). The I_h Clebsch-Gordan tables then give, with zero
 measured constants:
 
-  (v)   Tsirelson bound: |S_CHSH| = 2*sqrt(2) exactly, from chi(A_g,g) = 1
-        for all g in I_h. A_g is the unique dim=1 irrep of I_h (ET7); this
-        uniqueness is what forces E(a,b) = -cos(theta) and the CHSH maximum.
-        [entanglement_tsirelson.py ET1-ET8, 8/8 PASS; doc_entanglement]
+  (v)   Tsirelson bound: |S_CHSH| = 2*sqrt(2) is correctly reproduced via
+        chi(A_g,g) = 1 for all g in I_h and the multiplicity-1 A_g channel
+        in T_1g x T_1g. This multiplicity-1 fact is generic to any group
+        with a suitable 3D irrep (verified directly for the tetrahedral
+        and octahedral groups, not just I_h) and is inherited from the
+        parent continuous group SO(3) -- it is the standard Cirel'son
+        (1980) singlet result, not a distinctively discrete/I_h-specific
+        derivation. [entanglement_tsirelson.py ET1-ET8, 8/8 PASS; doc_
+        entanglement Section 5(d)]
 
   (vi)  Koide ratio = 2/3 exactly, as the dimension ratio
         dim(T_1g+T_2g) / dim(T_1g x T_2g) = (3+3)/9 = 2/3.
@@ -918,7 +925,6 @@ in the Hopf fibration.
 
 COMPANION SCRIPTS (reproducibility):
   analysis/demos/alpha_doc.py                        -- 47/47 PASS  [STANDALONE -- no external deps]
-  analysis/higgs/higgs_cell_jamming_scaling.py       -- cross-connection: 7·k_n_max/(2π) = 1+α+α²φ
   Repository: https://doi.org/10.5281/zenodo.22013651
   Code:        https://github.com/Destraag/torsionverse_public
 

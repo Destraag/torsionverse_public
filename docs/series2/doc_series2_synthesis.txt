@@ -154,7 +154,8 @@ Reference papers (Series 1 DOIs in Section 7).
   Torsionverse explanation: neutron capture Hg-196 -> Hg-197 places the nucleus
   past the Z-N pressure valley ridge; it slides to Au-197 via the Zone 2/3
   pressure landscape. The 64.14-hour half-life set by Zone 3 weak coupling
-  (sin^2(theta_W) = 0.22290, derived exactly from I_h geometry, 4.6e-6 from PDG).
+  (sin^2(theta_W) = 0.222627, one-loop from I_h geometry, -0.91 sigma from
+  PDG; a previously-claimed two-loop correction to 4.6e-6 is RETRACTED).
 
 
 3. MOLECULAR APPLICATIONS

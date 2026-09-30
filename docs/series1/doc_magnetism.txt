@@ -90,15 +90,21 @@ This is not an analogy. It is the mechanical definition.
 1.2  Electric field = static pressure (PROVEN)
 
 A charged particle creates a pressure disturbance in the torsion medium.
-The 3D static pressure Green's function for a point source in an elastic
-medium is:
+Substituting the framework's own K = 1/epsilon_0 identification directly
+into the standard electrostatic Green's function V(r) = Q/(4*pi*epsilon_0*r)
+gives the medium-language form:
 
-  P(r) = Q / (4*pi*K*r) = Q*epsilon_0 / (4*pi*r)
+  P(r) = Q*K / (4*pi*r) = Q / (4*pi*epsilon_0*r)
 
-where Q is the source strength. Identifying Q = e (electric charge) and
-K = 1/epsilon_0:
+(K appears in the NUMERATOR here -- substituting 1/epsilon_0 for K would
+put epsilon_0 back in the wrong place; K must pair with Q, not divide it).
+Q is the source strength -- the PRODUCT of the two interacting unit
+charges (Q = e^2, the Coulomb interaction energy between two charges of
+magnitude e, not the one-body field of a single charge). Identifying
+Q = e^2:
 
-  V(r) = e / (4*pi*epsilon_0*r) = alpha*hbar*c/r  [Coulomb potential, EXACT]
+  V(r) = e^2 / (4*pi*epsilon_0*r) = alpha*hbar*c/r  [Coulomb potential,
+  EXACT, verified against CODATA e/epsilon_0/hbar/c -- M3b]
 
 This is Claim C7 of doc_higgs, proven there. The electric potential IS the
 pressure Green's function of the torsion medium.
@@ -191,7 +197,13 @@ SAME CHIRALITY (two protons approaching):
   geometry, respectively. The specific picture of individual cells being
   "dragged" into grinding contact is a plausible, not yet independently
   verified, kinematic account: no script anywhere builds the real
-  multi-cell packing geometry needed to confirm it. See doc_nucleus.txt
+  multi-cell packing geometry needed to confirm it. The AGGREGATE behavior
+  -- same-chirality pairs never reaching real rigid contact, opposite-
+  chirality pairs reaching it at shorter range -- is confirmed by rigid-
+  body simulation across 20 independent random relative orientations
+  (analysis/nuclear/mesh_grind/pybullet/mesh_grind_pybullet_two_driver_
+  orientation_sweep_test.py); the individual free-cell "dragged" picture
+  itself remains unconfirmed. See doc_nucleus.txt
   Section 5.4.)
 
 OPPOSITE CHIRALITY (proton and electron):
@@ -327,19 +339,35 @@ Using c^2 = 1/(epsilon_0*mu_0) exactly:
 
   rho_medium = mu_0 = 4*pi*1e-7 = 1.2566e-6 kg/m^3  [EXACT]
 
-This is independently confirmed: the CODATA values of epsilon_0 and mu_0
-are defined via c^2 = 1/(epsilon_0*mu_0) exactly, and mu_0 = 4*pi*1e-7
-exactly. The medium density is an exact derived constant.
+This is exact, not approximate: the CODATA (pre-2019 SI) values of
+epsilon_0 and mu_0 satisfy c^2 = 1/(epsilon_0*mu_0) exactly, and mu_0 =
+4*pi*1e-7 exactly. But this is the SAME identity used in the derivation
+above, not a second, independent check -- rho=mu_0 is a CONSEQUENCE of
+K=1/epsilon_0 and v_p=c (see Abstract), not an independently confirmed
+measurement; no independent route to rho has been found (closest attempt
+off by a factor ~1.9, analysis/medium/K_from_cell_scale_survey.py).
 
-2.2  Energy density of EM fields
+2.2  Energy density of EM fields -- WITHDRAWN CLAIM (2026-09-27)
 
-For a medium with density rho and wave speed c:
-  Energy density = (1/2)*rho*v^2 = (1/2)*mu_0*(dA/dt)^2
+This section previously asserted that the medium's mechanical energy
+density, built from K=1/epsilon_0 and rho=mu_0 (Section 1.1) in the
+standard elastic form (1/2)*rho*(dA/dt)^2 + (1/2)*K*|curl(A)|^2, is
+IDENTICAL to the standard electromagnetic field energy density
+u=(1/2)*(epsilon_0*E^2+B^2/mu_0). This does not survive scrutiny:
+substituting the SAME K and rho already established in Section 1.1 gives
+a mechanical energy density larger than u by a factor of mu_0/epsilon_0
+(order 1e5) -- not a rounding-level discrepancy.
 
-For EM fields: u = (1/2)*(epsilon_0*E^2 + B^2/mu_0)
-  E^2/c^2 + B^2 terms correspond to pressure and shear energy respectively.
-  This is IDENTICAL to the mechanical energy of a medium with K=1/epsilon_0,
-  rho=mu_0, confirming the identification.
+This retraction is narrowly scoped: it does not affect Sections 1.1-1.3's
+own results (the wave-speed identification K=1/epsilon_0, rho=mu_0,
+v_p=c; Coulomb's law from the pressure Green's function; E=pressure and
+B=vorticity as a qualitative mechanical correspondence) -- those rest on
+independent grounds and are unaffected by this finding.
+
+What remains open is whether a different mechanical energy-storage
+mechanism -- inter-cell contact forces doing real work on a moving
+charge structure -- could still reconcile the two energy densities. This
+would require a multi-cell model not yet built in this framework.
 
 
 3. FERROMAGNETISM FROM I_h IRREPS
@@ -777,6 +805,16 @@ ESSENTIALLY CLOSED:
     uniform ~5.6x factor -- see GENUINELY OPEN below.
 
 GENUINELY OPEN:
+  - EM field energy density from mechanical medium energy density
+    (Section 2.2): confirmed NOT to follow from the medium's already-
+    established K, rho, and single-displacement-field identification --
+    withdrawn, not merely unresolved. Closing it would need an explicit
+    mechanical energy-storage mechanism not yet built anywhere in this
+    framework: either a genuine multi-cell contact-mechanics model of how
+    a moving charge does real work against the medium's own cells, or an
+    independent, absolute (non-ratio) measurement of the medium's
+    effective mass/inertia from first principles. Both are substantial,
+    multi-session undertakings with no existing prototype to build from.
   - Curie temperature absolute scale: the ~5.6x uniform residual left after
     the ordering fix (Section 3.3) -- r_d's deeper derivation from torsion
     medium + quark wave charge distribution (the FULL WAVE CHAIN steps 1-4)

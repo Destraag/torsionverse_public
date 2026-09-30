@@ -66,10 +66,14 @@ framework's one external input, as in the companion papers):
      Remove rest-mass oscillation phi = psi * exp(-i*m_p*c^2*t/hbar):
        i*hbar * dpsi/dt = -(hbar^2/2*m_p) * nabla^2 * psi  [SCHRODINGER, QM5]
   6. Born rule: P(x) = |psi(x)|^2 from medium wave energy density  [QM6]
+     (a field-level/ensemble argument; Section 4.1 is explicit about what
+     remains open at the level of an individual detection event)
 
 The Schrödinger equation is quantum mechanics. It is now derived from the
 same medium (the torsion medium) that gives alpha, G, the Higgs mass, and
-quantum entanglement. No additional postulates or free parameters beyond m_p.
+quantum entanglement. No additional postulates or free parameters beyond
+m_p for steps 1-5 (the Schrödinger equation itself); step 6's field-level
+Born-rule argument leaves one open question, addressed in Section 4.1.
 
 NEW GROUND: no existing interpretation of quantum mechanics -- Copenhagen, many-worlds,
 de Broglie-Bohm, GRW, QBism, consistent histories -- derives the Schrödinger
@@ -78,6 +82,8 @@ medium with independently fixed mechanical properties. Every existing
 approach postulates the Hilbert-space/probability structure as an axiom.
 This paper derives it instead, as a mechanical consequence of the same
 medium that gives alpha, G, and the Higgs mass in the companion papers.
+(The Born rule claim here is at the field/ensemble level; see Section 4.1
+for the open individual-event question, not resolved by this paper either.)
 
 Consequences:
   - Double-slit: Hopf winding fields span both slits simultaneously.
@@ -209,6 +215,13 @@ This is the Born rule. It requires no additional postulate: detection = energy
 absorption from the medium wave, and energy density is proportional to amplitude squared.
 
 [QM6 PASS: Born rule from medium energy density]
+
+What this derives is the FIELD-level detection-probability density -- an
+ensemble/statistical claim, needing no extra postulate at that level. A
+separate, harder question is NOT resolved here: WHY an individual
+corpuscle's landing point, on any given trial, reproduces exactly this
+distribution (rather than some other function of the field). That question
+is addressed honestly, not glossed over, in Section 4.1.
 
 (This formula uses K, the compression/A_g-type elastic constant
 specifically; whether a shear-type wave should instead use G, or a
@@ -456,7 +469,9 @@ affect the screen. If it is undone first, it never reaches the screen.
 
 PROVEN (from existing medium derivations + this document):
   - Schrodinger equation from Klein-Gordon NR limit  [QM4-5]
-  - Born rule from medium wave energy density  [QM6]
+  - Born rule (field-level detection-probability density) from medium
+    wave energy density  [QM6; individual-event statistics: see GENUINELY
+    OPEN below]
   - Double-slit interference mechanism (Huygens in medium)
   - Delayed choice: no retrocausality  [QM9]
 
@@ -487,6 +502,12 @@ ESSENTIALLY CLOSED:
 GENUINELY OPEN:
   - Fringe visibility V(T) quantitative formula from r_lock(T)
   - Relativistic QM with spin: Dirac + EM = QED (next paper)
+  - WHY an individual corpuscle's landing point, across many trials, is
+    distributed as exactly |psi(x)|^2 (Section 4.1) -- the field-level
+    argument above (Section 3, QM6) does not by itself establish this;
+    a genuinely hard question, not unique to this framework (the same
+    gap exists in de Broglie-Bohm theory's "quantum equilibrium"
+    problem, unsolved there too after decades of work).
 
 
 7. COMPANION SCRIPT

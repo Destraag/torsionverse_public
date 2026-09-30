@@ -425,8 +425,9 @@ just past the pressure-valley ridge at Z=80, and it slides to Au-197.
 
 Torsionverse prediction: the 64.14 hour half-life is set by the Zone 3 weak
 coupling rate (W boson Zone 3 field -- T_1g irrep from doc_higgs). The coupling
-strength is sin^2(theta_W) = 0.22290 [derived: doc_jobson_cell J28, C11; residual
-vs PDG 0.22290000 is 4.6e-6 -- essentially exact].
+strength is sin^2(theta_W) = 0.222627 [derived: doc_jobson_cell J19, C11,
+one-loop; residual vs PDG 0.222900 is -0.123% (-0.91 sigma). A previously-
+claimed two-loop correction closing this to 4.6e-6 is RETRACTED].
 
 5.3a  Beta+ positron emission: antipodal-vertex mechanism RETRACTED, selection
       rule DERIVED
@@ -754,7 +755,7 @@ GENUINELY OPEN:
 9. COMPANION SCRIPT
 --------------------
 
-  analysis/nuclear/hadron_manipulation.py  -- 31/31 PASS
+  analysis/nuclear/hadron_manipulation.py  -- 36/36 PASS
 
   CA1-CA4:   Coulomb barrier and Gamow tunneling (crystal vs nuclear scales)
   CA5-CA8:   Muon-catalysed assembly (muon as G_u boundary-regime mode)
