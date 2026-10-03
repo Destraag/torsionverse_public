@@ -30,7 +30,7 @@ the activation threshold determines whether it actually occurs.
 
   T_1g x T_1g = A_g + T_1g + H_g   [neutron-neutron: singlet ALLOWED]
   T_2g x T_2g = A_g + T_2g + H_g   [proton-proton: singlet ALLOWED]
-  T_1g x T_2g = G_g + H_g          [proton-neutron: singlet FORBIDDEN]
+  T_1g x T_2g = G_g + H_g          [proton-neutron: LOCKED singlet forbidden]
   T_1u x T_1u = A_g + T_1g + H_g   [electron-electron: singlet ALLOWED]
 
 These are the same CG tables that predict the deuteron spin-1 ground state
@@ -85,7 +85,7 @@ TOPOLOGICAL MODES (Hopf winding numbers):
   it is present or absent, integer or zero.
 
 The A_g joint state lives in the TOPOLOGICAL channel: it cannot decay through the
-1/r^2 falloff of the classical fields that formed it. How it persists as the
+1/r^3 falloff of the classical fields that formed it. How it persists as the
 particles separate is addressed in Section 4 -- a chain of phase-aligned G32 modes
 acts as the coupling that holds the two locked winding systems together at distance.
 
@@ -95,7 +95,7 @@ Two particles with compatible I_h symmetry (same-type products that contain
 A_g) interact via their Zone 3 fields when brought into proximity. Zone 3
 is the co-rotating cell shell (r > r_p) driven by the Hopf winding.
 
-Zone 3 fields are classical (fall as 1/r^2). But when two Zone 3 fields
+Zone 3 fields are classical (fall as 1/r^3). But when two Zone 3 fields
 overlap sufficiently, the combined medium configuration can settle into the
 A_g scalar mode -- the lowest-dimensional I_h irrep, rotationally invariant,
 total topological charge Q_total = 0 (equal and opposite spin windings sum to
@@ -146,9 +146,15 @@ When T_1g x T_2g is formed (proton-neutron), the lowest-dimensional product is
 G_g (dim=4). The minimum-energy state is NOT a singlet. The two particles can
 form G_g or H_g combinations, but they cannot lock into the A_g joint configuration.
 
-This means proton-neutron pairs are structurally incapable of forming the
-A_g singlet regardless of conditions. They can form bound states (the deuteron)
-but only in non-singlet configurations.
+This means proton-neutron pairs cannot form the topologically-LOCKED A_g
+singlet -- the joint-entanglement configuration this framework proposes as
+the binding mechanism -- regardless of conditions. This does NOT forbid an
+ordinary, non-locked J=0 spin state from existing: real proton-neutron
+scattering has a well-known unbound S=0 (1S0) virtual state (large negative
+scattering length), exactly analogous to the di-neutron case in Section 3.2.
+The claim here is narrower: no BOUND, topologically-locked J=0 state is
+possible. Proton-neutron pairs can form bound states (the deuteron) but only
+in non-singlet (A_g-absent) configurations.
 
 
 3. RETRODICTS: THREE KNOWN RESULTS
@@ -157,17 +163,23 @@ but only in non-singlet configurations.
 3.1  Deuteron spin-1 (not spin-0)
 
 Observed: the deuteron (proton + neutron) has J=1 (spin-triplet ground state).
-The singlet (J=0) deuteron does not exist as a bound state.
+The singlet (J=0) deuteron does not exist as a bound state. (A J=0
+proton-neutron state DOES exist as an unbound/virtual scattering state --
+the well-known 1S0 channel -- which is not in tension with the bound-state
+claim below.)
 
 Torsionverse prediction:
   T_1g (neutron) x T_2g (proton) = G_g + H_g.  NO A_g.
-  J=0 singlet is TOPOLOGICALLY FORBIDDEN.
+  A BOUND, topologically-LOCKED J=0 singlet is FORBIDDEN.
   The lowest available channel is G_g (dim=4, not dim=1).
-  Therefore the deuteron ground state cannot be J=0.
+  Therefore the deuteron ground state cannot be a locked J=0 singlet.
   J=1 (the G_g channel, dim=4) is the lowest available option. [EQ5]
-  (J=0 is forbidden by the CG table; J=1 is experimentally observed and
-  consistent with the absence of the A_g channel. G_g is the lowest available
-  torsionverse channel; its ground-state projection is the observed J=1 triplet.)
+  (Locked J=0 binding is forbidden by the CG table; J=1 is experimentally
+  observed and consistent with the absence of the A_g channel. G_g is the
+  lowest available torsionverse channel; its ground-state projection is the
+  observed J=1 triplet. The CG table constrains BOUND topological locking
+  only -- it says nothing about unbound/scattering states, which are governed
+  by ordinary nuclear dynamics, not this mechanism.)
 
 This is a retrodict from the same CG table used for:
   - magic number 28 (G_g as boundary-regime intruder)

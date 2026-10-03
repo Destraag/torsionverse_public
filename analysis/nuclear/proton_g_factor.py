@@ -1,41 +1,37 @@
 """
 proton_g_factor.py
 ==================
-TORSIONVERSE DERIVATION: proton medium pressure torque response g_p = 2.793
+LEGACY CROSS-CHECK: single-mechanism candidate models for the proton
+magnetic moment g_p = 2.7928 mu_N -- NOT the current derivation.
 
-In the torsion medium, there is no "magnetic moment" as a fundamental property.
-What classical physics calls g_p is the NET MEDIUM PRESSURE TORQUE acting on
-the proton when it moves through an external torsion field.
+The current, correct derivation (g_p = 2.799 mu_N, +0.23%) is
+analysis/demos/nucleus_doc.py's N15-N17 checks: a COMBINED model
+  mu_p = R_spin_Zone1 * (1 + 2*Rs^2) * mu_SU6 + mu_orbital + mu_Zone3
+(Zone 1 MIT-bag-proxy spin reduction, amplified by the Zone 2 Maxwell-
+jamming correction (1+2*Rs^2), plus separate orbital and Zone 3 terms).
 
-THREE CONTRIBUTIONS (all medium pressure, not quark properties):
-  1. Zone 1 orbital:   2 u quarks at lambda_p orbit at v = Rs*c
-                       Creates orbital current; pressure divergence from
-                       u quarks (outer) vs d quark (center) determines magnitude.
-  2. Zone 3 spinning:  Co-rotating cells (frame-dragged by Zone 2 Hopf winding)
-                       create a circular medium current over the Zone 3 shell.
-                       This IS what classical EM calls the "anomalous" contribution.
-  3. Zone 2 jamming:   Maxwell-critical jammed cells SPIN FREELY (zero-freq modes
-                       at 3V-E=6). Two transverse spin modes add 2*Rs^2 = 2*G/K.
-                       This correction (1+2*Rs^2) amplifies contributions 1 and 2.
+This file exists to show that SIMPLER, single-mechanism candidates do
+NOT reach that precision on their own -- motivating why the combined
+picture above is needed:
+  - SU(6) alone (Section 1): +7.4%, this file's own best performer.
+  - MIT bag spin reduction alone (Section 2): -29.9%.
+  - String model alone (Section 3): -56.2%.
+  - String + Zone3 + various corrections, Models A-D (Sections 4-5):
+    -43% to -44% -- WORSE than plain SU(6), not an improvement.
+  - Pressure-divergence model (Section 0): a 4th, separate candidate,
+    tuned to a free d-quark position rather than independently derived.
 
-NOTE: The SU(6) and MIT bag sections below are LEGACY CROSS-CHECKS.
-The MIT bag spin reduction R_spin_MIT is numerically correct because it
-measures the SAME physical effect from a different model: Zone 2 Jobson
-cell lattice pressure acting inward on Zone 1 reduces the effective quark
-angular contribution. The spherical bag boundary condition IS the perceived
-effect of Zone 2 Jobson cell pressure -- the confinement boundary seen by
-quarks IS the Zone 2 Maxwell-critical cell layer. The torsionverse corrects
-the geometry (icosahedral cog, not sphere) but the MIT bag value happens to
-approximate the correct I_h Zone 1 mode mixing numerically.
-
-The (1+2*Rs^2) correction is the KEY torsionverse addition: at N_J=21,
-Zone 2 cells are JAMMED (cannot deform, K dominates) but SPIN FREELY
-(3V-E=6 zero-frequency rotational modes). Two transverse spin modes add
-2*Rs^2 = 2*G/K to the effective spin. This is why the proton g_p exceeds
-the MIT bag prediction by exactly this factor.
+NOTE: the MIT bag spin reduction R_spin_MIT (Section 2) is numerically
+reused (not independently re-derived) in nucleus_doc.py's own Zone 1
+proxy term above -- the spherical bag boundary condition approximates
+the actual I_h Zone 1 mode mixing. That reuse is the only load-bearing
+connection between this file and the current derivation; none of this
+file's own OVERALL models (SU6 alone, MIT bag alone, string, A-D,
+pressure-divergence) should be cited as reproducing measured g_p.
 
 Run: python analysis/nuclear/proton_g_factor.py
-Reference: docs/doc_nucleus.txt
+Reference: docs/series1/doc_nucleus.txt (cross-check role only --
+  see analysis/demos/nucleus_doc.py for the actual derivation)
 """
 
 import sys, os, math
@@ -358,11 +354,15 @@ for name, val in models:
 print(f"  {'MEASURED':<25}  {mu_p_measured:>8.4f}")
 print()
 print("  CONCLUSIONS:")
-print(f"  1. SU(6) = 3.000 (7% over). String model moves in right direction.")
-print(f"  2. Zone 3 adds +{mu_Zone3:.3f} mu_N (small positive correction)")
-print(f"  3. Best correction brings result to ~{best[1]:.3f} (err {100*(best[1]-mu_p_measured)/mu_p_measured:+.1f}%)")
-print(f"  4. The remaining gap requires the exact p-wave/s-wave mixing ratio")
-print(f"     from the torsion medium string boundary condition.")
-print(f"     ESSENTIALLY CLOSED in mechanism; exact value needs the elastic BC.")
+print(f"  1. This file's closest single-mechanism match to measured is")
+print(f"     {best[0]} = {best[1]:.4f} mu_N ({100*(best[1]-mu_p_measured)/mu_p_measured:+.1f}%).")
+print(f"  2. Zone 3 adds +{mu_Zone3:.3f} mu_N in every variant (small, legitimate,")
+print(f"     but not sufficient on its own to close the gap).")
+print(f"  3. The string-model refinements (Models A-D) move FARTHER from")
+print(f"     measured than plain SU(6), not closer -- single mechanisms")
+print(f"     explored here do not reproduce g_p to measured precision.")
+print(f"  4. The actual current derivation (g_p=2.799, +0.23%) is a DIFFERENT,")
+print(f"     combined model in analysis/demos/nucleus_doc.py (N15-N17) -- this")
+print(f"     file is a legacy cross-check, not the primary derivation.")
 print()
-print("  Reference: docs/doc_nucleus.txt")
+print("  Reference: docs/series1/doc_nucleus.txt -- see analysis/demos/nucleus_doc.py for the current derivation")

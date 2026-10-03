@@ -70,12 +70,42 @@ lambda_p_m = hbar_c_J / (m_p * 1.602e-13)  # Zone 1 boundary = proton Compton sc
 #    E_0 = alpha * hbar_c / r_p  (EM coupling at proton charge radius, exact)
 # 2. The Hopf (1,2) winding creates a Lense-Thirring-type frame-drag field.
 #    Angular momentum of co-rotation: L = m*v*r_p^2 (locked by Hopf topology).
-#    Lense-Thirring falloff: v(r) = v_0 * (r_p/r)^2 (frame drag ~ 1/r^3).
+#    Co-rotation velocity ansatz: v(r) = v_0 * (r_p/r)^2 -- CONSISTENT with
+#    real GR Lense-Thirring: the ANGULAR precession rate Omega_LT(r) falls as
+#    1/r^3 (standard GR result), and a co-rotating point's LINEAR/tangential
+#    velocity v(r) = Omega_LT(r)*r then falls as 1/r^2, matching this ansatz.
+#    The COUPLING ENERGY below is a separate quantity (not v(r) itself): it is
+#    modeled as a topological-dipole FIELD effect, which in standard E&M falls
+#    as 1/r^3 (one power steeper than the velocity), not derived by reusing
+#    v(r) directly.
 # 3. Coupling between two Zone 3 fields at separation r:
-#    The Hopf winding IS a topological magnetic dipole -> field ~ 1/r^3.
+#    The Hopf winding IS MODELED AS a topological magnetic dipole -> field ~ 1/r^3.
+#    This is NOT bare analogy: analysis/nuclear/bar_magnet_pole_pressure_model.py
+#    builds a two-pole pressure dipole using this medium's OWN already-
+#    established single-source Coulomb pressure law (doc_magnetism Sec 1.2)
+#    and confirms numerically that the field-like (gradient) quantity falls
+#    exactly as 1/r^3 (log-log slope = -3.0 exact) -- a real mechanical
+#    consequence of dipole superposition in THIS medium, not an import.
+#    The COUPLING ENERGY exponent itself (not just the field) is also
+#    DERIVED, not assumed: analysis/nuclear/dipole_dipole_interaction_
+#    energy_check.py computes the direct interaction energy between TWO
+#    such dipole sources and confirms 1/r^3 in both axial and
+#    perpendicular orientations (slopes -3.002/-2.998, matching the
+#    standard textbook dipole-dipole energy formula to <0.001% in the
+#    far field) -- settling n=3 over the previously-floated n=2 (bare
+#    reuse of the dimensionally mismatched v(r)~1/r^2 velocity profile,
+#    which was never itself an energy derivation).
 #    E_Z3(r) = E_0 * (r_p/r)^3 = alpha * hbar_c * r_p^2 / r^3.
-# DERIVATION IS FULLY FROM THE FRAMEWORK: alpha (doc_alpha), r_p = 4*lambda_p (PS4),
-# hbar_c (natural units). No external inputs.
+# INPUT VALUES are all framework-native: alpha (doc_alpha), r_p = 4*lambda_p (PS4),
+# hbar_c (natural units). STILL OPEN: (a) Q_pole/E_0's own NORMALIZATION
+# (why it equals the ordinary Coulomb energy at r_p) has not yet been
+# derived from first principles (e.g. population/flux at the source) --
+# analogous to the explicitly-sidelined bar-magnet pole-strength problem,
+# notes/open_items/mag_jamming_mechanism_investigation.txt; (b) the
+# dipole_dipole_interaction_energy_check.py far-field fit is confirmed
+# accurate to ~1% only by R~30-60x the dipole's own internal scale --
+# its precision AT r=r_p itself (comparable scales, not deep far-field)
+# is not separately pinned down.
 
 # Zone 3 coupling energy at separation r (metres)
 def E_Z3_J(r):

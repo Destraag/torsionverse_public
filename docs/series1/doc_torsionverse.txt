@@ -600,9 +600,12 @@ Factor 4 = Hopf winding (2) x spin-1/2 (2). [doc_nucleus]
 
 4.2  Atomic shell structure
 
-I_h irrep dimensions equal 2l+1 exactly for l=0..5. Shell maxima = 2n^2.
+I_h irrep dimensions equal 2l+1 exactly for l=0..5 -- correctly reproduced,
+but generic to any finite subgroup of SO(3), not distinctively I_h. Shell
+maxima = 2n^2.
   n=1: 2    n=2: 8    n=3: 18    n=4: 32    n=5: 50    n=6: 72
-Zero free parameters. Noble gas configurations verified. [doc_nucleus, 7/7]
+Noble gas configurations additionally require the separate Madelung (n+l)
+rule, not from I_h alone. [doc_nucleus, 7/7]
 
 4.3  Nuclear magic numbers
 
@@ -1006,6 +1009,13 @@ it is the COMPLETE geometric framework hosting all modes. Composites use PART
 of the cell geometry as their coherent internal state.
 
   CELL AS SPRING LATTICE (not oscillator):
+    SCOPE NOTE: "spring network/lattice" here is ONE cell's own internal
+    vertex/edge graph (12 vertices, 30 edges), analyzed as a rigidity-theory
+    device (ih_lattice_phonon.py) -- NOT a claim about how MULTIPLE cells
+    mechanically bond to each other in the bulk medium. That inter-cell/bulk
+    question (how n cells connect, and whether a preferred relative
+    orientation exists between touching cells) is a separate, not yet fully
+    modeled question -- see the multicell packing open item.
     The torsion medium cells are elastic spring elements. Phonons propagate
     THROUGH the spring lattice by deforming each cell as they pass. The A_g
     phonon (K-channel, zone-boundary) deforms cells with A_g symmetry
@@ -1108,8 +1118,15 @@ PROVEN FROM FIRST PRINCIPLES (no free parameters):
   - MOND missing mass ratio ~6: confirmed vs SPARC 153 galaxies
   - n=18 = 3*(3V-E): I_h dynamical matrix at q=0 gives exactly 6 zero eigenvalues
     (3 translations T_1u + 3 rotations T_1g = Maxwell soft modes). n = 3D x 6 = 18
-    confirmed algebraically from the spring network. Debye model with omega_D = E_cell/hbar
-    gives Stefan-Boltzmann coefficient 3*pi^4/5 exactly. [ih_lattice_phonon.py 19/19 PASS]
+    confirmed algebraically from the spring network (ONE cell's own 12-vertex/
+    30-edge graph, analyzed as a rigidity-theory/Maxwell-counting device -- not
+    a claim that cells flex under ordinary stress, nor a statement about
+    inter-cell/bulk bonds; same isostatic count independently confirmed via
+    rigidity-matrix rank/kernel, jobson_cell_rigidity_matrix.py RM1-RM2). A
+    Debye model with omega_D =
+    E_cell/hbar reproduces the Stefan-Boltzmann coefficient 3*pi^4/5 -- scheme-
+    guaranteed by the assumed g(omega)~omega^2 density of states for ANY cutoff
+    value, not independent confirmation of E_cell specifically. [ih_lattice_phonon.py 19/19 PASS]
   - MOND interpolation: mu(x) = x/sqrt(x^2+G/K) from two-channel quadrature (K/G=30.25).
     Transition at x=1/sqrt(K/G)=0.18; mu(x_t)=1/sqrt(2) exact. New prediction:
     ultra-diffuse galaxy v_flat 34.7% below simple MOND at a << a_0/5.5.
@@ -1171,7 +1188,10 @@ PROVEN FROM FIRST PRINCIPLES (no free parameters):
     Thread energy = -phi*t (golden ratio EXACT from 4-vertex path graph) [muon_slip.py].
     Activation Delta = (sqrt3-1)/sqrt3 * E_particle = 42.3% at ANY energy scale
     [hopping_t.py ET6]. Retrodicts: optical photon entanglement trivially easy,
-    BCS threshold, He-4 spin-0, para-positronium 125ps, muon sticking difficulty.
+    BCS threshold, He-4 spin-0, muon sticking difficulty. (Para-positronium
+    125ps is NOT a G32 case -- E+ x E- gives no A_g endpoint [doc_entanglement
+    Sec 4.3(c)]; it is a separate, imported leading-order QED result
+    [doc_electron ED14].)
     G32 x G = no A (FG10) -> frictionless slip across cell boundaries.
     [entanglement_doc.py 35/35; face_coloring.py 6/7; muon_slip.py 5/5;
      three_particle_entanglement.py 6/6; entanglement_hopping_t.py 6/6 PASS]
@@ -1200,21 +1220,24 @@ ESSENTIALLY CLOSED (mechanism derived, minor numerical gaps):
     Free/bound gap IS the in-medium nucleon form factor effect. [neutron_g_factor.py]
   - Local time from cell cycles: same physics as Shapiro delay
   - Heat as opposing wave modes: mechanism fully derived. Radiation seed frequency
-    f = Rs*E_cell/(2*pi*hbar) confirmed [IP8 PASS]. Debye model with omega_D = E_cell/hbar
-    gives g(omega)~omega^2, T^4 Stefan-Boltzmann, S-B coefficient 3*pi^4/5 exactly.
-    Planck distribution SHAPE confirmed with zero free parameters beyond E_cell.
+    f = Rs*E_cell/(2*pi*hbar) confirmed [IP8 PASS]. A Debye model with omega_D =
+    E_cell/hbar gives g(omega)~omega^2 and the standard T^4 Stefan-Boltzmann
+    scaling; the 3*pi^4/5 coefficient itself is scheme-guaranteed by the Debye
+    g~omega^2 ansatz for ANY cutoff value, not E_cell-specific evidence.
     k_B = unit conversion (E_cell/T_cell; T_cell = 1.45e15 K). [ih_lattice_phonon.py 19/19]
   - Strong coupling: lambda = (1-nu)/4 = 0.129 = Higgs quartic and sub-cell
     Poisson coupling. [doc_higgs C3, 0.84 sigma]. Gap to alpha_s(m_Z)=0.118
     is QCD running from 124.8 GeV to 91.2 GeV (asymptotic freedom, ~4-9%).
 
 GENUINELY OPEN:
-  - Boltzmann constant k_B numerical value: the Planck SHAPE is confirmed
-    (Debye, T^4, 3*pi^4/5 coefficient, zero free parameters). k_B itself is
-    a unit convention (Kelvin defined by water triple point). Deriving k_B
-    from first principles requires connecting E_cell to molecular physics
-    (why water freezes at 273.16 K in torsionverse units). Not a gap in the
-    medium physics; a gap in the atomic/molecular derivation chain.
+  - Boltzmann constant k_B numerical value: the Planck T^4 SHAPE is confirmed
+    for an assumed Debye g~omega^2 density of states (the 3*pi^4/5 coefficient
+    itself holds for any cutoff value, not just E_cell -- see the heat/
+    radiation item above). k_B itself is a unit convention (Kelvin defined
+    by water triple point). Deriving k_B from first principles requires
+    connecting E_cell to molecular physics (why water freezes at 273.16 K
+    in torsionverse units). Not a gap in the medium physics; a gap in the
+    atomic/molecular derivation chain.
 
 
 10. COMPANION SCRIPTS

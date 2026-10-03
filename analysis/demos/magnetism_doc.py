@@ -164,10 +164,6 @@ check("M7 6/6 transition metals: ferromagnetic/paramagnetic/diamagnetic from irr
       all_match,
       "Fe(G_g)=ferro, Co(T_1g)=ferro, Ni(E_1/2)=ferro, Mn(H_g)=para, Cu/Zn(A_g)=dia")
 
-check("M7b Mn (H_g, dim=5) is NOT ferromagnetic  [H_g has 5 competing exchange paths, frustration]",
-      predict_magnetic("H_g") == "paramagnetic",
-      "H_g x H_g -> A_g present but 5 competing channels prevent domain formation (half-filled d-shell)")
-
 # =============================================================================
 print()
 print(SEP)
@@ -201,19 +197,18 @@ check("M8d T_1g=spin-1: chi(T_1g,C_5)=phi  [photon = T_1g massless mode, ME5]",
       abs(t1g_chi_c5 - phi) < 1e-10,
       f"chi(T_1g,C5)={t1g_chi_c5:.6f} = phi={phi:.6f}")
 
-# E=mc^2: neutron volume confirmation
-hbar_c = 197.3269804  # MeV*fm
-r_p_fm = 0.8414
-Rs    = math.sqrt(5)/(4*math.pi)
-m_p   = 938.272; m_n = 939.565
-delta_Z2 = alpha * Rs * m_p * (1 + 2*Rs**2)
-r_n_over_r_p = (1 + delta_Z2/m_p)**(1/3)
-m_n_from_V   = m_p * r_n_over_r_p**3
-check("M8e E=mc^2 confirmed: m=rho*V, neutron (V_n>V_p) -> m_n>m_p (0.0003% match)",
-      abs(m_n_from_V - m_n)/m_n < 0.0001,
-      f"m_n(from volume)={m_n_from_V:.4f}  actual={m_n:.4f}  err={abs(m_n_from_V-m_n)/m_n*100:.6f}%")
+# M8e REMOVED (2026-10-03): was an algebraically circular "E=mc^2 confirmed"
+# check -- it took the independently-derived mass difference delta_Z2 =
+# alpha*Rs*m_p*(1+2*Rs^2) [SY9], converted it to a "radius ratio" via a cube
+# root, then cubed that back, an exact algebraic inverse that reproduces
+# m_p+delta_Z2 regardless of whether m=rho*V has any truth to it. The
+# quoted "0.0003% match" was just SY9's own pre-existing accuracy re-
+# expressed as a % of the total mass, not an independent volume-based test.
+# See docs/series1/revisions/doc_magnetism.txt (2026-10-03) for full detail.
 
 # M10: a_0/r_p ratio (electron orbital scale vs proton charge radius)
+hbar_c      = 197.3269804                # MeV*fm
+r_p_fm      = 0.8414                     # fm
 m_e_MeV     = 0.51099895                 # MeV
 a_0_fm      = hbar_c / (m_e_MeV * alpha)  # fm  (a_0 = hbar_c/(m_e*c^2*alpha))
 ratio_a0_rp = a_0_fm / r_p_fm
@@ -223,8 +218,7 @@ check("M10 a_0/r_p ratio ~ 62,895  [electron orbital scale vs proton charge radi
 
 print()
 print("  MAXWELL CLOSED: K=1/eps_0, rho=mu_0 -> c=1/sqrt(eps_0*mu_0) -> Faraday+Ampere.")
-print("  Light = T_1g massless transverse wave. 100% derived. [ME1-ME6 all PASS]")
-print("  E=mc^2: m = rho*V_displaced. m_n/m_p = V_n/V_p to 0.0003%. NOT broken.")
+print("  Light = T_1g massless transverse wave. [ME1-ME5 all PASS]")
 
 # =============================================================================
 print()

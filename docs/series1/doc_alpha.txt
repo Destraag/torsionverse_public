@@ -702,14 +702,20 @@ What this paper does NOT claim:
     axiomatization of the SM beyond EW (Yukawa hierarchy, QCD sector).
     Further results established in [doc_higgs] (Section 5a): for sub-cell particles
     (N_J < 1) the quartic coupling lambda = (1-nu)/4 = 2*pi^2/(16*pi^2-5) = 0.12909
-    (0.85 sigma from PDG 2022; from Rs alone, zero free parameters); the EW vev
-    v = m_H/sqrt(2*lambda) = 246.185 GeV (-35 MeV); the decay width
-    Gamma_H = alpha*Rs*m_H/(4*pi^2) = 4.120 MeV (0.3 sigma).
-    Extended vev (doc_higgs Section 5a): T_1g x T_1g = A_g + T_1g + H_g in I_h;
-    the unique A_g coupling gives m_H = E_cell*(1+alpha/pi+alpha^2*phi^2) = 125.106 GeV
-    and v = 246.219 GeV (-0.306 MeV = -0.0001%); the Fibonacci identity phi^2 = phi+1
-    terminates the series exactly. The Lagrangian L_HWW = alpha^2*phi^2*|H|^2*|W|^2
-    is written; H->WW and H->bb channels have unique CG=1 couplings (H2 partially closed).
+    (0.85 sigma from PDG 2022; from Rs alone, zero free parameters); the decay width
+    Gamma_H = alpha*Rs*m_H/(4*pi^2) = 4.120 MeV (0.3 sigma). The EW vev
+    v = m_H/sqrt(2*lambda) = 246.185 GeV (-35 MeV) is a downstream SM tree-level
+    identity (automatic once m_H and lambda already agree with measurement), not
+    an independent check.
+    Extended vev (doc_higgs Section 5a): T_1g x T_1g = A_g + T_1g + H_g in I_h gives
+    the coupling FORM; using the SAME not-independently-derived alpha^2*phi^2
+    coefficient noted above, m_H = E_cell*(1+alpha/pi+alpha^2*phi^2) = 125.106 GeV
+    and v = 246.219 GeV. The quoted -0.0001% precision is not meaningful given
+    m_H's own ~340 MeV uncertainty (see [doc_higgs] Section 5a.3); the Fibonacci
+    identity phi^2 = phi+1 terminates the series exactly, which fixes the
+    coefficient's FORM but not its derivation status. The Lagrangian
+    L_HWW = alpha^2*phi^2*|H|^2*|W|^2 is written; H->WW and H->bb channels have
+    unique CG=1 couplings (H2 partially closed).
     Higgs-fermion Yukawa couplings from vertex stiffness: m_e closed (0.000069%);
     m_mu/m_tau essentially derived via (phi^6-1)*(1-alpha)+Koide (0.18%).
     Full Yukawa hierarchy (heavier generations) is a remaining open step.
@@ -876,15 +882,26 @@ measured constants:
         is predicted. [doc_leptons]
 
   (viii) Nuclear and quantum singlet structure from CG tables (four predictions):
-         deuteron spin-1 (T_1g x T_2g -> no A_g, J=0 forbidden),
+         deuteron spin-1 (T_1g x T_2g -> no A_g, bound J=0 forbidden),
          di-neutron near-binding (T_1g x T_1g -> A_g once),
          Cooper pairs (T_1u x T_1u -> A_g, BCS singlet),
-         proton-neutron singlet forbidden (T_1g x T_2g = G_g + H_g, Galois pair).
+         proton-neutron LOCKED singlet forbidden (T_1g x T_2g = G_g + H_g,
+         Galois pair; an unbound/virtual J=0 state is not excluded -- see
+         doc_entanglement Section 2.2).
+         Of these four, only the two FORBIDDEN cases (deuteron, proton-neutron)
+         are genuinely winding-specific: A_g absent for two DIFFERENT same-
+         dimension irreps is a special fact about I_h's representation theory,
+         not guaranteed for every group. The two ALLOWED cases (di-neutron,
+         Cooper pairs) rest on a generic representation-theory fact true for
+         ANY group and ANY winding -- an irrep squared always contains the
+         trivial representation -- so they do not independently test the (1,2)
+         assumption.
          [entanglement_doc.py EQ1-EQ10, 10/10 PASS; doc_entanglement]
 
-All twelve predictions are confirmed by experiment. All are falsified by any
-winding other than (1,2), which gives a different group, different character
-table, and different CG products. Together they validate the (1,2) assumption
+All twelve predictions are confirmed by experiment. The FORBIDDEN cases above
+are falsified by any winding other than (1,2), which gives a different group,
+different character table, and different CG products; the two ALLOWED cases
+in (viii) would hold for any winding and are not themselves a further test. Together they validate the (1,2) assumption
 on grounds entirely independent of alpha's numerical value. Additionally, V22
 (alpha_doc.py; summarized in Section 6 of this paper) demonstrates explicitly that the derivation steps
 themselves do not require knowing alpha: iterating the self-consistent system

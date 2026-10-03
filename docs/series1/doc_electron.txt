@@ -210,15 +210,35 @@ same torsion medium physics. The labels name where each effect is dominant.
       l=1: T_1g (3)  p orbitals
       l=2: H_g (5)   d orbitals
       l=3: T_2g+G_g  f orbitals
-    Degeneracy 2l+1 is exact for l=0..5 from I_h character theory [atomic_shells.py AS1].
-    Shell maxima 2n² follow directly. Noble gas closings Z=2,10,18,36,54,86. [AS7]
+    Degeneracy 2l+1 is exact for l=0..5 from I_h character theory [atomic_shells.py
+    AS1] -- correctly reproduced, but generic to any finite subgroup of SO(3)
+    (restriction preserves total dimension; also verified directly for the
+    octahedral group), not distinctively I_h. Shell maxima 2n² follow directly.
+    Noble gas closings Z=2,10,18,36,54,86 additionally require the separate
+    Madelung (n+l) filling rule, not from I_h alone. [AS7]
 
-    At larger orbital radii (higher n), the Zone 3 co-rotation field weakens
-    as 1/r^3 (Lense-Thirring frame drag from the Hopf winding):
+    At larger orbital radii (higher n), the Zone 3 co-rotation field
+    weakens as 1/r^3 -- a genuine mechanical consequence, not bare analogy:
+    a two-pole pressure-dipole construction using the medium's OWN
+    already-established single-source Coulomb pressure law shows the
+    field-like (gradient) quantity falls exactly as 1/r^3 (numerically
+    confirmed, log-log slope = -3.0 exactly), and the direct INTERACTION
+    ENERGY between two such dipole sources -- the actual quantity needed
+    here -- independently confirms the same 1/r^3 exponent in the far
+    field, matching the standard dipole-dipole energy law exactly; a
+    competing 1/r^2 reading (reusing a different, dimensionally
+    mismatched velocity exponent) is not a genuine alternative energy
+    derivation. What remains open is the overall normalization (why the
+    onset value equals the ordinary Coulomb energy at r_p) and the
+    precise behavior very close to onset itself, where the far-field
+    approximation is least reliable -- neither has been derived from
+    first principles yet:
       E_Z3(r) = alpha * hbar*c * r_p^2 / r^3
     At r = r_p (Zone 3 onset): E_Z3 = alpha*hbar*c/r_p = 1.71 MeV.
     At r = a_0 (Bohr radius):  E_Z3 = 6.87 neV  (well below spin-orbit scale).
-    [doc_entanglement; entanglement_doc.py EP1-EP2; electron_doc.py ED17-ED18 PASS]
+    [doc_entanglement; entanglement_doc.py EP1-EP2; electron_doc.py ED17-ED18
+    PASS -- these checks confirm the form's internal arithmetic
+    (E(r)/E(2r)=8), not the normalization]
     The 1/r^3 falloff is steeper than the pressure gradient (1/r^2), so roll
     becomes negligible at large n faster than the Coulomb well itself does,
     producing weaker spin-orbit effects for outer electrons.
@@ -235,7 +255,10 @@ same torsion medium physics. The labels name where each effect is dominant.
   SHELL COUNTING (from I_h irrep structure, not walls):
     The number of electron states per shell is determined by the I_h
     irreducible representation structure of the Coulomb pressure well.
-    This gives 2n² exactly for all elements, Z-independent.
+    This gives 2n² exactly for all elements, Z-independent. (The dimension
+    match itself is generic to any finite subgroup of SO(3), not uniquely
+    I_h; the physical content is that the discrete I_h picture reproduces
+    the continuous-QM degeneracies without breaking them.)
     [atomic_shells.py AS1-AS7, 7/7 PASS]
 
   NOTE ON OUTER WALL: there is no established outer wall mechanism.
@@ -455,9 +478,12 @@ geometrically; the orbit has no solution.
   of the electron neutrino is in [doc_leptons].
   The electron never enters Zone 1 or Zone 2. The whole event is kinetic.
   [weak_interaction_cg.py WI1, WI2]
-  Z_crit = 1/alpha emerges from the corpuscle circuit geometry -- derived
-  from the same icosahedral vertex structure that produces alpha, not
-  assumed from the Dirac equation.
+  Z_crit = 1/alpha is the threshold the corpuscle-circuit narrative above
+  motivates physically (the winding circuit failing to close); no script
+  here independently computes a circuit length vs. orbital circumference
+  to derive 137 from geometry alone -- the number itself is read off
+  algebraically from 1/alpha (ED7), the same value alpha already has from
+  its own independent derivation [doc_alpha].
 
   STANDARD QED (same threshold, implicit mechanism): The Dirac equation
   predicts the same Z_crit = 1/alpha -- the 1s bound state energy dives
@@ -627,14 +653,19 @@ sets the window in which stable atoms can exist.
   - Spin-orbit coupling: ΔE(2p) = alpha^4*m_e*c^2/32 = 45.3 μeV, measured
     45.35 μeV, 0.15% [ED15 PASS]
   - g-factor / Zone 3 effect on electron: the proton Zone 3 co-rotation couples
-    to the electron spin via the effective magnetic moment (g_p = 5.5857),
-    producing the hydrogen hyperfine splitting (21 cm line). Computed:
+    to the electron spin via the effective magnetic moment (g_p = 5.5857,
+    independently derived in [doc_nucleus] Section 5.7 via N15-N17; reused
+    here as an established input, not re-derived), producing the hydrogen
+    hyperfine splitting (21 cm line). Computed:
     (4/3)*alpha^4*m_e*(m_e/m_p)*g_p = 1421.0 MHz, measured 1420.4 MHz, 0.04%
     [ED16 PASS]. Zone 3 co-rotation does NOT modify the free-space g-factor
     (2.00232); it creates the spin-energy splitting, which is already captured.
-  - Zone 3 co-rotation radial falloff: derived as 1/r^3 (Lense-Thirring).
-    E_Z3(r_p) = alpha*hbar_c/r_p = 1.71 MeV (onset); E(r)/E(2r) = 8 (exact).
-    [ED17-ED18 PASS; entanglement_doc.py EP1-EP2]
+  - Zone 3 co-rotation radial falloff: 1/r^3, derived both as the single-
+    dipole field AND the two-dipole coupling-energy falloff (not bare
+    analogy) -- see Section 3.3 for what remains open (the overall
+    normalization; near-onset precision). E_Z3(r_p) = alpha*hbar_c/r_p =
+    1.71 MeV (onset); E(r)/E(2r) = 8 (exact). [ED17-ED18 PASS;
+    entanglement_doc.py EP1-EP2]
   - Positron Born balance: chi(anti-E+,C5) = chi(E+,C5) = phi (chirality
     reversal doesn't change vertex-coupling strength); Born coupling through
     chi(C5) gives same n_exact (the Born-balance integer from [doc_alpha]

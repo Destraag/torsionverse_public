@@ -86,13 +86,17 @@ medium that gives alpha, G, and the Higgs mass in the companion papers.
 for the open individual-event question, not resolved by this paper either.)
 
 Consequences:
-  - Double-slit: Hopf winding fields span both slits simultaneously.
-    Interference = constructive/destructive Huygens superposition in medium.
-  - Which-path: Zone 3 field decoherence resolves winding at r < r_lock(T).
-    r_lock(300K) = 340 fm; coherence preserved for macroscopic slit separations.
-  - Delayed choice: no paradox. Medium configuration never had a single-slit
-    address. "Measurement" = local perturbation resolving global winding.
-    Timing is irrelevant; topology is not retroactively changed.
+  - Double-slit: the corpuscle takes one definite slit; its Zone 3 field
+    spans both. Interference = Huygens superposition of the FIELD, not
+    the corpuscle (Section 4.1).
+  - Which-path: Zone 3 field decoherence resolves the field's which-slit
+    contribution at r < r_lock(T). r_lock(300K) = 340 fm; coherence
+    preserved for macroscopic slit separations.
+  - Delayed choice: no paradox. The corpuscle's slit was always definite;
+    only the still-propagating FIELD can be intercepted later (Section 5.1).
+  - Quantum eraser (Kim et al. 2000): a distinct, two-corpuscle entangled-
+    pair effect -- no retrocausality by the same no-FTL closure used for
+    entanglement generally (Section 5.2).
 
 NEW PREDICTIONS (not in standard QM):
   - Minimum electron slit width for coherent diffraction: 2*lambda_bar_e = 772 fm
@@ -149,8 +153,15 @@ IS the Zone 1 boundary lambda_p. The winding resonates at the Compton frequency
 WITHIN Zone 1 (the Maxwell critical jamming region). This is the same lambda_p
 that appears in r_p = 4*lambda_p (PS4) and throughout nuclear structure.
 
-The identification lambda_bar = lambda_p is not a coincidence: it follows from
-the proton being the Maxwell-critical Hopf winding in the torsion medium.
+The identification lambda_bar = lambda_p is a SHARED DEFINITION, not a
+derived coincidence: lambda_bar = hbar_c/m_p is the same formula doc_
+nucleus.txt (Section 1.1) uses to define lambda_p from the outset -- it
+was never independently derived here and then found to coincide with the
+Zone 1 boundary after the fact. What IS a genuine, separate result
+(established in doc_nucleus.txt, not re-derived by this sentence): N_J
+(proton) = 21.17 ~ 21 is independently Maxwell-critical (3V-E=6), and
+r_p = 4*lambda_p matches CODATA to 0.02% (PS4) -- real physics content,
+just not what this specific identification is stating.
 [QM2 PASS: omega_C = c / lambda_p confirmed to machine precision]
 
 1.3  Klein-Gordon equation for the winding mode
@@ -274,7 +285,7 @@ remains open]
 
 The proton (or electron) is a corpuscle -- always at one definite location,
 never split or delocalized. Its Zone 3 field extends to infinity (falling
-as 1/r^2) regardless of where the corpuscle itself is. When the corpuscle
+as 1/r^3) regardless of where the corpuscle itself is. When the corpuscle
 approaches a barrier with two slits:
 
   (a) The CORPUSCLE goes through exactly ONE slit -- always definite, never
@@ -436,32 +447,83 @@ sub-pm electron diffraction experiments.
 
 5.1  Delayed choice: paradox dissolved
 
-Wheeler's delayed choice: after the particle passes the slits, the experimenter
-decides whether to measure which-path or allow interference.
+Wheeler's delayed choice: the experimenter decides whether to measure
+which-path or allow interference only after the particle has already
+cleared the slit plane -- while its field is still propagating toward
+the screen.
 
-In the torsionverse:
-  - The "particle" is a Hopf winding mode in the medium
-  - After passing the slits, the medium configuration spans BOTH slit openings
-  - There is no "particle at slit A or B" -- only a global medium configuration
-  - The choice of measurement = whether to apply a Zone 3-resolving perturbation
+In the torsionverse (same corpuscle/field split as Section 4.1, applied to
+timing):
+  - The CORPUSCLE went through exactly one slit, always, from the instant
+    it cleared the barrier. This was never indefinite, so there is nothing
+    for a later choice to retroactively fix.
+  - What IS still open after the corpuscle clears the slits is the FIELD:
+    its Zone 3 pressure wave is still propagating toward the screen, and
+    whether that propagating field gets resolved (Section 4.2's r_lock(T)
+    coupling) or not is still undecided.
+  - "Measure now" vs. "measure later, before the field reaches the screen":
+    both are choices about whether to intercept the FIELD during its
+    propagation, not about the corpuscle's (already-fixed) path.
 
-The timing of the perturbation is irrelevant:
-  - "Before": resolve now -> no interference (winding localized)
-  - "After": resolve after slits -> medium was never in a single-slit state
-    The resolution perturbs the CURRENT medium state, not a past state
-  - No retrocausality: the medium is Markovian (current state determines future)
+No retrocausality, and nothing exotic required: the corpuscle's path was
+already a settled fact before either choice was made. The only thing
+"delayed" is when a real, local, sub-c perturbation reaches the
+still-traveling field -- a question about signal propagation, not about
+rewriting the past.
 
 [QM9 PASS: no retrocausality required]
 
-5.2  Quantum eraser
+5.2  Quantum eraser (Kim et al. 2000): a two-corpuscle effect
 
-When which-path information is "erased" (the resolving perturbation is undone
-before it propagates), the A_g global winding was never permanently resolved.
-The winding continues in its global configuration. Interference returns.
+Unlike Section 5.1, the quantum eraser is not a single-corpuscle experiment.
+Kim et al.'s setup uses spontaneous parametric down-conversion (SPDC): just
+past the slits, a nonlinear crystal converts the corpuscle that crossed the
+double slit into an entangled PAIR -- a "signal" corpuscle continuing to a
+screen detector D0, and an "idler" corpuscle sent along a longer, separate
+path to one of four detectors (D1-D4).
 
-This is not mysterious: the perturbation must propagate classically at c to
-affect the screen. If it is undone first, it never reaches the screen.
+Momentum conservation in the down-conversion fixes the idler's propagation
+direction to depend on which slit the original corpuscle used -- ordinary
+conservation applied to the splitting process, not a new torsionverse
+postulate (see NOT YET DERIVED, below). Downstream, the idler path is
+either:
+  - kept separate (D3/D4): which slit is still recoverable from the idler
+    alone -> the D0 clicks paired with these show NO interference.
+  - recombined at a beamsplitter (D1/D2): the two slit-correlated idler
+    paths become indistinguishable before detection -> which-slit
+    information is erased -> the D0 clicks paired with these DO show
+    interference. This recombination is the same Huygens-superposition
+    mechanism as Section 4.1's own double slit, just run on the idler's
+    two paths instead of the signal's.
+
+THE CENTRAL FACT, confirmed by the real experiment (not a torsionverse-
+specific claim): D0's own pattern, summed over ALL idler outcomes with no
+sorting, never shows interference -- with or without "erasure." Fringes
+appear only in the sub-ensemble of D0 clicks whose entangled idler partner
+later lands in D1 or D2; the D3/D4-paired sub-ensemble shows plain two-slit
+diffraction. This is a statement about which already-recorded clicks get
+grouped together, not about any click's own pattern changing in real time.
+
+Why this needs no retrocausality (a two-corpuscle correlation, stronger
+than Section 5.1's single-corpuscle argument): signal and idler are
+correlated at the moment they are created, via an A_g-locked joint
+configuration (doc_entanglement.txt Section 1.2; the optical-photon case
+is an easy, low-threshold instance of the same mechanism, doc_entanglement.
+txt Section 4.3(a)). By doc_entanglement.txt's independently closed no-FTL
+result (Section 4.4, EQ8), resolving that correlation -- whichever
+corpuscle is measured first -- cannot propagate information faster than c.
+Sorting D0's clicks by a later idler measurement does not change D0's own
+already-registered data; it only reveals, after the fact, which
+sub-ensemble a given click belongs to.
 [Consistent with quantum eraser experiments by Kim et al. 2000]
+
+NOT YET DERIVED: the geometric mapping from "which slit" to "which idler
+propagation direction" is imported here from standard SPDC momentum
+conservation. Whether the torsion medium's own picture of down-conversion
+(a corpuscle splitting into two lower-energy corpuscles at a nonlinear
+crystal) reproduces this mapping from Jobson-cell mechanics, rather than
+importing it from standard nonlinear optics, is an open question -- see
+Section 6.
 
 
 6. STATUS SUMMARY
@@ -473,7 +535,8 @@ PROVEN (from existing medium derivations + this document):
     wave energy density  [QM6; individual-event statistics: see GENUINELY
     OPEN below]
   - Double-slit interference mechanism (Huygens in medium)
-  - Delayed choice: no retrocausality  [QM9]
+  - Delayed choice: no retrocausality -- the corpuscle's slit was always
+    definite; only the field's propagation can be intercepted  [QM9]
 
 ESSENTIALLY DERIVED (borrowed from entanglement_doc):
   - Which-path decoherence at r < r_lock(T)  [entanglement_doc EP3; essentially
@@ -492,12 +555,25 @@ NEW PREDICTIONS (physical argument from Zone 3 geometry; not yet experimentally 
 ESSENTIALLY CLOSED:
   - Full Schrodinger equation with potential V(x): V = local medium pressure
     (Coulomb, gravity all derived from same medium; adding V is direct)
-  - Quantum eraser: perturbation propagation bounds the erasure window
+  - Quantum eraser (Kim et al. 2000): a two-corpuscle (signal/idler) effect,
+    distinct from Section 5.1's single-corpuscle case; D0 alone never shows
+    interference, fringes appear only in idler-coincidence sub-ensembles;
+    grounded in doc_entanglement.txt's A_g-singlet formation + no-FTL
+    closure (Section 5.2)
   - Pauli equation: from Dirac NR limit + E+ spinor [qm_dirac_pauli.py QD6]
-  - Dirac equation: from Clifford (T_1g generators) + E+/E- (2I) [QD1-QD4]
-    g=2 from (sigma.v)^2 = |v|^2 [QD5]; proton g_p != 2 from Zone structure
-  - Path integral: from medium Green's function (C7 static limit = Coulomb)
-    Composition rule, classical action phase, H E_1 = -13.6 eV [QP1-QP5]
+  - Dirac equation: from Clifford algebra + E+/E- (2I) [QD1-QD4] -- uses the
+    standard canonical Pauli/Dirac matrices; the "T_1g generators"
+    identification is asserted in the script's comments, not computed from
+    an I_h representation-theory derivation. g=2 follows from the standard
+    (sigma.v)^2 = |v|^2 Clifford identity [QD5] -- true for any Pauli-like
+    matrix set, not specific to T_1g; proton g_p != 2 from Zone structure
+  - Path integral: from medium Green's function (C7 static limit = Coulomb,
+    the one medium-specific input here). The free-particle propagator form
+    and the H E_1=-13.6 eV result are the standard textbook Feynman kernel
+    and Bohr formula, inserted directly rather than derived from the
+    discrete I_h lattice (unlike QM1/QM3's lattice_dwell_time_bridge.py
+    citation above) -- QP2-QP4 verify self-consistency of that imported
+    form, not its origin. [QP1-QP5]
 
 GENUINELY OPEN:
   - Fringe visibility V(T) quantitative formula from r_lock(T)
@@ -508,6 +584,11 @@ GENUINELY OPEN:
     a genuinely hard question, not unique to this framework (the same
     gap exists in de Broglie-Bohm theory's "quantum equilibrium"
     problem, unsolved there too after decades of work).
+  - Section 5.2's slit<->idler-propagation-direction mapping (SPDC
+    momentum conservation) is imported from standard nonlinear optics,
+    not derived from Jobson-cell medium mechanics -- whether the
+    down-conversion process itself (one corpuscle splitting into two)
+    reproduces this from medium mechanics is not yet addressed.
 
 
 7. COMPANION SCRIPT

@@ -20,7 +20,12 @@ DERIVATION CHAIN:
   7. Double-slit: Huygens principle for medium pressure waves through two slits
      -> fringe spacing = lambda_dB / d (de Broglie wavelength / slit separation)
   8. Which-path = decoherence via Zone 3 coupling (from entanglement_doc.py EP3/EP6)
-  9. Delayed choice: medium configuration never had which-path address -> no paradox
+  9. Delayed choice: the corpuscle's slit is always definite; only its still-
+     propagating FIELD can be intercepted later -> no paradox (single corpuscle)
+  10. Quantum eraser (Kim et al. 2000): a SEPARATE two-corpuscle (signal/idler,
+      SPDC) effect -- D0 alone never shows interference; grounded in
+      entanglement_doc.py's A_g-singlet formation + no-FTL closure, not in
+      item 9's single-corpuscle mechanism
 
 KEY TEST (QM1): If the Klein-Gordon -> Schrodinger derivation holds, QM IS the
   non-relativistic limit of the Jobson cell medium wave equation. Zero extra
@@ -36,8 +41,8 @@ Checks:
   QM6  Born rule: |psi|^2 = wave intensity / total; probability from energy density
   QM7  de Broglie: lambda = h/(m*v) = 2*pi*hbar*c / (m*c^2 * v/c)
   QM8  Minimum electron slit width: 2*lambda_e = 2*hbar*c/(m_e*c^2) = 772 fm
-  QM9  Double-slit fringe spacing = lambda_dB / (slit separation d)
-  QM10 Delayed choice: configuration has no which-path -> no retrocausality
+  QM9  Delayed choice: corpuscle's slit always definite; only the field is open
+  QM10 Which-path scale: d < r_lock(T) resolves the field; d > r_lock preserves it
 
 Run: python analysis/quantum/qm_from_medium.py
 Reference: docs/doc_qm.txt
@@ -249,15 +254,16 @@ check("QM8 Proton min slit = r_grind = 2*lambda_bar_p = 2*lambda_p  (nuclear har
 # ── SECTION 7: DELAYED CHOICE -- NO RETROCAUSALITY ────────────────────────────
 print()
 print(SEP)
-print("SECTION 7: DELAYED CHOICE -- MEDIUM CONFIGURATION HAS NO WHICH-PATH")
+print("SECTION 7: DELAYED CHOICE -- CORPUSCLE DEFINITE, FIELD INTERCEPTABLE")
 print(SEP2)
-print(f"  The Hopf winding IS a configuration of the Jobson cell medium.")
-print(f"  The medium configuration after passing two slits spans BOTH openings.")
-print(f"  There is no 'particle at slit A or B' -- only a medium winding field.")
+print(f"  The CORPUSCLE goes through exactly one slit, always (Section 4.1 picture).")
+print(f"  What remains open after the slits is the FIELD: its Zone 3 pressure wave")
+print(f"  is still propagating toward the screen and can still be intercepted.")
 print()
-print(f"  'Measurement' = local medium perturbation that resolves the global winding.")
-print(f"  Timing: whether this perturbation is applied 'before' or 'after' the slits")
-print(f"  is irrelevant -- the medium configuration was never localized.")
+print(f"  'Measurement' = a local perturbation that resolves the propagating FIELD'S")
+print(f"  which-slit contribution, NOT the corpuscle's (already-fixed) path.")
+print(f"  Timing: 'before' or 'after' the slits only changes WHEN the field is")
+print(f"  intercepted -- the corpuscle's path was already settled either way.")
 print()
 print(f"  WHICH-PATH DETECTION (from entanglement_doc EP3/EP6):")
 r_lock_300 = ((alpha * hbar_c_SI * (r_p)**2) / (k_B * 300))**(1/3)
@@ -265,18 +271,36 @@ sigma_e    = math.pi * (2 * lambda_C_e)**2
 print(f"    r_lock(300K) = {r_lock_300*1e15:.0f} fm -- detector must be within this of beam")
 print(f"    sigma_break(electron) = pi*(2*lambda_C_e)^2 = {sigma_e*1e30:.2f} fm^2")
 print(f"    At d > r_lock: detector does NOT resolve path -> interference preserved")
-print(f"    At d < r_lock: Zone 3 coupling resolves winding -> interference lost")
-print()
-print(f"  QUANTUM ERASER: 'erasing which-path' = removing the medium perturbation")
-print(f"  before it propagates. The A_g winding was never actually resolved.")
-print(f"  The winding continues in its global configuration. Interference returns.")
+print(f"    At d < r_lock: Zone 3 coupling resolves the field's path -> interference lost")
 print()
 
-check("QM9 Delayed choice: medium configuration spans both slits (no retrocausality)",
-      True, "Winding topology cannot be retroactively localized; paradox dissolves")
-check("QM10 Which-path scale: d < r_lock(T) resolves winding; d > r_lock preserves",
+check("QM9 Delayed choice: corpuscle's slit always definite; only the field is open",
+      True, "No retrocausality: corpuscle's path was already fixed before either choice")
+check("QM10 Which-path scale: d < r_lock(T) resolves the field; d > r_lock preserves it",
       r_lock_300 > 0,
-      f"r_lock(300K) = {r_lock_300*1e15:.0f} fm; detector within this decoheres the winding")
+      f"r_lock(300K) = {r_lock_300*1e15:.0f} fm; detector within this decoheres the field")
+
+# ── SECTION 8: QUANTUM ERASER (KIM ET AL. 2000) -- TWO-CORPUSCLE EFFECT ──────
+print()
+print(SEP)
+print("SECTION 8: QUANTUM ERASER -- A SEPARATE, TWO-CORPUSCLE (SPDC) EFFECT")
+print(SEP2)
+print(f"  NOT the same mechanism as Section 7: Kim et al. 2000 converts the slit")
+print(f"  corpuscle into an entangled signal+idler PAIR (SPDC) just past the slits.")
+print(f"  Signal -> screen detector D0. Idler -> one of four detectors D1-D4,")
+print(f"  with D3/D4 preserving which-slit info and D1/D2 erasing it (recombined")
+print(f"  at a beamsplitter -- the same Huygens superposition as the main slits).")
+print()
+print(f"  D0's own pattern, summed over ALL idler outcomes, never shows interference")
+print(f"  -- with or without 'erasure.' Fringes appear only in the D0 sub-ensemble")
+print(f"  whose idler partner later lands in D1/D2; this is sorting already-recorded")
+print(f"  clicks, not a real-time change to any click's own pattern.")
+print()
+print(f"  No retrocausality: signal+idler are correlated at creation via an A_g-")
+print(f"  locked joint configuration (doc_entanglement.txt Sec 1.2, 4.3a); no-FTL")
+print(f"  closure (doc_entanglement.txt Sec 4.4, EQ8) bounds the correlation at c.")
+print(f"  NOT YET DERIVED: the slit<->idler-direction mapping is imported SPDC")
+print(f"  momentum conservation, not derived from Jobson-cell medium mechanics.")
 
 # ── Summary ────────────────────────────────────────────────────────────────────
 print()
@@ -297,10 +321,10 @@ print(f"    Min proton slit width:   2*lambda_C_p = {lambda_min_p_m*1e15:.4f} fm
 print(f"    Which-path threshold:    r < r_lock(T) = {r_lock_300*1e15:.0f} fm at 300K  [QM10]")
 print()
 print(f"  PARADOXES DISSOLVED:")
-print(f"    Double-slit: Hopf winding fields span both slits simultaneously")
-print(f"    Which-path: Zone 3 coupling resolves winding; r_lock(T) is the scale")
-print(f"    Delayed choice: medium configuration had no which-path address [QM9]")
-print(f"    Quantum eraser: removing perturbation before propagation restores A_g")
+print(f"    Double-slit: corpuscle takes one slit; its Zone 3 field spans both")
+print(f"    Which-path: Zone 3 coupling resolves the field; r_lock(T) is the scale")
+print(f"    Delayed choice: corpuscle's slit always definite, only field is open [QM9]")
+print(f"    Quantum eraser: separate two-corpuscle (SPDC) effect, Section 8")
 
 print()
 print(SEP)

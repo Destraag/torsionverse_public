@@ -18,8 +18,8 @@ region (Zone 1, r < lambda_p = 0.2103 fm) where the medium is absent and
 quarks are confined; a Maxwell-critical jamming boundary (Zone 2, N_J = 21)
 where Jobson cells freeze in the (1,2) Hopf chirality of the proton; a
 co-rotating transition shell (Zone 3, lambda_p < r < r_p) where cells spin
-under the frozen boundary's frame-dragging; and bulk free cells (Zone 4,
-r > r_p) that carry the Coulomb field outward.
+under direct cell-on-cell driving force from the frozen boundary; and bulk
+free cells (Zone 4, r > r_p) that carry the Coulomb field outward.
 
 The Coulomb field is spherically symmetric because the icosahedron's 12
 vertex gaps are isotropically distributed: their combined angular defect
@@ -28,18 +28,22 @@ from the 3D Green's function of the Laplace equation. The charge quantum
 Q = e is recovered as sqrt(4*pi*eps_0*alpha*hbar_c) to 1.2 ppm (residual
 from eps_0 truncation; derivation is from doc_alpha, zero free parameters).
 
-Atomic electron shell maxima (2, 8, 18, 32, 50, 72 = 2n^2) are a direct
-consequence of the same icosahedral geometry: the I_h irreducible
+Atomic electron shell maxima (2, 8, 18, 32, 50, 72 = 2n^2) are correctly
+reproduced by the same icosahedral geometry: the I_h irreducible
 representations of D^(l) have dimensions 2l+1 = 1, 3, 5, 7, 9, 11 --
 exactly the orbital multiplicity for l = 0, 1, 2, 3, 4, 5. Multiplied by
-2 spins and summed over l = 0 to n-1, these give the shell maxima.
-Zero free parameters. Noble gas configurations verified against Madelung series.
+2 spins and summed over l = 0 to n-1, these give the shell maxima. Noble
+gas configurations additionally require the separate Madelung (n+l)
+filling rule, not from I_h alone.
 
-NEW GROUND: standard quantum mechanics derives the 2n^2 shell rule from
-angular momentum quantum numbers alone, with the icosahedron playing no role.
-Here the SAME 2n^2 sequence emerges independently from I_h irrep dimensions --
-a geometric origin for a structure usually regarded as following purely from
-the Schrodinger equation's separability, not from any specific point group.
+The dimension match itself is generic to any finite subgroup of SO(3)
+(verified directly for the octahedral group too), inherited from the
+parent continuous group's ordinary angular-momentum degeneracy -- standard
+quantum mechanics already derives the 2n^2 shell rule from angular
+momentum quantum numbers alone, with no point group needed. The I_h
+branching reproduces the same degeneracies because restriction to any
+subgroup preserves total dimension, not because I_h adds new physical
+content here.
 
 NUCLEON MAGNETIC MOMENTS AND THE IN-MEDIUM DEVIATION (NEW RESULT):
   This document derives proton and neutron magnetic moments from medium pressure
@@ -53,7 +57,8 @@ NUCLEON MAGNETIC MOMENTS AND THE IN-MEDIUM DEVIATION (NEW RESULT):
   The free/bound discrepancy arises because the neutron's Zone 3 medium is
   STATIONARY when the neutron is free (no Hopf winding to drive co-rotation),
   but is SPINNING when the neutron is in a nucleus: the adjacent proton's
-  Hopf-driven Zone 3 cells (r < r_p = 0.841 fm) surround the bound neutron
+  spinning Zone 3 cells (r < r_p = 0.841 fm, driven by its Zone 2 locked
+  shell, not the Hopf winding directly) surround the bound neutron
   at nuclear separation, acting as an external rotating medium. The proton's
   Zone 3 contribution (+0.360 mu_N in g_p) appears with opposite sign in the
   bound neutron (-0.360 mu_N), shifting g_n from -1.567 to -1.927.
@@ -125,9 +130,9 @@ N_J = 21 places the proton exactly at the Maxwell jamming critical point
     Winding sense mapped to rotation direction by cog geometry  [CG1-CG4].
 
   ZONE 3 -- CO-ROTATING TRANSITION SHELL  (lambda_p < r < r_p):
-    Cells co-rotate under Zone 2 frame-dragging. As cells roll
-    past vertex contacts, 12 gaps open per cycle -- the Coulomb
-    source (Section 2).
+    Cells co-rotate, driven by direct cell-on-cell contact force from
+    Zone 2's locked shell. As cells roll past vertex contacts, 12 gaps open
+    per cycle -- the Coulomb source (Section 2).
     The rotation propagates between cells geometrically via the gluon->muon
     C3=+1 chain (RP1-RP4, zero attenuation): edge-midpoint contact enforces
     gluon-gluon coupling; C5 geometry forces exactly 72 deg per handoff;
@@ -189,7 +194,7 @@ alpha is derived from (1,2) Hopf topology in doc_alpha
 Q = e is therefore derived to the same precision as alpha.
 
 
-4. ATOMIC SHELL MAXIMA FROM I_h GEOMETRY  [PROVEN, AS1-AS7]
+4. ATOMIC SHELL MAXIMA FROM I_h GEOMETRY  [CORRECTLY REPRODUCED, AS1-AS7]
 
 I_h irrep decomposition of D^(l):
   D^0 --> A_g(1)             = s orbital  (2l+1 = 1)
@@ -197,17 +202,21 @@ I_h irrep decomposition of D^(l):
   D^2 --> H_g(5)             = d orbital  (2l+1 = 5)
   D^3 --> T_2g(3) + G_g(4)   = f orbital  (2l+1 = 7)
 
-dim(D^l in I_h) = 2l+1  EXACTLY for l = 0..5  [AS1, no free parameters]
+dim(D^l in I_h) = 2l+1  EXACTLY for l = 0..5  [AS1] -- this match is generic
+to any finite subgroup of SO(3) (restriction preserves total dimension; also
+verified directly for the octahedral group), not a distinctively I_h result.
 
-Orbital angular momentum quantisation is icosahedral geometry: the electron
-standing wave in the Coulomb well resolves into I_h irreps of the cell lattice.
+The electron standing wave in the Coulomb well resolves into I_h irreps of
+the cell lattice without breaking the continuous-QM degeneracies -- the
+discrete lattice picture is consistent with, not independent evidence beyond,
+ordinary angular momentum quantisation.
 
 Shell maxima = sum_{l=0}^{n-1} 2*(2l+1) = 2n^2:
 
   n=1: 2    n=2: 8    n=3: 18    n=4: 32    n=5: 50    n=6: 72
 
-Noble gas Z = 2, 10, 18, 36, 54, 86 verified against Madelung series [AS7].
-Zero free parameters throughout.
+Noble gas Z = 2, 10, 18, 36, 54, 86 additionally require the separate
+Madelung (n+l) filling rule [AS7], not from I_h alone.
 
 The Maxwell criterion 3V-E = 6 simultaneously governs:
   (a) Proton boundary stability (N_J = 21)
@@ -484,14 +493,14 @@ are present in the neutron but the Hopf winding is NOT engaged:
 
   1. The neutron Zone 1 quarks form a T_1g diquark (d-d pair antisymmetric)
   2. A_g(T_1g x T_2g) = 0: T_1g diquark cannot couple to Zone 2 T_2g field
-  3. Without winding coupling: no Zone 3 frame-dragging -> no co-rotating
-     Zone 3 pressure field -> no Coulomb (EM) field
+  3. Without winding coupling: no Zone 2-driven cell co-rotation -> no
+     co-rotating Zone 3 pressure field -> no Coulomb (EM) field
   4. No Hopf winding -> no Zone 3 spinning -> EM-inert
 
 However: the d quarks DO reach Zone 3 via orbital extension (not cog
 engagement). On each orbital pass, d quarks extend to r_grind = 2*lambda_p,
 which is inside Zone 3 (lambda_p < r_grind < r_p). They hit rolling Jobson
-cells mechanically. This is NOT the same as the proton's Hopf-driven co-
+cells mechanically. This is NOT the same as the proton's Zone-2-driven co-
 rotation -- it is a mechanical impact that produces the Rs shear deflection.
 
 Consequence: the neutron has NO EM field (no Hopf co-rotation) but DOES
@@ -597,28 +606,50 @@ FREE NEUTRON:
   The correct I_h T_1u/T_2u Zone 1 wave functions would close this.
 
 BOUND NEUTRON IN NUCLEUS:
-  The proton's Hopf-driven spinning Zone 3 (lambda_p < r < r_p = 0.841 fm) ARE
-  the Jobson cells immediately surrounding the bound neutron at nuclear separation
-  (r_grind = 0.421 fm to r_0 = 1.414 fm). These cells spin at v = Rs*c from the
-  adjacent proton's Hopf winding. The proton spinning medium acts on the bound
-  neutron from outside Zone 2, contributing with NEGATIVE sign (external medium
-  spin opposes the neutron's own pressure torque response).
+  The proton's spinning Zone 3 (lambda_p < r < r_p = 0.841 fm) ARE
+  the Jobson cells immediately surrounding the bound neutron at nuclear separation.
+  These cells spin at v = Rs*c, driven by the adjacent proton's spin -- the Hopf
+  winding locks Zone 2 into a rigid rotating shell (Section 1.1), which transmits
+  that spin outward to drag the Zone 3 cells into co-rotation (not the Hopf
+  winding acting on them directly). The proton spinning medium acts on the
+  bound neutron from outside Zone 2, contributing with NEGATIVE sign (external
+  medium spin opposes the neutron's own pressure torque response).
 
-    g_n(bound) = g_n(free) - mu_Zone3_proton
-               = -1.567 - 0.360 = -1.927 mu_N
-    PDG measured: -1.913 mu_N    error: +0.7%
+  The induced correction falls off with proton-neutron separation r as a
+  topological-dipole field (the same falloff law used for Zone 3 inter-particle
+  coupling in entanglement_phase_lock.py):
+    mu_induced(r) = mu_Zone3_proton * (r_p/r)^3
+    g_n(bound; r) = g_n(free) - mu_induced(r)
+  The separation that reproduces the measured value exactly is r_exact = 0.852 fm
+  = 1.013*r_p -- ordinary nucleon-nucleon contact just beyond the proton's own
+  r_p, not a special or extreme assumption. A flat full-strength estimate at
+  r = r_p exactly gives g_n(bound) = -1.927 mu_N (+0.7% vs PDG -1.913); the
+  exact-match distance differs from r_p by only 1.3%, and an alternative
+  internal-velocity-based exponent (r_p/r)^2 gives a very similar r_exact = 0.858
+  fm (+2.0%) -- the conclusion is not sensitive to this choice.
 
-KEY INSIGHT: The proton Zone 3 contribution (+0.360 mu_N for g_p) and the 18%
-  gap in free neutron g_n (0.346 mu_N) are the SAME physical quantity, seen from
-  opposite perspectives:
-    Proton:        own Zone 3 spinning (Hopf-driven) adds +0.360 to g_p
-    Bound neutron: adjacent proton's Zone 3 acts externally, adds -0.360 to g_n
+  For comparison: at the pion force range (r_0 = 1.414 fm), the same law gives
+  g_n(bound) = -1.642 mu_N (-14% vs PDG); at the real, external Reid (1968) NN
+  scattering potential's attractive-well minimum (r = 0.845 fm, independent of
+  this framework), g_n(bound) = -1.922 mu_N (+0.5% vs PDG) -- notably close to
+  both r_exact and r_p itself.
 
-The free vs bound distinction in g_n is the torsionverse origin of the in-medium
-nucleon form factor correction (a known nuclear physics effect). The prediction:
-  |g_n(bound)/g_p| = 1.927/2.793 = 0.690   measured: 1.913/2.793 = 0.685  (0.7%)
+KEY INSIGHT: mu_Zone3_proton (+0.360 mu_N for g_p) sets the overall scale of
+  the induced correction; the 18% gap in free neutron g_n (0.346 mu_N) is
+  numerically close to the r=r_p value of this scale, but the two remain
+  logically distinct quantities -- the closeness is suggestive, not an
+  established identity.
 
-Script: analysis/nuclear/neutron_g_factor.py  (7/7 PASS)
+The free vs bound distinction in g_n is a plausible torsionverse mechanism for
+the in-medium nucleon form factor correction (a known nuclear physics effect).
+The mechanism's direction is well-supported, and its magnitude is consistent
+with an ordinary nucleon-contact separation close to r_p; the exact nuclear
+separation itself is not independently fixed here by a first-principles
+nuclear density calculation.
+
+Script: analysis/nuclear/neutron_g_factor.py  (7/7 PASS, free-neutron result);
+  analysis/nuclear/bound_neutron_exact_distance_solve.py  (distance-dependent
+  model, 5/5 PASS)
 
 PROVEN:
   - N_J formula and three regimes (sub-cell, boundary, bulk)  [PS1-PS3]
@@ -747,22 +778,30 @@ ESSENTIALLY CLOSED (neutron magnetic moment, 2026-08-21):
     (spherical Bessel != I_h Zone 1 modes). Exact I_h modes would close it.
 
   BOUND NEUTRON IN NUCLEUS:
-    The proton's spinning Zone 3 cells (r < r_p = 0.841 fm, Hopf-driven at Rs*c)
+    The proton's spinning Zone 3 cells (r < r_p = 0.841 fm, driven by the
+    proton's spin via its Zone 2 locked shell, at Rs*c)
     ARE the cells surrounding the bound neutron at nuclear separation.
     The proton Zone 3 spinning medium acts on the neutron from outside Zone 2.
-    g_n(bound) = g_n(free) - mu_Zone3_proton = -1.567 - 0.360 = -1.927 mu_N
-    PDG measured:  g_n = -1.913 mu_N   error: +0.7%
+    Modeling the induced correction as a topological-dipole field falling off
+    with separation r (mu_induced(r) = mu_Zone3_proton*(r_p/r)^3, the same law
+    used for Zone 3 coupling in entanglement_phase_lock.py), the separation
+    that reproduces the measured g_n = -1.913 mu_N exactly is r_exact = 0.852
+    fm = 1.013*r_p -- ordinary nucleon-nucleon contact just beyond the
+    proton's own r_p. The original flat estimate (r = r_p exactly) gives
+    -1.927 mu_N (+0.7%); an alternative exponent (internal co-rotation
+    velocity, (r_p/r)^2) gives a very similar r_exact = 0.858 fm (+2.0%) --
+    the conclusion is not sensitive to this choice.
 
-  KEY INSIGHT: the proton Zone 3 contribution (+0.360 mu_N for g_p) and the
-  gap in free neutron g_n (-0.346 mu_N) are the SAME physical quantity:
-  whether Zone 3 is driven by the nucleon's own Hopf winding (proton) or by
-  an adjacent proton's winding (bound neutron). The free vs bound distinction
-  IS the difference. The in-medium nucleon form factor correction (known in
-  nuclear physics) has this mechanism as its torsionverse origin.
+  KEY INSIGHT: mu_Zone3_proton (+0.360 mu_N for g_p) sets the scale of the
+  induced correction; the gap in free neutron g_n (-0.346 mu_N) is numerically
+  close to its r=r_p value, but the two are logically distinct quantities --
+  the closeness is suggestive, not an established identity. The in-medium
+  nucleon form factor correction (known in nuclear physics) has a plausible
+  torsionverse mechanism: whether Zone 3 is driven by the nucleon's own Hopf
+  winding (proton) or by an adjacent proton's winding (bound neutron).
 
-  RATIO CHECK: |g_n_bound/g_p| = 1.927/2.793 = 0.690 vs measured 0.685 (0.7%)
-
-  Script: analysis/nuclear/neutron_g_factor.py  (7/7 PASS)
+  Script: analysis/nuclear/neutron_g_factor.py  (7/7 PASS, free-neutron result);
+    analysis/nuclear/bound_neutron_exact_distance_solve.py  (5/5 PASS)
 
 ESSENTIALLY CLOSED (added 2026-08-21):
   - Island of stability (Z=114, N=184) and electron breakdown limit  [SL1-SL5]

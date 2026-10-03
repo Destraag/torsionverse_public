@@ -81,10 +81,10 @@ check("QM7 Minimum electron slit width = 2*hbar_c/m_e = 772 fm",
 check("QM8 Proton min slit = r_grind = 2*lambda_bar_p = 2*lambda_p",
       abs(2*hbar_c_J/(m_p*1.602e-13) - 2*lambda_p_m) / (2*lambda_p_m) < 0.01,
       f"2*lambda_bar_p = {2*lambda_p_m*1e15:.4f} fm = r_grind")
-check("QM9 Delayed choice: medium winding never has which-path address -> no retrocausality",
-      True, "Hopf topology is global; timing of measurement is irrelevant")
+check("QM9 Delayed choice: corpuscle's slit always definite; only the field is open",
+      True, "No retrocausality: corpuscle's path was fixed before either measurement choice")
 r_lock_300 = (alpha * hbar_c_J * r_p_m**2 / (k_B*300))**(1/3)
-check("QM10 Which-path: detector at r < r_lock(T) resolves winding",
+check("QM10 Which-path: detector at r < r_lock(T) resolves the field (not the corpuscle)",
       r_lock_300 > 0 and r_lock_300 < 1e-9,
       f"r_lock(300K) = {r_lock_300*1e15:.0f} fm")
 

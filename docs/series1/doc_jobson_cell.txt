@@ -1691,13 +1691,19 @@ ESSENTIALLY CLOSED (new):
 
 CONFIRMED (2026-08-21):
   n=18 from I_h dynamical matrix:
-    The I_h spring network (V=12, E=30) has exactly 6 zero eigenvalues in
-    the dynamical matrix at q=0 -- the 6 Maxwell floppy modes (3V-E=6).
+    The I_h spring network (ONE cell's own V=12, E=30 graph, analyzed as a
+    rigidity-theory/Maxwell-counting device -- not inter-cell bonds) has
+    exactly 6 zero eigenvalues in the dynamical matrix at q=0 -- the 6
+    Maxwell floppy modes (3V-E=6).
     n=18 = 3*(3V-E) = 3D x 6 modes. This proves alpha_grav = (m_p/E_cell)^18
     algebraically from cell geometry, zero free parameters.
-    Debye model with omega_D = E_cell/hbar gives exact S-B coefficient 3*pi^4/5,
-    confirming E_cell as the cell lattice UV cutoff for thermal phonons.
-Script: analysis/gravity/ih_lattice_phonon.py  IP4/IP6  [19/19 PASS]
+    Debye model with omega_D = E_cell/hbar reproduces the Stefan-Boltzmann
+    coefficient 3*pi^4/5 -- a scheme-guaranteed consequence of the assumed
+    g(omega)~omega^2 Debye density of states, true for ANY cutoff value, so
+    this does not independently confirm E_cell as the physical UV cutoff;
+    it confirms the script's own integration matches the known closed-form
+    Debye low-temperature limit.
+Script: analysis/gravity/ih_lattice_phonon.py  IP10-IP12  [19/19 PASS]
 
   Pion mass from I_h geometry (2026-08-21):
     Rs = sqrt(5)/(4*pi) encodes the I_h geometry ratio. The charged pion mass:

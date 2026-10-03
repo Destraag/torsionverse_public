@@ -1,46 +1,54 @@
 """
-mesh_grind_pybullet_two_driver_orientation_sweep_test.py
+mesh_grind_pybullet_two_driver_force_onset_offset_test.py
 ==========================================================
-SIXTH script in the PyBullet two-driver chirality line. Directly answers
-the author's standing concern (2026-09-23, after the contact-gated "v5"
-sweep completed) that a SINGLE random orientation draw per mult value is
-not enough to rule out "we just happened to sample a favorable alignment."
-v5's own mult=2.9 result (HETERO plateaued instead of touching, despite a
-LARGER hetero_vs_ctrl delta than the neighboring mult=1.5/2.0 cases that DID
-touch) is itself evidence that orientation, not just separation, can flip
-the outcome.
+SEVENTH script in the PyBullet two-driver chirality line. Duplicate of
+mesh_grind_pybullet_two_driver_orientation_sweep_test.py ("v6") with
+EXACTLY ONE physics change: the approach force's distance is no longer
+measured center-to-center.
 
-SCOPE (author instruction, 2026-09-23): "create a new script focused 2 3 7
-distance and do many different orientations. no control just same and
-hetero." This script:
-  - Tests EXACTLY 3 separations: mult = 2.0, 3.0, 7.0 (near / medium / far)
-    -- a fresh, deliberately small set (not v4/v5's 7-point sweep), to spend
-    the compute budget on REPEATING each distance many times instead of
-    covering more distances once each.
-  - Drops CONTROL entirely (author's explicit instruction) -- this script's
-    question is "does the same/hetero split hold up across many
-    orientations," not "how much does spin do vs no spin," so CONTROL's
-    zero-spin baseline is not needed here.
-  - Runs N_ORIENT_TRIALS independent Haar-uniform orientation draws per
-    mult value. SAME and HETERO share the same draw within one trial (fair
-    comparison, matching v5's own CONTROL/SAME/HETERO-share-one-seed
-    convention at a given configuration), but every trial gets a genuinely
-    different draw.
-  - Reports, per mult, the TOUCH RATE (fraction of trials reaching real
-    n_contact_samples>=N_CONTACT_MIN contact, i.e. stop_reason=="drivers_touch")
-    for SAME and for HETERO separately -- the number this script exists to
-    produce. A clean same~0%/hetero>0% touch-rate split, replicated across
-    many orientations, is a materially stronger claim than v5's single-draw
-    per-mult result; a muddier split is an equally important, honest finding.
+AUTHOR CORRECTION THIS LED TO (2026-10-02): "there needs to be a distance
++ from center to where the force starts and then drops off... driver size
++ cell radius is actually correct for when the force drops off so its the
+center of the first contact cells." The force is caused by free cells that
+spin/expand once driven into co-rotation by the driver (doc_magnetism Sec
+1.2's established mechanism) -- a zero-thickness geometric boundary has no
+cells sitting on it. The first real free cell's own CENTER (not its near
+or far face) is the physically meaningful reference point: by the standard
+shell-theorem/Gauss's-law fact that a spherically-symmetric source's
+EXTERNAL field matches a point source at its own center regardless of the
+source's own size, the natural origin for this force is the center of mass
+of the first contacting (expanding) free-cell layer, i.e. one cell RADIUS
+beyond the driver's own established surface -- not one cell diameter. (A
+"boundary-layer suppression" argument for diameter instead -- the first
+cell layer's own expansion partly suppressed by direct rigid contact with
+the driver -- was considered and judged weaker/more speculative than the
+center-of-mass argument; not used.)
 
-Reuses ALL geometry/physics/contact-gating code VERBATIM from
-mesh_grind_pybullet_two_driver_contact_gated_test.py ("v5") -- no changes to
-run_condition, the two fixes it already applies (contact-gated stop,
-Haar-uniform orientation), or any constant. Only the sweep/loop structure
-(main()) differs -- 3 mult values x N_ORIENT_TRIALS x {SAME, HETERO}.
+  ONSET_RADIUS_FM = DRIVER_FOOTPRINT_FM + r_in   (center of first free cell)
+  GAP = center_to_center_separation - 2*ONSET_RADIUS_FM
+  force_mag = approach_mag * (TOUCH_SEP_FM / GAP)^2   (same n=2 form as v6,
+    ONLY the distance reference changes -- the deeper "is inverse-square
+    even the right falloff" question is explicitly deferred, not reopened
+    here, per author instruction: "lets start by patching the existing
+    mechanism... we can come back to the 'is this even the right
+    representation of that force' later.")
 
-Run: python analysis/nuclear/mesh_grind/pybullet/mesh_grind_pybullet_two_driver_orientation_sweep_test.py --sanity
-     python analysis/nuclear/mesh_grind/pybullet/mesh_grind_pybullet_two_driver_orientation_sweep_test.py
+NUMERICAL SAFETY CLAMP: GAP is floored at GAP_FLOOR_FM = 0.05*TOUCH_SEP_FM
+to prevent divide-by-zero/sign-flip once the two drivers' own onset radii
+would geometrically overlap before their rigid shells physically touch
+(2*ONSET_RADIUS_FM = 0.0789 fm is slightly LARGER than TOUCH_SEP_FM =
+0.0639 fm -- i.e. under the raw formula, GAP would already be negative at
+the drivers' own literal touching distance). This is a numerical safety
+measure only, not a physical claim about what happens in that regime.
+
+Everything else -- geometry, contact-gated stop, Haar-uniform orientation,
+confinement, the 3-mult x N_ORIENT_TRIALS x {SAME, HETERO} sweep structure
+-- is VERBATIM from v6, so this run is a clean, single-variable comparison
+against the already-reviewed v6 result (same mult=2.0/3.0/7.0, same
+N_ORIENT_TRIALS=20, same seeds).
+
+Run: python analysis/nuclear/mesh_grind/pybullet/mesh_grind_pybullet_two_driver_force_onset_offset_test.py --sanity
+     python analysis/nuclear/mesh_grind/pybullet/mesh_grind_pybullet_two_driver_force_onset_offset_test.py
 """
 
 import math
@@ -80,6 +88,10 @@ DRIVER_FOOTPRINT_FM = 2 * r_in + R_c + r_in
 TOUCH_SEP_FM = 2 * DRIVER_FOOTPRINT_FM
 B_FIXED_FM = 2.0 * TOUCH_SEP_FM
 SEED_MARGIN_FM = 3 * r_in
+
+# ── PATCH: force-onset offset (2026-10-02) ───────────────────────────────────
+ONSET_RADIUS_FM = DRIVER_FOOTPRINT_FM + r_in   # center of the first free cell
+GAP_FLOOR_FM = 0.05 * TOUCH_SEP_FM              # numerical safety clamp only
 
 _PHI_RCP = 0.20
 _percell_vol_fm3 = (4.0 / 3.0) * pi * R_c**3
@@ -267,7 +279,11 @@ def run_condition(label, omega_A, omega_B, stop_mode="fixed", start_sep_fm=None,
         d_norm = np.linalg.norm(d_ab)
         if d_norm > 1e-9:
             approach_dir = d_ab / d_norm
-            force_mag = approach_mag * (TOUCH_SEP_FM / d_norm) ** 2
+            # PATCH (2026-10-02): distance measured from the center of the
+            # first contacting free-cell layer, not raw driver center.
+            gap = d_norm - 2 * ONSET_RADIUS_FM
+            gap_eff = max(gap, GAP_FLOOR_FM)
+            force_mag = approach_mag * (TOUCH_SEP_FM / gap_eff) ** 2
             p.applyExternalForce(driver_A, -1, list(force_mag * approach_dir), list(cA * SIM_SCALE),
                                   p.WORLD_FRAME, physicsClientId=client)
             p.applyExternalForce(driver_B, -1, list(-force_mag * approach_dir), list(cB * SIM_SCALE),
@@ -380,7 +396,7 @@ def run_condition(label, omega_A, omega_B, stop_mode="fixed", start_sep_fm=None,
     else:
         k_fit = float("nan")
 
-    out_dir = "/tmp/mesh_grind_orientation_sweep_data"
+    out_dir = "/tmp/mesh_grind_force_onset_offset_data"
     os.makedirs(out_dir, exist_ok=True)
     mult_tag = sep_start_fm / TOUCH_SEP_FM
     np.savez_compressed(f"{out_dir}/{label}_mult{mult_tag:.1f}_seed{condition_seed}.npz",
@@ -397,10 +413,13 @@ def run_condition(label, omega_A, omega_B, stop_mode="fixed", start_sep_fm=None,
 
 def main():
     print("=" * 78)
-    print("ORIENTATION SWEEP (2026-09-23) -- same/hetero only (no control), 3 distances")
-    print("(mult=2.0, 3.0, 7.0), many independent Haar-uniform orientation draws per")
-    print("distance, to test whether the v5 sweep's same/hetero touch split holds up")
-    print("across many relative alignments or was a lucky single draw.")
+    print("FORCE-ONSET OFFSET PATCH (2026-10-02) -- same/hetero, 3 distances")
+    print("(mult=2.0, 3.0, 7.0), many Haar-uniform orientation draws per distance.")
+    print("ONLY the force's distance reference changed vs v6 (orientation_sweep):")
+    print(f"  ONSET_RADIUS_FM = DRIVER_FOOTPRINT_FM + r_in = {ONSET_RADIUS_FM:.6f} fm")
+    print(f"  GAP = center_to_center - 2*ONSET_RADIUS_FM, floored at {GAP_FLOOR_FM:.6f} fm")
+    print("Direct, single-variable comparison against the already-reviewed v6 result")
+    print("(same mult values, same N_ORIENT_TRIALS, same seeds).")
     print("=" * 78)
 
     omega_vec = OMEGA_MAG * AXIS_COAXIAL
@@ -456,24 +475,31 @@ def main():
 
     print("\n" + "=" * 78)
     print(f"FINAL: touch-rate across {N_ORIENT_TRIALS} orientation draws per distance")
+    print("(force-onset-offset patch active)")
     print("=" * 78)
     for r in all_results:
         print(f"mult={r['mult']}: same_touch_rate={r['same_touch_rate']:.0%}  "
               f"hetero_touch_rate={r['hetero_touch_rate']:.0%}  "
               f"same_delta_mean={r['same_delta_mean']:+.4f}  "
               f"hetero_delta_mean={r['hetero_delta_mean']:+.4f}")
+    print()
+    print("COMPARE AGAINST v6 BASELINE (/tmp/mesh_grind_orientation_sweep_n20_full.log):")
+    print("  mult=2.0: same=0%  hetero=95%   mult=3.0: same=0%  hetero=100%")
+    print("  mult=7.0: same=0%  hetero=0%")
 
 
 def quick_sanity_check(mult=2.0, n_trials=2):
     """Fast smoke test: n_trials orientation draws at one mult, confirms the
     per-trial loop, touch-rate bookkeeping, and distinct-seed-per-trial logic
-    all work before committing to the full N_ORIENT_TRIALS x 3-distance run."""
+    all work (with the patched GAP-based force) before committing to the full
+    N_ORIENT_TRIALS x 3-distance run."""
     start_sep = mult * TOUCH_SEP_FM
     a_confine, b_confine = ellipsoid_semi_axes(mult)
     n_free_target = n_free_for_ellipsoid(a_confine, b_confine)
     omega_vec = OMEGA_MAG * AXIS_COAXIAL
 
     print(f"SANITY CHECK: mult={mult}, N_FREE={n_free_target}, n_trials={n_trials}")
+    print(f"  ONSET_RADIUS_FM={ONSET_RADIUS_FM:.6f}  GAP_FLOOR_FM={GAP_FLOOR_FM:.6f}")
     for trial in range(n_trials):
         condition_seed = ORIENT_SEED + trial * 17
         for label, oA, oB, mode in [("SAME-coaxial", omega_vec, omega_vec, "repel"),

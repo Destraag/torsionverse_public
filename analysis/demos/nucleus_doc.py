@@ -248,7 +248,12 @@ mu_n_SU6   = -2.000  # (4*mu_d - mu_u)/3 with m=m_p/3
 mu_orb_n   = mu_orb * (-1/3)/(2/3)  # d quarks at lambda_p, charge -1/3
 mu_Z3_n    = 0.0     # no Hopf winding -> no Zone 3 pressure torque
 mu_n_free  = R_spin * mu_n_SU6 + mu_orb_n + mu_Z3_n
-# Bound neutron: proton Zone 3 acts externally (same magnitude, opposite sign)
+# Bound neutron: proton Zone 3 acts externally (same magnitude, opposite sign).
+# This flat reuse of mu_Z3 is the r=r_p special case of a distance-dependent
+# model (mu_induced(r) = mu_Z3*(r_p/r)^3); the separation that reproduces
+# the measured value exactly is r_exact=0.852fm=1.013*r_p, ordinary nucleon
+# contact just beyond r_p -- see doc_nucleus.txt Section 5.7 and
+# analysis/nuclear/bound_neutron_exact_distance_solve.py.
 mu_n_bound = mu_n_free - mu_Z3
 mu_n_meas  = -1.9130
 

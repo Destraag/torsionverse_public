@@ -976,12 +976,16 @@ ESSENTIALLY CLOSED:
 
 CONFIRMED (moved from open, 2026-08-21):
   - n=18 algebraic proof: I_h dynamical matrix gives exactly 6 zero modes;
-    n = 3D x 6 = 18. Debye model with omega_D = E_cell/hbar gives correct
-    Stefan-Boltzmann (3*pi^4/5). [analysis/gravity/ih_lattice_phonon.py 19/19 PASS]
+    n = 3D x 6 = 18. A Debye model with omega_D = E_cell/hbar reproduces the
+    Stefan-Boltzmann coefficient (3*pi^4/5) -- scheme-guaranteed by the
+    assumed Debye g~omega^2 density of states for any cutoff value, not
+    independent confirmation of E_cell. [analysis/gravity/ih_lattice_phonon.py 19/19 PASS]
 
 GENUINELY OPEN (one item):
-  - k_B numerical value: Planck SHAPE confirmed (Debye, T^4, 3*pi^4/5 exactly,
-    zero free parameters beyond E_cell). k_B itself is a unit convention.
+  - k_B numerical value: Planck T^4 SHAPE confirmed for an assumed Debye
+    g~omega^2 density of states (the 3*pi^4/5 coefficient holds for any
+    cutoff value, not E_cell-specific evidence -- see the n=18 item above).
+    k_B itself is a unit convention.
     [ih_lattice_phonon.py 19/19 PASS confirms shape; value = SI definition]
   - Planetary orbital initial conditions (G derived; initial conditions cosmological)
 

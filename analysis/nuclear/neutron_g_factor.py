@@ -100,7 +100,7 @@ Q_u = +2/3   # u quark charge in units of e
 # Same formula as proton but with d quarks (charge -1/3) instead of u (+2/3)
 # mu_orb = (sum of Q_i * v_i * r_i) in units of mu_N
 # Normalized to proton orbital: proton has 2 u quarks (+2/3 each) at lambda_p
-mu_orb_p_reference = 0.3559  # from proton_g_factor.py Section 4 (2 u quarks)
+mu_orb_p_reference = 0.3559  # from analysis/demos/nucleus_doc.py (2 u quarks orbital term)
 # Neutron has 2 d quarks (-1/3 each) at lambda_p instead; ratio of charges:
 charge_ratio = (2 * Q_d) / (2 * Q_u)  # = (-2/3) / (4/3) = -1/2
 mu_orb_n = mu_orb_p_reference * charge_ratio
