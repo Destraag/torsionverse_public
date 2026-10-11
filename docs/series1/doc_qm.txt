@@ -94,9 +94,12 @@ Consequences:
     preserved for macroscopic slit separations.
   - Delayed choice: no paradox. The corpuscle's slit was always definite;
     only the still-propagating FIELD can be intercepted later (Section 5.1).
+  - Quantum erasure (general class): single-corpuscle erasers show
+    fringes directly, unconditioned; entangled two-corpuscle erasers
+    require sorting by a second measurement (Section 5.2).
   - Quantum eraser (Kim et al. 2000): a distinct, two-corpuscle entangled-
-    pair effect -- no retrocausality by the same no-FTL closure used for
-    entanglement generally (Section 5.2).
+    pair worked example -- no retrocausality by the same no-FTL closure
+    used for entanglement generally (Section 5.3).
 
 NEW PREDICTIONS (not in standard QM):
   - Minimum electron slit width for coherent diffraction: 2*lambda_bar_e = 772 fm
@@ -285,8 +288,10 @@ remains open]
 
 The proton (or electron) is a corpuscle -- always at one definite location,
 never split or delocalized. Its Zone 3 field extends to infinity (falling
-as 1/r^3) regardless of where the corpuscle itself is. When the corpuscle
-approaches a barrier with two slits:
+as 1/r^3) regardless of where the corpuscle itself is. (This is the
+Hopf-wound, theta>0 matter-particle case; see the note after (d) below for
+photons, theta=0, which have no Zone 3 but follow the same mechanism.)
+When the corpuscle approaches a barrier with two slits:
 
   (a) The CORPUSCLE goes through exactly ONE slit -- always definite, never
       "at slit A and slit B simultaneously." What spans both slits is its
@@ -302,6 +307,20 @@ approaches a barrier with two slits:
   (d) Interference pattern = standard Huygens-Fresnel diffraction for the medium
       wave. Fringe spacing = lambda_dB / d where d is slit separation.
       lambda_dB = 2*pi*hbar / (m*v) = de Broglie wavelength (from KG dispersion).
+
+Photons (theta=0, no Hopf winding) have no Zone 3 shell -- a Zone 3 shell
+is structurally tied to having a winding at all. The field that spans both
+slits for a photon is instead its own T_1g wave packet's ordinary
+transverse spatial width (set by how the beam was collimated before the
+slits), not a near-field structure requiring winding. The superposition
+math in (c)-(d) is unchanged either way: Huygens-Fresnel superposition and
+the fringe-spacing formula never depend on the field being scalar (A_g)
+specifically, only on two coherent contributions sharing a common
+oscillating axis -- automatic for a scalar field, and equally true for a
+vector (T_1g) field whenever both slit-paths carry the same polarization
+(the default case for a simple, single-source setup). lambda_dB for a
+photon uses its momentum p = E/c directly (lambda_dB = 2*pi*hbar/p), the
+same relation specialized to m=0 rather than a different formula.
 
 The corpuscle's subsequent path to the screen is drawn from the resulting
 interference landscape; over many trials (many corpuscles, each through one
@@ -473,9 +492,46 @@ rewriting the past.
 
 [QM9 PASS: no retrocausality required]
 
-5.2  Quantum eraser (Kim et al. 2000): a two-corpuscle effect
+5.2  Quantum erasure: the general class
 
-Unlike Section 5.1, the quantum eraser is not a single-corpuscle experiment.
+A quantum eraser experiment first makes which-path information available
+(destroying interference, Section 4.2), then erases it before detection,
+recovering interference in a conditioned sub-ensemble. Two structurally
+different cases exist, both covered by mechanisms already established
+above -- no additional postulate is needed to distinguish them.
+
+SINGLE-CORPUSCLE ERASERS (no entanglement): one corpuscle, one detection
+event. There is no separate, always-fires-regardless detector analogous
+to D0 below -- the corpuscle's own click IS the whole trial. Which-path
+marking and its erasure both act on the SAME corpuscle's Zone 3 field
+(Section 4.2/4.2a); fringes appear directly in the raw, unconditioned
+data whenever the marking is erased before detection, with no coincidence
+counting required. Section 4.2a's beamsplitter-eraser example is of this
+type.
+
+TWO-CORPUSCLE (ENTANGLED-PAIR) ERASERS: a single initial corpuscle is
+converted into a correlated pair (e.g. by SPDC, Section 5.3), one member
+going to a position-sensitive detector (D0) that fires on EVERY trial
+regardless of the partner's fate, the other carrying which-path
+information to a separate measurement. Because D0's raw data mixes both
+marked and erased trials together, it never shows fringes unconditioned,
+with or without erasure (Section 5.3) -- recovering fringes requires
+sorting D0's already-recorded clicks using a SECOND, independent
+measurement on the partner corpuscle.
+
+Is that second requirement a deep new principle, or just bookkeeping?
+Both, partly: there is no exotic physics in "two separate particles need
+two separate measurements" -- but the STRUCTURAL FEATURE this creates (an
+independent, always-firing detector whose data only reveals pattern
+structure once conditioned on a second measurement) is real, and is what
+Section 5.3 works through for one specific experiment. Whether the same
+A_g-singlet/G32-chain correlation mechanism used elsewhere in this
+framework (doc_entanglement.txt) cleanly covers the photon pairs used by
+most tabletop erasers is a separate, open question -- docs/open_items.txt
+item 17.
+
+5.3  Kim et al. 2000: a worked two-corpuscle example
+
 Kim et al.'s setup uses spontaneous parametric down-conversion (SPDC): just
 past the slits, a nonlinear crystal converts the corpuscle that crossed the
 double slit into an entangled PAIR -- a "signal" corpuscle continuing to a
@@ -525,6 +581,165 @@ crystal) reproduces this mapping from Jobson-cell mechanics, rather than
 importing it from standard nonlinear optics, is an open question -- see
 Section 6.
 
+5.3.1  Creation-nexus rule: narrowing the SPDC-mapping gap (2026-10-05)
+
+A specific hypothesis proposes a definite answer to the "NOT YET DERIVED"
+question just above: suppose SPDC couples to the FIELD at the crystal
+(which, per Section 4.1, already spans both slits there regardless of
+which slit the real corpuscle took) rather than to the corpuscle's
+already-committed slit. If the down-conversion's signal+idler phases SUM-
+lock to the pump (ordinary energy/momentum conservation) while their
+DIFFERENCE stays free to carry the slit-A-vs-slit-B information, the
+signal's own conditional field amplitude at D0 (given which idler path)
+inherits the same x-dependent relative phase an ordinary double slit
+would produce.
+
+Tested in analysis/quantum/kim_eraser_creation_nexus_test.py (10/10 checks
+PASS): routed through the real apparatus (BSa/BSb's direct ports to
+D3/D4, reflected portions recombined at the shared beamsplitter BSc
+using ordinary 50/50 unitarity -- the same +/- sign transformation the
+original paper itself cites, not an added assumption), this reproduces
+the paper's own reported structure
+exactly: R01(x)=env(x)*cos^2(pi*d*x/(lambda*f)), R02(x)=env(x)*sin^2(pi*d*x/
+(lambda*f)), R03(x)=R04(x)=env(x)/2 (matched single-peak envelopes, no
+fringes) -- using only machinery already established elsewhere in this
+document (Section 4.1's Huygens/field mechanism, applied a second time)
+plus standard beamsplitter unitarity. No G32 chain, no winding, no new
+ontology.
+
+What this does and does not close: the phase-sum-lock rule ITSELF remains
+imported from standard SPDC conservation -- this result narrows, but does
+not fully close, the gap above (it shows the observed pattern follows
+automatically once that one rule is granted; it does not derive the
+down-conversion process itself from Jobson-cell mechanics). Status:
+exploratory, under review -- see docs/open_items.txt item 16.
+
+5.3.2  Proposed controls to isolate entanglement's role (2026-10-10)
+
+Three controls address different confounds. C1 and C3 rule out
+apparatus-level confounds that are NOT specific to entanglement --
+beamsplitter-count artifacts, detector-hardware/position effects -- and
+so are theory-agnostic: their predictions test whether the observed
+pattern genuinely tracks the recombination/erasure FUNCTION, not some
+other apparatus detail that could ALSO happen to involve entanglement
+but isn't limited to it. C2 is the only control that directly
+manipulates entanglement itself, and so is the only one that can
+separate "genuine entanglement" from "mere classical correlation" as
+the fringe pattern's actual cause. None of the three have been built;
+each has a distinguishable, falsifiable prediction.
+
+C1 -- SYMMETRIC NON-RECOMBINING CONTROL (tests whether mere apparatus
+complexity -- beamsplitter count -- rather than actual recombination of
+path information, is what produces fringes). Two ALTERNATIVE approaches
+to this same question, each with a different tradeoff (not
+complementary pieces of one combined control -- pick one):
+  C1a: reroute the actual erasure-bound beams (Ma's and Mb's reflected
+    outputs) onto two separate, non-mixing beamsplitters (BSc fed by
+    slit A alone; a new BSd fed by slit B alone -> new detectors D5,
+    D6) instead of the shared BSc -- removing ALL erasure/recombination
+    while keeping the same winding/path structure and beamsplitter
+    count. TRADEOFF: this also removes the recombining phase itself --
+    which is part of the complexity being tested -- along with
+    everything else, so a null result here does not cleanly isolate
+    "beamsplitter count alone" from "no recombination at all."
+  C1b: achieves the same underlying test without that tradeoff -- add
+    a second beamsplitter BSd in front of the EXISTING D4 only,
+    relabeling its two outputs D4/D5, leaving D1/D2's real erasure
+    process completely untouched. D4/D5 now pass through 2
+    beamsplitters total before detection (matching the erasure path's
+    count) with NO merging of path information at any stage (BSd has
+    only one input), while D1/D2 continue to show the genuine,
+    unmodified recombination exactly as in the real experiment -- a
+    cleaner, non-invasive isolation of the same question C1a targets.
+  EXPECTED outcome under ordinary optics, NOT a settled prediction:
+  since neither variant ever coherently recombines light from both
+  slit-paths at a single detector, textbook diffraction theory says no
+  fringes should appear in the relevant control channel(s). But this is
+  exactly what the control needs to establish empirically, not assume
+  -- it is entirely possible that apparatus complexity alone (sheer
+  beamsplitter count, imperfections in the optical elements, etc.) DOES
+  produce fringe-like structure despite no genuine recombination, which
+  is precisely why this test is worth running rather than dismissed as
+  foregone. A positive result (fringes appearing anyway) would be the
+  important, diagnostic finding -- evidence that something other than
+  genuine erasure/recombination is responsible for the original
+  pattern. No literature precedent found for either exact variant
+  (search-depth check only, not exhaustive).
+
+C2 -- REMOVE ENTANGLEMENT ITSELF (tests whether genuine entanglement,
+not just classical correlation, is required for D0's conditioned
+pattern (R01/R02) to show fringes at all -- whether fringes appear
+there, and how strongly, is the open question itself). Swap the
+BBO/SPDC crystal for a pseudo-thermal source (laser + rotating
+ground-glass diffuser -- standard, 60-year-old technique, Martienssen &
+Spiller, Am. J. Phys. 32, 919 (1964)), keeping the rest of the apparatus
+(double slit, PS, BSa/BSb/BSc, D0-D4) unchanged. Two candidate
+mechanisms, making distinguishable predictions:
+  (i) CLASSICAL CORRELATION / ENSEMBLE AVERAGING: predicts REDUCED BUT
+      NONZERO fringes in R01/R02. Modeling each slit region as an
+      independent chaotic amplitude (mirroring SPDC's own "pair from
+      EITHER region A OR region B" exclusivity) through Kim et al.'s own
+      published D1/D3 topology (eqs. 4-5 of the original paper) gives a
+      hard ceiling V=1/3~=33%, for D1/D2, independent of slit count --
+      verified by direct Monte Carlo coincidence-counting simulation,
+      6/6 PASS [analysis/quantum/
+      c2_classical_correlation_visibility_bound.py]. Real-world
+      imperfections would plausibly push an actual measurement below
+      this ceiling, by an amount not derivable without choosing a
+      specific implementation.
+  (ii) TV-SPECIFIC ENTANGLEMENT-BREAKING ENERGY RELEASE: predicts a
+      CLEAN ZERO -- no entanglement means no formation/breaking energy
+      budget to perturb the downstream optics. Depends on two
+      prerequisites not yet resolved for photon pairs specifically:
+      does the A_g-singlet/G32-chain mechanism apply to theta=0
+      particles at all, and what chain-breaking physically costs.
+  KEY LOGICAL POINT: any nonzero fringes under C2 -- even the reduced
+  1/3 of hypothesis (i) -- already refute the claim that entanglement
+  is required for the fringe pattern to exist at all (call this Claim
+  A) as completely as full visibility would; only a clean-zero result
+  (hypothesis ii) leaves Claim A standing. A reduced-but-nonzero result
+  narrows the live claim to entanglement being required only for
+  FULL/undiminished magnitude (Claim B) -- narrower than this
+  document's own Section 5.3 wording above currently implies (flagged
+  for revision once C2 is actually run, or before any stronger claim
+  than Claim B is asserted here).
+
+C3 -- APPARATUS-REVERSAL-EQUIVALENT (tests whether the recombining
+FUNCTION, not specific detector hardware/position, is what determines
+which data set shows fringes; distinct from a literal detector swap,
+which the original paper never performed -- confirmed directly from the
+paper's own text, not a secondary source). Physically exchange which
+output of BSa/BSb (transmitted vs. reflected) feeds the recombining
+path (toward the shared mixing beamsplitter, currently BSc, currently
+-> D1/D2) versus the direct path (currently -> D3/D4) -- using the same
+physical elements, not new ones.
+  EXPECTED outcome under the recombining mechanism itself, NOT a
+  settled prediction (theory-agnostic -- standard QM and TV agree
+  identically here, since both require an actual recombination event
+  for interference): the fringe-carrying data set should follow the
+  recombining FUNCTION, not physical hardware -- whichever detectors
+  now perform the recombining role would show fringes, whichever now
+  perform the direct role would not, regardless of which original
+  hardware is involved. But this is exactly what the control needs to
+  establish empirically, not assume -- a failure of this swap (fringes
+  staying tied to original D1/D2 hardware/position, or appearing in
+  neither/both) would be the important, diagnostic finding: evidence
+  that something OTHER than erasure itself is responsible for the
+  observed pattern.
+
+STATUS: C1 and C3 are both theory-agnostic controls -- whatever either
+one actually shows, standard QM and TV interpret it identically (they
+do not predict different outcomes FROM EACH OTHER); their value is in
+testing the experimental mechanism itself empirically, not in already
+knowing the answer, and not in distinguishing torsionverse from
+standard QM. C2 is the one control that could distinguish between two
+live TV hypotheses, and under hypothesis (i) is already a quantitative,
+falsifiable classical-vs-quantum discriminator independent of
+torsionverse specifically. None of C1-C3 have been built. C2 hypothesis
+(ii)'s own grounding (does entanglement even apply to photon pairs, what
+does chain-breaking cost) remains open. Status: exploratory, under
+review.
+
 
 6. STATUS SUMMARY
 ------------------
@@ -555,11 +770,19 @@ NEW PREDICTIONS (physical argument from Zone 3 geometry; not yet experimentally 
 ESSENTIALLY CLOSED:
   - Full Schrodinger equation with potential V(x): V = local medium pressure
     (Coulomb, gravity all derived from same medium; adding V is direct)
-  - Quantum eraser (Kim et al. 2000): a two-corpuscle (signal/idler) effect,
+  - Quantum erasure (general class, Section 5.2) and Kim et al. 2000's
+    worked example (Section 5.3): a two-corpuscle (signal/idler) effect,
     distinct from Section 5.1's single-corpuscle case; D0 alone never shows
     interference, fringes appear only in idler-coincidence sub-ensembles;
-    grounded in doc_entanglement.txt's A_g-singlet formation + no-FTL
-    closure (Section 5.2)
+    no-retrocausality grounded in doc_entanglement.txt's no-FTL closure.
+    The A_g-singlet FORMATION grounding specifically (vs. no-FTL, which is
+    independent of it) is under review for photon pairs -- docs/
+    open_items.txt item 17. A specific mechanism for the interference
+    PATTERN itself (Section 5.3.1, 2026-10-05) narrows but does not fully
+    close the SPDC-mapping gap below -- status: exploratory, under review.
+    Three proposed controls to isolate entanglement's own role (Section
+    5.3.2, 2026-10-10) are not yet built -- status: exploratory, under
+    review.
   - Pauli equation: from Dirac NR limit + E+ spinor [qm_dirac_pauli.py QD6]
   - Dirac equation: from Clifford algebra + E+/E- (2I) [QD1-QD4] -- uses the
     standard canonical Pauli/Dirac matrices; the "T_1g generators"
@@ -584,11 +807,15 @@ GENUINELY OPEN:
     a genuinely hard question, not unique to this framework (the same
     gap exists in de Broglie-Bohm theory's "quantum equilibrium"
     problem, unsolved there too after decades of work).
-  - Section 5.2's slit<->idler-propagation-direction mapping (SPDC
+  - Section 5.3's slit<->idler-propagation-direction mapping (SPDC
     momentum conservation) is imported from standard nonlinear optics,
     not derived from Jobson-cell medium mechanics -- whether the
     down-conversion process itself (one corpuscle splitting into two)
-    reproduces this from medium mechanics is not yet addressed.
+    reproduces this from medium mechanics is not yet addressed. Section
+    5.3.1's creation-nexus rule (2026-10-05, exploratory) narrows this
+    gap (shows the OBSERVED R01-R04 structure follows automatically once
+    the phase-sum-lock rule is granted) but does not close it (that rule
+    itself is still imported, not derived).
 
 
 7. COMPANION SCRIPT
